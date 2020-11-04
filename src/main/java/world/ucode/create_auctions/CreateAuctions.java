@@ -13,4 +13,8 @@ public class CreateAuctions extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/jsp/create_auctions.jsp").forward(req, resp);
     }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("hello post request :)");
+    }
 }
