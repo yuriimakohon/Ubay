@@ -1,0 +1,28 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    font-family: heebo, serif;
+}
+
+#main_container {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#header-logo {
+    display: flex;
+}
+
+#logo {
+    width: 300px;
+    margin: 70px auto auto;
+}
+
+#p-registration {
+    text-align: center;
+    margin-top: 150px;
+    font-size: 36px;
+    font-weight: 400;
+    color: #0079D1;
+}
