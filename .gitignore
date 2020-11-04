@@ -2,4 +2,4 @@
 /target/
 
 .idea
-ubay.iml
+*.iml
