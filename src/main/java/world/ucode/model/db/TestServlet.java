@@ -25,7 +25,7 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
+        System.out.println("action");
 
         try {
             switch (action) {
@@ -45,6 +45,7 @@ public class TestServlet extends HttpServlet {
 //                    updateUser(request, response);
 //                    break;
                 default:
+                    insertUser(request, response);
                     listUser(request, response);
                     break;
             }
@@ -55,11 +56,15 @@ public class TestServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+        System.out.println("get list1");
         List<Users> listUser = users.getAllUser();
-        request.setAttribute("listUser", listUser);
+        System.out.println(listUser);
+        System.out.println("get list2");
+//        request.setAttribute("listUser", listUser);
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 //        dispatcher.forward(request, response);
-        System.out.println("get list");
+        System.out.println("get list3");
+        System.out.println();
     }
 
 //    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
