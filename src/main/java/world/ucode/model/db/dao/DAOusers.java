@@ -28,9 +28,9 @@ public class DAOusers {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
             e.printStackTrace();
         }
     }
@@ -49,9 +49,9 @@ public class DAOusers {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
             e.printStackTrace();
         }
     }
@@ -77,9 +77,9 @@ public class DAOusers {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
             e.printStackTrace();
         }
     }
@@ -101,9 +101,9 @@ public class DAOusers {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
             e.printStackTrace();
         }
         return user;
@@ -114,23 +114,23 @@ public class DAOusers {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public List < Users > getAllUser() {
+    public List <Users> getAllUser() {
 
         Transaction transaction = null;
-        List < Users > listOfUser = null;
+        List <Users> listOfUser = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
 
-            listOfUser = session.createQuery("from users").getResultList();
+            listOfUser = session.createQuery("from Users", Users.class).getResultList();
 
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
             e.printStackTrace();
         }
         return listOfUser;
