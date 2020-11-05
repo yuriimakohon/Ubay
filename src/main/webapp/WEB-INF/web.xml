@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <welcome-file-list>
+    <welcome-file>/jsp/index.jsp</welcome-file>
+  </welcome-file-list>
+
+<!--  <servlet>-->
+<!--    <servlet-name>Main</servlet-name>-->
+<!--    <servlet-class>world.ucode.model.Mainservlet</servlet-class>-->
+<!--    <load-on-startup>1</load-on-startup>-->
+<!--  </servlet>-->
 </web-app>
