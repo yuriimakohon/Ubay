@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="35484ce1-df76-49ca-92f6-d64e8aa364a1" name="Default Changelist" comment="add few changed in create_actions">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/world/ucode/create_auctions/CreateAuctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/world/ucode/create_auctions/CreateAuctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/create_auctions/create_auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/create_auctions/create_auctions.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$USER_HOME$/.m2/wrapper/dists/apache-maven-3.6.3-bin/1iopthnavndlasol9gbrbg6bf2/apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jq1HTqaMli3rGVbffM3JlKWdbn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/js/create_auctions" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="35484ce1-df76-49ca-92f6-d64e8aa364a1" name="Default Changelist" comment="" />
+      <created>1604516720543</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604516720543</updated>
+      <workItem from="1604516721579" duration="1689000" />
+      <workItem from="1604518544663" duration="5000" />
+      <workItem from="1604518643113" duration="594000" />
+      <workItem from="1604522544980" duration="1059000" />
+      <workItem from="1604571935406" duration="3776000" />
+    </task>
+    <task id="LOCAL-00001" summary="add few changed in create_actions">
+      <created>1604518366102</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604518366102</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add few changed in create_actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add few changed in create_actions" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1093" y="430" key="#com.intellij.ide.util.MemberChooser" timestamp="1604517089965">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1093" y="430" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1440@0.0.2560.1440" timestamp="1604517089965" />
+    <state x="818" y="382" key="Maven.ArtifactSearchDialog" timestamp="1604517026207">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="818" y="382" key="Maven.ArtifactSearchDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1604517026207" />
+    <state x="880" y="456" key="Vcs.Push.Dialog.v2" timestamp="1604518373769">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="880" y="456" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1604518373769" />
+    <state x="1080" y="637" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604518434013">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1080" y="637" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1440@0.0.2560.1440" timestamp="1604518434013" />
+    <state x="945" y="347" key="run.anything.popup" timestamp="1604574222687">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="945" y="347" key="run.anything.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1604522553172" />
+    <state x="945" y="347" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1604574222687" />
+    <state x="945" y="331" width="670" height="676" key="search.everywhere.popup" timestamp="1604574493963">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="945" y="331" width="670" height="676" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1604574493963" />
+  </component>
+</project>
