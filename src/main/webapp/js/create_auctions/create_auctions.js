@@ -1,26 +1,92 @@
-console.log("Hello World!");
+let auctionTitle = $('#title_auction');
+let errorTitle = $('#errorTitle');
+let desc = $('#description');
+let errorDesc = $('#errorDescription');
+let startPrice = $('#start_price');
+let errorStartPrice = $('#errorStartPrice');
+let maxPrice = $('#max_price');
+let errorMaxPrice = $('#errorMaxPrice');
+let startTime = $('#start_time');
+let errorStartTime = $('#errorStartTime');
+let durationTime = $('#duration');
+
 
 document.getElementById('sub').addEventListener('click',  async function () {
-    console.log('tl: ' + document.getElementById('title_auction').value);
-    console.log('dc: ' + document.getElementById('description').value);
-    console.log('sp: ' + document.getElementById('start_price').value);
-    console.log('mp: ' + document.getElementById('max_price').value);
-    console.log('st: ' + document.getElementById('start_time').value);
-    console.log('dr: ' + document.getElementById('duration').value);
-
-    let formData = new FormData();
-    for (let i = 0; document.getElementById('forImage').files[i] != null; i++ ) {
-        formData.append(document.getElementById('forImage').files[i].name, document.getElementById('forImage').files[i])
+    let regexpTitle = new RegExp('([-a-zA-Z0-9]){3,}');
+    if (!regexpTitle.test(auctionTitle.val())) {
+        errorTitle.css('display', 'block');
+        return;
+    } else {
+        errorTitle.css('display', 'none');
     }
 
+    let regexpDescription = new RegExp('([-a-zA-Z0-9,!?]){3,}');
+    if (!regexpDescription.test(desc.val())) {
+        errorDesc.css('display', 'block');
+        return;
+    } else {
+        errorDesc.css('display', 'none');
+    }
+
+    if (startPrice.val() === '') {
+        errorStartPrice.css('display', 'block');
+        return;
+    } else {
+        errorStartPrice.css('display', 'none');
+    }
+
+    if (maxPrice.val() === '' || parseInt(maxPrice.val()) <= parseInt(startPrice.val())) {
+        errorMaxPrice.css('display', 'block');
+        return;
+    } else {
+        errorMaxPrice.css('display', 'none');
+    }
+
+    if (startTime.val() === '') {
+        errorStartTime.css('display', 'block');
+        return;
+    } else {
+        errorStartTime.css('display', 'none');
+    }
+
+    // parse date
+    let date = new Date();
+    date.setHours(parseInt(startTime.val().split("T")[1].split(":")[0]));
+    date.setMinutes(parseInt(startTime.val().split("T")[1].split(":")[1]));
+    date.setFullYear(parseInt(startTime.val().split("T")[0].split("-")[0]), parseInt(startTime.val().split("T")[0].split("-")[1]), parseInt(startTime.val().split("T")[0].split("-")[2]))
+    date.setSeconds(0)
+    date.setMilliseconds(0);
+    let second = date.getTime();
+    console.log(second);
+
+    let date2 = new Date();
+    console.log(date2.getTime());
+
+
+
+    // validate all
+
+    // create object for request
+    let auction = {
+        title: auctionTitle.val(),
+        desc: desc.val(),
+        startPrice: startPrice.val(),
+        maxPrice: maxPrice.val(),
+        startTime: startTime.val(),
+        duration: durationTime.val()
+    };
+    // download files
+    auction["images"] = await loadFiles(document.getElementById('forImage'));
+
+    // post request
     let response = await fetch("http://localhost:8080/ubay/create_auctions", {
         method: 'POST',
-        // enctype: 'mutlipart/form-data'
         headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json'
         },
-        body: formData
-    })
+        body: JSON.stringify(auction)
+    });
+    // machining  response
     if (response.ok) {
         let text = await response.text();
         console.log('ok: ' + text);

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ubay.iml" filepath="$PROJECT_DIR$/ubay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ubay.iml" filepath="$PROJECT_DIR$/.idea/ubay.iml" />
     </modules>
   </component>
 </project>
