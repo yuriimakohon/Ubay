@@ -3,9 +3,8 @@ package world.ucode.API.create_auctions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import world.ucode.objects.auction;
+import world.ucode.utils.ParseJson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,15 +38,11 @@ public class CreateAuctions extends HttpServlet {
         }
         System.out.println(json);
 
-        JSONParser jp = new JSONParser();
-        JSONObject jo = null;
-
-        try {
-            jo = (JSONObject) jp.parse(String.valueOf(json));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        JSONObject jo = ParseJson.jsonToJsonObject(new String(json));
+        if (jo == null) {
+            resp.setStatus(499);
+            resp.getWriter().write("error");
         }
-
         assert jo != null;
         JSONArray ja = (JSONArray) jo.get("images");
         a.setTitle(jo.get("title").toString());

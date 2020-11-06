@@ -1,7 +1,12 @@
 package world.ucode.API.authorization;
 
-import sun.jvm.hotspot.runtime.StackFrameStream;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import world.ucode.objects.User;
 import world.ucode.objects.auction;
+import world.ucode.utils.ParseJson;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -25,6 +30,7 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setStatus(201);
         resp.setContentType("text/plain");
+        User user = new User();
 
         BufferedReader bf = req.getReader();
         String buff = null;
@@ -33,9 +39,20 @@ public class SignupServlet extends HttpServlet {
         while ((buff = bf.readLine()) != null) {
             json.append(buff);
         }
+
+        JSONObject jo = ParseJson.jsonToJsonObject(new String(json));
+        if (jo == null) {
+            resp.setStatus(499);
+            resp.getWriter().write("error");
+        }
+        assert jo != null;
+        user.setLogin(jo.get("login").toString());
+        user.setPassword(jo.get("password").toString());
+
         System.out.println(json);
         if (req.getHeader("request").equals("sign_up")) {
             resp.getWriter().write("sign_up ok, id: '', token: ''");
+            user.setRole(jo.get("role").toString());
         } else if (req.getHeader("request").equals("sign_in")) {
             resp.getWriter().write("sign_in ok, id: '', token: ''");
         } else {

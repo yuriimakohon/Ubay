@@ -4,6 +4,7 @@ async function sign_up(login, password, role) {
         password: password,
         role: role
     }
+
     let response = await fetch( 'http://localhost:8080/ubay/auth', {
         method: 'POST',
         headers: {
