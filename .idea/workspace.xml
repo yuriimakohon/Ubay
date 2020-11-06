@@ -23,24 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35484ce1-df76-49ca-92f6-d64e8aa364a1" name="Default Changelist" comment="add few changed in create_actions">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/java.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ubay.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/web/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/loadFiles/loadFiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ubay_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ubay_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_4_20,_9_33_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_4_20__9_33_PM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/world/ucode/create_auctions/CreateAuctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/world/ucode/API/create_auctions/CreateAuctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/create_auctions/create_auctions.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/create_auctions/create_auctions.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/create_auctions/create_auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/create_auctions/create_auctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/create_auctions.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/create_auctions.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +118,7 @@
       <workItem from="1604581441498" duration="165000" />
       <workItem from="1604581622247" duration="27000" />
       <workItem from="1604581660060" duration="11277000" />
-      <workItem from="1604661566493" duration="3749000" />
+      <workItem from="1604661566493" duration="5184000" />
     </task>
     <task id="LOCAL-00001" summary="add few changed in create_actions">
       <created>1604518366102</created>
@@ -198,11 +182,11 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1080" y="637" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1440@0.0.2560.1440" timestamp="1604518434013" />
-    <state x="945" y="347" key="run.anything.popup" timestamp="1604665969078">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="945" y="347" key="run.anything.popup" timestamp="1604668592893">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="945" y="347" key="run.anything.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1604665969078" />
-    <state x="945" y="347" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1604663377092" />
+    <state x="945" y="347" key="run.anything.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1604667994865" />
+    <state x="945" y="347" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1604668592893" />
     <state x="945" y="331" width="670" height="676" key="search.everywhere.popup" timestamp="1604664540800">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
