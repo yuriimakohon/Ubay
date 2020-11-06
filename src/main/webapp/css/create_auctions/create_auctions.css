@@ -1,0 +1,25 @@
+#master {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    display: block;
+}
+
+#description {
+    resize: none;
+}
+
+#errorDescription,
+#errorTitle,
+#errorStartTime,
+#errorStartPrice,
+#errorMaxPrice,
+#errorStartTime2 {
+    display: none;
+}
