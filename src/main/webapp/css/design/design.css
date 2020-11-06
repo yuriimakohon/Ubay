@@ -1,0 +1,52 @@
+/*===========| Text input |=============*/
+.text_input {
+     width: 250px;
+     height: 35px;
+     font-size: 14px;
+     font-weight: 300;
+
+     padding-left: 10px;
+
+     border: 1px solid rgba(196, 196, 196, 0.75);
+     border-radius: 5px;
+     background: rgba(196, 196, 196, 0.1);
+ }
+
+.text_input:focus {
+    color: rgba(80, 80, 80, 1);
+    outline-color: rgba(42, 166, 255, 1);
+    outline-width: 1px;
+}
+
+.text_input::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+
+/*==============| Button |===============*/
+.btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    width: 150px;
+    height: 35px;
+
+    background: rgba(0, 135, 233, 1);
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 1px rgba(42, 166, 255, 1);
+
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.btn:hover {
+    background: rgba(0, 121, 209, 1);
+    box-shadow: 1px 1px 0 1px rgba(0, 135, 233, 1);
+}
+
+.btn:active {
+    background: rgba(0, 80, 150, 1);
+}
