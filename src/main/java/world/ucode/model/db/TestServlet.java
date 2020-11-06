@@ -87,9 +87,8 @@ public class TestServlet extends HttpServlet {
     private void insertUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String name = "first";
-        String email = "lol";
-        String country = "uk";
-        Users newUser = new Users(name, email, country);
+
+        Users newUser = new Users(name);
         users.saveUser(newUser);
 //        response.sendRedirect("list");
         System.out.println("insert");
