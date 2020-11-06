@@ -23,7 +23,7 @@ public class Users {
     @Column(name="id")
     protected int id;
 
-    @Column(name="name")
+    @Column(name="username")
     protected String name;
 
 
