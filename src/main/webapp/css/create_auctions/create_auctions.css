@@ -19,6 +19,7 @@ input {
 #errorTitle,
 #errorStartTime,
 #errorStartPrice,
-#errorMaxPrice {
+#errorMaxPrice,
+#errorStartTime2 {
     display: none;
 }

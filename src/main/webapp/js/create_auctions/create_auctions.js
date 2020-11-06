@@ -8,8 +8,8 @@ let maxPrice = $('#max_price');
 let errorMaxPrice = $('#errorMaxPrice');
 let startTime = $('#start_time');
 let errorStartTime = $('#errorStartTime');
+let errorStartTime2 = $('#errorStartTime2');
 let durationTime = $('#duration');
-
 
 document.getElementById('sub').addEventListener('click',  async function () {
     // validate all
@@ -50,6 +50,7 @@ document.getElementById('sub').addEventListener('click',  async function () {
         errorStartTime.css('display', 'none');
     }
 
+
     // parse date
     let st = new Date();
     st.setFullYear(parseInt(startTime.val().split("T")[0].split("-")[0]))
@@ -57,6 +58,16 @@ document.getElementById('sub').addEventListener('click',  async function () {
     st.setDate(parseInt(startTime.val().split("T")[0].split("-")[2]));
     st.setHours(parseInt(startTime.val().split("T")[1].split(":")[0]));
     st.setMinutes(parseInt(startTime.val().split("T")[1].split(":")[1]));
+
+
+    let currTime = new Date();
+    currTime.setMonth(currTime.getMonth() + 1);
+    if (st.getTime() <= currTime.getTime() + 60) {
+        errorStartTime2.css('display', 'block');
+        return;
+    } else {
+        errorStartTime2.css('display', 'none');
+    }
 
     // create object for request
     let auction = {
