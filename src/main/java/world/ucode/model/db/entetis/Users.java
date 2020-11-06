@@ -23,7 +23,7 @@ public class Users {
     @Column(name="id")
     protected int id;
 
-    @Column(name="login")
+    @Column(name="name")
     protected String name;
 
 
@@ -31,13 +31,13 @@ public class Users {
     public Users() {
     }
 
-    public Users(String name, String email, String country) {
+    public Users(String name) {
         super();
         this.name = name;
 
     }
 
-    public Users(int id, String name, String email, String country) {
+    public Users(int id, String name) {
         super();
         this.id = id;
         this.name = name;
