@@ -61,8 +61,6 @@ public class CreateAuctions extends HttpServlet {
         System.out.println(aJson);
         resp.getWriter().write(aJson);
 
-
-
         int i = 0;
         for (String s : (Iterable<String>) ja) {
             byte[] data = Base64.getDecoder().decode(s.split(",")[1]);
