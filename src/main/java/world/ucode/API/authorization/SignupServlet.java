@@ -1,4 +1,4 @@
-package world.ucode;
+package world.ucode.API.authorization;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;

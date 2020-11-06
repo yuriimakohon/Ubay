@@ -10,3 +10,16 @@
 input {
     display: block;
 }
+
+#description {
+    resize: none;
+}
+
+#errorDescription,
+#errorTitle,
+#errorStartTime,
+#errorStartPrice,
+#errorMaxPrice,
+#errorStartTime2 {
+    display: none;
+}
