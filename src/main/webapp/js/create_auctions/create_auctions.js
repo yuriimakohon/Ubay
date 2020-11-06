@@ -51,36 +51,12 @@ document.getElementById('sub').addEventListener('click',  async function () {
     }
 
     // parse date
-    console.log(startTime.val());
-    let date = new Date();
-    date.setFullYear(parseInt(startTime.val().split("T")[0].split("-")[0]))
-    date.setMonth(parseInt(startTime.val().split("T")[0].split("-")[1]));
-    date.setDate(parseInt(startTime.val().split("T")[0].split("-")[2]));
-    date.setHours(parseInt(startTime.val().split("T")[1].split(":")[0]));
-    date.setMinutes(parseInt(startTime.val().split("T")[1].split(":")[1]));
-    date.setSeconds(0)
-    date.setMilliseconds(0);
-    console.log(new Date().toLocaleString());
-    console.log('sec: ' + date.getSeconds());
-    console.log('min: ' + date.getMinutes());
-    console.log('hour: ' + date.getHours());
-    console.log('day: ' + date.getDate());
-    console.log('month: ' + date.getMonth());
-    console.log('year: ' + date.getFullYear());
-    console.log(date.getTime());
-
-    let date2 = new Date();
-    console.log('sec: ' + date2.getSeconds());
-    console.log('min: ' + date2.getMinutes());
-    console.log('hour: ' + date2.getHours());
-    console.log('day: ' + date2.getDate());
-    console.log('month: ' + date2.getMonth());
-    console.log('year: ' + date2.getFullYear());
-    date2.setMonth(11);
-    console.log(date2.getTime());
-
-
-
+    let st = new Date();
+    st.setFullYear(parseInt(startTime.val().split("T")[0].split("-")[0]))
+    st.setMonth(parseInt(startTime.val().split("T")[0].split("-")[1]));
+    st.setDate(parseInt(startTime.val().split("T")[0].split("-")[2]));
+    st.setHours(parseInt(startTime.val().split("T")[1].split(":")[0]));
+    st.setMinutes(parseInt(startTime.val().split("T")[1].split(":")[1]));
 
     // create object for request
     let auction = {
@@ -88,7 +64,7 @@ document.getElementById('sub').addEventListener('click',  async function () {
         desc: desc.val(),
         startPrice: startPrice.val(),
         maxPrice: maxPrice.val(),
-        startTime: startTime.val(),
+        startTime: st.getTime(),
         duration: durationTime.val()
     };
     // download files

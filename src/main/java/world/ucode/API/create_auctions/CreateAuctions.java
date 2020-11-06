@@ -35,6 +35,7 @@ public class CreateAuctions extends HttpServlet {
         while ((buff = bf.readLine()) != null) {
             json.append(buff);
         }
+        System.out.println(json);
 
         JSONParser jp = new JSONParser();
         JSONObject jo = null;
