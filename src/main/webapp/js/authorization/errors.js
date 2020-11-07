@@ -30,4 +30,10 @@ function errPassFormat() {
 
 function errUserExist() {
     errorText.text("User with the same login is already exist");
+    showErrorText();
+}
+
+function errInvalidAuth() {
+    errorText.text("Wrong login or password");
+    showErrorText();
 }

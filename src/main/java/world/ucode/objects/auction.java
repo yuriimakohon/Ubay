@@ -1,6 +1,8 @@
 package world.ucode.objects;
 
 public class auction {
+    public String image;
+
     public String title;
     public String Description;
     public int startPrice;

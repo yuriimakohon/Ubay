@@ -91,7 +91,7 @@ document.getElementById('sub').addEventListener('click',  async function () {
     });
     // machining  response
     if (response.ok) {
-        let text = await response.text();
+        let text = await response.json();
         console.log('ok: ' + text);
     } else {
         console.log('error');

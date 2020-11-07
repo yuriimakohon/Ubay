@@ -8,7 +8,7 @@ let inputSignupPassConfirm = $('#input-signup_pass_confirm');
 let inputSigninLogin = $('#input-signin_login');
 let inputSigninPass = $('#input-signin_pass');
 
-function onCreateAccount() {
+async function onCreateAccount() {
     let login = inputSignupLogin.val();
     let pass = inputSignupPass.val();
     let passConfirm = inputSignupPassConfirm.val();
@@ -23,14 +23,13 @@ function onCreateAccount() {
     } else if (pass.localeCompare(passConfirm) !== 0) {
         errPassConfirm();
     } else {
-        console.log('login: ' + login +
-            '\npassword: ' + pass +
-            '\nrole: ' + role
-        );
+        if (!await sign_up(login, pass, role)) {
+            errUserExist();
+        }
     }
 }
 
-function onLogIn() {
+async function onLogIn() {
     let login = inputSigninLogin.val();
     let pass = inputSigninPass.val();
 
@@ -39,8 +38,8 @@ function onLogIn() {
     } else if (!regexLogin.test(login)) {
         errLoginFormat();
     } else {
-        console.log('login: ' + login +
-            '\npassword: ' + pass
-        );
+        if (!await sign_in(login, pass)) {
+            errInvalidAuth();
+        }
     }
 }
