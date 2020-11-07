@@ -3,6 +3,8 @@
 *:after {
     box-sizing: border-box;
     font-family: heebo, serif;
+    padding: 0;
+    margin: 0;
 }
 
 .main_container {
@@ -35,7 +37,6 @@
     color: rgba(0, 0, 0, 0.25);
 }
 
-
 /*==============| Button |===============*/
 .btn {
     cursor: pointer;
@@ -65,7 +66,6 @@
 }
 
 /*============| Selector |============*/
-
 .select {
     height: 25px;
     border-color: rgba(196, 196, 196, 0.75);

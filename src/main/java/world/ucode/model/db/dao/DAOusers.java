@@ -142,4 +142,20 @@ public class DAOusers implements DAO<Users, Integer>{
         return user;
     }
 
+    public Users readbyLogin(String login) {
+        Transaction transaction = null;
+        Users user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM Users WHERE login = :login");
+            query.setParameter("login", login);
+            user = (Users) query.getSingleResult();
+        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }
