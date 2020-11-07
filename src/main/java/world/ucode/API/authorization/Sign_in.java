@@ -17,5 +17,7 @@ public class Sign_in extends HttpServlet {
         System.out.println(req.getParameter("login"));
         System.out.println(req.getParameter("password"));
         System.out.println(new Token().getToken());
+//        System.out.println(req.getContextPath());
+//        resp.sendRedirect( req.getContextPath() + "/catalog");
     }
 }

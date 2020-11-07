@@ -16,7 +16,7 @@ async function sign_in(login, password) {
 
     urlParams.append('login', login);
     urlParams.append('password', sha512(password));
-    console.log(urlParams.toString());
+
     let response = await fetch( 'http://localhost:8080/ubay/sign_in?' + urlParams.toString(), {
         method: 'POST',
     })
