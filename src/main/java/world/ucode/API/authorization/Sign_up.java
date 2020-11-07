@@ -28,9 +28,13 @@ public class SignupServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setStatus(201);
+        resp.setStatus(200);
         resp.setContentType("text/plain");
         User user = new User();
+
+        req.getParameter("login");
+        System.out.println(req.getParameter("login"));
+        System.out.println(req.getParameter("password"));
 
         BufferedReader bf = req.getReader();
         String buff = null;

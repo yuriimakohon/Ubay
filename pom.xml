@@ -27,6 +27,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- sha-256 -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.11</version>
+    </dependency>
+
     <!-- json-simple -->
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
