@@ -12,6 +12,11 @@ import javax.persistence.*;
 @Table(name = "bid")
 public class Bid {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "lotid")
     private int lotid;
 
