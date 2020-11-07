@@ -6,6 +6,7 @@
 }
 
 .main_container {
+    padding: 0 30px;
     margin: 0 auto;
     max-width: 1200px;
 }
@@ -62,6 +63,8 @@
 .btn:active {
     background: rgba(0, 80, 150, 1);
 }
+
+/*============| Selector |============*/
 
 .select {
     height: 25px;
