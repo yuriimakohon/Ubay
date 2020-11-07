@@ -1,43 +1,29 @@
 async function sign_up(login, password, role) {
-    let user = {
-        login: login,
-        password: password,
-        role: role
-    }
+    let urlParams = new URLSearchParams();
 
-    let response = await fetch( 'http://localhost:8080/ubay/auth', {
+    urlParams.append('login', login);
+    urlParams.append('password', sha512(password));
+    urlParams.append('role', role);
+
+    let response = await fetch( 'http://localhost:8080/ubay/sign_up?' + urlParams.toString(), {
         method: 'POST',
-        headers: {
-            'request': 'sign_up',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
     })
-    if (response.ok) {
-        let resp = await response.text();
-        console.log('ok: ' + resp);
-    } else {
-        console.log('error signup');
-    }
+    return response.ok;
 }
 
 async function sign_in(login, password) {
-    let user = {
-        login: login,
-        password: password,
-    }
-    let response = await fetch( 'http://localhost:8080/ubay/auth', {
+    let urlParams = new URLSearchParams();
+
+    urlParams.append('login', login);
+    urlParams.append('password', sha512(password));
+    console.log(urlParams.toString());
+    let response = await fetch( 'http://localhost:8080/ubay/sign_in?' + urlParams.toString(), {
         method: 'POST',
-        headers: {
-            'request': 'sign_in',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
     })
-    if (response.ok) {
-        let resp = await response.text();
-        console.log('ok: ' + resp);
-    } else {
-        console.log('error signup');
-    }
+    return response.ok;
+}
+
+function sha512(str) {
+    let md = forge.md.sha512.create().update(str);
+    return md.digest().toHex()
 }

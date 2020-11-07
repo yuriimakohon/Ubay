@@ -23,7 +23,9 @@ async function onCreateAccount() {
     } else if (pass.localeCompare(passConfirm) !== 0) {
         errPassConfirm();
     } else {
-        await sign_up(login, pass, role);
+        if (!await sign_up(login, pass, role)) {
+            errUserExist();
+        }
     }
 }
 
@@ -36,6 +38,8 @@ async function onLogIn() {
     } else if (!regexLogin.test(login)) {
         errLoginFormat();
     } else {
-        await sign_in(login, pass);
+        if (!await sign_in(login, pass)) {
+            errInvalidAuth();
+        }
     }
 }
