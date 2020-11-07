@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 
 import lombok.*;
 
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 @Table(name="users")
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Users {
 
     @Id
@@ -40,10 +43,10 @@ public class Users {
     @Column(name="userRole")
     private int userRole;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Bid> userbids;
+//    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+//    private List<Bid> userbids;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval =true)
+    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Lot> userlots;
 
     public Users(String name) {

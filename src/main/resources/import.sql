@@ -15,8 +15,8 @@ INSERT into lot VALUES (2, 123, "tittle2", 1, "photo1", 1, "description1", 0, 5,
 INSERT into lot VALUES (3, 1234, "tittle3", 1, "photo1", 1, "description1", 0, 5, 12346);
 INSERT into lot VALUES (4, 1234, "tittle4", 1, "photo1", 1, "description1", 0, 5, 12346);
 
-CREATE TABLE IF NOT EXISTS bid (lotid INTEGER, bidderId INTEGER, price INTEGER, statusOfBid INTEGER, FOREIGN KEY (bidderId) REFERENCES users(id) ON DELETE CASCADE, FOREIGN KEY (lotid) REFERENCES lot(id) ON DELETE CASCADE);
-INSERT into bid(lotid, bidderId, price, statusOfBid) VALUES (3, 12345, 3, 1);
-INSERT into bid VALUES (4, 12345, 2, 1);
-INSERT into bid VALUES (3, 123456, 1, 1);
-INSERT into bid VALUES (4, 123456, 4, 1);
+CREATE TABLE IF NOT EXISTS bid (id INTEGER primary key NOT NULL AUTO_INCREMENT,lotid INTEGER, bidderId INTEGER, price INTEGER, statusOfBid INTEGER, FOREIGN KEY (bidderId) REFERENCES users(id) ON DELETE CASCADE, FOREIGN KEY (lotid) REFERENCES lot(id) ON DELETE CASCADE);
+INSERT into bid VALUES (5, 3, 12345, 3, 1);
+INSERT into bid VALUES (1,4, 12345, 2, 1);
+INSERT into bid VALUES (2,3, 123456, 1, 1);
+INSERT into bid VALUES (3,4, 123456, 4, 1);
