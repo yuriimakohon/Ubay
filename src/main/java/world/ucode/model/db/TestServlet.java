@@ -1,6 +1,7 @@
 package world.ucode.model.db;
 
 
+import world.ucode.model.db.dao.DAO;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
 
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet("/db")
 public class TestServlet extends HttpServlet {
@@ -45,8 +45,9 @@ public class TestServlet extends HttpServlet {
 //                    updateUser(request, response);
 //                    break;
                 default:
-                    insertUser(request, response);
-                    listUser(request, response);
+                    showEditForm(request, response);
+//                    insertUser(request, response);
+//                    listUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -57,8 +58,8 @@ public class TestServlet extends HttpServlet {
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         System.out.println("get list1");
-        List<Users> listUser = users.getAllUser();
-        System.out.println(listUser);
+//        List<Users> listUser = users.getAllUser();
+//        System.out.println(listUser);
         System.out.println("get list2");
 //        request.setAttribute("listUser", listUser);
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
@@ -75,9 +76,13 @@ public class TestServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Users existingUser = users.getUser(id);
-        System.out.println("edit");
+//        int id = Integer.parseInt(request.getParameter("id"));
+
+        Users existingUser = users.readbyToken("token1");
+        System.out.println("get");
+        System.out.println(existingUser.getusertname());
+        System.out.println("end");
+//        System.out.println(existingUser.toString());
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
 //        request.setAttribute("user", existingUser);
 //        dispatcher.forward(request, response);
@@ -88,8 +93,8 @@ public class TestServlet extends HttpServlet {
             throws SQLException, IOException {
         String name = "first";
 
-        Users newUser = new Users(name);
-        users.saveUser(newUser);
+        Users newUser = new Users(name, "test_token");
+//        users.saveUser(newUser);
 //        response.sendRedirect("list");
         System.out.println("insert");
     }
