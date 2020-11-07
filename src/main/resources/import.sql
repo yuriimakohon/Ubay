@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS lot;
 DROP TABLE IF EXISTS users;
 
 
-CREATE TABLE IF NOT EXISTS users (id INTEGER primary key NOT NULL AUTO_INCREMENT, username VARCHAR(255), login VARCHAR(255), password VARCHAR(255), token VARCHAR(255), userRole integer);
+CREATE TABLE IF NOT EXISTS users (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(255), login VARCHAR(255), password VARCHAR(255), token VARCHAR(255), userRole integer, PRIMARY KEY (id, token));
 INSERT into users VALUES (123, "admin1", "first", "lol", "token1", 0);
 INSERT into users VALUES (1234, "admin2", "second", "lol", "token2", 0);
 INSERT into users VALUES (12345, "admin3", "third", "lol", "token3", 1);
