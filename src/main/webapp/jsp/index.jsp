@@ -13,7 +13,7 @@
 </head>
 <body>
     <header class="header_bar">
-        <div class="header_bar-container">
+        <div class="header_bar-container main_container">
             <a href="http://localhost:8080/ubay/">
                 <img id="header-logo" src="resources/ubay_logo.svg" alt="ubay logo">
             </a>
@@ -49,6 +49,39 @@
             </div>
         </div>
     </header>
+    <div class="categories">
+        <h2 class="main_container">Explore categories</h2>
+        <div class="categories-background">
+            <div class="main_container">
+                <div id="categories-container">
+                    <div class="categories-item">
+                        <img src="resources/category_collectibles.png" alt="category collectibles">
+                        <p>Collectibles</p>
+                    </div>
+                    <div class="categories-item">
+                        <img src="resources/category_clothing.png" alt="category clothing">
+                        <p>Clothing</p>
+                    </div>
+                    <div class="categories-item">
+                        <img src="resources/category_technics.png" alt="category clothing">
+                        <p>Technics</p>
+                    </div>
+                    <div class="categories-item">
+                        <img src="resources/category_furniture.png" alt="category furniture">
+                        <p>Furniture</p>
+                    </div>
+                    <div class="categories-item">
+                        <img src="resources/category_household.png" alt="category household">
+                        <p>Household</p>
+                    </div>
+                    <div class="categories-item">
+                        <img src="resources/category_jewellery.png" alt="category jewellery">
+                        <p>Jewellery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/catalog/display.js" type="text/javascript"></script>
 </body>
