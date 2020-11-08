@@ -28,10 +28,12 @@
                 <label>Cart</label>
                 <img id="img-cart" src="resources/cart.svg" alt="cart">
             </div>
-            <div class="header_bar-item">
-                <label>Account</label>
-                <img id="img-user" src="resources/user.svg" alt="user">
-            </div>
+            <a href="http://localhost:8080/ubay/account">
+                <div class="header_bar-item">
+                    <label>Account</label>
+                    <img id="img-user" src="resources/user.svg" alt="user">
+                </div>
+            </a>
         </div>
     </div>
 </header>

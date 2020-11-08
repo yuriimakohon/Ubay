@@ -1,6 +1,3 @@
-const regexLogin = new RegExp('^[A-Za-z0-9]{3,21}$');
-const regexPass = new RegExp('^[A-Za-z0-9]{3,30}$');
-
 let inputSignupLogin = $('#input-signup_login');
 let inputSignupPass = $('#input-signup_pass');
 let inputSignupPassConfirm = $('#input-signup_pass_confirm');
@@ -16,9 +13,9 @@ async function onCreateAccount() {
 
     if (!login || !pass || !passConfirm) {
         errMissingFields();
-    } else if (!regexLogin.test(login)) {
+    } else if (!REGEX_LOGIN.test(login)) {
         errLoginFormat();
-    } else if (!regexPass.test(pass)) {
+    } else if (!REGEX_PASS.test(pass)) {
         errPassFormat();
     } else if (pass.localeCompare(passConfirm) !== 0) {
         errPassConfirm();
@@ -37,7 +34,7 @@ async function onLogIn() {
 
     if (!login || !pass) {
         errMissingFields();
-    } else if (!regexLogin.test(login)) {
+    } else if (!REGEX_LOGIN.test(login)) {
         errLoginFormat();
     } else {
         if (!await sign_in(login, pass)) {
