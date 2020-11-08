@@ -4,21 +4,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
-    private static SessionFactory sessionFactory;
+    private static SessionFactory mysessionFactory;
 
     public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
+        if (mysessionFactory == null) {
             try {
                 Configuration config = new Configuration();
                 config.configure();
                 // local SessionFactory bean created
-                SessionFactory sessionFactory = config.buildSessionFactory();
-                System.out.println("Hibernate Java Config serviceRegistry created");
-                return sessionFactory;
+                mysessionFactory = config.buildSessionFactory();
+                System.out.println("*************************Hibernate Java Config serviceRegistry created************************");
+                return mysessionFactory;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return sessionFactory;
+        return mysessionFactory;
     }
 }
