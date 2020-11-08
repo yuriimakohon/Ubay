@@ -18,6 +18,10 @@
     display: flex;
 }
 
+#header-logo a {
+    margin: 0 auto;
+}
+
 #logo {
     width: 500px;
     margin: 130px auto auto;
