@@ -37,7 +37,6 @@ public class Users implements Serializable{
     @Column(name="password")
     private String password;
 
-
     @Column(name="token")
     private String token;
 
@@ -52,12 +51,19 @@ public class Users implements Serializable{
 //    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 //    private List<Lot> userlots;
 //
-    public Users(String token, String login) {
+    public Users(String token, String login, String password, String role) {
+        this.username = login;
         this.login = login;
         this.token = token;
+        this.password = password;
+//        this.role = role;
     }
 
-    public String getusertname() {
+    public boolean userValidPassword(String login, String password) {
+        return this.login.equals(login) && this.password.equals(password);
+    }
+
+    public String getUsertName() {
         return username;
     }
 

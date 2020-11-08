@@ -101,7 +101,7 @@ public class TestServlet extends HttpServlet {
             throws SQLException, IOException {
         String name = "first";
 
-        Users newUser = new Users(name, "test_token");
+        Users newUser = new Users(name, "test_token", "pass", "role");
 //        users.saveUser(newUser);
 //        response.sendRedirect("list");
         System.out.println("insert");

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.Base64;
+import java.util.Date;
 
 public class Token {
     public Payload payload;
@@ -23,11 +24,18 @@ public class Token {
         this.payload = payload;
     }
 
-    public String getToken() throws JsonProcessingException {
+    public String getToken(String forWho) throws JsonProcessingException {
         if (payload == null || header == null) {
             System.err.println("Error create token");
             return "fileToken";
         }
+
+        Date date = java.util.Calendar.getInstance().getTime();
+        header.setSub(forWho);
+        header.setExp(String.valueOf(date.getTime() + 7200));
+        header.setIat(String.valueOf(date.getTime()));
+        header.setSub("userOfUBay");
+
 
         ObjectMapper mapper = new ObjectMapper();
         String pbs = Base64.getEncoder().encodeToString(mapper.writeValueAsString(this.payload).getBytes());

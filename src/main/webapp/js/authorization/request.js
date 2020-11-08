@@ -8,6 +8,12 @@ async function sign_up(login, password, role) {
     let response = await fetch( 'http://localhost:8080/ubay/sign_up?' + urlParams.toString(), {
         method: 'POST',
     })
+    if (response.ok) {
+        let text = await response.text();
+        console.log("resp: " +  text)
+    } else {
+        console.log("error")
+    }
     return response.ok;
 }
 
@@ -20,6 +26,12 @@ async function sign_in(login, password) {
     let response = await fetch( 'http://localhost:8080/ubay/sign_in?' + urlParams.toString(), {
         method: 'POST',
     })
+    if (response.ok) {
+        let text = await response.text();
+        console.log("resp: " +  text)
+    } else {
+        console.log("error")
+    }
     return response.ok;
 }
 
