@@ -1,6 +1,6 @@
 <header class="header_bar">
     <div class="header_bar-container main_container">
-        <a href="http://localhost:8080/ubay/catalog">
+        <a href="http://localhost:8080/ubay/">
             <img id="header-logo" src="resources/ubay_logo.svg" alt="ubay logo">
         </a>
         <div id="search-container">
