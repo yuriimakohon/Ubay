@@ -18,5 +18,14 @@ function onCancelPass() {
 function onSavePass() {
     infoText.text('Password was successfully changed');
     infoText.addClass('success_text');
+    showInfoText();
+    setTimeout(hideInfoText, 3000);
+}
+
+function hideInfoText() {
+    infoText.addClass('hidden');
+}
+
+function showInfoText() {
     infoText.removeClass('hidden');
 }
