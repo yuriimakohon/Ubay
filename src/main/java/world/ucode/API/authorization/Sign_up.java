@@ -36,4 +36,9 @@ public class Sign_up extends HttpServlet {
         System.out.println(req.getParameter("role"));
         System.out.println(new Token().getToken());
     }
+
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        doPost(req, resp);
+//    }
 }

@@ -2,7 +2,9 @@ package world.ucode.model.db;
 
 
 import world.ucode.model.db.dao.DAO;
+import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOusers;
+import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Users;
 
 import javax.servlet.ServletException;
@@ -12,13 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/db")
 public class TestServlet extends HttpServlet {
-    private DAOusers users;
+    private DAObid bid;
 
     public void init() {
-        users = new DAOusers();
+        bid = new DAObid();
         System.out.println("init serv");
     }
 
@@ -78,9 +81,14 @@ public class TestServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
 
-        Users existingUser = users.readbyToken("token1");
+//        Users existingUser = users.read(61515);
         System.out.println("get");
-        System.out.println(existingUser.getusertname());
+//        System.out.println(existingUser.getusertname());
+
+        List<Bid> mist = bid.readbyToken("tnnjoken3");
+        for(Bid element : mist) {
+            System.out.println(element.getBidderId());
+        }
         System.out.println("end");
 //        System.out.println(existingUser.toString());
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
