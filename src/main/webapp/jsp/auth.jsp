@@ -70,6 +70,7 @@
         </div>
     </div>
 
+    <script src="js/parts/validation.js" type="text/javascript"></script>
     <script src="js/authorization/display.js" type="text/javascript"></script>
     <script src="js/authorization/confirm.js" type="text/javascript"></script>
     <script src="js/authorization/errors.js" type="text/javascript"></script>
