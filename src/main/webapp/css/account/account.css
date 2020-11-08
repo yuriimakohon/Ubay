@@ -1,0 +1,42 @@
+#title-my_account {
+    margin-top: 50px;
+}
+
+#card-account_settings {
+    margin: 50px auto 0;
+    max-width: 500px;
+}
+
+.card {
+    padding: 30px;
+}
+
+.card h3 {
+    font-weight: 500;
+    font-size: 21px;
+    color: #0079D1;
+    margin-bottom: 50px;
+}
+
+.text_input-item {
+    margin-top: 30px;
+}
+
+#btn-save_login {
+    margin-left: 30px;
+    width: 100px;
+}
+
+#change_pass_btn-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#input-confirm_pass {
+    margin-top: 30px;
+}
+
+#info_text {
+    width: 350px;
+}
