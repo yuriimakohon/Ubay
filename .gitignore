@@ -1,5 +1,9 @@
 # Project exclude paths
 /target/
-
+/.idea/
 .idea
+ubay.iml
+*.iml
 Untitled.code-workspace
+
+.DS_Store

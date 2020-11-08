@@ -10,7 +10,7 @@ import lombok.*;
 
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 
 @Data
 @ToString
@@ -21,7 +21,7 @@ import java.util.List;
 
 @Table(name="users")
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Users {
+public class Users implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,23 +37,34 @@ public class Users {
     @Column(name="password")
     private String password;
 
+
     @Column(name="token")
     private String token;
 
     @Column(name="userRole")
     private int userRole;
 
+
+
 //    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 //    private List<Bid> userbids;
 
-    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<Lot> userlots;
-
-    public Users(String name) {
-
+//    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+//    private List<Lot> userlots;
+//
+    public Users(String token, String login) {
+        this.login = login;
+        this.token = token;
     }
 
+    public String getusertname() {
+        return username;
+    }
 
+//    public Users(String name, String token) {
+//                this.username = name;
+//        this.token = token;
+//    }
 
 
 //    public Users() {
