@@ -11,6 +11,7 @@ import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -133,10 +134,12 @@ public class DAOusers implements DAO<Users, Integer>{
             Query query = session.createQuery("FROM Users WHERE token = :token");
             query.setParameter("token", token);
             user = (Users) query.getSingleResult();
-        } catch (Exception e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
+        }
+        catch (NoResultException ignored) {
+
+
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return user;
@@ -149,12 +152,15 @@ public class DAOusers implements DAO<Users, Integer>{
             Query query = session.createQuery("FROM Users WHERE login = :login");
             query.setParameter("login", login);
             user = (Users) query.getSingleResult();
-        } catch (Exception e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
+        }
+        catch (NoResultException ignored) {
+
+
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
+
         return user;
     }
 
