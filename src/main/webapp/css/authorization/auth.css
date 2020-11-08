@@ -5,6 +5,10 @@
     font-family: heebo, serif;
 }
 
+.hidden {
+    display: none;
+}
+
 #main_container {
     margin: 0 auto;
     max-width: 1200px;
