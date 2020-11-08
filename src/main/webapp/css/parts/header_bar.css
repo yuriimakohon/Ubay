@@ -80,3 +80,6 @@
 #header-logo:hover, .header_bar-item:hover {
     opacity: 65%;
 }
+.hidden {
+    display: none;
+}
