@@ -52,8 +52,8 @@ public class Users implements Serializable{
 //    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 //    private List<Lot> userlots;
 //
-    public Users(String token, String username) {
-        this.username = username;
+    public Users(String token, String login) {
+        this.login = login;
         this.token = token;
     }
 

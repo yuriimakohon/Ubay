@@ -78,7 +78,7 @@ public class TestServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
 
-        Users existingUser = users.readbyToken("token1");
+        Users existingUser = users.read(61515);
         System.out.println("get");
         System.out.println(existingUser.getusertname());
         System.out.println("end");
