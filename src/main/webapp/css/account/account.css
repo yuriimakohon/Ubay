@@ -2,12 +2,9 @@
     margin-top: 50px;
 }
 
-#card-account_settings {
+.card {
     margin: 50px auto 0;
     max-width: 500px;
-}
-
-.card {
     padding: 30px;
 }
 
@@ -22,7 +19,7 @@
     margin-top: 30px;
 }
 
-#btn-save_login {
+#btn-save_login, #btn-add_money {
     margin-left: 30px;
     width: 100px;
 }
@@ -39,4 +36,8 @@
 
 #info_text {
     width: 350px;
+}
+
+input::before {
+    content: "asdfasdf$";
 }

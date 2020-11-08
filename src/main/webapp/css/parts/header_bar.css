@@ -55,6 +55,10 @@
     display: flex;
 }
 
+.header_bar-items a {
+    text-decoration: none;
+}
+
 .header_bar-item {
     cursor: pointer;
     display: flex;
@@ -75,4 +79,7 @@
 
 #header-logo:hover, .header_bar-item:hover {
     opacity: 65%;
+}
+.hidden {
+    display: none;
 }
