@@ -6,6 +6,9 @@ import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 
+import javax.persistence.NoResultException;
+import java.util.List;
+
 public class DAObid implements DAO<Bid, Integer>{
 
 
@@ -60,11 +63,26 @@ public class DAObid implements DAO<Bid, Integer>{
             }
             transaction.commit();
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
 
+//    SELECT b.id, b.lotid, b.price, b.statusofBid from bid b join users u on u.id = b.bidderID where u.token = 'token3';
+    public List<Bid> readbyToken(String token) {
+        Transaction transaction = null;
+        List<Bid> listOfBid = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            listOfBid = session.createQuery("SELECT b from Bid b join Users u on u.id = b.bidderId where u.token = :token", Bid.class).setParameter("token", token).getResultList();
+            transaction.commit();
+        }
+        catch (NoResultException ignored) {
 
 
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOfBid;
+    }
 }

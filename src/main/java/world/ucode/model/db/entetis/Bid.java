@@ -29,4 +29,8 @@ public class Bid {
     @Column(name = "statusOfBid")
     private int statusOfBid;
 
+    public int getBidderId() {
+        return bidderId;
+    }
+
 }
