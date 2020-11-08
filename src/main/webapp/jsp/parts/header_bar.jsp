@@ -1,6 +1,6 @@
 <header class="header_bar">
     <div class="header_bar-container main_container">
-        <a href="http://localhost:8080/ubay/">
+        <a href="http://localhost:8080/ubay/catalog">
             <img id="header-logo" src="resources/ubay_logo.svg" alt="ubay logo">
         </a>
         <div id="search-container">
@@ -28,10 +28,12 @@
                 <label>Cart</label>
                 <img id="img-cart" src="resources/cart.svg" alt="cart">
             </div>
-            <div class="header_bar-item">
-                <label>Account</label>
-                <img id="img-user" src="resources/user.svg" alt="user">
-            </div>
+            <a href="http://localhost:8080/ubay/account">
+                <div class="header_bar-item">
+                    <label>Account</label>
+                    <img id="img-user" src="resources/user.svg" alt="user">
+                </div>
+            </a>
         </div>
     </div>
 </header>
