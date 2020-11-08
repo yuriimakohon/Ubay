@@ -55,6 +55,10 @@
     display: flex;
 }
 
+.header_bar-items a {
+    text-decoration: none;
+}
+
 .header_bar-item {
     cursor: pointer;
     display: flex;
