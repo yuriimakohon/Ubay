@@ -19,11 +19,11 @@
             <div id="login-item" class="text_input-item">
                 <p>Login</p>
                 <input class="text_input" type="text" id="input-login" placeholder="Enter your login" maxlength="21">
-                <button id="btn-save_login" class="btn">apply</button>
+                <button id="btn-save_login" class="btn" onclick="onSaveLogin()">apply</button>
             </div>
             <div class="text_input-item">
                 <p>Password</p>
-                <button id="btn-change_pass" class="btn" onclick="onChangePassword()">Change password</button>
+                <button id="btn-change_pass" class="btn" onclick="onChangePassword()">change password</button>
                 <div id="change_pass-container" class="hidden">
                     <input class="text_input" type="password" id="input-new_pass" placeholder="Enter new password" maxlength="30">
                     <input class="text_input" type="password" id="input-confirm_pass" placeholder="Confirm new password" maxlength="30">
@@ -37,6 +37,9 @@
     </div>
 
     <script src="js/account/display.js"></script>
+    <script src="js/account/confirm.js"></script>
+    <script src="js/account/info_text.js"></script>
+    <script src="js/parts/validation.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
