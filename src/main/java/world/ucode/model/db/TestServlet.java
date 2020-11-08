@@ -1,10 +1,12 @@
 package world.ucode.model.db;
 
 
+import org.hibernate.Hibernate;
 import world.ucode.model.db.dao.DAO;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Bid;
+import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 
 import javax.servlet.ServletException;
@@ -18,10 +20,12 @@ import java.util.List;
 
 @WebServlet("/db")
 public class TestServlet extends HttpServlet {
-    private DAObid bid;
+//    private DAObid bid;
+    private DAOusers user;
 
     public void init() {
-        bid = new DAObid();
+//        bid = new DAObid();
+        user = new DAOusers();
         System.out.println("init serv");
     }
 
@@ -81,15 +85,57 @@ public class TestServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
 
-//        Users existingUser = users.read(61515);
+
         System.out.println("get");
 //        System.out.println(existingUser.getusertname());
 
-        List<Bid> mist = bid.readbyToken("tnnjoken3");
+        Users existingUser = user.getUserandBidbyId(12345);
+
+
+        List<Bid> mist = existingUser.getUserbids();
         for(Bid element : mist) {
             System.out.println(element.getBidderId());
         }
-        System.out.println("end");
+
+//        List<Bid> mist = bid.readbyToken("tnnjoken3");
+//        for(Bid element : mist) {
+//            System.out.println(element.getBidderId());
+//        }
+        System.out.println("endess***********************************************");
+
+        Users existingUser3 = user.getUserandBidbyToken("token2");
+
+        List<Bid> mist3 = existingUser3.getUserbids();
+        for(Bid element : mist3) {
+            System.out.println(element.getBidderId());
+        }
+
+        System.out.println("endess3***********************************************");
+
+        Users existingUser4 = user.getUserandLotbyToken("token2");
+
+        List<Lot> mist4 = existingUser4.getUserLots();
+        for(Lot element : mist4) {
+            System.out.println(element.getSellerId());
+        }
+
+        System.out.println("endess4***********************************************");
+
+        Users existingUser5 = user.getUserandLotbyId(123456);
+
+        List<Lot> mist5 = existingUser5.getUserLots();
+        for(Lot element : mist5) {
+            System.out.println(element.getSellerId());
+        }
+
+        System.out.println("endess5***********************************************");
+
+
+
+
+
+
+
 //        System.out.println(existingUser.toString());
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
 //        request.setAttribute("user", existingUser);

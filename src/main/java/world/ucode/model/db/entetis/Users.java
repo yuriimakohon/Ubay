@@ -7,10 +7,13 @@ import javax.persistence.GenerationType;
 
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @ToString
@@ -46,11 +49,16 @@ public class Users implements Serializable{
 
 
 
-//    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private List<Bid> userbids;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="bidderId")
+    @Fetch(FetchMode.SELECT)
+    private List<Bid> userbids;
 
-//    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-//    private List<Lot> userlots;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="sellerId")
+    @Fetch(FetchMode.SELECT)
+    private List<Lot> userlots;
 //
     public Users(String token, String login) {
         this.login = login;
@@ -59,6 +67,14 @@ public class Users implements Serializable{
 
     public String getusertname() {
         return username;
+    }
+
+    public List<Bid> getUserbids() {
+        return userbids;
+    }
+
+    public List<Lot> getUserLots() {
+        return userlots;
     }
 
 //    public Users(String name, String token) {
