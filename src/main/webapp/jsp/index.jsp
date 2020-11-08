@@ -44,5 +44,6 @@
     </div>
 
     <%@include file="parts/scripts.jsp"%>
+    <script src="js/catalog/catalog.js"></script>
 </body>
 </html>

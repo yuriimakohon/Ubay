@@ -32,11 +32,11 @@ public class Sign_in extends HttpServlet {
             resp.setStatus(265);
             resp.getWriter().write("user is exists");
         } else {
-            if (user.userValidPassword(login, req.getParameter("password"))) {
-                resp.setStatus(264);
+            if (!user.userValidPassword(login, req.getParameter("password"))) {
+                resp.setStatus(264); // error password
+                resp.getWriter().write("fuck you");
             } else {
                 resp.setStatus(200);
-
                 JSONObject jo = new JSONObject();
                 jo.put("token", new Token().getToken(login));
                 resp.getWriter().write(jo.toJSONString());

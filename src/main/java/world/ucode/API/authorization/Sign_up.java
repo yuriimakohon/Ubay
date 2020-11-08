@@ -43,6 +43,7 @@ public class Sign_up extends HttpServlet {
         else {
             System.out.println("sign up error");
             resp.setStatus(266); // user already exists
+            resp.getWriter().write("fuck you");
         }
     }
 }
