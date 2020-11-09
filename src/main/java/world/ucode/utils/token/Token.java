@@ -41,6 +41,7 @@ public class Token {
         String pbs = Base64.getEncoder().encodeToString(mapper.writeValueAsString(this.payload).getBytes());
         String hbs = Base64.getEncoder().encodeToString(mapper.writeValueAsString(this.header).getBytes());
 
-        return pbs + "." + hbs + "." + DigestUtils.sha512Hex(pbs + hbs);
+//        return pbs + "." + hbs + "." + DigestUtils.sha512Hex(pbs + hbs);
+        return DigestUtils.sha512Hex(pbs + hbs);
     }
 }

@@ -35,7 +35,7 @@ public class Sign_in extends HttpServlet {
         String login = joReq.get("login").toString();
 
         if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password)) {
-            resp.setStatus(404);
+            resp.setStatus(406);
             resp.getWriter().write("fuck you, wrong parse");
             return;
         }
@@ -55,6 +55,7 @@ public class Sign_in extends HttpServlet {
                 resp.setStatus(200);
                 JSONObject jo = new JSONObject();
                 jo.put("token", new Token().getToken(login));
+                jo.put("id", user.getId());
                 resp.getWriter().write(jo.toJSONString());
             }
         }

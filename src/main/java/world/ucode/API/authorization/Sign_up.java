@@ -38,8 +38,8 @@ public class Sign_up extends HttpServlet {
 
         String token = new Token().getToken(login);
 
-        if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password)) {
-            resp.setStatus(404);
+        if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password) || !RegExp.checkRegExp("^[A-Za-z]{3,20}$", role)) {
+            resp.setStatus(406);
             resp.getWriter().write("fuck you, wrong parse");
             return;
         }
@@ -51,6 +51,7 @@ public class Sign_up extends HttpServlet {
             resp.setStatus(200);
             JSONObject jo = new JSONObject();
             jo.put("token", new Token().getToken(login));
+            jo.put("id", user.getId());
             resp.getWriter().write(jo.toJSONString());
         }
         else {
