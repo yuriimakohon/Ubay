@@ -30,7 +30,3 @@
 #info_text {
     width: 350px;
 }
-
-input::before {
-    content: "asdfasdf$";
-}
