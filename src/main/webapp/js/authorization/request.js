@@ -37,7 +37,8 @@ async function sign_in(login, password) {
 async function machiningResponse(response) {
     if (response.status === 200) {
         let text = JSON.parse(await response.text());
-        document.cookie = "token="+text.token
+        document.cookie = "token="+text.token + ';'
+        document.cookie = "id="+text.id
         return true;
     } else {
         console.log("error " + response.status)

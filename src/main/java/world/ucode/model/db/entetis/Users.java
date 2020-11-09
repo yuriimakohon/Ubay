@@ -67,6 +67,10 @@ public class Users implements Serializable{
 //        this.role = role;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public boolean userValidPassword(String login, String password) {
         return this.login.equals(login) && this.password.equals(password);
     }
