@@ -1,25 +1,34 @@
-#master {
+#title-create_auction {
+    margin-top: 50px;
+}
+
+.card {
+    margin: 50px auto 0;
+    max-width: 700px;
+    padding: 30px;
+}
+
+#input-title {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-input {
-    display: block;
+#description-container,
+#start_price-container,
+#start_time-container,
+#btn-create_auction {
+    margin-top: 30px;
 }
 
-#description {
-    resize: none;
+#max_price-container,
+#finish_time-container {
+    margin-top: 20px;
 }
 
-#errorDescription,
-#errorTitle,
-#errorStartTime,
-#errorStartPrice,
-#errorMaxPrice,
-#errorStartTime2 {
-    display: none;
+#textarea-description {
+    min-width: 100%;
 }
+
+.number_input {
+    width: 150px;
+}
+
