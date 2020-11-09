@@ -1,54 +1,12 @@
-let auctionTitle = $('#title_auction');
-let errorTitle = $('#errorTitle');
-let desc = $('#description');
-let errorDesc = $('#errorDescription');
-let startPrice = $('#start_price');
-let errorStartPrice = $('#errorStartPrice');
-let maxPrice = $('#max_price');
-let errorMaxPrice = $('#errorMaxPrice');
-let startTime = $('#start_time');
-let errorStartTime = $('#errorStartTime');
-let errorStartTime2 = $('#errorStartTime2');
-let durationTime = $('#duration');
 
 document.getElementById('sub').addEventListener('click',  async function () {
     // validate all
     let regexpTitle = new RegExp('^([-a-zA-Z0-9]){3,}$');
-    if (!regexpTitle.test(auctionTitle.val())) {
-        errorTitle.css('display', 'block');
-        return;
-    } else {
-        errorTitle.css('display', 'none');
-    }
 
     let regexpDescription = new RegExp('^([-a-zA-Z0-9,!?]){3,}$');
-    if (!regexpDescription.test(desc.val())) {
-        errorDesc.css('display', 'block');
-        return;
-    } else {
-        errorDesc.css('display', 'none');
-    }
 
-    if (startPrice.val() === '') {
-        errorStartPrice.css('display', 'block');
-        return;
-    } else {
-        errorStartPrice.css('display', 'none');
-    }
 
-    if (maxPrice.val() === '' || parseInt(maxPrice.val()) <= parseInt(startPrice.val())) {
-        errorMaxPrice.css('display', 'block');
-        return;
-    } else {
-        errorMaxPrice.css('display', 'none');
-    }
 
-    if (startTime.val() === '') {
-        errorStartTime.css('display', 'block');
-        return;
-    } else {
-        errorStartTime.css('display', 'none');
-    }
 
 
     // parse date
@@ -62,12 +20,6 @@ document.getElementById('sub').addEventListener('click',  async function () {
 
     let currTime = new Date();
     currTime.setMonth(currTime.getMonth() + 1);
-    if (st.getTime() <= currTime.getTime() + 60) {
-        errorStartTime2.css('display', 'block');
-        return;
-    } else {
-        errorStartTime2.css('display', 'none');
-    }
 
     // create object for request
     let auction = {
@@ -93,7 +45,5 @@ document.getElementById('sub').addEventListener('click',  async function () {
     if (response.ok) {
         let text = await response.json();
         console.log('ok: ' + text);
-    } else {
-        console.log('error');
     }
 })
