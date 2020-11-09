@@ -39,9 +39,8 @@ public class Sign_in extends HttpServlet {
             resp.getWriter().write("fuck you, wrong parse");
             return;
         }
-        System.out.println(password);
-        System.out.println(password.length());
 
+        System.out.println("login: "+login);
         Users user = DAOUser.readbyLogin(login);
 
         if (user == null) {
@@ -52,9 +51,12 @@ public class Sign_in extends HttpServlet {
                 resp.setStatus(264); // error password
                 resp.getWriter().write("fuck you");
             } else {
+                String token = new Token().getToken(login);
                 resp.setStatus(200);
                 JSONObject jo = new JSONObject();
-                jo.put("token", new Token().getToken(login));
+                jo.put("token", token);
+                user.setToken(token);
+                DAOUser.update(user);
                 jo.put("id", user.getId());
                 resp.getWriter().write(jo.toJSONString());
             }
