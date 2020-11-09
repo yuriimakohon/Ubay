@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <title>ubay - create auctions</title>
       <link rel="shortcut icon" href="resources/favicon.png" type="image/x-icon">
-      <link rel="stylesheet" href="css/create_auctions/create_auctions.css">
+      <link rel="stylesheet" href="css/create_auctions/create_auction.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="js/loadFiles/loadFiles.js"></script>
     </head>
@@ -30,7 +30,7 @@
         <label for="forImage">images of goods:</label>
             <input type="file" name="Image" id="forImage" accept="image" multiple>
         <button type="submit" id="sub">submit</button>
-        <script src="js/create_auctions/create_auctions.js"></script>
+        <script src="js/create_auctions/create_auction.js"></script>
     </div>
   </body>
 </html>

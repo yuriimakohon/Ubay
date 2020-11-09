@@ -5,6 +5,7 @@ import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.ParseJson;
 import world.ucode.utils.ReadRequestToString;
+import world.ucode.utils.RegExp;
 import world.ucode.utils.token.Token;
 
 import javax.servlet.ServletConfig;
@@ -36,6 +37,12 @@ public class Sign_up extends HttpServlet {
         String role = joReq.get("role").toString();
 
         String token = new Token().getToken(login);
+
+        if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password)) {
+            resp.setStatus(404);
+            resp.getWriter().write("fuck you, wrong parse");
+            return;
+        }
 
         if (DAOUser.readbyLogin(login) == null) {
             System.out.println("sign up ok");
