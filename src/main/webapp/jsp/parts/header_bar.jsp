@@ -37,7 +37,7 @@
                     <img id="img-account" src="resources/user.svg" alt="account">
                 </div>
             </a>
-            <a href="http://localhost:8080/ubay/authorization">
+            <a href="http://localhost:8080/authorization">
                 <div class="header_bar-item">
                     <label>Sign Up</label>
                     <img id="img-signup" src="resources/user.svg" alt="signup">
