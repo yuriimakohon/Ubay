@@ -3,6 +3,8 @@ package world.ucode.API.authorization;
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.ParseJson;
+import world.ucode.utils.ReadRequestToString;
 import world.ucode.utils.token.Token;
 
 import javax.servlet.ServletConfig;
@@ -16,26 +18,30 @@ import java.io.IOException;
 
 @WebServlet("/sign_up")
 public class Sign_up extends HttpServlet {
-    private DAOusers DAOuser;
+    private DAOusers DAOUser;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        DAOuser = new DAOusers();
+        DAOUser = new DAOusers();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
+        String json = ReadRequestToString.ReadToString(req);
+        JSONObject joReq = ParseJson.jsonToJsonObject(json);
+
+        String password = joReq.get("password").toString();
+        String login = joReq.get("login").toString();
+        String role = joReq.get("role").toString();
+
         String token = new Token().getToken(login);
 
-        if (DAOuser.readbyLogin(login) == null) {
+        if (DAOUser.readbyLogin(login) == null) {
             System.out.println("sign up ok");
-            Users user = new Users(token, login, req.getParameter("password"), req.getParameter("role"));
-            DAOuser.create(user);
+            Users user = new Users(token, login, password, role);
+            DAOUser.create(user);
             resp.setStatus(200);
-//            Cookie cookie = new Cookie("token", token);
-//            resp.addCookie(cookie);
             JSONObject jo = new JSONObject();
             jo.put("token", new Token().getToken(login));
             resp.getWriter().write(jo.toJSONString());

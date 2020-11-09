@@ -3,6 +3,9 @@ package world.ucode.API.authorization;
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.ParseJson;
+import world.ucode.utils.ReadRequestToString;
+import world.ucode.utils.RegExp;
 import world.ucode.utils.token.Token;
 
 import javax.servlet.ServletConfig;
@@ -25,14 +28,27 @@ public class Sign_in extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Users user = DAOUser.readbyLogin(req.getParameter("login"));
-        String login = req.getParameter("login");
+        String json = ReadRequestToString.ReadToString(req);
+        JSONObject joReq = ParseJson.jsonToJsonObject(json);
+
+        String password = joReq.get("password").toString();
+        String login = joReq.get("login").toString();
+
+        if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password)) {
+            resp.setStatus(404);
+            resp.getWriter().write("fuck you, wrong parse");
+            return;
+        }
+        System.out.println(password);
+        System.out.println(password.length());
+
+        Users user = DAOUser.readbyLogin(login);
 
         if (user == null) {
             resp.setStatus(265);
-            resp.getWriter().write("user is exists");
+            resp.getWriter().write("user does not exists");
         } else {
-            if (!user.userValidPassword(login, req.getParameter("password"))) {
+            if (!user.userValidPassword(login, password)) {
                 resp.setStatus(264); // error password
                 resp.getWriter().write("fuck you");
             } else {
@@ -42,9 +58,5 @@ public class Sign_in extends HttpServlet {
                 resp.getWriter().write(jo.toJSONString());
             }
         }
-//        resp.setStatus(200);
-//        System.out.println(req.getParameter("login"));
-//        System.out.println(req.getParameter("password"));
-//        System.out.println(new Token().getToken(req.getParameter("login")));
     }
 }

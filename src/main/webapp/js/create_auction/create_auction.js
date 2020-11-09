@@ -13,7 +13,7 @@ let durationTime = $('#duration');
 
 document.getElementById('sub').addEventListener('click',  async function () {
     // validate all
-    let regexpTitle = new RegExp('([-a-zA-Z0-9]){3,}');
+    let regexpTitle = new RegExp('^([-a-zA-Z0-9]){3,}$');
     if (!regexpTitle.test(auctionTitle.val())) {
         errorTitle.css('display', 'block');
         return;
@@ -21,7 +21,7 @@ document.getElementById('sub').addEventListener('click',  async function () {
         errorTitle.css('display', 'none');
     }
 
-    let regexpDescription = new RegExp('([-a-zA-Z0-9,!?]){3,}');
+    let regexpDescription = new RegExp('^([-a-zA-Z0-9,!?]){3,}$');
     if (!regexpDescription.test(desc.val())) {
         errorDesc.css('display', 'block');
         return;

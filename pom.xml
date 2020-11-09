@@ -72,32 +72,41 @@
 
   <build>
       <plugins>
-        <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven2-plugin</artifactId>
-            <version>1.7.6</version>
-            <configuration>
-                <container>
-                    <containerId>tomcat9x</containerId>
-                    <type>embedded</type>
-                </container>
-                <configuration>
-                  <properties>
-                      <cargo.servlet.port>8080</cargo.servlet.port>
-                      <cargo.tomcat.manager.url>http://localhost:8080</cargo.tomcat.manager.url>
-                  </properties>
-                </configuration>
-                <deployables>
-                    <deployable>
-                        <groupId>org.example</groupId>
-                        <artifactId>ubay</artifactId>
-                        <type>war</type>
-                        <properties>
-                            <context>/</context>
-                        </properties>
-                    </deployable>
-                </deployables>
-            </configuration>
+          <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>2.2</version>
+              <configuration>
+                  <port>8080</port>
+                  <path>/</path>
+              </configuration>
+          </plugin>
+<!--        <plugin>-->
+<!--            <groupId>org.codehaus.cargo</groupId>-->
+<!--            <artifactId>cargo-maven2-plugin</artifactId>-->
+<!--            <version>1.7.6</version>-->
+<!--            <configuration>-->
+<!--                <container>-->
+<!--                    <containerId>tomcat9x</containerId>-->
+<!--                    <type>embedded</type>-->
+<!--                </container>-->
+<!--                <configuration>-->
+<!--                  <properties>-->
+<!--                      <cargo.servlet.port>8080</cargo.servlet.port>-->
+<!--                      <cargo.tomcat.manager.url>http://localhost:8080</cargo.tomcat.manager.url>-->
+<!--                  </properties>-->
+<!--                </configuration>-->
+<!--                <deployables>-->
+<!--                    <deployable>-->
+<!--                        <groupId>org.example</groupId>-->
+<!--                        <artifactId>ubay</artifactId>-->
+<!--                        <type>war</type>-->
+<!--                        <properties>-->
+<!--                            <context>/</context>-->
+<!--                        </properties>-->
+<!--                    </deployable>-->
+<!--                </deployables>-->
+<!--            </configuration>-->
 <!--            <executions>-->
 <!--                <execution>-->
 <!--                    <phase>package</phase>-->
@@ -106,7 +115,7 @@
 <!--                    </goals>-->
 <!--                </execution>-->
 <!--            </executions>-->
-        </plugin>
+<!--        </plugin>-->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
