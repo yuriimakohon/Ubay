@@ -75,6 +75,10 @@ public class Users implements Serializable{
         return this.login.equals(login) && this.password.equals(password);
     }
 
+    public String getToken() {
+        return this.token;
+    }
+
     public String getUsertName() {
         return username;
     }
@@ -87,7 +91,23 @@ public class Users implements Serializable{
         return userlots;
     }
 
-//    public Users(String name, String token) {
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //    public Users(String name, String token) {
 //                this.username = name;
 //        this.token = token;
 //    }

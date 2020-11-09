@@ -5,6 +5,7 @@
 
     <%@include file="parts/resources.jsp"%>
     <link rel="stylesheet" href="css/catalog/catalog.css">
+    <script src="js/parts/sha512.js"></script>
 </head>
 <body>
     <%@include file="parts/header_bar.jsp"%>
