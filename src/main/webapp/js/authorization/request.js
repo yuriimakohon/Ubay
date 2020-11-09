@@ -1,25 +1,36 @@
 async function sign_up(login, password, role) {
-    let urlParams = new URLSearchParams();
+    let params = {
+        login: login,
+        password: sha512(password),
+        role: role
+    };
+    let url = 'http://localhost:8080/sign_up';
 
-    urlParams.append('login', login);
-    urlParams.append('password', sha512(password));
-    urlParams.append('role', role);
-
-    let response = await fetch( 'http://localhost:8080/ubay/sign_up?' + urlParams.toString(), {
+    let response = await fetch( url, {
         method: 'POST',
-    })
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    });
     return machiningResponse(response);
 }
 
 async function sign_in(login, password) {
-    let urlParams = new URLSearchParams();
+    let params = {
+        login: login,
+        password: sha512(password),
+    };
+    let url = 'http://localhost:8080/sign_in';
 
-    urlParams.append('login', login);
-    urlParams.append('password', sha512(password));
-
-    let response = await fetch( 'http://localhost:8080/ubay/sign_in?' + urlParams.toString(), {
+    let response = await fetch( url, {
         method: 'POST',
-    })
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    });
+
     return machiningResponse(response);
 }
 
