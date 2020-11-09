@@ -13,7 +13,7 @@ public class HibernateUtil {
                 config.configure();
                 // local SessionFactory bean created
                 mysessionFactory = config.buildSessionFactory();
-                System.out.println("*************************Hibernate Java Config serviceRegistry created************************");
+                System.out.println("*************************Hibernate Java Config service Registry created************************");
                 return mysessionFactory;
             } catch (Exception e) {
                 e.printStackTrace();

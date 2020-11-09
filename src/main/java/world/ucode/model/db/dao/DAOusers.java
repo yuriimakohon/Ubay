@@ -21,9 +21,6 @@ import java.util.List;
  *
  */
 public class DAOusers implements DAO<Users, Integer>{
-
-
-
     public List<Users> getAllUser() {
         Transaction transaction = null;
         List <Users> listOfUser = null;
@@ -45,7 +42,11 @@ public class DAOusers implements DAO<Users, Integer>{
             session.save(users);
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+            System.out.println(e.getMessage());
+//            e.printStackTrace();
         }
     }
 
