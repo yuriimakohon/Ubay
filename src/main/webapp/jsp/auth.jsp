@@ -14,7 +14,7 @@
 <body>
     <div id="main_container">
         <header id="header-logo">
-            <a href="http://localhost:8080/ubay">
+            <a href="http://localhost:8080/">
                 <img id="logo" src="resources/ubay_logo.svg" alt="ubay logo">
             </a>
         </header>
