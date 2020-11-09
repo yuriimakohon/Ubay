@@ -82,7 +82,7 @@ document.getElementById('sub').addEventListener('click',  async function () {
     auction["images"] = await loadFiles(document.getElementById('forImage'));
 
     // post request
-    let response = await fetch("http://localhost:8080/ubay/create_auctions", {
+    let response = await fetch("http://localhost:8080/create_auction", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
