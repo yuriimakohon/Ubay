@@ -44,4 +44,8 @@ public class Lot {
 
     @Column(name = "bidderid")
     private int bidderid;
+
+    public int getSellerId() {
+        return sellerId;
+    }
 }
