@@ -1,4 +1,4 @@
-package world.ucode.API.create_auctions;
+package world.ucode.API.create_auction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -16,11 +16,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 
-@WebServlet("/create_auctions")
-public class CreateAuctions extends HttpServlet {
+@WebServlet("/create_auction")
+public class CreateAuction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/create_auctions.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/create_auction.jsp").forward(req, resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
