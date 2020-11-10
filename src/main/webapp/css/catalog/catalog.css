@@ -121,6 +121,10 @@
     color: #2AA6FF;
 }
 
+.price:before {
+    content: '$ ';
+}
+
 .auctions-item:hover {
     transform: scale(1.05);
 }
