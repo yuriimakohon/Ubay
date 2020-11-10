@@ -25,3 +25,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("error");
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+    let response = await fetch('http://localhost:8080//get_auctions', {
+        method: 'GET',
+    });
+    if (response.ok) {
+        let respJson = await response.json();
+        console.log(respJson);
+        console.log('response ok');
+    } else {
+        console.log("error");
+    }
+});

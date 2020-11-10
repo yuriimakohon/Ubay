@@ -40,7 +40,7 @@ public class Sign_in extends HttpServlet {
             resp.getWriter().write("fuck you hacker, wrong parse");
             return;
         }
-        Users user = DAOUser.readbyLogin(login);
+        Users user = DAOUser.readByLogin(login);
 
         if (user == null) {
             resp.setStatus(265);
