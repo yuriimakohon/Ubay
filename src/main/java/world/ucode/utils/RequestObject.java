@@ -58,9 +58,10 @@ public class RequestObject {
 
         user = DAOUser.readByTokenAndId(token, id);
         if (user == null) {
+            status = 200;
+            jo.put("role", 0);
+            resp = jo.toJSONString();
             ok = false;
-            status =  401;
-            resp = "are you hacker ?";
             return;
         }
         status = 200;

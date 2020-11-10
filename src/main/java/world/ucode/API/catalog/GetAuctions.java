@@ -41,6 +41,5 @@ public class GetAuctions extends HttpServlet {
         jo.put("lots", ja);
         resp.setStatus(200);
         resp.getWriter().write(jo.toJSONString());
-        System.out.println(jo.toJSONString());
     }
 }
