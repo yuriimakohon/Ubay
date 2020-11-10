@@ -1,6 +1,6 @@
 <header class="header_bar">
     <div class="header_bar-container main_container">
-        <a href="http://localhost:8080/ubay/">
+        <a href="http://localhost:8080/">
             <img id="header-logo" src="resources/ubay_logo.svg" alt="ubay logo">
         </a>
         <div id="search-container">
@@ -32,12 +32,12 @@
                 <label>19.23</label>
                 <img id="img-balance" src="resources/dollar.svg" alt="balance">
             </div>
-            <a href="http://localhost:8080/ubay/account">
+            <a href="http://localhost:8080/account">
                 <div class="header_bar-item hidden">
                     <img id="img-account" src="resources/user.svg" alt="account">
                 </div>
             </a>
-            <a href="http://localhost:8080/ubay/authorization">
+            <a href="http://localhost:8080/authorization">
                 <div class="header_bar-item">
                     <label>Sign Up</label>
                     <img id="img-signup" src="resources/user.svg" alt="signup">

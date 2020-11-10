@@ -29,7 +29,7 @@ function errPassFormat() {
 }
 
 function errUserExist() {
-    errorText.text("User with the same login is already exist");
+    errorText.text("User with the same login is already exists");
     showErrorText();
 }
 

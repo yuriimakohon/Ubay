@@ -1,29 +1,47 @@
 async function sign_up(login, password, role) {
-    let urlParams = new URLSearchParams();
+    let params = {
+        login: login,
+        password: sha512(password),
+        role: role
+    };
+    let url = 'http://localhost:8080/sign_up';
 
-    urlParams.append('login', login);
-    urlParams.append('password', sha512(password));
-    urlParams.append('role', role);
-
-    let response = await fetch( 'http://localhost:8080/ubay/sign_up?' + urlParams.toString(), {
+    let response = await fetch( url, {
         method: 'POST',
-    })
-    return response.ok;
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    });
+    return machiningResponse(response);
 }
 
 async function sign_in(login, password) {
-    let urlParams = new URLSearchParams();
+    let params = {
+        login: login,
+        password: sha512(password),
+    };
+    let url = 'http://localhost:8080/sign_in';
 
-    urlParams.append('login', login);
-    urlParams.append('password', sha512(password));
-    console.log(urlParams.toString());
-    let response = await fetch( 'http://localhost:8080/ubay/sign_in?' + urlParams.toString(), {
+    let response = await fetch( url, {
         method: 'POST',
-    })
-    return response.ok;
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    });
+
+    return machiningResponse(response);
 }
 
-function sha512(str) {
-    let md = forge.md.sha512.create().update(str);
-    return md.digest().toHex()
+async function machiningResponse(response) {
+    if (response.status === 200) {
+        let text = JSON.parse(await response.text());
+        document.cookie = "token="+text.token + ';'
+        document.cookie = "id="+text.id
+        return true;
+    } else {
+        console.log("error " + response.status)
+        return false;
+    }
 }

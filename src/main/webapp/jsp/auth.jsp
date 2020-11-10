@@ -10,11 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/node-forge@0.7.0/dist/forge.min.js"></script>
     <link rel="stylesheet" href="css/authorization/auth.css">
+    <script src="js/parts/sha512.js"></script>
 </head>
 <body>
     <div id="main_container">
         <header id="header-logo">
-            <a href="http://localhost:8080/ubay">
+            <a href="http://localhost:8080/">
                 <img id="logo" src="resources/ubay_logo.svg" alt="ubay logo">
             </a>
         </header>

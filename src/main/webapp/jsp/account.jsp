@@ -5,6 +5,8 @@
 
     <link rel="stylesheet" href="css/account/account.css">
     <%@include file="parts/resources.jsp" %>
+    <script src="js/parts/sha512.js"></script>
+    <script src="js/parts/parseCookie.js"></script>
 </head>
 <body>
     <%@include file="parts/header_bar.jsp"%>
@@ -42,6 +44,7 @@
         </div>
     </div>
 
+    <script src="js/account/queries.js"></script>
     <script src="js/account/display.js"></script>
     <script src="js/account/confirm.js"></script>
     <script src="js/account/info_text.js"></script>

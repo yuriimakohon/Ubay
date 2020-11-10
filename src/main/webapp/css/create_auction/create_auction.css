@@ -1,0 +1,60 @@
+#title-create_auction {
+    margin-top: 50px;
+}
+
+.card {
+    margin: 50px auto 0;
+    max-width: 700px;
+    padding: 30px;
+}
+
+#input-title {
+    width: 100%;
+}
+
+#info_text {
+    margin-bottom: 15px;
+}
+
+#description-container,
+#start_price-container,
+#start_time-container,
+#btn-create_auction {
+    margin-top: 30px;
+}
+
+#max_price-container,
+#duration-container {
+    margin-top: 20px;
+}
+
+#textarea-description {
+    min-width: 100%;
+}
+
+#max_price-container p .tooltip,
+#start_time-container p .tooltip {
+    margin-left: 10px;
+}
+
+#max_price-container p:hover .tooltip,
+#start_time-container p:hover .tooltip {
+    visibility: visible;
+}
+
+.number_input {
+    width: 150px;
+}
+
+#range-duration {
+    width: 250px;
+}
+
+#p-duration {
+    display: inline;
+    color: #0079D1;
+}
+
+#p-duration::after {
+    content: ' Day(s)';
+}

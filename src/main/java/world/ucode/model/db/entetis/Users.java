@@ -7,15 +7,17 @@ import javax.persistence.GenerationType;
 
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
@@ -37,7 +39,6 @@ public class Users implements Serializable{
     @Column(name="password")
     private String password;
 
-
     @Column(name="token")
     private String token;
 
@@ -46,22 +47,75 @@ public class Users implements Serializable{
 
 
 
-//    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private List<Bid> userbids;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="bidderId")
+    @Fetch(FetchMode.SELECT)
+    private List<Bid> userbids;
 
-//    @OneToMany(mappedBy = "sellerId",  cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-//    private List<Lot> userlots;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="sellerId")
+    @Fetch(FetchMode.SELECT)
+    private List<Lot> userlots;
 //
-    public Users(String token, String login) {
+    public Users(String token, String login, String password, String role) {
+        this.username = login;
         this.login = login;
         this.token = token;
+        this.password = password;
+//        this.role = role;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public boolean userValidPassword(String login, String password) {
+        return this.login.equals(login) && this.password.equals(password);
+    }
+
+
+    public String getToken() {
+        return this.token;
+    }
+
+
+
+    public Users() {
+
     }
 
     public String getusertname() {
+
         return username;
     }
 
-//    public Users(String name, String token) {
+
+    public List<Bid> getUserbids() {
+        return userbids;
+    }
+
+    public List<Lot> getUserLots() {
+        return userlots;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //    public Users(String name, String token) {
 //                this.username = name;
 //        this.token = token;
 //    }
