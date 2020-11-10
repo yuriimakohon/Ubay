@@ -1,4 +1,5 @@
-package world.ucode.API.account;
+package world.ucode.API.catalog;
+
 
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
@@ -14,9 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-
-@WebServlet("/get_user_info")
-public class GetAccountInfo extends HttpServlet {
+@WebServlet("/catalog/get_auctions")
+public class GetAuctions extends HttpServlet {
     DAOusers DAOUser;
 
     @Override
@@ -24,36 +24,29 @@ public class GetAccountInfo extends HttpServlet {
         super.init(config);
         DAOUser = new DAOusers();
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HashMap<String, String> mapCookie = ParseCookie.parseToMap(req.getCookies());
+
         String idString = mapCookie.get("id");
         String token = mapCookie.get("token");
-        JSONObject jo = new JSONObject();
-
         if (token == null || idString == null) {
-            resp.setStatus(200);
-            jo.put("role", 0);
-            resp.getWriter().write(jo.toJSONString());
+            resp.setStatus(401);
+            resp.getWriter().write("are you hacker ? there is no token or id");
             return;
         }
-
         int id = Integer.parseInt(idString);
-        System.out.println("id: " + id);
-        System.out.println("token: " + token);
+
         Users user = DAOUser.read(id);
 
-        System.out.println("\nid: " + user.getId());
-        System.out.println("token: " + user.getToken());
-
-        if (user.getToken().equals(token)) {
-            jo.put("login", user.getLogin());
-            jo.put("role", user.getUserRole());
-            resp.getWriter().write(jo.toJSONString());
+        if (token.equals(user.getToken())) {
+            JSONObject jo = new JSONObject();
             resp.setStatus(200);
+            resp.getWriter().write(jo.toJSONString());
         } else {
             resp.setStatus(401);
-            resp.getWriter().write("are you hacker ?");
+            resp.getWriter().write("are you hacker ? there is no token or id");
         }
     }
 }

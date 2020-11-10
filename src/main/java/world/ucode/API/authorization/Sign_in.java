@@ -6,6 +6,7 @@ import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.ParseJson;
 import world.ucode.utils.ReadRequestToString;
 import world.ucode.utils.RegExp;
+import world.ucode.utils.Utils;
 import world.ucode.utils.token.Token;
 
 import javax.servlet.ServletConfig;
@@ -34,13 +35,11 @@ public class Sign_in extends HttpServlet {
         String password = joReq.get("password").toString();
         String login = joReq.get("login").toString();
 
-        if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password)) {
+        if (!Utils.checkValidLogin(login) || !Utils.checkValidPassword(password)) {
             resp.setStatus(406);
-            resp.getWriter().write("fuck you, wrong parse");
+            resp.getWriter().write("fuck you hacker, wrong parse");
             return;
         }
-
-        System.out.println("login: "+login);
         Users user = DAOUser.readbyLogin(login);
 
         if (user == null) {

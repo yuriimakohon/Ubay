@@ -45,11 +45,11 @@
                 <div class="auth_item">
                     <p>Role</p>
                     <label style="margin-right: 65px;">
-                        <input id="rbtn-auctioner" type="radio" name="role" checked="checked" value="auctioneer">
+                        <input id="rbtn-auctioner" type="radio" name="role" checked="checked" value="1">
                         Auctioneer
                     </label>
                     <label>
-                        <input type="radio" name="role" value="bidder">
+                        <input type="radio" name="role" value="2">
                         Bidder
                     </label>
                 </div>

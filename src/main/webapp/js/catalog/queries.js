@@ -1,22 +1,27 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    let cook = parseCookie();
-    console.log(cook);
-
-    // let req = {
-    //     id: cook.id,
-    //     token: cook.token
-    // }
-
-    let response = await fetch('http://localhost:8080/catalog/get_info', {
+    let response = await fetch('http://localhost:8080/get_user_info', {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        // body: JSON.stringify(req)
+        credentials: "same-origin",
     });
     if (response.ok) {
-        console.log('response ok')
+        let respJson = await response.json();
+        if (respJson.role === 0) {
+            console.log("guest");
+            $('#item-sign_up').removeClass('hidden');
+        } else {
+            $('#item-account').removeClass('hidden');
+            $('#item-balance').removeClass('hidden');
+            if (respJson.role === 1) { // auctioneer
+                console.log("user auctioneer");
+                $('#item-auction').removeClass('hidden')
+            } else { // bidder
+                $('#item-bids').removeClass('hidden')
+                console.log("user bidder")
+            }
+        }
+        console.log(respJson);
+        console.log('response ok');
     } else {
-        console.log("error")
+        console.log("error");
     }
 });
