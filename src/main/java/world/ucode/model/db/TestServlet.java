@@ -20,11 +20,11 @@ import java.util.List;
 
 @WebServlet("/db")
 public class TestServlet extends HttpServlet {
-//    private DAObid bid;
+    private DAObid biddao;
     private DAOusers user;
 
     public void init() {
-//        bid = new DAObid();
+        biddao = new DAObid();
         user = new DAOusers();
         System.out.println("init serv");
     }
@@ -87,59 +87,66 @@ public class TestServlet extends HttpServlet {
 
 
         System.out.println("get");
-//        System.out.println(existingUser.getusertname());
+//        Bid bid = biddao.read(2);
+//        System.out.println(bid.getLot().getSellerId() + "       &&&&&&&&&&&&&");
+//        System.out.println(bid.getUser().getId() + "       &&&&&&&&&&&&&");
+        //System.out.println(existingUser.getusertname());
 
-        Users existingUser = user.getUserandBidbyId(12345);
-
-
-        List<Bid> mist = existingUser.getUserbids();
+//        Users existingUser = user.getUserandBidbyId(12345);
+//
+//
+//        List<Bid> mist = existingUser.getUserbids();
+//        for(Bid element : mist) {
+//            System.out.println(element.getBidderId());
+     //   }
+//
+        List<Bid> mist = biddao.readbyToken("token3");
         for(Bid element : mist) {
             System.out.println(element.getBidderId());
         }
-
-//        List<Bid> mist = bid.readbyToken("tnnjoken3");
-//        for(Bid element : mist) {
+        System.out.println("endess***********************************************");
+//
+//        Users existingUser3 = user.getUserandBidbyToken("token2");
+//
+//        List<Bid> mist3 = existingUser3.getUserbids();
+//        for(Bid element : mist3) {
 //            System.out.println(element.getBidderId());
 //        }
-        System.out.println("endess***********************************************");
-
-        Users existingUser3 = user.getUserandBidbyToken("token2");
-
-        List<Bid> mist3 = existingUser3.getUserbids();
-        for(Bid element : mist3) {
-            System.out.println(element.getBidderId());
-        }
-
-        System.out.println("endess3***********************************************");
-
-        Users existingUser4 = user.getUserandLotbyToken("token2");
-
-        List<Lot> mist4 = existingUser4.getUserLots();
-        for(Lot element : mist4) {
-            System.out.println(element.getSellerId());
-        }
-
+//
+//        System.out.println("endess3***********************************************");
+//
+//        Users existingUser4 = user.getUserandLotbyToken("token2");
+//
+//        List<Lot> mist4 = existingUser4.getUserLots();
+//        for(Lot element : mist4) {
+//            System.out.println(element.getSellerId());
+//        }
+//
         System.out.println("endess4***********************************************");
 
-        Users existingUser5 = user.getUserandLotbyId(123456);
+//        Users existingUser5 = user.getUserandLotbyIdandToken(1234, "token2");
+//
+//        List<Lot> mist5 = existingUser5.getUserLots();
+//        for(Lot element : mist5) {
+//            System.out.println(element.getSellerId());
+//        }
+////
+//        System.out.println("endess5***********************************************");
+//
+//        Users existingUser6 = user.getUserandBidbyIdandToken(12345, "token3");
+//
+//        List<Bid> mist6 = existingUser6.getUserbids();
+//        for(Bid element : mist6) {
+//            System.out.println(element.getBidderId());
+//        }
+//
+//        System.out.println("endess6***********************************************");
+//
 
-        List<Lot> mist5 = existingUser5.getUserLots();
-        for(Lot element : mist5) {
-            System.out.println(element.getSellerId());
-        }
-
-        System.out.println("endess5***********************************************");
 
 
 
 
-
-
-
-//        System.out.println(existingUser.toString());
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-//        request.setAttribute("user", existingUser);
-//        dispatcher.forward(request, response);
 
     }
 

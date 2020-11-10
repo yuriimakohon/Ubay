@@ -16,7 +16,7 @@ public class Lot {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private int lottid;
 
     @Column(name = "sellerId")
     private int sellerId;

@@ -1,7 +1,10 @@
 package world.ucode.model.db.entetis;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @ToString
@@ -17,7 +20,8 @@ public class Bid {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "lotid")
+
+    @Column(name = "lotid", nullable = false)
     private int lotid;
 
     @Column(name = "bidderId")
@@ -29,8 +33,25 @@ public class Bid {
     @Column(name = "statusOfBid")
     private int statusOfBid;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="lotid", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    private Lot lot;
+
+//    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+//    @JoinColumn (name="bidderId", insertable = false, updatable = false)
+//    private Users user;
+
+
     public int getBidderId() {
         return bidderId;
     }
 
+    public Lot getLot(){
+        return lot;
+    }
+
+//    public Users getUser(){
+//        return user;
+//    }
 }
