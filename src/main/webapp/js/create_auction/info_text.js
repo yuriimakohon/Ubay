@@ -34,4 +34,9 @@ function errMaxPrice() {
     showInfoText();
 }
 
+function errPhotoCount() {
+    setErrorText('Too much photos uploaded: 6 is maximum');
+    showInfoText();
+}
+
 //=============| Success Messages |================//
