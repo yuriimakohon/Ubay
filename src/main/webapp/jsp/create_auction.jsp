@@ -12,7 +12,6 @@
 <body>
     <%@include file="parts/header_bar.jsp"%>
 
-
     <div class="main_container">
         <h2 id="title-create_auction" class="title_text">Create new auction</h2>
         <div class="title_line"></div>
@@ -27,6 +26,12 @@
             <div id="description-container" class="text_input-item">
                 <p>Lot description</p>
                 <textarea id="textarea-description" class="textarea" maxlength="500" content="description" placeholder="Describe in detail the item put up for auction"></textarea>
+            </div>
+            <div id="photos-container" class="text_input-item">
+                <p>Photos
+                    <span class="tooltip">Choose 1-6 photos</span>
+                </p>
+                <input id="input-photos" type="file" accept="image/*" multiple>
             </div>
             <div id="start_price-container" class="text_input-item">
                 <p>Start price</p>

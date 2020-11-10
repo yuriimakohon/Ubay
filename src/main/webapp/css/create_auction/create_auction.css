@@ -19,7 +19,8 @@
 #description-container,
 #start_price-container,
 #start_time-container,
-#btn-create_auction {
+#btn-create_auction,
+#photos-container {
     margin-top: 30px;
 }
 
@@ -32,13 +33,11 @@
     min-width: 100%;
 }
 
-#max_price-container p .tooltip,
-#start_time-container p .tooltip {
+.tooltip {
     margin-left: 10px;
 }
 
-#max_price-container p:hover .tooltip,
-#start_time-container p:hover .tooltip {
+p:hover .tooltip {
     visibility: visible;
 }
 
