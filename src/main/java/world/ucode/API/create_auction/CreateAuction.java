@@ -46,7 +46,8 @@ public class CreateAuction extends HttpServlet {
         ro.checkJson(req);
 
         if (!ro.ok) {
-            System.out.println("Error");
+            resp.setStatus(ro.getStatus());
+            resp.getWriter().write(ro.getResp());
             return;
         }
 

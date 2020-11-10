@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <button id="btn-logout" class="btn">Log out</button>
+            <button id="btn-logout" class="btn" onclick="onLogOut()">Log out</button>
         </div>
         <div class="card">
             <h3>Balance</h3>
