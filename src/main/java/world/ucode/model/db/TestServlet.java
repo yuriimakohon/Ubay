@@ -100,10 +100,10 @@ public class TestServlet extends HttpServlet {
 //            System.out.println(element.getBidderId());
      //   }
 //
-        List<Bid> mist = biddao.readbyToken("token3");
-        for(Bid element : mist) {
-            System.out.println(element.getBidderId());
-        }
+//        List<Bid> mist = biddao.readbyToken("token3");
+//        for(Bid element : mist) {
+//            System.out.println(element.getBidderId());
+//        }
         System.out.println("endess***********************************************");
 //
 //        Users existingUser3 = user.getUserandBidbyToken("token2");
@@ -133,12 +133,12 @@ public class TestServlet extends HttpServlet {
 ////
 //        System.out.println("endess5***********************************************");
 //
-//        Users existingUser6 = user.getUserandBidbyIdandToken(12345, "token3");
-//
-//        List<Bid> mist6 = existingUser6.getUserbids();
-//        for(Bid element : mist6) {
-//            System.out.println(element.getBidderId());
-//        }
+        Users existingUser6 = user.getUserandBidbyIdandToken(12345, "token3");
+
+        List<Bid> mist6 = existingUser6.getUserbids();
+        for(Bid element : mist6) {
+            System.out.println(element.getBidderId());
+        }
 //
 //        System.out.println("endess6***********************************************");
 //
