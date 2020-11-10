@@ -33,3 +33,12 @@ function dateToStringTime(date) {
 let maxStartTime = dateToStringTime(addDays(7));
 
 $('#input-start_time').attr('max', maxStartTime);
+
+let rangeDuration = $('#range-duration');
+let pDuration = $('#p-duration');
+
+function onRangeDuration() {
+    pDuration.text(rangeDuration.val());
+}
+
+onRangeDuration();

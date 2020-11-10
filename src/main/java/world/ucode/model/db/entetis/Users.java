@@ -18,7 +18,6 @@ import java.util.List;
 @Data
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
@@ -77,13 +76,22 @@ public class Users implements Serializable{
         return this.login.equals(login) && this.password.equals(password);
     }
 
+
     public String getToken() {
         return this.token;
     }
 
-    public String getUsertName() {
+
+
+    public Users() {
+
+    }
+
+    public String getusertname() {
+
         return username;
     }
+
 
     public List<Bid> getUserbids() {
         return userbids;
