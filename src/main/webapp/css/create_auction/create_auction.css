@@ -12,6 +12,10 @@
     width: 100%;
 }
 
+#info_text {
+    margin-bottom: 15px;
+}
+
 #description-container,
 #start_price-container,
 #start_time-container,
@@ -20,7 +24,7 @@
 }
 
 #max_price-container,
-#finish_time-container {
+#duration-container {
     margin-top: 20px;
 }
 
@@ -28,7 +32,29 @@
     min-width: 100%;
 }
 
+#max_price-container p .tooltip,
+#start_time-container p .tooltip {
+    margin-left: 10px;
+}
+
+#max_price-container p:hover .tooltip,
+#start_time-container p:hover .tooltip {
+    visibility: visible;
+}
+
 .number_input {
     width: 150px;
 }
 
+#range-duration {
+    width: 250px;
+}
+
+#p-duration {
+    display: inline;
+    color: #0079D1;
+}
+
+#p-duration::after {
+    content: ' Day(s)';
+}
