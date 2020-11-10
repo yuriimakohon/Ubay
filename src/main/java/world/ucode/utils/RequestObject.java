@@ -70,6 +70,10 @@ public class RequestObject {
         return resp;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getStatus() {
         return status;
     }
