@@ -49,8 +49,8 @@
         <div class="block-background">
             <div class="main_container">
                 <div id="auctions-container">
-<%--                    <div class="card auctions-item" onclick="onAuction()">--%>
-<%--                        <img src="resources/test.png">--%>
+<%--                    <div class="card auctions-item"">--%>
+<%--                        <img src="">--%>
 <%--                        <div class="text">--%>
 <%--                            <div class="title">--%>
 <%--                                <p></p>--%>
@@ -66,6 +66,7 @@
     <script src="js/parts/parseCookie.js"></script>
     <script src="js/catalog/queries.js"></script>
     <script src="js/catalog/generate_lots.js"></script>
+    <script src="js/catalog/catalog.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

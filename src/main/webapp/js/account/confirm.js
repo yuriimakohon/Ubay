@@ -51,5 +51,6 @@ async function onSaveLogin() {
 
 async function onLogOut() {
     document.cookie = '';
+
     window.location.replace("/authorization");
 }
