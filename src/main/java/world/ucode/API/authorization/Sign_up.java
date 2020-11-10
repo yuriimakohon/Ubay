@@ -6,6 +6,7 @@ import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.ParseJson;
 import world.ucode.utils.ReadRequestToString;
 import world.ucode.utils.RegExp;
+import world.ucode.utils.Utils;
 import world.ucode.utils.token.Token;
 
 import javax.servlet.ServletConfig;
@@ -38,21 +39,21 @@ public class Sign_up extends HttpServlet {
 
         String token = new Token().getToken(login);
 
-        if (!RegExp.checkRegExp("^[A-Za-z0-9]{3,21}$", login) || !RegExp.checkRegExp("^[a-z0-9]{128}$", password) || !RegExp.checkRegExp("^[A-Za-z]{3,20}$", role)) {
+        if (!Utils.checkValidLogin(login) || !Utils.checkValidPassword(password) || !Utils.checkValidRole(role)) {
             resp.setStatus(406);
-            resp.getWriter().write("fuck you, wrong parse");
+            resp.getWriter().write("fuck you hacker, wrong parse");
             return;
         }
 
         if (DAOUser.readbyLogin(login) == null) {
             System.out.println("sign up ok");
-            Users user = new Users(token, login, password, role);
+            Users user = new Users(token, login, password, Integer.parseInt(role));
             DAOUser.create(user);
-            resp.setStatus(200);
             JSONObject jo = new JSONObject();
-            jo.put("token", new Token().getToken(login));
+            jo.put("token", token);
             jo.put("id", user.getId());
             resp.getWriter().write(jo.toJSONString());
+            resp.setStatus(200);
         }
         else {
             System.out.println("sign up error");

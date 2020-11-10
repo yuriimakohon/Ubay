@@ -46,8 +46,6 @@ public class Users implements Serializable{
     @Column(name="userRole")
     private int userRole;
 
-
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="bidderId")
     @Fetch(FetchMode.SELECT)
@@ -59,16 +57,20 @@ public class Users implements Serializable{
     @Fetch(FetchMode.SELECT)
     private List<Lot> userlots;
 //
-    public Users(String token, String login, String password, String role) {
+    public Users(String token, String login, String password, int role) {
         this.username = login;
         this.login = login;
         this.token = token;
         this.password = password;
-//        this.role = role;
+        this.userRole = role;
     }
 
     public int getId() {
         return this.id;
+    }
+
+    public int getUserRole() {
+        return userRole;
     }
 
     public boolean userValidPassword(String login, String password) {
