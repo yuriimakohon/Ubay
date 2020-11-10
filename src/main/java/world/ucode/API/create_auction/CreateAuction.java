@@ -39,13 +39,16 @@ public class CreateAuction extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         RequestObject ro = new RequestObject();
 
         ro.checkCookie(req.getCookies(), DAOUser);
         ro.checkJson(req);
-        System.out.println(ro.jo.toJSONString());
 
+        if (!ro.ok) {
+            System.out.println("Error");
+            return;
+        }
 
         String desc = ro.jo.get("desc").toString();
         String title = ro.jo.get("title").toString();
@@ -60,13 +63,20 @@ public class CreateAuction extends HttpServlet {
         lot.setDuration(duration);
         lot.setTitle(title);
         lot.setPrice(startPrice);
-        lot.setSellerId(ro.getId());
+        lot.setSellerId(ro.user.getId());
         lot.setMaxPrice(maxPrice);
+        System.out.println("desc: " + desc);
+        System.out.println("title: " + title);
+        System.out.println("startTime: " + startTime);
+        System.out.println("duration: " + duration);
+        System.out.println("startPrice: " + startPrice);
+        System.out.println("maxPrice: " + maxPrice);
+        System.out.println("seller: " + ro.user.getId());
 
         DAOLot.create(lot);
 
-        String path = ro.getId() + "/" + lot.getLotId();
-        File user_dir = new File(String.valueOf(ro.getId()));
+        String path = ro.user.getId() + "/" + lot.getLotId();
+        File user_dir = new File(String.valueOf(ro.user.getId()));
         File lot_dir = new File(path);
 
         if (!user_dir.exists()) {
@@ -78,9 +88,9 @@ public class CreateAuction extends HttpServlet {
         JSONArray ja = (JSONArray) ro.jo.get("images");
         int i = 0;
         for (String s : (Iterable<String>) ja) {
-            File f = new File(path + i +".jpg");
+            File f = new File(path + "/" + i +".jpg");
             for (;f.exists(); i++) {
-                f = new File(path + i +".jpg");
+                f = new File(path + "/" + i + ".jpg");
             }
             byte[] data = Base64.getDecoder().decode(s.split(",")[1]);
             FileOutputStream fos = new FileOutputStream(f);
