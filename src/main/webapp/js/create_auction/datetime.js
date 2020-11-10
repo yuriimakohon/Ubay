@@ -26,7 +26,6 @@ function dateToStringTime(date) {
     if (date.getSeconds() <= 9)
         string += '0';
     string += date.getUTCSeconds();
-
     return string;
 }
 

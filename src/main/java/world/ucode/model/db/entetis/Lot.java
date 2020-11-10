@@ -16,7 +16,7 @@ public class Lot {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
-    private int lottid;
+    private int lotId;
 
     @Column(name = "sellerId")
     private int sellerId;
@@ -25,13 +25,19 @@ public class Lot {
     private String title;
 
     @Column(name = "price")
-    private int price;
+    private long price;
+
+    @Column(name = "maxPrice") // add to table
+    private long maxPrice;
 
     @Column(name = "photo")
     private String photo;
 
+    @Column(name = "startTime") // add to table
+    private long startTime;
+
     @Column(name = "duration")
-    private int duration;
+    private long duration;
 
     @Column(name = "description")
     private String description;
@@ -43,7 +49,57 @@ public class Lot {
     private int highestBid;
 
     @Column(name = "bidderid")
-    private int bidderid;
+    private int bidderId;
+
+//    public Lot() {}
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setSellerId(int sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setHighestBid(int highestBid) {
+        this.highestBid = highestBid;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setBidderId(int bidderId) {
+        this.bidderId = bidderId;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public void setMaxPrice(long maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public int getLotId() {
+        return lotId;
+    }
 
     public int getSellerId() {
         return sellerId;
