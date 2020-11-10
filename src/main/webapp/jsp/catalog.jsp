@@ -46,18 +46,18 @@
 
     <div class="auctions">
         <h2 class="main_container">Popular auctions</h2>
-        <div class="block-background ">
+        <div class="block-background">
             <div class="main_container">
                 <div id="auctions-container">
-                    <div class="card auctions-item" onclick="onAuction()">
+<%--                    <div class="card auctions-item" onclick="onAuction()">--%>
 <%--                        <img src="resources/test.png">--%>
-                        <div class="text">
-                            <div class="title">
-                                <p>Wolf coins collection - Limited edition (America 2005)</p>
-                            </div>
-                            <p class="price">$ 12.50</p>
-                        </div>
-                    </div>
+<%--                        <div class="text">--%>
+<%--                            <div class="title">--%>
+<%--                                <p></p>--%>
+<%--                            </div>--%>
+<%--                            <p class="price"></p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>
@@ -65,6 +65,7 @@
 
     <script src="js/parts/parseCookie.js"></script>
     <script src="js/catalog/queries.js"></script>
+    <script src="js/catalog/generate_lots.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

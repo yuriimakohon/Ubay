@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.log("user bidder")
             }
         }
-        console.log(respJson);
-        console.log('response ok');
     } else {
         console.log("error");
     }
@@ -33,8 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     if (response.ok) {
         let respJson = await response.json();
-        console.log(respJson);
-        console.log('response ok');
+        lotsGen(respJson);
     } else {
         console.log("error");
     }
