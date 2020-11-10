@@ -32,7 +32,7 @@ public class GetAccountInfo extends HttpServlet {
         JSONObject jo = new JSONObject();
 
         if (token == null || idString == null) {
-            resp.setStatus(401);
+            resp.setStatus(200);
             jo.put("role", 0);
             resp.getWriter().write(jo.toJSONString());
             return;
