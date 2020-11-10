@@ -16,10 +16,12 @@
             </button>
         </div>
         <div class="header_bar-items">
-            <div id="item-auction" class="header_bar-item hidden">
-                <label>Auctions</label>
-                <img id="img-auction" src="resources/auction.svg" alt="auction">
-            </div>
+            <a href="http://localhost:8080/auctions">
+                <div id="item-auction" class="header_bar-item hidden">
+                    <label>Auctions</label>
+                    <img id="img-auction" src="resources/auction.svg" alt="auction">
+                </div>
+            </a>
             <div id="item-bids" class="header_bar-item hidden">
                 <label>Bids</label>
                 <img id="img-bids" src="resources/bid.svg" alt="bids">
@@ -28,10 +30,12 @@
                 <label>Cart</label>
                 <img id="img-cart" src="resources/cart.svg" alt="cart">
             </div>
-            <div id="item-balance" class="header_bar-item hidden">
-                <label>19.23</label>
-                <img id="img-balance" src="resources/dollar.svg" alt="balance">
-            </div>
+            <a href="http://localhost:8080/account">
+                <div id="item-balance" class="header_bar-item hidden">
+                    <label>19.23</label>
+                    <img id="img-balance" src="resources/dollar.svg" alt="balance">
+                </div>
+            </a>
             <a href="http://localhost:8080/account">
                 <div id="item-account" class="header_bar-item hidden">
                     <img id="img-account" src="resources/user.svg" alt="account">
