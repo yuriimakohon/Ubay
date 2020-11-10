@@ -35,16 +35,6 @@ public class CreateAuction extends HttpServlet {
         }
         assert jo != null;
         JSONArray ja = (JSONArray) jo.get("images");
-//        a.setTitle(jo.get("title").toString());
-//        a.setDescription(jo.get("desc").toString());
-//        a.setStartPrice(Integer.parseInt(jo.get("startPrice").toString()));
-//        a.setMaxPrice(Integer.parseInt(jo.get("maxPrice").toString()));
-//        a.setStartTime(Long.parseLong(jo.get("startTime").toString()));
-//        a.setDuration(Integer.parseInt(jo.get("duration").toString()));
-        ObjectMapper mapper = new ObjectMapper();
-//        String aJson = mapper.writeValueAsString(a);
-//        System.out.println(aJson);
-//        resp.getWriter().write(aJson);
 
         int i = 0;
         for (String s : (Iterable<String>) ja) {

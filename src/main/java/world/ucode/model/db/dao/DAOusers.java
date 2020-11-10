@@ -95,7 +95,7 @@ public class DAOusers implements DAO<Users, Integer>{
         }
     }
 
-    public Users readbyTokenAndId(String token, int id) {
+    public Users readByTokenAndId(String token, int id) {
         Users user = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM Users WHERE token = :token and id=:id");
@@ -111,7 +111,7 @@ public class DAOusers implements DAO<Users, Integer>{
         return user;
     }
 
-    public Users readbyLogin(String login) {
+    public Users readByLogin(String login) {
         Users user = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM Users WHERE login = :login");
@@ -196,7 +196,7 @@ public class DAOusers implements DAO<Users, Integer>{
 //        return user;
 //    }
 
-    public Users getUserandLotbyIdandToken(Integer id, String token) {
+    public Users getUserAndLotByIdAndToken(Integer id, String token) {
         Users user = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM Users u left join fetch u.userlots where u.id = :id and u.token = :token");

@@ -45,7 +45,7 @@ public class Sign_up extends HttpServlet {
             return;
         }
 
-        if (DAOUser.readbyLogin(login) == null) {
+        if (DAOUser.readByLogin(login) == null) {
             System.out.println("sign up ok");
             Users user = new Users(token, login, password, Integer.parseInt(role));
             DAOUser.create(user);
