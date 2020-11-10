@@ -1,4 +1,7 @@
 function lotsGen(json) {
-    let jo = JSON.parse(json);
-    alert(jo.lots[0].sellerId);
+    json.lots.forEach(el => {
+        let parsed = JSON.parse(el);
+        console.log(parsed['title'] + "\n" + parsed['description']);
+    });
+    console.log(json.lots[0]);
 }
