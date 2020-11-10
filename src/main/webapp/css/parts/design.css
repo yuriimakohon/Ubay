@@ -191,3 +191,15 @@
     color: #0079D1;
     margin-bottom: 50px;
 }
+
+/*============| Tooltip |============*/
+.tooltip {
+    visibility: hidden;
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+    border: 1px solid #0087E9;
+    border-radius: 5px;
+    background: rgba(0, 135, 233, 0.1);
+    padding: 2px 4px;
+}
