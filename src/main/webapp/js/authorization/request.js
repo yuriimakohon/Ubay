@@ -4,7 +4,7 @@ async function sign_up(login, password, role) {
         password: sha512(password),
         role: role
     };
-    let url = 'http://localhost:8080/sign_up';
+    let url = 'http://localhost:8080/user/sign_up';
 
     let response = await fetch( url, {
         method: 'POST',
@@ -13,7 +13,11 @@ async function sign_up(login, password, role) {
         },
         body: JSON.stringify(params)
     });
-    return machiningResponse(response);
+    if (response.status) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 async function sign_in(login, password) {
@@ -21,7 +25,7 @@ async function sign_in(login, password) {
         login: login,
         password: sha512(password),
     };
-    let url = 'http://localhost:8080/sign_in';
+    let url = 'http://localhost:8080/user/sign_in';
 
     let response = await fetch( url, {
         method: 'POST',
@@ -31,17 +35,9 @@ async function sign_in(login, password) {
         body: JSON.stringify(params)
     });
 
-    return machiningResponse(response);
-}
-
-async function machiningResponse(response) {
-    if (response.status === 200) {
-        let text = JSON.parse(await response.text());
-        document.cookie = "token="+text.token + ';'
-        document.cookie = "id="+text.id
+    if (response.status) {
         return true;
     } else {
-        console.log("error " + response.status)
         return false;
     }
 }

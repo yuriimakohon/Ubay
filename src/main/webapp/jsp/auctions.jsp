@@ -34,6 +34,8 @@
     </div>
 </div>
 
+
+<script defer src="js/auctions/getMyAuctions.js"></script>
 <script defer src="js/auctions/generate_auctions.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>

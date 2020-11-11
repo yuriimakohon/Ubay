@@ -50,7 +50,9 @@ async function onSaveLogin() {
 }
 
 async function onLogOut() {
-    document.cookie = '';
-
-    window.location.replace("/authorization");
+    await fetch('http://localhost:8080/user/log_out', {
+        method: 'PUT',
+        credentials: "same-origin"
+    });
+    window.location.replace('/authorization');
 }

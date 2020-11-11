@@ -3,5 +3,6 @@ function onAuction(id) {
 }
 
 function onAuctionEdit(id) {
-    alert('REQUEST: Edit Auction: ' + id);
+    localStorage.setItem("lotId", id);
+    window.location.replace('/edit_auction');
 }

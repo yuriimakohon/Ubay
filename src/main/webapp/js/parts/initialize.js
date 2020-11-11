@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    let response = await fetch('http://localhost:8080/get_user_info', {
+    // await ref_token();
+    let response = await fetch('http://localhost:8080/user/get', {
         method: 'GET',
         credentials: "same-origin",
     });
@@ -12,14 +13,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             $('#item-account').removeClass('hidden');
             $('#item-balance').removeClass('hidden');
             if (respJson.role === 1) { // auctioneer
-                console.log("user auctioneer");
                 $('#item-auction').removeClass('hidden')
             } else { // bidder
                 $('#item-bids').removeClass('hidden')
-                console.log("user bidder")
             }
         }
     } else {
-        console.log("error");
+        console.log("what is wrong ?");
     }
 });

@@ -42,17 +42,17 @@ public class Users implements Serializable{
     @Column(name="token")
     private String token;
 
+    @Column(name="ref_token")
+    private String ref_token;
+
     @Column(name="userRole")
     private int userRole;
-
 
     @Column(name="balance")
     private int balance;
 
     @Column(name="userphoto")
     private String userphoto;
-
-
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="bidderId")
@@ -90,9 +90,19 @@ public class Users implements Serializable{
         return this.token;
     }
 
+    public String getRef_token() {
+        return ref_token;
+    }
 
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 
-    public Users() {
+    public void setRef_token(String ref_token) {
+        this.ref_token = ref_token;
+    }
+
+        public Users() {
 
     }
 
