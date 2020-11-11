@@ -50,7 +50,15 @@ async function onSaveLogin() {
 }
 
 async function onLogOut() {
-    document.cookie = '';
-
     window.location.replace("/authorization");
+
+    let response = await fetch('http://localhost:8080/log_out', {
+
+    });
+    if (response.ok) {
+        window.location.replace("/authorization");
+    } else {
+        console.log("what is problem ?")
+    }
+
 }
