@@ -16,20 +16,20 @@ function auctionHtmlGen(lotId, title, price, bidsCount) {
 function auctionsGen(json) {
     let container = $('#auctions-container');
 
-    // json.lots.forEach(el => {
-    //     let parsed = JSON.parse(el);
-    //     let title = parsed['title'];
-    //     let price = parsed['price'];
-    //     let lotId = parsed['lotId'];
-    //     let bidsCount = 5;
-    //     let auction = auctionHtmlGen(lotId, title, price, bidsCount);
-    //
-    //     container.append(auction);
-    // });
-    let auction = auctionHtmlGen(1, 'Coin', 5.50, 5);
-    container.append(auction);
-    auction = auctionHtmlGen(2, 'Coin with Woolf (America 2005)', 12.40, 23);
-    container.append(auction);
+    json.lots.forEach(el => {
+        let parsed = JSON.parse(el);
+        let title = parsed['title'];
+        let price = parsed['price'];
+        let lotId = parsed['lotId'];
+        let bidsCount = 5;
+        let auction = auctionHtmlGen(lotId, title, price, bidsCount);
+
+        container.append(auction);
+    });
+    // let auction = auctionHtmlGen(1, 'Coin', 5.50, 5);
+    // container.append(auction);
+    // auction = auctionHtmlGen(2, 'Coin with Woolf (America 2005)', 12.40, 23);
+    // container.append(auction);
 }
 
-auctionsGen();
+// auctionsGen();

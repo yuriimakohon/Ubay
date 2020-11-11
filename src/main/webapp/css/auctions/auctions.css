@@ -98,3 +98,31 @@
     font-weight: 600;
     font-size: 18px;
 }
+
+/*============| Add auction |===========*/
+.add_auction {
+    margin-bottom: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #2AA6FF;
+    color: white;
+    font-size: 42px;
+    font-weight: lighter;
+
+    cursor: pointer;
+}
+
+.add_auction:hover {
+    background: #0079D1;
+}
+
+.add_auction:active {
+    background: #0063AB;
+}
+
+a {
+    text-decoration: none;
+}
