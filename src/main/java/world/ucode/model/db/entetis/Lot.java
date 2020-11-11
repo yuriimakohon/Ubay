@@ -54,6 +54,9 @@ public class Lot {
     @Column(name = "bidnumber")
     private int bidnumber;
 
+    @Column(name="category")
+    private String category;
+
 //    public Lot() {}
 
     public void setTitle(String title) {
