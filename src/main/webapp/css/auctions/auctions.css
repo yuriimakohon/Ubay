@@ -34,6 +34,11 @@
     box-shadow: 5px 0 0 0 #0063AB;
 }
 
+.auction-item img:hover,
+.title {
+    cursor: pointer;
+}
+
 .info_block {
     flex-grow: 1;
 
