@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-   let response = await fetch('http://localhost:8080/get_user_info', {
+   let response = await fetch('http://localhost:8080/user/get', {
        method: 'GET',
        credentials: "same-origin"
    });

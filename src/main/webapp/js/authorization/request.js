@@ -4,7 +4,7 @@ async function sign_up(login, password, role) {
         password: sha512(password),
         role: role
     };
-    let url = 'http://localhost:8080/sign_up';
+    let url = 'http://localhost:8080/user/sign_up';
 
     let response = await fetch( url, {
         method: 'POST',
@@ -21,7 +21,7 @@ async function sign_in(login, password) {
         login: login,
         password: sha512(password),
     };
-    let url = 'http://localhost:8080/sign_in';
+    let url = 'http://localhost:8080/user/sign_in';
 
     let response = await fetch( url, {
         method: 'POST',

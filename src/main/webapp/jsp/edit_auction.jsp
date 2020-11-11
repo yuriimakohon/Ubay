@@ -60,6 +60,8 @@
     </div>
 </div>
 
+<script src="js/auction/editAuction.js"></script>
+<script src="js/auction/loadAuction.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

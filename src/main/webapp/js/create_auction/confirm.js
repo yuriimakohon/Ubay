@@ -38,7 +38,7 @@ async function onCreateAuction() {
         auction["images"] = await loadFiles(photos);
 
         // post request
-        let response = await fetch("http://localhost:8080/create_auction", {
+        let response = await fetch("http://localhost:8080/auction/create", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
