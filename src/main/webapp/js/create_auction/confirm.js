@@ -37,8 +37,6 @@ async function onCreateAuction() {
         // download files
         auction["images"] = await loadFiles(photos);
 
-
-        console.log("hello fetch")
         // post request
         let response = await fetch("http://localhost:8080/create_auction", {
             method: 'POST',
@@ -49,8 +47,9 @@ async function onCreateAuction() {
         });
         // machining  response
         if (response.ok) {
-            let text = await response.json();
-            console.log('ok: ' + text);
-        };
+            window.location.replace("/auctions");
+        } else {
+            console.log("what is wrong ?")
+        }
     }
 }

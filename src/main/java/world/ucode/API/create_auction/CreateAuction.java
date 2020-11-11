@@ -66,19 +66,15 @@ public class CreateAuction extends HttpServlet {
         lot.setPrice(startPrice);
         lot.setSellerId(ro.user.getId());
         lot.setMaxPrice(maxPrice);
-        System.out.println("desc: " + desc);
-        System.out.println("title: " + title);
-        System.out.println("startTime: " + startTime);
-        System.out.println("duration: " + duration);
-        System.out.println("startPrice: " + startPrice);
-        System.out.println("maxPrice: " + maxPrice);
-        System.out.println("seller: " + ro.user.getId());
-
         DAOLot.create(lot);
 
-        String path = ro.user.getId() + "/" + lot.getLotId();
-        File user_dir = new File(String.valueOf(ro.user.getId()));
-        File lot_dir = new File(path);
+        String path = "src/main/webapp/resources/";
+        File user_dir = new File(path + ro.user.getId());
+        File lot_dir = new File(path + ro.user.getId() + "/" + lot.getLotId());
+        path += ro.user.getId() + "/" + lot.getLotId();
+
+        lot.setPhoto("resources/" + ro.user.getId() + "/" + lot.getLotId() + "/");
+        DAOLot.update(lot);
 
         if (!user_dir.exists()) {
             user_dir.mkdir();

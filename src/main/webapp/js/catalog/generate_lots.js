@@ -1,6 +1,6 @@
-function lotHtmlGen(lotId, title, price) {
+function lotHtmlGen(lotId, title, price, photo) {
     return ['                    <div class="card auctions-item" onclick="onAuction(' + lotId + ')">\n' +
-    '                        <img src="">\n' +
+    '                        <img src="' + photo + '0.jpg">\n' +
     '                        <div class="text">\n' +
     '                            <div class="title">\n' +
     '                                <p>' + title + '</p>\n' +
@@ -18,7 +18,8 @@ function lotsGen(json) {
         let title = parsed['title'];
         let price = parsed['price'];
         let lotId = parsed['lotId'];
-        let lot = lotHtmlGen(lotId, title, price);
+        let photo = parsed['photo'];
+        let lot = lotHtmlGen(lotId, title, price, photo);
 
         container.append(lot);
     });
