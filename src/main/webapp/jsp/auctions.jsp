@@ -14,6 +14,11 @@
     <div class="title_line"></div>
 
     <div id="auctions-container" class="auctions-items">
+        <a href="http://localhost:8080/create_auction">
+            <div class="auction-item card add_auction">
+                + Create new auction
+            </div>
+        </a>
 <%--        <div class="auction-item card">--%>
 <%--            <img src="resources/test.png" alt="auction-1">--%>
 <%--            <div class="info_block">--%>
