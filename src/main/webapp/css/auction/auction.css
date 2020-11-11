@@ -1,0 +1,104 @@
+.info_blocks-container {
+    margin-top: 50px;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 30px;
+}
+
+#info_block-left,
+#info_block-right {
+    height: 100%;
+    padding: 30px;
+}
+
+/*=============| Right info |============*/
+.lot_title {
+    color: #0087E9;
+    font-size: 28px;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+}
+
+.lot_description {
+    border-top: 2px solid #0087E9;
+    border-bottom: 2px solid #0087E9;
+    padding: 5px 0;
+
+    font-size: 18px;
+    color: #2AA6FF;
+}
+
+.additional_info {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.additional_info-item {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    color: #2AA6FF;
+    font-size: 21px;
+}
+
+.additional_info-item-title {
+    color: #0079D1;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.rate-container img {
+    height: 23px;
+}
+
+.rate-container span {
+    margin-bottom: 10px;
+}
+
+.status-container {
+    height: 150px;
+
+    border: 1px solid;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 24px;
+}
+
+.status-time {
+    border-color: #0087E9;
+    background: #E6F3FD;
+
+    color: #0087E9;
+}
+
+.status-winner {
+    border-color: #00CA14;
+    background: #E6FDE8;
+
+    color: #00CA14;
+}
+
+.status-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+}
+
+.status_info-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.status_info-bottom {
+    font-weight: 300;
+}
