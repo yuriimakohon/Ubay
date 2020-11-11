@@ -2,20 +2,62 @@ package world.ucode.model.db.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import world.ucode.model.db.entetis.Bid;
-import world.ucode.model.db.entetis.Lot;
+import world.ucode.model.db.entetis.Feedback;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 
 import java.util.List;
 
-public class DAOlot implements DAO<Lot, Integer>{
+public class DAOfeedback implements DAO<Feedback, Integer>{
+    public List<Feedback> getAllFeedbackforlot(int lotid) {
+        Transaction transaction = null;
+        List <Feedback> listOfFeedback = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            listOfFeedback = session.createQuery("from Feedback where lotId=:lotid", Feedback.class).setParameter("lotid", lotid).getResultList();
+
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOfFeedback;
+    }
+
     @Override
-    public void create(Lot lot) {
+    public void create(Feedback feedback) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(lot);
+            session.save(feedback);
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+
+    @Override
+    public Feedback read(Integer key) {
+        Transaction transaction = null;
+        Feedback feedback = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            feedback = session.get(Feedback.class, key);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return feedback;
+
+    }
+
+    @Override
+    public void update(Feedback feedback) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.update(feedback);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -23,81 +65,18 @@ public class DAOlot implements DAO<Lot, Integer>{
     }
 
     @Override
-    public Lot read(Integer integer) {
-        Transaction transaction = null;
-        Lot lot = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            lot = session.get(Lot.class, integer);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return lot;
-    }
-
-    @Override
-    public void update(Lot lot) {
+    public void delete(Integer id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(lot);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void delete(Integer integer) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            Lot lot = session.get(Lot.class, integer);
-            if (lot != null) {
-                session.delete(lot);
-                System.out.println("lot is deleted");
+            Feedback feedback = session.get(Feedback.class, id);
+            if (feedback != null) {
+                session.delete(feedback);
+                System.out.println("feedback is deleted");
             }
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public List<Lot> getAllLots() {
-        Transaction transaction = null;
-        List <Lot> listOfLot = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            listOfLot = session.createQuery("from Lot ", Lot.class).getResultList();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listOfLot;
-    }
-
-    public List<Lot> getAllLotsbyCategoris() {
-        Transaction transaction = null;
-        List <Lot> listOfLot = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-
-            String cate = "Sport";
-
-            String qua = "from Lot where ";
-            for (int i = 0; i < 1; i++) {
-                qua = qua + "category like :" + cate;
-            }
-
-
-            //String qua = "from Lot where category like :category1";
-            listOfLot = session.createQuery(qua, Lot.class).setParameter(cate, "%"+cate+"%").getResultList();
-
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listOfLot;
     }
 }

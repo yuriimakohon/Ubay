@@ -4,6 +4,7 @@ package world.ucode.model.db;
 import org.hibernate.Hibernate;
 import world.ucode.model.db.dao.DAO;
 import world.ucode.model.db.dao.DAObid;
+import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
@@ -22,10 +23,12 @@ import java.util.List;
 public class TestServlet extends HttpServlet {
     private DAObid biddao;
     private DAOusers user;
+    private DAOlot lots;
 
     public void init() {
         biddao = new DAObid();
         user = new DAOusers();
+        lots = new DAOlot();
         System.out.println("init serv");
     }
 
@@ -100,10 +103,10 @@ public class TestServlet extends HttpServlet {
 //            System.out.println(element.getBidderId());
      //   }
 //
-        List<Bid> mist = biddao.readbyToken("token3");
-        for(Bid element : mist) {
-            System.out.println(element.getBidderId());
-        }
+//        List<Bid> mist = biddao.readbyToken("token3");
+//        for(Bid element : mist) {
+//            System.out.println(element.getBidderId());
+//        }
         System.out.println("endess***********************************************");
 //
 //        Users existingUser3 = user.getUserandBidbyToken("token2");
@@ -117,11 +120,11 @@ public class TestServlet extends HttpServlet {
 //
 //        Users existingUser4 = user.getUserandLotbyToken("token2");
 //
-//        List<Lot> mist4 = existingUser4.getUserLots();
-//        for(Lot element : mist4) {
-//            System.out.println(element.getSellerId());
-//        }
-//
+        List<Lot> mist4 = lots.getAllLotsbyCategoris();
+        for(Lot element : mist4) {
+            System.out.println(element.getSellerId());
+        }
+
         System.out.println("endess4***********************************************");
 
 //        Users existingUser5 = user.getUserandLotbyIdandToken(1234, "token2");

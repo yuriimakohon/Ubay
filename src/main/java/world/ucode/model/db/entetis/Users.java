@@ -45,6 +45,15 @@ public class Users implements Serializable{
     @Column(name="userRole")
     private int userRole;
 
+
+    @Column(name="balance")
+    private int balance;
+
+    @Column(name="userphoto")
+    private String userphoto;
+
+
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="bidderId")
     @Fetch(FetchMode.SELECT)
