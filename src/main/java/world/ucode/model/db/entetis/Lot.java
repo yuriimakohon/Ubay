@@ -104,8 +104,6 @@ public class Lot {
         return lotId;
     }
 
-    @Column(name = "bidnumber")
-    private int bidnumber;
 
     public int getSellerId() {
         return sellerId;
