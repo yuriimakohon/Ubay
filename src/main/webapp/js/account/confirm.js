@@ -50,15 +50,9 @@ async function onSaveLogin() {
 }
 
 async function onLogOut() {
-    window.location.replace("/authorization");
-
-    // let response = await fetch('http://localhost:8080/log_out', {
-    //
-    // });
-    if (response.ok) {
-        window.location.replace("/authorization");
-    } else {
-        console.log("what is problem ?")
-    }
-
+    await fetch('http://localhost:8080/user/log_out', {
+        method: 'PUT',
+        credentials: "same-origin"
+    });
+    window.location.replace('/authorization');
 }

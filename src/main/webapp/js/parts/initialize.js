@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    // await ref_token();
     let response = await fetch('http://localhost:8080/user/get', {
         method: 'GET',
         credentials: "same-origin",

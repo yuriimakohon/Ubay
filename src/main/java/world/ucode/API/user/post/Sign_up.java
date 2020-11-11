@@ -5,14 +5,12 @@ import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.ParseJson;
 import world.ucode.utils.ReadRequestToString;
-import world.ucode.utils.RegExp;
 import world.ucode.utils.Utils;
 import world.ucode.utils.token.Token;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +35,6 @@ public class Sign_up extends HttpServlet {
         String login = joReq.get("login").toString();
         String role = joReq.get("role").toString();
 
-        String token = new Token().getToken(login);
 
         if (!Utils.checkValidLogin(login) || !Utils.checkValidPassword(password) || !Utils.checkValidRole(role)) {
             resp.setStatus(406);
@@ -46,18 +43,14 @@ public class Sign_up extends HttpServlet {
         }
 
         if (DAOUser.readByLogin(login) == null) {
-            System.out.println("sign up ok");
-            Users user = new Users(token, login, password, Integer.parseInt(role));
-            DAOUser.create(user);
-            JSONObject jo = new JSONObject();
-            jo.put("token", token);
-            jo.put("id", user.getId());
-            resp.getWriter().write(jo.toJSONString());
             resp.setStatus(200);
+            Users user = new Users("", login, password, Integer.parseInt(role));
+            DAOUser.create(user);
+            Token.setTokens(user, DAOUser, resp);
+            resp.getWriter().write(String.valueOf(Token.getTimeOfToken()));
         }
         else {
-            System.out.println("sign up error");
-            resp.setStatus(266); // user already exists
+            resp.setStatus(409); // user already exists
             resp.getWriter().write("fuck you");
         }
     }

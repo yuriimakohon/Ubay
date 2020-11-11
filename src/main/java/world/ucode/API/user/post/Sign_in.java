@@ -12,6 +12,7 @@ import world.ucode.utils.token.Token;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,21 +44,16 @@ public class Sign_in extends HttpServlet {
         Users user = DAOUser.readByLogin(login);
 
         if (user == null) {
-            resp.setStatus(265);
-            resp.getWriter().write("user does not exists");
+            resp.setStatus(409);
+            resp.getWriter().write("what is wrong ?");
         } else {
             if (!user.userValidPassword(login, password)) {
-                resp.setStatus(264); // error password
+                resp.setStatus(409); // error password
                 resp.getWriter().write("fuck you");
             } else {
-                String token = new Token().getToken(login);
                 resp.setStatus(200);
-                JSONObject jo = new JSONObject();
-                jo.put("token", token);
-                user.setToken(token);
-                DAOUser.update(user);
-                jo.put("id", user.getId());
-                resp.getWriter().write(jo.toJSONString());
+                Token.setTokens(user, DAOUser, resp);
+                resp.getWriter().write(String.valueOf(Token.getTimeOfToken()));
             }
         }
     }

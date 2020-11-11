@@ -13,7 +13,11 @@ async function sign_up(login, password, role) {
         },
         body: JSON.stringify(params)
     });
-    return machiningResponse(response);
+    if (response.status) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 async function sign_in(login, password) {
@@ -31,17 +35,9 @@ async function sign_in(login, password) {
         body: JSON.stringify(params)
     });
 
-    return machiningResponse(response);
-}
-
-async function machiningResponse(response) {
-    if (response.status === 200) {
-        let text = JSON.parse(await response.text());
-        document.cookie = "token="+text.token + ';'
-        document.cookie = "id="+text.id
+    if (response.status) {
         return true;
     } else {
-        console.log("error " + response.status)
         return false;
     }
 }

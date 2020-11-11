@@ -1,6 +1,6 @@
-package world.ucode.API.auction.put;
+package world.ucode.API.user.put;
 
-import world.ucode.model.db.dao.DAOlot;
+
 import world.ucode.model.db.dao.DAOusers;
 
 import javax.servlet.ServletConfig;
@@ -11,22 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/auction/edit")
-public class Edit extends HttpServlet {
-    DAOlot daoLot;
+@WebServlet("/user/change_balance")
+public class ChangeBalance extends HttpServlet {
     DAOusers daoUser;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         daoUser = new DAOusers();
-        daoLot = new DAOlot();
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("change balance");
     }
 }
