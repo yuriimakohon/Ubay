@@ -66,7 +66,6 @@
     <script src="js/parts/parseCookie.js"></script>
     <script src="js/catalog/queries.js"></script>
     <script src="js/catalog/generate_lots.js"></script>
-    <script src="js/catalog/catalog.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
