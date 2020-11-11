@@ -15,11 +15,7 @@ import world.ucode.model.db.util.HibernateUtil;
 import javax.persistence.NoResultException;
 import java.util.List;
 
-/**
- * CRUD database operations
- * @author Ramesh Fadatare
- *
- */
+
 public class DAOusers implements DAO<Users, Integer>{
     public List<Users> getAllUser() {
         Transaction transaction = null;
@@ -213,22 +209,22 @@ public class DAOusers implements DAO<Users, Integer>{
         return user;
     }
 
-//    public Users getUserandBidbyIdandToken(Integer id, String token) {
-//        Users user = null;
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//            Query query = session.createQuery("FROM Users u left join fetch u.userbids where u.id = :id and u.token = :token");
-//            query.setParameter("id", id);
-//            query.setParameter("token", token);
-//            user = (Users) query.getSingleResult();
-//        }
-//        catch (NoResultException ignored) {
-//
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return user;
-//    }
+    public Users getUserandBidbyIdandToken(Integer id, String token) {
+        Users user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM Users u left join fetch u.userbids where u.id = :id and u.token = :token");
+            query.setParameter("id", id);
+            query.setParameter("token", token);
+            user = (Users) query.getSingleResult();
+        }
+        catch (NoResultException ignored) {
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
 
 

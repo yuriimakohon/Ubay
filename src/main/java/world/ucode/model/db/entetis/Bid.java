@@ -33,7 +33,7 @@ public class Bid {
     @Column(name = "statusOfBid")
     private int statusOfBid;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="lotid", insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
     private Lot lot;
@@ -47,9 +47,9 @@ public class Bid {
         return bidderId;
     }
 
-    public Lot getLot(){
-        return lot;
-    }
+//    public Lot getLot(){
+//        return lot;
+//    }
 
 //    public Users getUser(){
 //        return user;

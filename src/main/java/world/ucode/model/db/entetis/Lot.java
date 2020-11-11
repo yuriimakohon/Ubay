@@ -51,6 +51,9 @@ public class Lot {
     @Column(name = "bidderid")
     private int bidderId;
 
+    @Column(name = "bidnumber")
+    private int bidnumber;
+
 //    public Lot() {}
 
     public void setTitle(String title) {
@@ -100,6 +103,9 @@ public class Lot {
     public int getLotId() {
         return lotId;
     }
+
+    @Column(name = "bidnumber")
+    private int bidnumber;
 
     public int getSellerId() {
         return sellerId;

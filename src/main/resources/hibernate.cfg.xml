@@ -15,8 +15,8 @@
         <property name="current_session_context_class">thread</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-<!--        <property name="hbm2ddl.auto">create</property>-->
-<!--        <property name="hibernate.hbm2ddl.import_files">import.sql</property>-->
+        <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.import_files">import.sql</property>
         <mapping  class="world.ucode.model.db.entetis.Users"/>
         <mapping  class="world.ucode.model.db.entetis.Bid"/>
         <mapping  class="world.ucode.model.db.entetis.Lot"/>
