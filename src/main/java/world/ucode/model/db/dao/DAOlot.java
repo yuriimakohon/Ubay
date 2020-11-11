@@ -76,4 +76,28 @@ public class DAOlot implements DAO<Lot, Integer>{
         }
         return listOfLot;
     }
+
+    public List<Lot> getAllLotsbyCategoris() {
+        Transaction transaction = null;
+        List <Lot> listOfLot = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String cate = "Sport";
+
+            String qua = "from Lot where ";
+            for (int i = 0; i < 1; i++) {
+                qua = qua + "category like :" + cate;
+            }
+
+
+            //String qua = "from Lot where category like :category1";
+            listOfLot = session.createQuery(qua, Lot.class).setParameter(cate, "%"+cate+"%").getResultList();
+
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOfLot;
+    }
 }
