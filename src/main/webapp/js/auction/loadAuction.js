@@ -1,13 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    let response = await fetch('http://localhost:8080/get_auction?lotId=' + localStorage.getItem('lotId'), {
-        method: 'GET',
-        credentials: 'same-origin'
-    });
-    if (response.ok) {
-        let json = await response.json();
-        let lot = JSON.parse(json.lot);
+    await ref_token();
+    let lot = await get_auction();
+    if (lot != null) {
         let rd = $('#range-duration');
-
         $('#input-title').val(lot.title);
         $('#textarea-description').val(lot.description);
         // $('#input-photos').val(lot.photo);
@@ -16,7 +11,5 @@ document.addEventListener("DOMContentLoaded", async function () {
         // $('#input-start_time').val(lot.startTime);
         rd.val((+lot.duration - +lot.startTime) / 24 / 3600);
         $('#p-duration').text(rd.val());
-    } else {
-        console.log(await response.text());
     }
 })

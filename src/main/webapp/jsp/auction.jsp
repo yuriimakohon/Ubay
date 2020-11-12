@@ -4,6 +4,7 @@
     <title>Ubay - Auction</title>
 
     <link rel="stylesheet" href="css/auction/auction.css">
+    <script src="js/parts/ref_token.js"></script>
     <%@include file="parts/resources.jsp" %>
 </head>
 <body>

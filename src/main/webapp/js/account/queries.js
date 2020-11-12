@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    await ref_token();
+
     let user = await user_get();
 
     if (user != null) {

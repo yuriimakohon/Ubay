@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/user/sign_in")
 public class Sign_in extends HttpServlet {
@@ -56,6 +57,7 @@ public class Sign_in extends HttpServlet {
 
                 jo.put("tokenTime", Token.getTimeOfToken());
                 jo.put("balance", user.getBalance());
+                jo.put("time", new Date().getTime());
                 jo.put("role", user.getUserRole());
 
                 resp.getWriter().write(jo.toJSONString());

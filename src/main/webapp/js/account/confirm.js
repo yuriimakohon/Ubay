@@ -3,6 +3,8 @@ let inputConfirmPass = $('#input-confirm_pass');
 let inputLogin = $('#input-login');
 
 async function onSavePass() {
+    await ref_token();
+
     let pass = inputNewPass.val();
     if (!REGEX_PASS.test(pass)) {
         errPassFormat();
@@ -28,6 +30,8 @@ async function onSavePass() {
 }
 
 async function onSaveLogin() {
+    await ref_token();
+
     if (!REGEX_LOGIN.test(inputLogin.val())) {
         errLoginFormat();
     } else {

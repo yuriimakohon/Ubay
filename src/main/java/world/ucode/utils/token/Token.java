@@ -55,10 +55,10 @@ public class Token {
     }
 
     public static long getTimeOfToken() {
-        return 1200;
+        return 10;
     }
 
-    public static void createSetTokens(Users user, HttpServletResponse resp) throws JsonProcessingException {
+    public static void createSetTokens(Users user, HttpServletResponse resp, DAOusers daoUser) throws JsonProcessingException {
         String token = new Token().getToken(user.getLogin());
         String rToken = Token.getRefreshToken(token);
         Cookie kToken = new Cookie("token", token);
@@ -67,19 +67,19 @@ public class Token {
         kToken.setPath("/");
         kRefToken.setPath("/");
         kRefToken.setMaxAge(10200);
-        kToken.setMaxAge(1200);
+        kToken.setMaxAge(10);
         resp.addCookie(kToken);
         resp.addCookie(kRefToken);
         user.setToken(token);
         user.setRef_token(rToken);
+        daoUser.update(user);
     }
 
     public static void setTokens(Users user, DAOusers daoUser, HttpServletResponse resp) throws JsonProcessingException {
-        createSetTokens(user, resp);
+        createSetTokens(user, resp, daoUser);
 
         Cookie kId = new Cookie("id", String.valueOf(user.getId()));
         kId.setPath("/");
         resp.addCookie(kId);
-        daoUser.update(user);
     }
 }

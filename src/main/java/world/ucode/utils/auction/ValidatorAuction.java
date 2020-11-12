@@ -4,7 +4,6 @@ import org.json.simple.JSONObject;
 import world.ucode.model.db.entetis.Lot;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ValidatorAuction {

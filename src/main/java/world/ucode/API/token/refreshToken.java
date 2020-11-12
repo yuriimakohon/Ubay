@@ -42,6 +42,6 @@ public class refreshToken extends HttpServlet {
             resp.setStatus(406);
             return;
         }
-        Token.createSetTokens(user, resp);
+        Token.createSetTokens(user, resp, daoUser);
     }
 }

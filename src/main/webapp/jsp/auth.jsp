@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/node-forge@0.7.0/dist/forge.min.js"></script>
     <link rel="stylesheet" href="css/authorization/auth.css">
     <script src="js/parts/sha512.js"></script>
+    <script src="js/parts/ref_token.js"></script>
 </head>
 <body>
     <div id="main_container">
