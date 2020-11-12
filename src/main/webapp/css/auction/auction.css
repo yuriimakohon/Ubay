@@ -10,13 +10,10 @@
 #info_block-right {
     height: 100%;
     padding: 30px;
-}
-/*=============| Left info |============*/
-#info_block-left {
     display: flex;
     flex-flow: column;
 }
-
+/*=============| Left info |============*/
 .photos-view {
     display: flex;
     flex-flow: column;
@@ -179,4 +176,74 @@
 
 .status_info-bottom {
     font-weight: 300;
+}
+
+#btn-feedbacks-container {
+    flex-grow: 1;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/*===============| Feedbacks |==============*/
+.feedbacks {
+    margin: 70px 0;
+}
+
+.feedbacks-container {
+    padding: 30px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.user-feedback {
+    padding: 20px;
+    width: 700px;
+}
+
+.user-feedback h3 {
+}
+
+.user-feedback textarea {
+    margin-top: -30px;
+
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 120px;
+    max-height: 200px;
+}
+
+.user-feedback-control {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.evaluation {
+    color: #0079D1;
+    margin-top: 4px;
+    margin-left: 10px;
+    font-size: 21px;
+}
+
+.evaluation:after {
+    content: '/5';
+}
+
+.feedback-evaluation-container {
+    display: flex;
+}
+
+.evaluation_start {
+    cursor: pointer;
+    opacity: 50%;
+
+    width: 25px;
+    margin-right: 5px;
+}
+
+.evaluation_start-active {
+    opacity: 100%;
 }

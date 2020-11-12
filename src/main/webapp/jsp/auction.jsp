@@ -70,11 +70,38 @@
                     </div>
                 </div>
             </div>
+            <div id="btn-feedbacks-container">
+                <button class="btn">Feedbacks</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="feedbacks">
+        <h2 id="title-create_auction" class="title_text">Feedbacks</h2>
+        <div class="title_line"></div>
+
+        <div class="feedbacks-container">
+            <div class="user-feedback card">
+                <h3>Leave feedback</h3>
+                <textarea class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
+                <div class="user-feedback-control">
+                    <div class="feedback-evaluation-container">
+                        <img id="star-1" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(1)">
+                        <img id="star-2" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(2)">
+                        <img id="star-3" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(3)">
+                        <img id="star-4" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(4)">
+                        <img id="star-5" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(5)">
+                        <p id="user-evaluation" class="evaluation">5</p>
+                    </div>
+                    <button class="btn">Send</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script src="js/auction/switch_photo.js"></script>
+<script defer src="js/auction/evaluation.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
