@@ -13,11 +13,7 @@ async function sign_up(login, password, role) {
         },
         body: JSON.stringify(params)
     });
-    if (response.status) {
-        return true;
-    } else {
-        return false;
-    }
+    return response.status === 200;
 }
 
 async function sign_in(login, password) {
@@ -35,9 +31,5 @@ async function sign_in(login, password) {
         body: JSON.stringify(params)
     });
 
-    if (response.status) {
-        return true;
-    } else {
-        return false;
-    }
+    return response.status === 200;
 }

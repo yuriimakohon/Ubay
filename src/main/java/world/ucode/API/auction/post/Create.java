@@ -3,8 +3,8 @@ package world.ucode.API.auction.post;
 import org.json.simple.JSONArray;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
-import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.RequestObject;
+import world.ucode.utils.auction.ValidatorAuction;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -42,30 +42,22 @@ public class Create extends HttpServlet {
             return;
         }
 
-        String desc = ro.jo.get("desc").toString();
-        String title = ro.jo.get("title").toString();
-        long startTime = Long.parseLong(ro.jo.get("startTime").toString());
-        long duration = startTime +(60 * 60 * 24 * Integer.parseInt(ro.jo.get("duration").toString()));
-        long startPrice = Long.parseLong(ro.jo.get("startPrice").toString());
-        long maxPrice = Long.parseLong(ro.jo.get("startPrice").toString());
-
-        Lot lot = new Lot();
-        lot.setDescription(desc);
-        lot.setStartTime(startTime);
-        lot.setDuration(duration);
-        lot.setTitle(title);
-        lot.setPrice(startPrice);
-        lot.setSellerId(ro.user.getId());
-        lot.setMaxPrice(maxPrice);
-        DAOLot.create(lot);
+        ValidatorAuction va = new ValidatorAuction();
+        if (!va.validatorAuction(ro.jo)) {
+            resp.setStatus(406);
+            resp.getWriter().write("validation fail");
+            return;
+        }
+        va.lot.setSellerId(ro.user.getId());
+        DAOLot.create(va.lot);
 
         String path = "src/main/webapp/resources/";
         File user_dir = new File(path + ro.user.getId());
-        File lot_dir = new File(path + ro.user.getId() + "/" + lot.getLotId());
-        path += ro.user.getId() + "/" + lot.getLotId();
+        File lot_dir = new File(path + ro.user.getId() + "/" + va.lot.getLotId());
 
-        lot.setPhoto("resources/" + ro.user.getId() + "/" + lot.getLotId() + "/");
-        DAOLot.update(lot);
+        path += ro.user.getId() + "/" + va.lot.getLotId();
+        va.lot.setPhoto("resources/" + ro.user.getId() + "/" + va.lot.getLotId() + "/");
+        DAOLot.update(va.lot);
 
         if (!user_dir.exists()) {
             user_dir.mkdir();
@@ -73,6 +65,7 @@ public class Create extends HttpServlet {
         if (!lot_dir.exists()) {
             lot_dir.mkdir();
         }
+
         JSONArray ja = (JSONArray) ro.jo.get("images");
         int i = 0;
         for (String s : (Iterable<String>) ja) {

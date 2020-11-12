@@ -59,6 +59,55 @@ public class Lot {
 
 //    public Lot() {}
 
+
+    public int getBidderId() {
+        return bidderId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public int getBidnumber() {
+        return bidnumber;
+    }
+
+    public int getHighestBid() {
+        return highestBid;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public long getMaxPrice() {
+        return maxPrice;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
