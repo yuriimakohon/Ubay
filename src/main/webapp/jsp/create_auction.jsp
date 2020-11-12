@@ -45,7 +45,7 @@
             </div>
             <div id="start_time-container" class="text_input-item">
                 <p>Start time
-                    <span class="tooltip">If the time is in the past - the lot is activated immediately</span>
+                    <span class="tooltip">The minimum time you can set - 1 hour after current time</span>
                 </p>
                 <input id="input-start_time" class="datetime-local-input" type="datetime-local" id="input-start_time">
             </div>
