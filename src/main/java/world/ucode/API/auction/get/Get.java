@@ -6,6 +6,7 @@ import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.ParseJson;
 import world.ucode.utils.RequestObject;
+import world.ucode.utils.auction.ValidatorAuction;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,23 +29,23 @@ public class Get extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         RequestObject ro = new RequestObject();
+        ValidatorAuction va = new ValidatorAuction();
+        int lotId = va.readParamLotId(req);
 
         ro.checkCookie(req.getCookies(), daoUser);
 
-        if (!ro.ok) {
+        if (!ro.ok || lotId == -1) {
             resp.setStatus(406);
             resp.getWriter().write(ro.getResp());
             return;
         }
 
-        int lotId = Integer.parseInt(req.getParameter("lotId"));
-
         Lot lot = daoLot.read(lotId);
         if (lot == null) {
             resp.setStatus(406);
-            resp.getWriter().write("what is wrong ?");
+            resp.getWriter().write("lot not found");
         } else {
             resp.setStatus(200);
             resp.getWriter().write(ParseJson.lotToJson(lot));

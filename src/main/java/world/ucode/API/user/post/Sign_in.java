@@ -38,18 +38,18 @@ public class Sign_in extends HttpServlet {
 
         if (!Utils.checkValidLogin(login) || !Utils.checkValidPassword(password)) {
             resp.setStatus(406);
-            resp.getWriter().write("fuck you hacker, wrong parse");
+            resp.getWriter().write("validation fail");
             return;
         }
         Users user = DAOUser.readByLogin(login);
 
         if (user == null) {
             resp.setStatus(409);
-            resp.getWriter().write("what is wrong ?");
+            resp.getWriter().write("user not found");
         } else {
             if (!user.userValidPassword(login, password)) {
                 resp.setStatus(409); // error password
-                resp.getWriter().write("fuck you");
+                resp.getWriter().write("password not valid");
             } else {
                 resp.setStatus(200);
                 Token.setTokens(user, DAOUser, resp);
