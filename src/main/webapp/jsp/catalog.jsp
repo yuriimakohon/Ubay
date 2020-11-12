@@ -49,15 +49,7 @@
         <div class="block-background">
             <div class="main_container">
                 <div id="auctions-container">
-<%--                    <div class="card auctions-item"">--%>
-<%--                        <img src="">--%>
-<%--                        <div class="text">--%>
-<%--                            <div class="title">--%>
-<%--                                <p></p>--%>
-<%--                            </div>--%>
-<%--                            <p class="price"></p>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+
                 </div>
             </div>
         </div>
