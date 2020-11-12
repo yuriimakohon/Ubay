@@ -10,13 +10,10 @@
 #info_block-right {
     height: 100%;
     padding: 30px;
-}
-/*=============| Left info |============*/
-#info_block-left {
     display: flex;
     flex-flow: column;
 }
-
+/*=============| Left info |============*/
 .photos-view {
     display: flex;
     flex-flow: column;
@@ -180,3 +177,13 @@
 .status_info-bottom {
     font-weight: 300;
 }
+
+#btn-feedbacks-container {
+    flex-grow: 1;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/*===============| Feedbacks |==============*/

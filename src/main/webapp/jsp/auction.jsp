@@ -70,6 +70,9 @@
                     </div>
                 </div>
             </div>
+            <div id="btn-feedbacks-container">
+                <button class="btn">Feedbacks</button>
+            </div>
         </div>
     </div>
 </div>
