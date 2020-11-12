@@ -17,6 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         rd.val((+lot.duration - +lot.startTime) / 24 / 3600);
         $('#p-duration').text(rd.val());
     } else {
-        console.log("what is wrong ?");
+        console.log(await response.text());
     }
 })

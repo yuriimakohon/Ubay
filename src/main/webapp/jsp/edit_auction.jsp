@@ -5,8 +5,10 @@
 
     <%@include file="parts/resources.jsp"%>
     <link rel="stylesheet" href="css/create_auction/create_auction.css">
+    <script src="js/auction/loadAuction.js"></script>
+    <script src="js/http_requests/auction/put.js"></script>
+    <script src="js/http_requests/auction/delete.js"></script>
     <script defer src="js/create_auction/datetime.js"></script>
-    <script src="js/create_auction/confirm.js"></script>
     <script defer src="js/create_auction/info_text.js"></script>
 </head>
 <body>
@@ -41,7 +43,7 @@
             <p>Start time
                 <span class="tooltip">If the time is in the past - the lot is activated immediately</span>
             </p>
-            <input id="input-start_time" class="datetime-local-input" type="datetime-local" id="input-start_time">
+            <input id="input-start_time" class="datetime-local-input" type="datetime-local">
         </div>
         <div id="duration-container" class="text_input-item">
             <p>Duration</p>
@@ -51,14 +53,12 @@
             </label>
         </div>
         <div class="btn-container">
-            <button id="btn-delete_auction" class="btn btn-red">Delete auction</button>
-            <button id="btn-save_changes" class="btn">Save changes</button>
+            <button id="btn-delete_auction" class="btn btn-red" onclick="onDeleteAuction()">Delete auction</button>
+            <button id="btn-save_changes" class="btn" onclick="onSaveChanges()">Save changes</button>
         </div>
     </div>
 </div>
 
-<script src="js/auction/editAuction.js"></script>
-<script src="js/auction/loadAuction.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

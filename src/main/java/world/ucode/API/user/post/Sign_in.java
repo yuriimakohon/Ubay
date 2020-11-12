@@ -49,11 +49,17 @@ public class Sign_in extends HttpServlet {
         } else {
             if (!user.userValidPassword(login, password)) {
                 resp.setStatus(409); // error password
-                resp.getWriter().write("password not valid");
+                resp.getWriter().write("wrong password");
             } else {
-                resp.setStatus(200);
+                JSONObject jo = new JSONObject();
                 Token.setTokens(user, DAOUser, resp);
-                resp.getWriter().write(String.valueOf(Token.getTimeOfToken()));
+
+                jo.put("tokenTime", Token.getTimeOfToken());
+                jo.put("balance", user.getBalance());
+                jo.put("role", user.getUserRole());
+
+                resp.getWriter().write(jo.toJSONString());
+                resp.setStatus(200);
             }
         }
     }

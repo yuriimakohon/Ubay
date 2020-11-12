@@ -43,11 +43,17 @@ public class Sign_up extends HttpServlet {
         }
 
         if (DAOUser.readByLogin(login) == null) {
-            resp.setStatus(200);
             Users user = new Users("", login, password, Integer.parseInt(role));
             DAOUser.create(user);
             Token.setTokens(user, DAOUser, resp);
-            resp.getWriter().write(String.valueOf(Token.getTimeOfToken()));
+            JSONObject jo = new JSONObject();
+
+            jo.put("tokenTime", Token.getTimeOfToken());
+            jo.put("balance", user.getBalance());
+            jo.put("role", user.getUserRole());
+
+            resp.getWriter().write(jo.toJSONString());
+            resp.setStatus(200);
         }
         else {
             resp.setStatus(409); // user already exists

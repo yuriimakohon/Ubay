@@ -35,7 +35,7 @@ public class Edit extends HttpServlet {
 
         if (!ro.ok) {
             resp.setStatus(ro.getStatus());
-            resp.getWriter().write(ro.getResp());
+            resp.getWriter().write("validation fail");
             return;
         }
 

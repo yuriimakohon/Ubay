@@ -19,9 +19,6 @@ async function onCreateAuction() {
         //parse date
         let st = datetimeToData(startTime);
 
-        let currTime = new Date();
-        currTime.setMonth(currTime.getMonth() + 1);
-
         // create object for request
         let auction = {
             title: title,

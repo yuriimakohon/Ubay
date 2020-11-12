@@ -2,6 +2,7 @@ package world.ucode.API.user.put;
 
 
 import world.ucode.model.db.dao.DAOusers;
+import world.ucode.utils.RequestObject;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -22,7 +23,36 @@ public class ChangeBalance extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("change balance");
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        RequestObject ro = new RequestObject();
+
+        ro.checkJson(req);
+        ro.checkCookie(req.getCookies(), daoUser);
+
+        System.out.println(ro.jo.toJSONString());
+
+        if (ro.ok) {
+            long balance;
+
+            try {
+                balance = Long.parseLong(ro.jo.get("balance").toString());
+            } catch (NumberFormatException e) {
+                resp.setStatus(409);
+                resp.getWriter().write("validation fail");
+                return;
+            }
+
+            if (ro.user.getBalance() + balance < 0) {
+                resp.setStatus(409);
+                resp.getWriter().write("small many");
+            } else {
+                ro.user.setBalance(ro.user.getBalance() + balance);
+                daoUser.update(ro.user);
+                resp.setStatus(ro.getStatus());
+            }
+        } else {
+            resp.setStatus(409);
+            resp.getWriter().write("validation fail");
+        }
     }
 }

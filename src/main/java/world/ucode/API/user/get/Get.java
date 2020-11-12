@@ -31,6 +31,7 @@ public class Get extends HttpServlet {
         } else {
             ro.jo.put("login", ro.user.getLogin());
             ro.jo.put("role", ro.user.getUserRole());
+            ro.jo.put("balance", ro.user.getBalance());
             resp.getWriter().write(ro.jo.toJSONString());
             resp.setStatus(ro.getStatus());
         }

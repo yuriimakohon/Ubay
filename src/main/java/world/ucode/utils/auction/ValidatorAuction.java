@@ -1,10 +1,10 @@
 package world.ucode.utils.auction;
 
-import jdk.jfr.internal.LogTag;
 import org.json.simple.JSONObject;
 import world.ucode.model.db.entetis.Lot;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ValidatorAuction {
@@ -26,6 +26,7 @@ public class ValidatorAuction {
                 || maxPriceS == null) {
             return false;
         }
+
 
         long date = new Date().getTime();
         long startTime, duration, startPrice, maxPrice;

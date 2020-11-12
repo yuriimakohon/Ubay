@@ -54,5 +54,6 @@ async function onLogOut() {
         method: 'PUT',
         credentials: "same-origin"
     });
+    localStorage.clear();
     window.location.replace('/authorization');
 }

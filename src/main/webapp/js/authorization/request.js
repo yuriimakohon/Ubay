@@ -9,11 +9,20 @@ async function sign_up(login, password, role) {
     let response = await fetch( url, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(params)
     });
-    return response.status === 200;
+    if (response.ok) {
+        let user = await response.json();
+        localStorage.setItem("balance", user.balance);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("tokenTime", user.tokenTime);
+        return true;
+    } else {
+        console.log(await response.text());
+        return false;
+    }
 }
 
 async function sign_in(login, password) {
@@ -31,5 +40,14 @@ async function sign_in(login, password) {
         body: JSON.stringify(params)
     });
 
-    return response.status === 200;
+    if (response.ok) {
+        let user = await response.json();
+        localStorage.setItem("balance", user.balance);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("tokenTime", user.tokenTime);
+        return true;
+    } else {
+        console.log(await response.text());
+        return false;
+    }
 }
