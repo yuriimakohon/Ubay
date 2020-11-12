@@ -39,4 +39,9 @@ function errPhotoCount() {
     showInfoText();
 }
 
+function errStartTime() {
+    setErrorText('Invalid Start time: minimum is 1 hour after current moment');
+    showInfoText();
+}
+
 //=============| Success Messages |================//
