@@ -11,6 +11,84 @@
     height: 100%;
     padding: 30px;
 }
+/*=============| Left info |============*/
+#info_block-left {
+    display: flex;
+    flex-flow: column;
+}
+
+.photos-view {
+    display: flex;
+    flex-flow: column;
+}
+
+.photos-control {
+    display: flex;
+    justify-content: center;
+}
+
+.current-photo-item {
+    margin: 0 auto;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.photos-control {
+    margin: 20px 0;
+
+    padding-bottom: 20px;
+    border-bottom: 3px solid #0087E9;
+}
+
+.photo-item {
+    width: 50px;
+    margin: 0 5px;
+    border: 1px solid #2AA6FF;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.photo-item-active {
+    border: 3px solid #0087E9;
+}
+
+.info {
+    display: flex;
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+.info-title {
+    font-weight: 500;
+    color: #0087E9;
+}
+
+.info-value {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: 400;
+    color: #2AA6FF;
+}
+
+#info-title-start_price:before,
+#info-title-current_price:before {
+    content: '$ ';
+}
+
+#btn-bid-container {
+    flex-grow: 1;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-bid {
+    font-size: 28px;
+    height: 50px;
+}
 
 /*=============| Right info |============*/
 .lot_title {
