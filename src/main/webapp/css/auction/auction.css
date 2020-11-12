@@ -198,7 +198,8 @@
     align-items: center;
 }
 
-.user-feedback {
+.user-feedback,
+.feedback {
     padding: 20px;
     width: 700px;
 }
@@ -246,4 +247,22 @@
 
 .evaluation_start-active {
     opacity: 100%;
+}
+
+.feedback {
+    margin-top: 30px;
+}
+
+.feedback-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.feedback-text {
+    margin-top: -30px;
+
+    padding-top: 10px;
+    border-top: 2px solid #0079D1;
+    color: #2AA6FF;
 }
