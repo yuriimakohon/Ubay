@@ -17,13 +17,10 @@ async function onCreateAuction() {
         //parse date
         let st = new Date();
         st.setFullYear(parseInt(startTime.split("T")[0].split("-")[0]))
-        st.setMonth(parseInt(startTime.split("T")[0].split("-")[1]));
+        st.setMonth(parseInt(startTime.split("T")[0].split("-")[1]) - 1);
         st.setDate(parseInt(startTime.split("T")[0].split("-")[2]));
         st.setHours(parseInt(startTime.split("T")[1].split(":")[0]));
         st.setMinutes(parseInt(startTime.split("T")[1].split(":")[1]));
-
-        let currTime = new Date();
-        currTime.setMonth(currTime.getMonth() + 1);
 
         // create object for request
         let auction = {

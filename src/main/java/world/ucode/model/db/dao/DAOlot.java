@@ -2,9 +2,7 @@ package world.ucode.model.db.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
-import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 
 import java.util.List;
