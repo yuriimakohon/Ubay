@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/create_auction/create_auction.css">
     <script src="js/auction/loadAuction.js"></script>
     <script src="js/http_requests/auction/put.js"></script>
+    <script src="js/http_requests/auction/delete.js"></script>
     <script defer src="js/create_auction/datetime.js"></script>
     <script defer src="js/create_auction/info_text.js"></script>
 </head>
@@ -52,7 +53,7 @@
             </label>
         </div>
         <div class="btn-container">
-            <button id="btn-delete_auction" class="btn btn-red">Delete auction</button>
+            <button id="btn-delete_auction" class="btn btn-red" onclick="onDeleteAuction()">Delete auction</button>
             <button id="btn-save_changes" class="btn" onclick="onSaveChanges()">Save changes</button>
         </div>
     </div>

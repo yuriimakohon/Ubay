@@ -39,6 +39,7 @@ async function onSaveChanges() {
         // post request
         let response = await fetch('http://localhost:8080/auction/edit?lotId=' + localStorage.getItem('lotId'), {
             method: 'PUT',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },
