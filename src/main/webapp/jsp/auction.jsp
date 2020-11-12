@@ -75,6 +75,13 @@
             </div>
         </div>
     </div>
+
+    <div class="feedbacks">
+        <h2 id="title-create_auction" class="title_text">Feedbacks</h2>
+        <div class="title_line"></div>
+
+
+    </div>
 </div>
 
 <script src="js/auction/switch_photo.js"></script>
