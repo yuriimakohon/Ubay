@@ -97,6 +97,24 @@
                     <button class="btn">Send</button>
                 </div>
             </div>
+            <div class="feedback card">
+                <div class="feedback-info-container">
+                    <h3>Login</h3>
+                    <div class="feedback-evaluation-container">
+                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
+                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
+                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
+                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
+                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
+                    </div>
+                </div>
+                <p class="feedback-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
         </div>
     </div>
 </div>
