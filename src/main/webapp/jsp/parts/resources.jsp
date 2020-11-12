@@ -1,4 +1,6 @@
 
+<meta charset="utf-8">
+
 <link rel="shortcut icon" href="resources/favicon.png" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/parts/design.css">
