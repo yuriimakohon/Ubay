@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
+    await ref_token();
+
+    console.log("i am here");
+
     let response = await fetch('http://localhost:8080/get_my_auctions', {
         method: 'GET',
         credentials: "same-origin"

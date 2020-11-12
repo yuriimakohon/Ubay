@@ -9,6 +9,7 @@
     <script src="js/parts/parseCookie.js"></script>
     <script src="js/http_requests/user/get.js"></script>
     <script src="js/http_requests/user/put.js"></script>
+    <script src="js/parts/ref_token.js"></script>
 </head>
 <body>
     <%@include file="parts/header_bar.jsp"%>

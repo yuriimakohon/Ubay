@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/user/sign_up")
 public class Sign_up extends HttpServlet {
@@ -49,6 +50,7 @@ public class Sign_up extends HttpServlet {
             JSONObject jo = new JSONObject();
 
             jo.put("tokenTime", Token.getTimeOfToken());
+            jo.put("time", new Date().getTime());
             jo.put("balance", user.getBalance());
             jo.put("role", user.getUserRole());
 

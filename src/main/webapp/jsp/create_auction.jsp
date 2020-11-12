@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/create_auction/create_auction.css">
     <script defer src="js/create_auction/datetime.js"></script>
     <script src="js/create_auction/confirm.js"></script>
+    <script src="js/parts/ref_token.js"></script>
     <script defer src="js/create_auction/info_text.js"></script>
 </head>
 <body>

@@ -1,4 +1,6 @@
 async function onCreateAuction() {
+    await ref_token();
+
     let title = $('#input-title').val();
     let desc = $('#textarea-description').val();
     let startPrice = $('#input-start_price').val();

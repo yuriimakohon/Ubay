@@ -18,6 +18,7 @@ async function sign_up(login, password, role) {
         localStorage.setItem("balance", user.balance);
         localStorage.setItem("role", user.role);
         localStorage.setItem("tokenTime", user.tokenTime);
+        localStorage.setItem("time", user.time)
         return true;
     } else {
         console.log(await response.text());
@@ -45,6 +46,7 @@ async function sign_in(login, password) {
         localStorage.setItem("balance", user.balance);
         localStorage.setItem("role", user.role);
         localStorage.setItem("tokenTime", user.tokenTime);
+        localStorage.setItem("time", user.time)
         return true;
     } else {
         console.log(await response.text());
