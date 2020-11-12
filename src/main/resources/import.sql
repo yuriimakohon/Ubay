@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS users;
 
 
 
-CREATE TABLE IF NOT EXISTS users (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(255), login VARCHAR(255), password VARCHAR(255), token TEXT, ref_token TEXT, balance integer, userRole integer, userphoto TEXT, PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS users (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(255), login VARCHAR(255), password VARCHAR(255), token TEXT, ref_token TEXT, balance BIGINT, userRole integer, userphoto TEXT, PRIMARY KEY (id));
 -- INSERT into users VALUES (123, "admin1", "first", "lol", "token1", 0, 0, "userphoto");
 -- INSERT into users VALUES (1234, "admin2", "second", "lol", "token2", 0, 0, "userphoto");
 -- INSERT into users VALUES (12345, "admin3", "third", "lol", "token3", 1, 0, "userphoto");

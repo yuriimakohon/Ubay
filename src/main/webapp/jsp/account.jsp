@@ -7,6 +7,8 @@
     <%@include file="parts/resources.jsp" %>
     <script src="js/parts/sha512.js"></script>
     <script src="js/parts/parseCookie.js"></script>
+    <script src="js/http_requests/user/get.js"></script>
+    <script src="js/http_requests/user/put.js"></script>
 </head>
 <body>
     <%@include file="parts/header_bar.jsp"%>
@@ -39,8 +41,9 @@
         </div>
         <div class="card">
             <h3>Balance</h3>
+            <label for="input-dollar"></label>
             <input id="input-dollar" class="number_input" type="number" step="5" min="0" placeholder="0.00">
-            <button id="btn-add_money" class="btn">add</button>
+            <button id="btn-add_money" class="btn" onclick="addBalance()">add</button>
         </div>
     </div>
 

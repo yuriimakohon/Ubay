@@ -32,7 +32,7 @@
             </div>
             <a href="http://localhost:8080/account">
                 <div id="item-balance" class="header_bar-item hidden">
-                    <label>19.23</label>
+                    <label id="counter-balance">19.23</label>
                     <img id="img-balance" src="resources/dollar.svg" alt="balance">
                 </div>
             </a>
@@ -47,7 +47,7 @@
                     <img id="img-signup" src="resources/user.svg" alt="signup">
                 </div>
             </a>
-            <script src="js/parts/initialize.js"></script>
+            <script src="js/parts/header.js"></script>
         </div>
     </div>
 </header>
