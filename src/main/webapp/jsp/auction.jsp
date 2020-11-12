@@ -12,7 +12,32 @@
 <div class="main_container">
     <div class="info_blocks-container">
         <div id="info_block-left" class="card">
-
+            <div class="photos-view">
+                <img class="current-photo-item" src="resources/test.png" alt="current photo">
+                <div class="photos-control">
+                    <img id="photo-1" class="photo-item" src="resources/category_furniture.png" alt="photo 1" onclick="onPhoto(1)">
+                    <img id="photo-2" class="photo-item photo-item-active" src="resources/test.png" alt="photo 2" onclick="onPhoto(2)">
+                    <img id="photo-3" class="photo-item" src="resources/category_clothing.png" alt="photo 3" onclick="onPhoto(3)">
+                    <img id="photo-4" class="photo-item" src="resources/category_collectibles.png" alt="photo 4" onclick="onPhoto(4)">
+                    <img id="photo-5" class="photo-item" src="resources/category_technics.png" alt="photo 5" onclick="onPhoto(5)">
+                    <img id="photo-6" class="photo-item" src="resources/category_jewellery.png" alt="photo 6" onclick="onPhoto(6)">
+                </div>
+            </div>
+            <div class="info">
+                <span class="info-title">Bids count:</span>
+                <span id="info-title-bids_count" class="info-value">16</span>
+            </div>
+            <div class="info">
+                <span class="info-title">Start price:</span>
+                <span id="info-title-start_price" class="info-value">5</span>
+            </div>
+            <div class="info">
+                <span class="info-title">Current price:</span>
+                <span id="info-title-current_price" class="info-value">12.50</span>
+            </div>
+            <div id="btn-bid-container">
+                <button id="btn-bid" class="btn">Bid</button>
+            </div>
         </div>
 
         <div id="info_block-right" class="card">
@@ -49,6 +74,7 @@
     </div>
 </div>
 
+<script src="js/auction/switch_photo.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
