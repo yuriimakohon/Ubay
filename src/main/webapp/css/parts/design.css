@@ -130,6 +130,20 @@
     background: rgba(0, 80, 150, 1);
 }
 
+.btn-red {
+    background: #E92A00;
+    box-shadow: 1px 1px 0 1px #FF6240;
+}
+
+.btn-red:hover {
+    background: #D52600;
+    box-shadow: 1px 1px 0 1px #E92A00;
+}
+
+.btn-red:active {
+    background: #9D1C00;
+}
+
 /*=============| Info text |==========*/
 .error_text, .success_text {
     margin: 40px auto 0 auto;
