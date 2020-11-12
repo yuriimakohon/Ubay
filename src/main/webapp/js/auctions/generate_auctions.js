@@ -27,10 +27,4 @@ function auctionsGen(json) {
 
         container.append(auction);
     });
-    // let auction = auctionHtmlGen(1, 'Coin', 5.50, 5);
-    // container.append(auction);
-    // auction = auctionHtmlGen(2, 'Coin with Woolf (America 2005)', 12.40, 23);
-    // container.append(auction);
 }
-
-// auctionsGen();
