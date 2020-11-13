@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/get_my_auctions")
+//@WebServlet("/get_my_auctions")
 public class GetByUser extends HttpServlet {
     DAOusers DAOUser;
 

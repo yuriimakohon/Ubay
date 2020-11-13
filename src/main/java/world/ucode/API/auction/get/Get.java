@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/get_auction")
+//@WebServlet("/get_auction")
+@WebServlet("/auction/*")
 public class Get extends HttpServlet {
     DAOlot daoLot;
     DAOusers daoUser;
@@ -30,25 +31,26 @@ public class Get extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        RequestObject ro = new RequestObject();
-        ValidatorAuction va = new ValidatorAuction();
-        int lotId = va.readParamLotId(req);
-
-        ro.checkCookie(req.getCookies(), daoUser);
-
-        if (!ro.ok || lotId == -1) {
-            resp.setStatus(406);
-            resp.getWriter().write(ro.getResp());
-            return;
-        }
-
-        Lot lot = daoLot.read(lotId);
-        if (lot == null) {
-            resp.setStatus(406);
-            resp.getWriter().write("lot not found");
-        } else {
-            resp.setStatus(200);
-            resp.getWriter().write(ParseJson.lotToJson(lot));
-        }
+        System.out.println("method get");
+//        RequestObject ro = new RequestObject();
+//        ValidatorAuction va = new ValidatorAuction();
+//        int lotId = va.readParamLotId(req);
+//
+//        ro.checkCookie(req.getCookies(), daoUser);
+//
+//        if (!ro.ok || lotId == -1) {
+//            resp.setStatus(406);
+//            resp.getWriter().write(ro.getResp());
+//            return;
+//        }
+//
+//        Lot lot = daoLot.read(lotId);
+//        if (lot == null) {
+//            resp.setStatus(406);
+//            resp.getWriter().write("lot not found");
+//        } else {
+//            resp.setStatus(200);
+//            resp.getWriter().write(ParseJson.lotToJson(lot));
+//        }
     }
 }

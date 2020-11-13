@@ -55,7 +55,7 @@ public class Token {
     }
 
     public static long getTimeOfToken() {
-        return 1200;
+        return 10;
     }
 
     public static void createSetTokens(Users user, HttpServletResponse resp, DAOusers daoUser) throws JsonProcessingException {
@@ -67,7 +67,7 @@ public class Token {
         kToken.setPath("/");
         kRefToken.setPath("/");
         kRefToken.setMaxAge(10200);
-        kToken.setMaxAge(1200);
+        kToken.setMaxAge((int) Token.getTimeOfToken());
         resp.addCookie(kToken);
         resp.addCookie(kRefToken);
         user.setToken(token);

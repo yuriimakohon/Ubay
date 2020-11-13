@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/auction/delete")
+@WebServlet("/auction/delete/*")
 public class Delete extends HttpServlet {
     DAOusers daoUser;
     DAOlot daoLot;
@@ -28,19 +28,20 @@ public class Delete extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestObject ro = new RequestObject();
-        ValidatorAuction va = new ValidatorAuction();
-
-        int lotId = va.readParamLotId(req);
-
-        ro.checkCookie(req.getCookies(), daoUser);
-
-        if (!ro.ok || lotId == -1) {
-            resp.setStatus(406);
-            resp.getWriter().write("validation fail");
-            return;
-        }
-
-        daoLot.delete(lotId);
+        System.out.println("method delete");
+//        RequestObject ro = new RequestObject();
+//        ValidatorAuction va = new ValidatorAuction();
+//
+//        int lotId = va.readParamLotId(req);
+//
+//        ro.checkCookie(req.getCookies(), daoUser);
+//
+//        if (!ro.ok || lotId == -1) {
+//            resp.setStatus(406);
+//            resp.getWriter().write("validation fail");
+//            return;
+//        }
+//
+//        daoLot.delete(lotId);
     }
 }

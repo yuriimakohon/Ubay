@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/auction/get_all")
+//@WebServlet( urlPatterns = {"/auction/get_all"})
 public class GetAll extends HttpServlet {
     DAOlot DAOLot;
 
