@@ -67,7 +67,7 @@ public class Token {
         kToken.setPath("/");
         kRefToken.setPath("/");
         kRefToken.setMaxAge(10200);
-        kToken.setMaxAge(1200);
+        kToken.setMaxAge((int) Token.getTimeOfToken());
         resp.addCookie(kToken);
         resp.addCookie(kRefToken);
         user.setToken(token);
