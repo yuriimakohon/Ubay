@@ -1,3 +1,48 @@
+
+
+async function onDeleteAuction() {
+    let response = await fetch('http://localhost:8080/api/auction/' + localStorage.getItem('lotId'), {
+        method: 'DELETE',
+        credentials: 'same-origin'
+    });
+    // machining  response
+    if (response.ok) {
+        window.location.replace('/auctions');
+    } else {
+        console.log(await response.text());
+    }
+}
+
+/*
+* return object auction or null
+* */
+
+
+async function get_auction() {
+    let response = await fetch('http://localhost:8080/api/auction/' + localStorage.getItem('lotId'), {
+        method: 'GET',
+        credentials: 'same-origin'
+    });
+    if (response.ok) {
+        let json = await response.json()
+        return JSON.parse(json.lot);
+    } else {
+        return null;
+    }
+}
+
+async function get_auctions() {
+    let response = await fetch('http://localhost:8080/api/auction', {
+        method: 'GET',
+        credentials: 'same-origin'
+    });
+    if (response.ok) {
+        return await response.json();
+    } else {
+        return null;
+    }
+}
+
 async function onSaveChanges() {
     let title = $('#input-title').val();
     let desc = $('#textarea-description').val();
@@ -11,8 +56,8 @@ async function onSaveChanges() {
         // || photos.files.length < 1
     ) {
         errEmptyFields();
-    // } else if (photos.files.length > 6) {
-    //     errPhotoCount();
+        // } else if (photos.files.length > 6) {
+        //     errPhotoCount();
     } else if (+maxPrice <= +startPrice) {
         errMaxPrice();
     } else {
