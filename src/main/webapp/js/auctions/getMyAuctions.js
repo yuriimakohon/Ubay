@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
 
     console.log("i am here");
 
-    let response = await fetch('http://localhost:8080/get_my_auctions', {
+    let response = await fetch('http://localhost:8080/api/auction', {
         method: 'GET',
         credentials: "same-origin"
     });

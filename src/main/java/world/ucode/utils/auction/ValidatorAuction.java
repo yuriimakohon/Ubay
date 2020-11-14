@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import world.ucode.model.db.entetis.Lot;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.StandardSocketOptions;
 import java.util.Date;
 
 public class ValidatorAuction {
@@ -57,11 +58,13 @@ public class ValidatorAuction {
     }
 
     public int readParamLotId(HttpServletRequest req) {
-        String param = req.getParameter("lotId");
+        String pathInfo = req.getPathInfo();
 
-        if (param == null) {
+        if (pathInfo == null) {
             return -1;
         }
+        String[] params = req.getPathInfo().split("/");
+        String param = params[params.length-1];
 
         int lotId;
         try {

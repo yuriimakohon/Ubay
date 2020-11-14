@@ -4,7 +4,7 @@
 * */
 
 async function get_auction() {
-    let response = await fetch('http://localhost:8080/get_auction?lotId=' + localStorage.getItem('lotId'), {
+    let response = await fetch('http://localhost:8080/api/auction/' + localStorage.getItem('lotId'), {
         method: 'GET',
         credentials: 'same-origin'
     });

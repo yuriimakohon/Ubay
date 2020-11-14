@@ -1,5 +1,5 @@
 async function onDeleteAuction() {
-    let response = await fetch('http://localhost:8080/auction/delete?lotId=' + localStorage.getItem('lotId'), {
+    let response = await fetch('http://localhost:8080/api/auction/' + localStorage.getItem('lotId'), {
         method: 'DELETE',
         credentials: 'same-origin'
     });
