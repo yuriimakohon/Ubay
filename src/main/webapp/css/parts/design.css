@@ -105,7 +105,6 @@
 /*==============| Button |===============*/
 .btn {
     cursor: pointer;
-    outline: none;
     border: none;
 
     width: 150px;
@@ -128,6 +127,11 @@
 
 .btn:active {
     background: rgba(0, 80, 150, 1);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 10px 0 #2AA6FF;
 }
 
 .btn-red {
