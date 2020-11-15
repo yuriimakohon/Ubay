@@ -53,7 +53,8 @@ public class Auction extends HttpServlet {
             List<Lot> listOfLot = daoLot.getAllLots();
 
             if (listOfLot == null) {
-                System.out.println("lots null");
+                resp.setStatus(404);
+                resp.getWriter().write("lot not found");
                 return;
             }
 
@@ -69,7 +70,7 @@ public class Auction extends HttpServlet {
         
         Lot lot = daoLot.read(lotId);
         if (lot == null) {
-            resp.setStatus(406);
+            resp.setStatus(404);
             resp.getWriter().write("lot not found");
         } else {
             resp.setStatus(200);
