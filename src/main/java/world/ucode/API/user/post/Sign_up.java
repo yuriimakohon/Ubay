@@ -45,6 +45,7 @@ public class Sign_up extends HttpServlet {
 
         if (DAOUser.readByLogin(login) == null) {
             Users user = new Users("", login, password, Integer.parseInt(role));
+            user.setUserPhoto("resources/user.svg");
             DAOUser.create(user);
             Token.setTokens(user, DAOUser, resp);
             JSONObject jo = new JSONObject();
@@ -54,13 +55,14 @@ public class Sign_up extends HttpServlet {
             jo.put("balance", user.getBalance());
             jo.put("role", user.getUserRole());
             jo.put("id", user.getId());
+            jo.put("avatar", user.getUserphoto());
 
             resp.getWriter().write(jo.toJSONString());
             resp.setStatus(200);
         }
         else {
             resp.setStatus(409); // user already exists
-            resp.getWriter().write("fuck you");
+            resp.getWriter().write("login is exists");
         }
     }
 }

@@ -59,3 +59,8 @@ function successNewAvatar() {
     setSuccessText('Avatar was successfully changed');
     showInfoText();
 }
+
+function loginExists() {
+    setSuccessText('such login is exists');
+    showInfoText();
+}

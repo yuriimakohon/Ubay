@@ -38,17 +38,8 @@ public class Auction extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        RequestObject ro = new RequestObject();
         int lotId = Utils.getId(req);
         resp.setContentType("application/json;charset=utf-8");
-
-        ro.checkCookie(req.getCookies(), daoUser);
-
-        if (!ro.ok) {
-            resp.setStatus(406);
-            resp.getWriter().write("you must have permission");
-            return;
-        }
 
         if (lotId == -1) {
             ObjectMapper mapper = new ObjectMapper();

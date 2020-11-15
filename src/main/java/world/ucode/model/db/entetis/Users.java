@@ -106,6 +106,9 @@ public class Users implements Serializable{
 
     }
 
+    public void setUserPhoto(String userPhoto) {
+        this.userphoto = userPhoto;
+    }
 
     public long getBalance() {
         return balance;
@@ -116,6 +119,17 @@ public class Users implements Serializable{
         return username;
     }
 
+    public String getUserphoto() {
+        return userphoto;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public List<Lot> getUserlots() {
+        return userlots;
+    }
 
     public List<Bid> getUserbids() {
         return userbids;

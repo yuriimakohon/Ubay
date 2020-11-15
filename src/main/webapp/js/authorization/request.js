@@ -20,6 +20,7 @@ async function sign_up(login, password, role) {
         localStorage.setItem("tokenTime", user.tokenTime);
         localStorage.setItem("time", user.time);
         localStorage.setItem("id", user.id);
+        localStorage.setItem('avatar', user.avatar);
         return true;
     } else {
         console.log(await response.text());
@@ -49,6 +50,7 @@ async function sign_in(login, password) {
         localStorage.setItem("tokenTime", user.tokenTime);
         localStorage.setItem("time", user.time)
         localStorage.setItem("id", user.id);
+        localStorage.setItem('avatar', user.avatar);
         return true;
     } else {
         console.log(await response.text());

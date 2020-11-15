@@ -31,14 +31,19 @@ public class User extends HttpServlet {
         if (!ro.ok) {
             resp.setStatus(ro.getStatus());
             resp.getWriter().write(ro.getResp());
-        } else if (id == -1) {
+        } else if (id != -1) {
             ro.jo.put("login", ro.user.getLogin());
             ro.jo.put("role", ro.user.getUserRole());
             ro.jo.put("balance", ro.user.getBalance());
+            ro.jo.put("id", ro.user.getId());
+            ro.jo.put("avatar", ro.user.getUserphoto());
             resp.setContentType("application/json;charset=utf-8");
             resp.getWriter().write(ro.jo.toJSONString());
             resp.setStatus(ro.getStatus());
         }
+//        else if (id == -1) {
+//
+//        }
     }
 
     @Override
@@ -56,6 +61,8 @@ public class User extends HttpServlet {
             UserUtils.changePass(req, resp, daoUser);
         } else if (param.equals("log_out")) {
             UserUtils.logOut(req, resp, daoUser);
+        } else if (param.equals("change_photo")) {
+            UserUtils.changePhoto(req, resp, daoUser);
         } else {
             resp.setStatus(406);
             resp.getWriter().write("param not found");
