@@ -1,6 +1,7 @@
 let inputNewPass = $('#input-new_pass');
 let inputConfirmPass = $('#input-confirm_pass');
 let inputLogin = $('#input-login');
+let inputAvatar = $('#input-avatar');
 
 async function onSavePass() {
     await ref_token();
@@ -50,6 +51,14 @@ async function onSaveLogin() {
         } else {
             console.log("error");
         }
+    }
+}
+
+async function onSaveAvatar() {
+    if (inputAvatar[0].files.length !== 1) {
+        errAvatar();
+    } else {
+        successNewAvatar();
     }
 }
 

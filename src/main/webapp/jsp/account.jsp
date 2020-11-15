@@ -21,6 +21,11 @@
         <div id="card-account_settings" class="card">
             <h3>Account settings</h3>
             <div id="info_text" class="hidden"></div>
+            <div id="avatar-item" class="text_input-item">
+                <p>Avatar</p>
+                <input id="input-avatar" type="file" accept="image/*">
+                <button id="btn-save_avatar" class="btn" onclick="onSaveAvatar()">save</button>
+            </div>
             <div id="login-item" class="text_input-item">
                 <p>Login</p>
                 <input class="text_input" type="text" id="input-login" placeholder="Enter your login" maxlength="21">
@@ -33,7 +38,7 @@
                     <input class="text_input" type="password" id="input-new_pass" placeholder="Enter new password" maxlength="30">
                     <input class="text_input" type="password" id="input-confirm_pass" placeholder="Confirm new password" maxlength="30">
                     <div id="change_pass_btn-container">
-                        <button id="btn-cancel_pass" class="btn" onclick="onCancelPass()">cancel</button>
+                        <button id="btn-cancel_pass" class="btn btn-red" onclick="onCancelPass()">cancel</button>
                         <button id="btn-save_pass" class="btn" onclick="onSavePass()">apply</button>
                     </div>
                 </div>

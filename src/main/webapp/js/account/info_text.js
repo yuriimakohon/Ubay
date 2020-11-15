@@ -39,6 +39,11 @@ function errLoginFormat() {
     showInfoText();
 }
 
+function errAvatar() {
+    setErrorText('Choose 1 photo for you avatar');
+    showInfoText();
+}
+
 //=============| Error Messages |================//
 function successNewPass() {
     setSuccessText('Password was successfully changed');
@@ -47,5 +52,10 @@ function successNewPass() {
 
 function successNewLogin() {
     setSuccessText('Login was successfully changed');
+    showInfoText();
+}
+
+function successNewAvatar() {
+    setSuccessText('Avatar was successfully changed');
     showInfoText();
 }
