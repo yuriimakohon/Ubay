@@ -82,12 +82,13 @@
                 </div>
             </div>
             <div id="btn-feedbacks-container">
-                <button class="btn">Feedbacks</button>
+                <%= "<button class=\"btn\" onclick=\"onFeedbacks(" + request.getAttribute("lotId") + ")\">Feedbacks</button>" %>
+<%--                <button class="btn" onclick="onFeedbacks()">Feedbacks</button>--%>
             </div>
         </div>
     </div>
 
-    <div class="feedbacks">
+    <div class="feedbacks hidden">
         <h2 id="title-create_auction" class="title_text">Feedbacks</h2>
         <div class="title_line"></div>
 
@@ -140,6 +141,7 @@
 
 <script src="/js/auction/switch_photo.js"></script>
 <script defer src="/js/auction/evaluation.js"></script>
-<%@include file="parts/scripts.jsp" %>
+<script defer src="/js/auction/feedbacks.js"></script>
+<%@include file="parts/scripts.jsp"%>
 </body>
 </html>
