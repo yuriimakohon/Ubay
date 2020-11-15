@@ -107,15 +107,10 @@ public class Auction extends HttpServlet {
         File lot_dir = new File(path + ro.user.getId() + "/" + va.lot.getLotId());
 
         path += ro.user.getId() + "/" + va.lot.getLotId();
-        va.lot.setPhoto("resources/" + ro.user.getId() + "/" + va.lot.getLotId() + "/");
-        daoLot.update(va.lot);
+        va.lot.setPhoto("/resources/" + ro.user.getId() + "/" + va.lot.getLotId() + "/");
 
-        if (!user_dir.exists()) {
-            user_dir.mkdir();
-        }
-        if (!lot_dir.exists()) {
-            lot_dir.mkdir();
-        }
+        if (!user_dir.exists()) user_dir.mkdir();
+        if (!lot_dir.exists()) lot_dir.mkdir();
 
         JSONArray ja = (JSONArray) ro.jo.get("images");
         int i = 0;
@@ -129,10 +124,12 @@ public class Auction extends HttpServlet {
             fos.write(data);
             i++;
         }
+        va.lot.setPhotoNumber(i);
+        daoLot.update(va.lot);
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         RequestObject ro = new RequestObject();
 
         ro.checkCookie(req.getCookies(), daoUser);

@@ -9,39 +9,40 @@
     <%@include file="parts/resources.jsp" %>
 </head>
 <body>
-<%@include file="parts/header_bar.jsp"%>
+<%@include file="parts/header_bar.jsp" %>
 
 <div class="main_container">
     <div class="info_blocks-container">
         <div id="info_block-left" class="card">
             <div class="photos-view">
-                <img class="current-photo-item" src="/resources/test.png" alt="current photo">
+                <img class="current-photo-item" src="" alt="current photo">
                 <div class="photos-control">
-                    <img id="photo-1" class="photo-item" src="/resources/category_furniture.png" alt="photo 1" onclick="onPhoto(1)">
-                    <img id="photo-2" class="photo-item photo-item-active" src="/resources/test.png" alt="photo 2" onclick="onPhoto(2)">
-                    <img id="photo-3" class="photo-item" src="/resources/category_clothing.png" alt="photo 3" onclick="onPhoto(3)">
-                    <img id="photo-4" class="photo-item" src="/resources/category_collectibles.png" alt="photo 4" onclick="onPhoto(4)">
-                    <img id="photo-5" class="photo-item" src="/resources/category_technics.png" alt="photo 5" onclick="onPhoto(5)">
-                    <img id="photo-6" class="photo-item" src="/resources/category_jewellery.png" alt="photo 6" onclick="onPhoto(6)">
+                    <%
+                        String path = "/resources/" + request.getAttribute("sellerId") + "/" + request.getAttribute("lotId") + "/";
+                        for (int i = 0; i <  Integer.parseInt(request.getAttribute("p_count").toString()); i++)
+                            out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + path + i + ".jpg" + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
+                    %>
                 </div>
             </div>
-            <div class="info">
-                <span class="info-title">Bids count:</span>
-                <span id="info-title-bids_count" class="info-value">
+            <div id="prices" style="text-align: right">
+                <div class="info">
+                    <span class="info-title">Bids count:</span>
+                    <span id="info-title-bids_count" class="info-value">
                     <%= request.getAttribute("b_count") %>
                 </span>
-            </div>
-            <div class="info">
-                <span class="info-title">Start price:</span>
-                <span id="info-title-start_price" class="info-value">
+                </div>
+                <div class="info">
+                    <span class="info-title">Start price:</span>
+                    <span id="info-title-start_price" class="info-value">
                     <%= request.getAttribute("price") %>
                 </span>
-            </div>
-            <div class="info">
-                <span class="info-title">Current price:</span>
-                <span id="info-title-current_price" class="info-value">
+                </div>
+                <div class="info">
+                    <span class="info-title">Current price:</span>
+                    <span id="info-title-current_price" class="info-value">
                     <%= request.getAttribute("bid") %>
                 </span>
+                </div>
             </div>
             <div id="btn-bid-container">
                 <button id="btn-bid" class="btn">Bid</button>
@@ -73,7 +74,7 @@
             </div>
             <div class="status status-time">
                 <div class="status-container">
-                    <p  class="status-title">Auction ends</p>
+                    <p class="status-title">Auction ends</p>
                     <div class="status_info-container">
                         <p class="status_info-top">12.11.2020</p>
                         <p class="status_info-bottom">00:00:00</p>
@@ -94,14 +95,20 @@
         <div class="feedbacks-container">
             <div class="user-feedback card">
                 <h3>Leave feedback</h3>
-                <textarea class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
+                <textarea class="textarea" placeholder="Leave your opinion about the auction"
+                          maxlength="500"></textarea>
                 <div class="user-feedback-control">
                     <div class="feedback-evaluation-container">
-                        <img id="star-1" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(1)">
-                        <img id="star-2" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(2)">
-                        <img id="star-3" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(3)">
-                        <img id="star-4" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(4)">
-                        <img id="star-5" class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star" onclick="onStar(5)">
+                        <img id="star-1" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
+                             alt="star" onclick="onStar(1)">
+                        <img id="star-2" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
+                             alt="star" onclick="onStar(2)">
+                        <img id="star-3" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
+                             alt="star" onclick="onStar(3)">
+                        <img id="star-4" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
+                             alt="star" onclick="onStar(4)">
+                        <img id="star-5" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
+                             alt="star" onclick="onStar(5)">
                         <p id="user-evaluation" class="evaluation">5</p>
                     </div>
                     <button class="btn">Send</button>

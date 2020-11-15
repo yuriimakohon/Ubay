@@ -7,3 +7,5 @@ function onPhoto(id) {
 
     currentPhoto.attr('src', chosen.attr('src'));
 }
+
+onPhoto(0);

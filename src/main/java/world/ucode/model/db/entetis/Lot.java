@@ -51,14 +51,29 @@ public class Lot {
     @Column(name = "bidderid")
     private int bidderId;
 
-    @Column(name = "bidnumber")
-    private int bidnumber;
+    @Column(name = "bidNumber")
+    private int bidNumber;
+
+    @Column(name = "photoNumber")
+    private int photoNumber;
 
     @Column(name="category")
     private String category;
 
 //    public Lot() {}
 
+
+    public void setPhotoNumber(int photoNumber) {
+        this.photoNumber = photoNumber;
+    }
+
+    public int getPhotoNumber() {
+        return photoNumber;
+    }
+
+    public void setBidNumber(int bidNumber) {
+        this.bidNumber = bidNumber;
+    }
 
     public int getBidderId() {
         return bidderId;
@@ -68,8 +83,8 @@ public class Lot {
         return status;
     }
 
-    public int getBidnumber() {
-        return bidnumber;
+    public int getBidNumber() {
+        return bidNumber;
     }
 
     public int getHighestBid() {
