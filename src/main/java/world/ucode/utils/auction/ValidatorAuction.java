@@ -56,22 +56,4 @@ public class ValidatorAuction {
         lot.setMaxPrice(maxPrice);
         return true;
     }
-
-    public int readParamLotId(HttpServletRequest req) {
-        String pathInfo = req.getPathInfo();
-
-        if (pathInfo == null) {
-            return -1;
-        }
-        String[] params = req.getPathInfo().split("/");
-        String param = params[params.length-1];
-
-        int lotId;
-        try {
-            lotId = Integer.parseInt(param);
-        } catch (NumberFormatException e) {
-            return -1;
-        }
-        return lotId;
-    }
 }

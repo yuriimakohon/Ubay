@@ -37,7 +37,7 @@ public class Sign_in extends HttpServlet {
         String password = joReq.get("password").toString();
         String login = joReq.get("login").toString();
 
-        if (!Utils.checkValidLogin(login) || !Utils.checkValidPassword(password)) {
+        if (Utils.checkValidLogin(login) || Utils.checkValidPassword(password)) {
             resp.setStatus(406);
             resp.getWriter().write("validation fail");
             return;
@@ -59,6 +59,7 @@ public class Sign_in extends HttpServlet {
                 jo.put("balance", user.getBalance());
                 jo.put("time", new Date().getTime());
                 jo.put("role", user.getUserRole());
+                jo.put("id", user.getId());
 
                 resp.getWriter().write(jo.toJSONString());
                 resp.setStatus(200);

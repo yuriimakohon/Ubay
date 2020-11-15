@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="css/create_auction/create_auction.css">
 
     <script src="js/auction/loadAuction.js"></script>
-    <script src="js/http_requests/auction/get.js"></script>
-    <script src="js/http_requests/auction/put.js"></script>
-    <script src="js/http_requests/auction/delete.js"></script>
+
+    <script src="js/http_requests/auction.js"></script>
     <script defer src="js/create_auction/datetime.js"></script>
     <script defer src="js/create_auction/info_text.js"></script>
     <script src="js/parts/ref_token.js"></script>

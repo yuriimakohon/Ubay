@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/catalog/catalog.css">
     <script src="js/parts/sha512.js"></script>
     <script src="js/parts/ref_token.js"></script>
+    <script src="js/http_requests/auction.js"></script>
 </head>
 <body>
     <%@include file="parts/header_bar.jsp"%>

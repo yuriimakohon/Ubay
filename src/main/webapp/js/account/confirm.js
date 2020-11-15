@@ -11,16 +11,7 @@ async function onSavePass() {
     } else if (pass.localeCompare(inputConfirmPass.val()) !== 0) {
         errPassConfirm();
     } else {
-        let cp = {
-            password: sha512(inputNewPass.val())
-        };
-
-        let response = await fetch('http://localhost:8080/account/change_pass', {
-            method: 'PUT',
-            credentials: "same-origin",
-            body: JSON.stringify(cp)
-        });
-        if (response.ok) {
+        if (await changePassword(inputNewPass.val())) {
             console.log("resp ok");
             successNewPass();
         } else {
@@ -35,16 +26,7 @@ async function onSaveLogin() {
     if (!REGEX_LOGIN.test(inputLogin.val())) {
         errLoginFormat();
     } else {
-        let cl = {
-            login: inputLogin.val()
-        };
-
-        let response = await fetch('http://localhost:8080/account/change_login', {
-            method: 'PUT',
-            credentials: "same-origin",
-            body: JSON.stringify(cl)
-        });
-        if (response.ok) {
+        if (await changeLogin(inputLogin.val())) {
             console.log("resp ok");
             successNewLogin();
         } else {
@@ -54,10 +36,7 @@ async function onSaveLogin() {
 }
 
 async function onLogOut() {
-    await fetch('http://localhost:8080/user/log_out', {
-        method: 'PUT',
-        credentials: "same-origin"
-    });
+    await logout();
     localStorage.clear();
     window.location.replace('/authorization');
 }

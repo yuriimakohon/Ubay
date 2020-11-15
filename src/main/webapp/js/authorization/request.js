@@ -9,7 +9,7 @@ async function sign_up(login, password, role) {
     let response = await fetch( url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(params)
     });
@@ -18,7 +18,8 @@ async function sign_up(login, password, role) {
         localStorage.setItem("balance", user.balance);
         localStorage.setItem("role", user.role);
         localStorage.setItem("tokenTime", user.tokenTime);
-        localStorage.setItem("time", user.time)
+        localStorage.setItem("time", user.time);
+        localStorage.setItem("id", user.id);
         return true;
     } else {
         console.log(await response.text());
@@ -36,7 +37,7 @@ async function sign_in(login, password) {
     let response = await fetch( url, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(params)
     });
@@ -47,6 +48,7 @@ async function sign_in(login, password) {
         localStorage.setItem("role", user.role);
         localStorage.setItem("tokenTime", user.tokenTime);
         localStorage.setItem("time", user.time)
+        localStorage.setItem("id", user.id);
         return true;
     } else {
         console.log(await response.text());

@@ -7,8 +7,8 @@
     <%@include file="parts/resources.jsp" %>
     <script src="js/parts/sha512.js"></script>
     <script src="js/parts/parseCookie.js"></script>
-    <script src="js/http_requests/user/get.js"></script>
-    <script src="js/http_requests/user/put.js"></script>
+
+    <script src="js/http_requests/user.js"></script>
     <script src="js/parts/ref_token.js"></script>
 </head>
 <body>
