@@ -38,7 +38,7 @@
             </a>
             <a href="http://localhost:8080/account">
                 <div id="item-account" class="header_bar-item hidden">
-                    <img id="img-account" src="/resources/user.svg" alt="account">
+                    <img id="img-account" src="/resources/test2.jpeg" alt="account">
                 </div>
             </a>
             <a href="http://localhost:8080/authorization">
