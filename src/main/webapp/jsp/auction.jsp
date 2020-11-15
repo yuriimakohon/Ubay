@@ -52,7 +52,10 @@
             <div class="additional_info">
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auctioneer</p>
-                    <a>auctioneer_login</a>
+                    <div id="auctioneer-container">
+                        <img id="img-auctioneer" src="/resources/test2.jpeg" alt="auctioneer avatar">
+                        <span>auctioneer_login</span>
+                    </div>
                 </div>
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auction rate</p>
@@ -99,7 +102,10 @@
             </div>
             <div class="feedback card">
                 <div class="feedback-info-container">
-                    <h3>Login</h3>
+                    <div class="feedback_author">
+                        <img src="/resources/test2.jpeg">
+                        <span>user_login</span>
+                    </div>
                     <div class="feedback-evaluation-container">
                         <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
                         <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">

@@ -121,6 +121,23 @@
     font-size: 21px;
 }
 
+#auctioneer-container {
+    cursor: pointer;
+    display: flex;
+}
+
+#auctioneer-container:hover {
+    opacity: 80%;
+}
+
+#auctioneer-container img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
 .additional_info-item-title {
     color: #0079D1;
     font-weight: 500;
@@ -204,9 +221,6 @@
     width: 700px;
 }
 
-.user-feedback h3 {
-}
-
 .user-feedback textarea {
     margin-top: -30px;
 
@@ -235,6 +249,7 @@
 
 .feedback-evaluation-container {
     display: flex;
+    align-items: center;
 }
 
 .evaluation_start {
@@ -253,14 +268,39 @@
     margin-top: 30px;
 }
 
+.feedback_author {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    color: #0079D1;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+.feedback_author:hover {
+    opacity: 80%;
+}
+
+.feedback_author img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+
+    margin-right: 10px;
+}
+
 .feedback-info-container {
     display: flex;
     justify-content: space-between;
     align-items: start;
+
+    margin-bottom: 20px;
 }
 
 .feedback-text {
-    margin-top: -30px;
+    /*margin-top: -30px;*/
 
     padding-top: 10px;
     border-top: 2px solid #0079D1;
