@@ -1,12 +1,17 @@
 package world.ucode.utils;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class UserUtils {
@@ -117,5 +122,49 @@ public class UserUtils {
             cookie.setMaxAge(0);
             resp.addCookie(cookie);
         }
+    }
+
+    public static void changePhoto(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException {
+        RequestObject ro = new RequestObject();
+
+        ro.checkJson(req);
+        ro.checkCookie(req.getCookies(), daoUser);
+
+        if (!ro.ok) {
+            resp.setStatus(ro.getStatus());
+            resp.getWriter().write(ro.getResp());
+        } else {
+            String path = "src/main/webapp/resources/";
+            File user_dir = new File(path + ro.user.getId());
+            File user_avatar = new File(path + ro.user.getId() + "/" + "0.png");
+
+            if (!user_dir.exists()) {
+                user_dir.mkdir();
+            }
+            if (user_avatar.exists()) {
+                user_avatar.delete();
+                user_avatar.createNewFile();
+            }
+
+            JSONArray ja = (JSONArray) ro.jo.get("photo");
+            String photoString = ja.get(0).toString();
+            if (photoString == null) {
+                resp.setStatus(406);
+                resp.getWriter().write("bad json");
+                return;
+            }
+
+            byte[] data = Base64.getDecoder().decode(photoString.split(",")[1]);
+            FileOutputStream fos = new FileOutputStream(user_avatar);
+            fos.write(data);
+
+            resp.setStatus(200);
+            JSONObject respJSON = new JSONObject();
+            respJSON.put("avatar", "resources/"+ro.user.getId()+"/0.png");
+            resp.getWriter().write(respJSON.toJSONString());
+            ro.user.setUserPhoto("resources/"+ro.user.getId()+"/0.png");
+            daoUser.update(ro.user);
+        }
+
     }
 }

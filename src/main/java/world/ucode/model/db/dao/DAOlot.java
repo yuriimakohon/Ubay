@@ -75,7 +75,7 @@ public class DAOlot implements DAO<Lot, Integer>{
         return listOfLot;
     }
 
-    public List<Lot> getAllLotsbyCategoris() {
+    public List<Lot> getAllLotsByCategories() {
         Transaction transaction = null;
         List <Lot> listOfLot = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

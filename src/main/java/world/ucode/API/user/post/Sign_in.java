@@ -60,6 +60,7 @@ public class Sign_in extends HttpServlet {
                 jo.put("time", new Date().getTime());
                 jo.put("role", user.getUserRole());
                 jo.put("id", user.getId());
+                jo.put("avatar", user.getUserphoto());
 
                 resp.getWriter().write(jo.toJSONString());
                 resp.setStatus(200);

@@ -1,5 +1,6 @@
 function onAuction(id) {
-    alert('REQUEST: Open Auction: ' + id);
+    localStorage.setItem('lotId', id);
+    window.location.replace('/auction');
 }
 
 function onAuctionEdit(id) {

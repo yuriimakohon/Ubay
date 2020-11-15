@@ -79,3 +79,28 @@ async function logout() {
 async function login() {
 
 }
+
+async function changePhoto(photo) {
+    if (photo == null) {
+        return;
+    }
+    let user = {
+        photo: await loadFiles(photo)
+    };
+
+    let response = await fetch('http://localhost:8080/api/user?tab=change_photo', {
+        method: 'PUT',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
+    if (response.ok) {
+        let json = await response.json();
+        localStorage.setItem('avatar', json.avatar);
+        return true
+    } else {
+        return false;
+    }
+}
