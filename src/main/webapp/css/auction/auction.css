@@ -53,8 +53,13 @@
 .info {
     display: flex;
     font-size: 28px;
+    text-align: right;
 
     margin-bottom: 10px;
+}
+
+.info span {
+    text-align: right;
 }
 
 .info-title {
@@ -69,9 +74,9 @@
     color: #2AA6FF;
 }
 
-#info-title-start_price:before,
-#info-title-current_price:before {
-    content: '$ ';
+#info-title-start_price:after,
+#info-title-current_price:after {
+    content: '$';
 }
 
 #btn-bid-container {
