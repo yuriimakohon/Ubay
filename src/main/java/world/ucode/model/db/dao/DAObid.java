@@ -68,7 +68,7 @@ public class DAObid implements DAO<Bid, Integer>{
     }
 
 //    SELECT b.id, b.lotid, b.price, b.statusofBid from bid b join users u on u.id = b.bidderID where u.token = 'token3';
-    public List<Bid> readbyToken(String token) {
+    public List<Bid> readByToken(String token) {
         Transaction transaction = null;
         List<Bid> listOfBid = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

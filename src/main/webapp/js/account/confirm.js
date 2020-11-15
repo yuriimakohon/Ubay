@@ -13,7 +13,6 @@ async function onSavePass() {
         errPassConfirm();
     } else {
         if (await changePassword(inputNewPass.val())) {
-            console.log("resp ok");
             successNewPass();
         } else {
             console.log("error");
@@ -28,10 +27,9 @@ async function onSaveLogin() {
         errLoginFormat();
     } else {
         if (await changeLogin(inputLogin.val())) {
-            console.log("resp ok");
             successNewLogin();
         } else {
-            console.log("error");
+            loginExists();
         }
     }
 }
@@ -40,7 +38,12 @@ async function onSaveAvatar() {
     if (inputAvatar[0].files.length !== 1) {
         errAvatar();
     } else {
-        successNewAvatar();
+        if (await changePhoto(inputAvatar[0])) {
+            $('#img-account').attr('src', localStorage.getItem('avatar'))
+            successNewAvatar();
+        } else {
+            errAvatar();
+        }
     }
 }
 

@@ -1,12 +1,9 @@
 package world.ucode.model.db;
 
 
-import org.hibernate.Hibernate;
-import world.ucode.model.db.dao.DAO;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
-import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 
@@ -120,7 +117,7 @@ public class TestServlet extends HttpServlet {
 //
 //        Users existingUser4 = user.getUserandLotbyToken("token2");
 //
-        List<Lot> mist4 = lots.getAllLotsbyCategoris();
+        List<Lot> mist4 = lots.getAllLotsByCategories();
         for(Lot element : mist4) {
             System.out.println(element.getSellerId());
         }
