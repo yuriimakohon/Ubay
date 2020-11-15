@@ -1,0 +1,31 @@
+.search-card {
+    width: 700px;
+    margin: 50px auto 0;
+    padding: 30px;
+}
+
+.main_container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.text-search label {
+    display: block;
+    color: #0079D1;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.text_input {
+    width: 450px;
+}
+
+#description {
+    margin-top: 20px;
+}
+
+#btn-title_search,
+#btn-description_search {
+    margin-left: 50px;
+    width: 70px;
+}
