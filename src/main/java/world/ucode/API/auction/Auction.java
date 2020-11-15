@@ -9,6 +9,7 @@ import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.ParseJson;
 import world.ucode.utils.RequestObject;
+import world.ucode.utils.Utils;
 import world.ucode.utils.auction.ValidatorAuction;
 
 import javax.servlet.ServletConfig;
@@ -38,15 +39,14 @@ public class Auction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         RequestObject ro = new RequestObject();
-        ValidatorAuction va = new ValidatorAuction();
-        int lotId = va.readParamLotId(req);
+        int lotId = Utils.getId(req);
+        resp.setContentType("application/json;charset=utf-8");
 
         ro.checkCookie(req.getCookies(), daoUser);
 
         if (!ro.ok) {
             resp.setStatus(406);
-//            resp.getWriter().write(ro.getResp());
-            resp.getWriter().write("permission");
+            resp.getWriter().write("you must have permission");
             return;
         }
 
@@ -151,7 +151,7 @@ public class Auction extends HttpServlet {
         }
 
         ValidatorAuction va = new ValidatorAuction();
-        int lotId = va.readParamLotId(req);
+        int lotId = Utils.getId(req);
 
         if (!va.validatorAuction(ro.jo) || lotId == -1) {
             resp.setStatus(406);
@@ -181,7 +181,7 @@ public class Auction extends HttpServlet {
         RequestObject ro = new RequestObject();
         ValidatorAuction va = new ValidatorAuction();
 
-        int lotId = va.readParamLotId(req);
+        int lotId = Utils.getId(req);
 
         ro.checkCookie(req.getCookies(), daoUser);
 

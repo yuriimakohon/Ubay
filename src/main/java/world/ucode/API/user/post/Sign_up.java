@@ -37,7 +37,7 @@ public class Sign_up extends HttpServlet {
         String role = joReq.get("role").toString();
 
 
-        if (!Utils.checkValidLogin(login) || !Utils.checkValidPassword(password) || !Utils.checkValidRole(role)) {
+        if (Utils.checkValidLogin(login) || Utils.checkValidPassword(password) || Utils.checkValidRole(role)) {
             resp.setStatus(406);
             resp.getWriter().write("fuck you hacker, wrong parse");
             return;
@@ -53,6 +53,7 @@ public class Sign_up extends HttpServlet {
             jo.put("time", new Date().getTime());
             jo.put("balance", user.getBalance());
             jo.put("role", user.getUserRole());
+            jo.put("id", user.getId());
 
             resp.getWriter().write(jo.toJSONString());
             resp.setStatus(200);

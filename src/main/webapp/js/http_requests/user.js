@@ -1,5 +1,5 @@
 async function user_get() {
-    let response = await fetch('http://localhost:8080/user/get', {
+    let response = await fetch('http://localhost:8080/api/user/' + localStorage.getItem('id'), {
         method: 'GET',
         credentials: 'same-origin'
     });
@@ -19,7 +19,7 @@ async function changeBalance(dollars) {
         balance: dollars
     }
 
-    let response = await fetch('http://localhost:8080/api/user?tab=changebalance', {
+    let response = await fetch('http://localhost:8080/api/user?tab=change_balance', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -38,10 +38,10 @@ async function changeBalance(dollars) {
 
 async function changePassword(password) {
     let cl = {
-        login: password
+        password: sha512(password)
     };
 
-    let response = await fetch('http://localhost:8080/api/user?tab=changepassword', {
+    let response = await fetch('http://localhost:8080/api/user?tab=change_pass', {
         method: 'PUT',
         credentials: "same-origin",
         headers: {
@@ -57,7 +57,7 @@ async function changeLogin(login) {
         login: login
     };
 
-    let response = await fetch('http://localhost:8080/api/user?tab=changelogin', {
+    let response = await fetch('http://localhost:8080/api/user?tab=change_login', {
         method: 'PUT',
         credentials: "same-origin",
         headers: {
@@ -69,7 +69,7 @@ async function changeLogin(login) {
 }
 
 async function logout() {
-    await fetch('http://localhost:8080/api/user?tab=logout', {
+    await fetch('http://localhost:8080/api/user?tab=log_out', {
         method: 'PUT',
         credentials: "same-origin"
     });

@@ -1,2 +1,4 @@
-package world.ucode.API.bids;public class Bids {
+package world.ucode.API.bids;
+
+public class Bids {
 }

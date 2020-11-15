@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user/get")
+@WebServlet("/user/*")
 public class Get extends HttpServlet {
     DAOusers DAOUser;
 
