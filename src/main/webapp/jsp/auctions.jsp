@@ -27,7 +27,11 @@
 <%--            </label>--%>
             <label class="checkbox_input">
                 <input type="checkbox">
-                Not started
+                Not active
+            </label>
+            <label id="checkbox-active" class="checkbox_input">
+                <input type="checkbox">
+                Active
             </label>
             <label id="checkbox-finished" class="checkbox_input">
                 <input type="checkbox">
