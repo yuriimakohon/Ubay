@@ -29,7 +29,9 @@
     <div class="info_blocks-container">
         <div id="info_block-left" class="card">
             <div class="photos-view">
-                <img class="current-photo-item" src="" alt="current photo">
+                <a href="" target="_blank">
+                    <img class="current-photo-item" src="" alt="current photo">
+                </a>
                 <div class="photos-control">
                     <%
                         if (response.getStatus() < 400) {

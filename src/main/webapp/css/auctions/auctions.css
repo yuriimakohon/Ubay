@@ -11,9 +11,14 @@
 }
 
 /*==============| Auction item |=============*/
-.auction-item {
-    transition: .1s;
+.add_auction_a {
     margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.auction-item {
+    margin-top: 50px;
+    transition: .1s;
 
     display: flex;
 
@@ -101,7 +106,8 @@
 
 /*============| Add auction |===========*/
 .add_auction {
-    margin-bottom: 50px;
+    width: 750px;
+    height: 100px;
 
     display: flex;
     justify-content: center;
@@ -125,4 +131,10 @@
 
 a {
     text-decoration: none;
+}
+
+/*=============| Toggle |=============*/
+#checkbox-finished,
+#checkbox-active {
+    margin-left: 50px;
 }
