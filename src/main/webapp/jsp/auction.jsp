@@ -81,13 +81,13 @@
             <div id="bid-container" class="hidden">
                 <label id="your_bid">
                     Your bid:
-                    <input class="number_input" type="number" placeholder="0.00">
+                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()) + 1);%>">
                 </label>
                 <div class="btn_bids-container">
                     <button class="btn btn-red" onclick="onCancelBid()">
                         cancel
                     </button>
-                    <button class="btn">
+                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">
                         place a bid
                     </button>
                 </div>
