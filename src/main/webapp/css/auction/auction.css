@@ -14,9 +14,9 @@
     flex-flow: column;
 }
 /*=============| Left info |============*/
-.photos-view {
+.photos-view a {
     display: flex;
-    flex-flow: column;
+    justify-content: center;
 }
 
 .photos-control {
@@ -40,6 +40,8 @@
 }
 
 .photo-item {
+    height: 50px;
+    max-height: 60px;
     width: 50px;
     max-width: 60px;
     margin: 0 5px;

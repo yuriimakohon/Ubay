@@ -15,12 +15,16 @@
     <div class="info_blocks-container">
         <div id="info_block-left" class="card">
             <div class="photos-view">
-                <img class="current-photo-item" src="" alt="current photo">
+                <a href="" target="_blank">
+                    <img class="current-photo-item" src="" alt="current photo">
+                </a>
                 <div class="photos-control">
                     <%
                         String path = "/resources/" + request.getAttribute("sellerId") + "/" + request.getAttribute("lotId") + "/";
-                        for (int i = 0; i <  Integer.parseInt(request.getAttribute("p_count").toString()); i++)
-                            out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + path + i + ".jpg" + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
+                        for (int i = 0; i <  Integer.parseInt(request.getAttribute("p_count").toString()); i++) {
+                            String photoPath = path + i + ".jpg";
+                            out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + photoPath + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
+                        }
                     %>
                 </div>
             </div>
