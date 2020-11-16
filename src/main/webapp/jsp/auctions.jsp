@@ -21,11 +21,15 @@
             </div>
         </a>
         <div class="toggle-container">
-            <label>
+<%--            <label class="toggle_input">--%>
+<%--                <input type="checkbox">--%>
+<%--                <span class="slider"></span>--%>
+<%--            </label>--%>
+            <label class="checkbox_input">
                 <input type="checkbox">
                 Not started
             </label>
-            <label>
+            <label id="checkbox-finished" class="checkbox_input">
                 <input type="checkbox">
                 Finished
             </label>

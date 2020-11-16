@@ -81,6 +81,69 @@
     color: rgba(0, 0, 0, 0.25);
 }
 
+.checkbox_input {
+    cursor: pointer;
+    color: #2AA6FF;
+}
+
+.checkbox_input input {
+    margin-right: 5px;
+}
+
+.toggle_input input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.toggle_input {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    margin: 0 5px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #F9F9F9;
+    border: 1px solid #D1D1D1;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    bottom: -2.5px;
+    right: 12px;
+    background-color: #F9F9F9;
+    border: 1px solid #D1D1D1;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider,
+input:checked + .slider:before {
+    background-color: #2AA6FF;
+    border-color: #0087E9;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
+}
+
 /*===============| TextArea |================*/
 .textarea {
     width: 400px;
