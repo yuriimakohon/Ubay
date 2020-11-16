@@ -126,3 +126,8 @@
 a {
     text-decoration: none;
 }
+
+/*=============| Toggle |=============*/
+#checkbox-finished {
+    margin-left: 30px;
+}
