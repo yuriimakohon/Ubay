@@ -34,7 +34,7 @@ public class Auction extends HttpServlet {
 
             if (gaa.status >= 400) {
                 resp.setStatus(404);
-                System.out.println("get gaa");
+                System.out.println("error: get gaa");
             } else {
                 try {
                     JSONParser jp = new JSONParser();
@@ -46,7 +46,7 @@ public class Auction extends HttpServlet {
                     GetUserAPI gua = new GetUserAPI(Integer.parseInt(jo.get("sellerId").toString()));
                     if (gua.status >= 400) {
                         resp.setStatus(404);
-                        System.out.println("get gua");
+                        System.out.println("error: get gua");
                     } else {
                         jo = (JSONObject) jp.parse(gua.json);
                         req.setAttribute("user", jo.toJSONString());
@@ -76,6 +76,15 @@ public class Auction extends HttpServlet {
                 }
             }
         }
-        req.getRequestDispatcher("/jsp/auction.jsp").forward(req, resp);
+        if (resp.getStatus() == 404) {
+            String errorPath = req.getServletPath();
+            if (req.getPathInfo() != null) {
+                errorPath += req.getPathInfo();
+            }
+            req.setAttribute("path", errorPath);
+            req.getRequestDispatcher("/jsp/404.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("/jsp/auction.jsp").forward(req, resp);
+        }
     }
 }

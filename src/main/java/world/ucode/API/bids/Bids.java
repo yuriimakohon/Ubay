@@ -1,4 +1,9 @@
 package world.ucode.API.bids;
 
-public class Bids {
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/api/bid/*")
+public class Bids extends HttpServlet {
+
 }
