@@ -3,8 +3,8 @@
     <meta charset="utf-8">
     <title>Ubay - User</title>
 
-    <link rel="stylesheet" href="/css/user/user.css">
     <%@include file="parts/resources.jsp"%>
+    <link rel="stylesheet" href="/css/user/user.css">
 </head>
 <body>
 <%@include file="parts/header_bar.jsp"%>
@@ -18,12 +18,12 @@
             </a>
             <span>User_login</span>
         </div>
-        <div class="secondary_info">
+        <div id="info-role" class="secondary_info">
             <div class="secondary_info-item">
                 <span class="title">Role:</span>
                 <span class="value">auctioneer</span>
             </div>
-            <div class="secondary_info-item">
+            <div id="info-avg_rate" class="secondary_info-item">
                 <span class="title">AVG rate:</span>
                 <span class="value">
                     <div class="rate">
@@ -33,7 +33,7 @@
                 </span>
             </div>
         </div>
-        <button class="btn">Look for auctions</button>
+        <button id="btn_auctions" class="btn">Look for auctions</button>
     </div>
 </div>
 
