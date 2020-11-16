@@ -20,6 +20,16 @@
                 + Create new auction
             </div>
         </a>
+        <div class="toggle-container">
+            <label>
+                <input type="checkbox">
+                Not started
+            </label>
+            <label>
+                <input type="checkbox">
+                Finished
+            </label>
+        </div>
     </div>
 </div>
 
