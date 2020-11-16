@@ -15,19 +15,19 @@
     <div class="title_line"></div>
 
     <div id="auctions-container" class="auctions-items">
-        <a href="http://localhost:8080/create_auction">
-            <div class="auction-item card add_auction">
+        <a class="add_auction_a" href="http://localhost:8080/create_auction">
+            <div class="card add_auction">
                 + Create new auction
             </div>
         </a>
         <div class="toggle-container">
-<%--            <label class="toggle_input">--%>
-<%--                <input type="checkbox">--%>
-<%--                <span class="slider"></span>--%>
-<%--            </label>--%>
             <label class="checkbox_input">
                 <input type="checkbox">
-                Not started
+                Not active
+            </label>
+            <label id="checkbox-active" class="checkbox_input">
+                <input type="checkbox">
+                Active
             </label>
             <label id="checkbox-finished" class="checkbox_input">
                 <input type="checkbox">
