@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/auction/auction.css">
     <script src="/js/parts/ref_token.js"></script>
+    <script src="/js/auction/request.js"></script>
     <%@include file="parts/resources.jsp" %>
 </head>
 <body>
@@ -34,12 +35,10 @@
                 </a>
                 <div class="photos-control">
                     <%
-                        if (response.getStatus() < 400) {
-                            assert jsonLot != null;
-                            String path = "/resources/" + jsonLot.get("sellerId") + "/" + jsonLot.get("lotId").toString() + "/";
-                            for (int i = 0; i < Integer.parseInt(jsonLot.get("photoNumber").toString()); i++)
-                                out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + path + i + ".jpg" + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
-                        }
+                        assert jsonLot != null;
+                        String path = "/resources/" + jsonLot.get("sellerId") + "/" + jsonLot.get("lotId").toString() + "/";
+                        for (int i = 0; i < Integer.parseInt(jsonLot.get("photoNumber").toString()); i++)
+                            out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + path + i + ".jpg" + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
                     %>
                 </div>
             </div>
@@ -48,9 +47,7 @@
                     <span class="info-title">Bids count:</span>
                     <span id="info-title-bids_count" class="info-value">
                         <%
-                            if (response.getStatus() < 400) {
-                                out.println(jsonLot.get("bidNumber").toString());
-                            }
+                            out.println(jsonLot.get("bidNumber").toString());
                         %>
                 </span>
                 </div>
@@ -58,9 +55,7 @@
                     <span class="info-title">Start price:</span>
                     <span id="info-title-start_price" class="info-value">
                         <%
-                            if (response.getStatus() < 400) {
-                                out.println(jsonLot.get("price").toString());
-                            }
+                            out.println(jsonLot.get("price").toString());
                         %>
                 </span>
                 </div>
@@ -68,9 +63,7 @@
                     <span class="info-title">Current price:</span>
                     <span id="info-title-current_price" class="info-value">
                         <%
-                            if (response.getStatus() < 400) {
-                                out.println(jsonLot.get("highestBid").toString());
-                            }
+                            out.println(jsonLot.get("highestBid").toString());
                         %>
                 </span>
                 </div>
@@ -97,9 +90,7 @@
         <div id="info_block-right" class="card">
             <h2 class="lot_title">
                 <%
-                    if (response.getStatus() < 400) {
-                        out.println(jsonLot.get("title").toString());
-                    }
+                    out.println(jsonLot.get("title").toString());
                 %>
             </h2>
             <div class="lot_description">
@@ -107,12 +98,12 @@
                     if (response.getStatus() < 400) {
                         out.println(jsonLot.get("description").toString());
                     }
-                %>
+                    assert jsonUser != null;%>
             </div>
             <div class="additional_info">
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auctioneer</p>
-                    <div id="auctioneer-container">
+                    <div id="auctioneer-container" onclick="onAuctioneerContainer(<%=jsonUser.get("id").toString()%>)">
                         <%
                             if (response.getStatus() < 400) {
                                 out.println("<img id=\"img-auctioneer\" src=\"" + jsonUser.get("avatar").toString() + "\" alt=\"auctioneer avatar\"");
@@ -120,9 +111,7 @@
                         %>
                         <span>
                             <%
-                                if (response.getStatus() < 400) {
-                                    out.println(jsonUser.get("login").toString());
-                                }
+                                out.println(jsonUser.get("login").toString());
                             %>
                         </span>
                     </div>
@@ -146,9 +135,7 @@
             </div>
             <div id="btn-feedbacks-container">
                 <%
-                    if (response.getStatus() < 400) {
-                        out.println("<button class=\"btn\" onclick=\"onFeedbacks(" + jsonLot.get("lotId").toString() + ")\">Feedbacks</button>");
-                    }
+                    out.println("<button class=\"btn\" onclick=\"onFeedbacks(" + jsonLot.get("lotId").toString() + ")\">Feedbacks</button>");
                 %>
 <%--                <button class="btn" onclick="onFeedbacks()">Feedbacks</button>--%>
             </div>

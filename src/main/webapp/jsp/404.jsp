@@ -14,10 +14,9 @@
         </a>
         <h1 style="color: #0087E9; font-weight: 500">
             <p style="font-size: 64px; font-weight: 400; text-align: center">
-                <%=request.getAttribute("javax.servlet.error.status_code")%>
+                <%=response.getStatus()%>
             </p>
-            <%=request.getAttribute("javax.servlet.error.request_uri") + " - "%>
-            <%="Page not found"%>
+            <%=request.getAttribute("path") + " - Page not found"%>
         </h1>
     </div>
 
