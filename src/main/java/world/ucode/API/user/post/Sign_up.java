@@ -45,7 +45,7 @@ public class Sign_up extends HttpServlet {
 
         if (DAOUser.readByLogin(login) == null) {
             Users user = new Users("", login, password, Integer.parseInt(role));
-            user.setUserPhoto("resources/user.svg");
+            user.setUserPhoto("/resources/user.svg");
             DAOUser.create(user);
             Token.setTokens(user, DAOUser, resp);
             JSONObject jo = new JSONObject();

@@ -41,8 +41,6 @@ public class Auction extends HttpServlet {
         int lotId = Utils.getId(req);
         resp.setContentType("application/json;charset=utf-8");
 
-        System.out.println("such as your dick");
-
         if (lotId == -1) {
             ObjectMapper mapper = new ObjectMapper();
             JSONObject jo = new JSONObject();

@@ -160,11 +160,10 @@ public class UserUtils {
 
             resp.setStatus(200);
             JSONObject respJSON = new JSONObject();
-            respJSON.put("avatar", "resources/"+ro.user.getId()+"/0.png");
+            respJSON.put("avatar", "/resources/"+ro.user.getId()+"/0.png");
             resp.getWriter().write(respJSON.toJSONString());
-            ro.user.setUserPhoto("resources/"+ro.user.getId()+"/0.png");
+            ro.user.setUserPhoto("/resources/"+ro.user.getId()+"/0.png");
             daoUser.update(ro.user);
         }
-
     }
 }

@@ -60,8 +60,14 @@
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auctioneer</p>
                     <div id="auctioneer-container">
-                        <img id="img-auctioneer" src="/resources/test2.jpeg" alt="auctioneer avatar">
-                        <span>auctioneer_login</span>
+                        <%
+                            out.println("<img id=\"img-auctioneer\" src=\"" + request.getAttribute("avatar") + "\" alt=\"auctioneer avatar\"");
+                        %>
+                        <span>
+                            <%
+                                out.println(request.getAttribute("login"));
+                            %>
+                        </span>
                     </div>
                 </div>
                 <div class="additional_info-item">
