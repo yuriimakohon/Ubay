@@ -79,9 +79,9 @@
                 <button id="btn-show_bid" class="btn" onclick="onShowBid()">Bid</button>
             </div>
             <div id="bid-container" class="hidden">
-                <label>
+                <label id="your_bid">
                     Your bid:
-                    <input class="number_input" type="number">
+                    <input class="number_input" type="number" placeholder="0.00">
                 </label>
                 <div class="btn_bids-container">
                     <button class="btn btn-red" onclick="onCancelBid()">

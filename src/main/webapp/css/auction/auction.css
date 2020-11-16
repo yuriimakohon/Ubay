@@ -219,6 +219,12 @@
     justify-content: space-between;
 }
 
+#your_bid {
+    font-weight: 500;
+    font-size: 21px;
+    color: #0087E9;
+}
+
 /*===============| Feedbacks |==============*/
 .feedbacks {
     margin: 70px 0;
