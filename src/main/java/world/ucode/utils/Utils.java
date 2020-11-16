@@ -21,8 +21,8 @@ public class Utils {
     public static int getId(HttpServletRequest req) {
         String pathInfo = req.getPathInfo();
 
-        if (pathInfo == null) {
-            return -1;
+        if (pathInfo == null || pathInfo.equals("")) {
+            return 0;
         }
         String[] params = req.getPathInfo().split("/");
         String param = params[params.length-1];

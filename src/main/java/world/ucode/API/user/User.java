@@ -3,8 +3,6 @@ package world.ucode.API.user;
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
-import world.ucode.utils.ParseCookie;
-import world.ucode.utils.RequestObject;
 import world.ucode.utils.UserUtils;
 import world.ucode.utils.Utils;
 
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 
 @WebServlet("/api/user/*")
 public class User extends HttpServlet {
@@ -28,16 +25,10 @@ public class User extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        RequestObject ro = new RequestObject();
-//        ro.checkCookie(req.getCookies(), daoUser);
         int id = Utils.getId(req);
         resp.setContentType("application/json;charset=utf-8");
         JSONObject jo = new JSONObject();
 
-//        if (!ro.ok) {
-//            resp.setStatus(ro.getStatus());
-//            resp.getWriter().write(ro.getResp());
-//        }
         if (id == -1) {
             resp.setStatus(200);
             jo.put("role", "0");
