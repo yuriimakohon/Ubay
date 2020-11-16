@@ -41,9 +41,7 @@ public class Auction extends HttpServlet {
         int lotId = Utils.getId(req);
         resp.setContentType("application/json;charset=utf-8");
 
-        System.out.println("such as your dick");
-
-        if (lotId == -1) {
+        if (lotId == 0) {
             ObjectMapper mapper = new ObjectMapper();
             JSONObject jo = new JSONObject();
             JSONArray ja = new JSONArray();
@@ -67,17 +65,20 @@ public class Auction extends HttpServlet {
             jo.put("lots", ja);
             resp.setStatus(200);
             resp.getWriter().write(jo.toJSONString());
-            return;
-        }
-        
-        Lot lot = daoLot.read(lotId);
-        if (lot == null) {
+        } else if (lotId == -1) {
             resp.setStatus(404);
             resp.getWriter().write("lot not found");
         } else {
-            resp.setStatus(200);
-            resp.getWriter().write(ParseJson.lotToJson(lot));
+            Lot lot = daoLot.read(lotId);
+            if (lot == null) {
+                resp.setStatus(404);
+                resp.getWriter().write("lot not found");
+            } else {
+                resp.setStatus(200);
+                resp.getWriter().write(ParseJson.lotToJson(lot));
+            }
         }
+
     }
 
     @Override

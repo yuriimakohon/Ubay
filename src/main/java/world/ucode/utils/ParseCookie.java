@@ -6,6 +6,9 @@ import java.util.HashMap;
 public class ParseCookie {
     public static HashMap<String, String> parseToMap(Cookie[] cookies) {
         HashMap<String, String> mc = new HashMap<>();
+        if (cookies == null) {
+            return mc;
+        }
         for (Cookie cook : cookies) {
             mc.put(cook.getName(), cook.getValue());
         }

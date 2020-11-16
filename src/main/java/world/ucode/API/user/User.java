@@ -1,7 +1,8 @@
 package world.ucode.API.user;
 
+import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
-import world.ucode.utils.RequestObject;
+import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.UserUtils;
 import world.ucode.utils.Utils;
 
@@ -24,26 +25,28 @@ public class User extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestObject ro = new RequestObject();
-        ro.checkCookie(req.getCookies(), daoUser);
         int id = Utils.getId(req);
+        resp.setContentType("application/json;charset=utf-8");
+        JSONObject jo = new JSONObject();
 
-        if (!ro.ok) {
-            resp.setStatus(ro.getStatus());
-            resp.getWriter().write(ro.getResp());
-        } else if (id != -1) {
-            ro.jo.put("login", ro.user.getLogin());
-            ro.jo.put("role", ro.user.getUserRole());
-            ro.jo.put("balance", ro.user.getBalance());
-            ro.jo.put("id", ro.user.getId());
-            ro.jo.put("avatar", ro.user.getUserphoto());
-            resp.setContentType("application/json;charset=utf-8");
-            resp.getWriter().write(ro.jo.toJSONString());
-            resp.setStatus(ro.getStatus());
+        if (id == -1) {
+            resp.setStatus(200);
+            jo.put("role", "0");
+        } else {
+            Users user = daoUser.read(id);
+            if (user == null) {
+                resp.setStatus(404);
+                jo.put("role", "0");
+            } else {
+                jo.put("login", user.getLogin());
+                jo.put("role", user.getUserRole());
+                jo.put("balance", user.getBalance());
+                jo.put("id", user.getId());
+                jo.put("avatar", user.getUserphoto());
+                resp.setStatus(200);
+            }
         }
-//        else if (id == -1) {
-//
-//        }
+        resp.getWriter().write(jo.toJSONString());
     }
 
     @Override

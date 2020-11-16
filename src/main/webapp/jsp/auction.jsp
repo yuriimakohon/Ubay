@@ -1,4 +1,7 @@
 <%@ page import="org.json.simple.parser.JSONParser" %>
+<%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="java.io.Reader" %>
+<%@ page import="org.json.simple.parser.ParseException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,6 +15,17 @@
 <%@include file="parts/header_bar.jsp" %>
 
 <div class="main_container">
+     <%
+         JSONObject jsonUser = null;
+         JSONObject jsonLot = null;
+         if (response.getStatus() < 400) {
+            JSONParser jp = new JSONParser();
+            try {
+                jsonLot = (JSONObject) jp.parse(request.getAttribute("lot").toString());
+                jsonUser = (JSONObject) jp.parse(request.getAttribute("user").toString());
+            } catch (ParseException ignored) {}
+         }
+     %>
     <div class="info_blocks-container">
         <div id="info_block-left" class="card">
             <div class="photos-view">
@@ -20,10 +34,11 @@
                 </a>
                 <div class="photos-control">
                     <%
-                        String path = "/resources/" + request.getAttribute("sellerId") + "/" + request.getAttribute("lotId") + "/";
-                        for (int i = 0; i <  Integer.parseInt(request.getAttribute("p_count").toString()); i++) {
-                            String photoPath = path + i + ".jpg";
-                            out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + photoPath + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
+                        if (response.getStatus() < 400) {
+                            assert jsonLot != null;
+                            String path = "/resources/" + jsonLot.get("sellerId") + "/" + jsonLot.get("lotId").toString() + "/";
+                            for (int i = 0; i < Integer.parseInt(jsonLot.get("photoNumber").toString()); i++)
+                                out.println("<img id=\"photo-" + i + "\" class=\"photo-item\" src=\"" + path + i + ".jpg" + "\" alt=\"photo " + i + "\" onclick=\"onPhoto(" + i + ")\">");
                         }
                     %>
                 </div>
@@ -32,19 +47,31 @@
                 <div class="info">
                     <span class="info-title">Bids count:</span>
                     <span id="info-title-bids_count" class="info-value">
-                    <%= request.getAttribute("b_count") %>
+                        <%
+                            if (response.getStatus() < 400) {
+                                out.println(jsonLot.get("bidNumber").toString());
+                            }
+                        %>
                 </span>
                 </div>
                 <div class="info">
                     <span class="info-title">Start price:</span>
                     <span id="info-title-start_price" class="info-value">
-                    <%= request.getAttribute("price") %>
+                        <%
+                            if (response.getStatus() < 400) {
+                                out.println(jsonLot.get("price").toString());
+                            }
+                        %>
                 </span>
                 </div>
                 <div class="info">
                     <span class="info-title">Current price:</span>
                     <span id="info-title-current_price" class="info-value">
-                    <%= request.getAttribute("bid") %>
+                        <%
+                            if (response.getStatus() < 400) {
+                                out.println(jsonLot.get("highestBid").toString());
+                            }
+                        %>
                 </span>
                 </div>
             </div>
@@ -55,17 +82,35 @@
 
         <div id="info_block-right" class="card">
             <h2 class="lot_title">
-                <%= request.getAttribute("title") %>
+                <%
+                    if (response.getStatus() < 400) {
+                        out.println(jsonLot.get("title").toString());
+                    }
+                %>
             </h2>
             <div class="lot_description">
-                <%= request.getAttribute("desc") %>
+                <%
+                    if (response.getStatus() < 400) {
+                        out.println(jsonLot.get("description").toString());
+                    }
+                %>
             </div>
             <div class="additional_info">
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auctioneer</p>
                     <div id="auctioneer-container">
-                        <img id="img-auctioneer" src="/resources/test2.jpeg" alt="auctioneer avatar">
-                        <span>auctioneer_login</span>
+                        <%
+                            if (response.getStatus() < 400) {
+                                out.println("<img id=\"img-auctioneer\" src=\"" + jsonUser.get("avatar").toString() + "\" alt=\"auctioneer avatar\"");
+                            }
+                        %>
+                        <span>
+                            <%
+                                if (response.getStatus() < 400) {
+                                    out.println(jsonUser.get("login").toString());
+                                }
+                            %>
+                        </span>
                     </div>
                 </div>
                 <div class="additional_info-item">
@@ -86,7 +131,11 @@
                 </div>
             </div>
             <div id="btn-feedbacks-container">
-                <%= "<button class=\"btn\" onclick=\"onFeedbacks(" + request.getAttribute("lotId") + ")\">Feedbacks</button>" %>
+                <%
+                    if (response.getStatus() < 400) {
+                        out.println("<button class=\"btn\" onclick=\"onFeedbacks(" + jsonLot.get("lotId").toString() + ")\">Feedbacks</button>");
+                    }
+                %>
 <%--                <button class="btn" onclick="onFeedbacks()">Feedbacks</button>--%>
             </div>
         </div>

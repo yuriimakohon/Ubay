@@ -5,6 +5,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import world.ucode.utils.Utils;
 import org.apache.commons.io.IOUtils;
+import world.ucode.utils.auction.GetAuctionAPI;
+import world.ucode.utils.user.GetUserAPI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,46 +26,55 @@ public class Auction extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Utils.getId(req);
 
-        System.out.println(req.getPathInfo());
-
-        URL url = new URL("http://localhost:8080/api/auction/" + id);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestProperty("method", "GET");
-        connection.setRequestProperty("credentials", "same-origin");
-
-        InputStream response = connection.getInputStream();
-
-        StringWriter writer = new StringWriter();
-        IOUtils.copy(response,  writer, StandardCharsets.UTF_8.name());
-        connection.disconnect();
-
-        String json = writer.toString();
-        System.out.println(json);
-
-        JSONParser jp = new JSONParser();
-        JSONObject jo = null;
-
-        try {
-            jo = (JSONObject) jp.parse(json);
-            String s =  jo.get("lot").toString();
-            jo = (JSONObject) jp.parse(s);
-            req.setAttribute("lotId", jo.get("lotId"));
-            req.setAttribute("title", jo.get("title"));
-            req.setAttribute("price", jo.get("price"));
-            req.setAttribute("maxPrice", jo.get("maxPrice"));
-            req.setAttribute("photo", jo.get("photo"));
-            req.setAttribute("startTime", jo.get("startTime"));
-            req.setAttribute("duration", jo.get("duration"));
-            req.setAttribute("desc", jo.get("description"));
-            req.setAttribute("status", jo.get("status"));
-            req.setAttribute("bid", jo.get("highestBid"));
-            req.setAttribute("b_count", jo.get("bidNumber"));
-            req.setAttribute("p_count", jo.get("photoNumber"));
-            req.setAttribute("category", jo.get("category"));
-            req.setAttribute("sellerId", jo.get("sellerId"));
-        } catch (ParseException e) {
-            System.out.println(e.getMessage());
+        if (id == 0) {
             resp.setStatus(404);
+            System.out.println("id == 0");
+        } else {
+            GetAuctionAPI gaa = new GetAuctionAPI(req);
+
+            if (gaa.status >= 400) {
+                resp.setStatus(404);
+                System.out.println("get gaa");
+            } else {
+                try {
+                    JSONParser jp = new JSONParser();
+                    JSONObject jo = (JSONObject) jp.parse(gaa.json);
+                    jo = (JSONObject) jp.parse(jo.get("lot").toString());
+
+                    req.setAttribute("lot", jo.toJSONString());
+
+                    GetUserAPI gua = new GetUserAPI(Integer.parseInt(jo.get("sellerId").toString()));
+                    if (gua.status >= 400) {
+                        resp.setStatus(404);
+                        System.out.println("get gua");
+                    } else {
+                        jo = (JSONObject) jp.parse(gua.json);
+                        req.setAttribute("user", jo.toJSONString());
+                    }
+                    // lot
+//                    req.setAttribute("lotId", jo.get("lotId"));
+//                    req.setAttribute("title", jo.get("title"));
+//                    req.setAttribute("price", jo.get("price"));
+//                    req.setAttribute("maxPrice", jo.get("maxPrice"));
+//                    req.setAttribute("photo", jo.get("photo"));
+//                    req.setAttribute("startTime", jo.get("startTime"));
+//                    req.setAttribute("duration", jo.get("duration"));
+//                    req.setAttribute("desc", jo.get("description"));
+//                    req.setAttribute("status", jo.get("status"));
+//                    req.setAttribute("bid", jo.get("highestBid"));
+//                    req.setAttribute("b_count", jo.get("bidNumber"));
+//                    req.setAttribute("p_count", jo.get("photoNumber"));
+//                    req.setAttribute("category", jo.get("category"));
+//                    req.setAttribute("sellerId", jo.get("sellerId"));
+
+                    // user
+//                    req.setAttribute("login", jo.get("login"));
+//                    req.setAttribute("avatar", jo.get("avatar"));
+                } catch (ParseException | NullPointerException | NumberFormatException e) {
+                    resp.setStatus(404);
+                    System.out.println("error: " + e.getMessage());
+                }
+            }
         }
         req.getRequestDispatcher("/jsp/auction.jsp").forward(req, resp);
     }

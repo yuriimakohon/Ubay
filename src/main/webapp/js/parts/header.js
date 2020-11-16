@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         $('#item-sign_up').removeClass('hidden');
     } else {
         if (avatar !== undefined) {
-            $('#img-account').attr('src', "/" + avatar);
+            $('#img-account').attr('src', avatar);
         } else {
             $('#img-account').attr('src', '/resources/user.svg');
         }
