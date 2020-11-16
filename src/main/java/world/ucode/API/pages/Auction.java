@@ -57,7 +57,7 @@ public class Auction extends HttpServlet {
             req.setAttribute("desc", jo.get("description"));
             req.setAttribute("status", jo.get("status"));
             req.setAttribute("bid", jo.get("highestBid"));
-            req.setAttribute("b_count", jo.get("bidnumber"));
+            req.setAttribute("b_count", jo.get("bidNumber"));
             req.setAttribute("p_count", jo.get("photoNumber"));
             req.setAttribute("category", jo.get("category"));
             req.setAttribute("sellerId", jo.get("sellerId"));
