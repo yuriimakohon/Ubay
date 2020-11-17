@@ -1,0 +1,21 @@
+#title-search_results {
+    margin-top: 50px;
+}
+
+.tag-container {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+
+    height: 30px;
+    background: #2AA6FF;
+    padding: 0 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 300;
+}
