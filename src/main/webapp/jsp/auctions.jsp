@@ -4,8 +4,9 @@
     <title>Ubay - Auctions</title>
 
     <%@include file="parts/resources.jsp" %>
-    <link rel="stylesheet" href="css/auctions/auctions.css">
-    <script src="js/parts/ref_token.js"></script>
+    <link rel="stylesheet" href="/css/auctions/auctions.css">
+    <link rel="stylesheet" href="/css/parts/auction_list.css">
+    <script src="/js/parts/ref_token.js"></script>
 </head>
 <body>
 <%@include file="parts/header_bar.jsp"%>
@@ -38,9 +39,9 @@
 </div>
 
 
-<script src="js/parts/ref_token.js"></script>
-<script defer src="js/auctions/getMyAuctions.js"></script>
-<script defer src="js/auctions/generate_auctions.js"></script>
+<script src="/js/parts/ref_token.js"></script>
+<script defer src="/js/auctions/getMyAuctions.js"></script>
+<script defer src="/js/auctions/generate_auctions.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
