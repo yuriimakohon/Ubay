@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/authorization/auth.css">
     <script src="js/parts/sha512.js"></script>
     <script src="js/parts/ref_token.js"></script>
+    <link rel="stylesheet" href="/css/parts/design.css">
 </head>
 <body>
     <div id="main_container">
@@ -45,11 +46,11 @@
                 </div>
                 <div class="auth_item">
                     <p>Role</p>
-                    <label style="margin-right: 65px;">
+                    <label class="radio-input" style="margin-right: 65px;">
                         <input id="rbtn-auctioner" type="radio" name="role" checked="checked" value="1">
                         Auctioneer
                     </label>
-                    <label>
+                    <label class="radio-input">
                         <input type="radio" name="role" value="2">
                         Bidder
                     </label>
