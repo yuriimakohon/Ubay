@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
         $('#item-account').removeClass('hidden');
         $('#item-balance').removeClass('hidden');
-        $('#counter-balance').text(localStorage.getItem('balance'))
+        let balance = Number(localStorage.getItem('balance')).toFixed(2);
+        $('#counter-balance').text(balance);
         if (+role === 1) { // auctioneer
             $('#item-auction').removeClass('hidden')
         } else { // bidder

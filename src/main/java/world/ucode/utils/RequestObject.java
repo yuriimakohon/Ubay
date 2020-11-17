@@ -10,11 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class RequestObject {
-    private String idString;
-    private String token;
-    private String login;
-    private int id;
-
     public JSONObject jo = new JSONObject();
 
     public boolean ok = true;
@@ -33,7 +28,7 @@ public class RequestObject {
         if (jo == null) {
             ok = false;
             status = 406;
-            resp = "hm your json is bad";
+            resp = "json is bad";
         }
     }
 
@@ -48,7 +43,7 @@ public class RequestObject {
         String token = mapCookie.get("token");
 
         if (token == null || idString == null) {
-            status = 200;
+            status = 401;
             jo.put("role", 0);
             resp = jo.toJSONString();
             ok = false;
@@ -58,7 +53,7 @@ public class RequestObject {
 
         user = DAOUser.readByTokenAndId(token, id);
         if (user == null) {
-            status = 200;
+            status = 404;
             jo.put("role", 0);
             resp = jo.toJSONString();
             ok = false;
@@ -69,10 +64,6 @@ public class RequestObject {
 
     public String getResp() {
         return resp;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getStatus() {
