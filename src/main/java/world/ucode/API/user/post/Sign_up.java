@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-@WebServlet("/user/sign_up")
+@WebServlet("/api/user/sign_up")
 public class Sign_up extends HttpServlet {
     private DAOusers DAOUser;
 
@@ -39,7 +39,7 @@ public class Sign_up extends HttpServlet {
 
         if (Utils.checkValidLogin(login) || Utils.checkValidPassword(password) || Utils.checkValidRole(role)) {
             resp.setStatus(406);
-            resp.getWriter().write("fuck you hacker, wrong parse");
+            resp.getWriter().write("validation fail");
             return;
         }
 
