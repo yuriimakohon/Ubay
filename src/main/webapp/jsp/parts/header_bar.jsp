@@ -22,10 +22,12 @@
                     <img id="img-auction" src="/resources/auction.svg" alt="auction">
                 </div>
             </a>
-            <div id="item-bids" class="header_bar-item hidden">
-                <label>Bids</label>
-                <img id="img-bids" src="/resources/bid.svg" alt="bids">
-            </div>
+            <a href="http://localhost:8080/bids">
+                <div id="item-bids" class="header_bar-item hidden">
+                    <label>Bids</label>
+                    <img id="img-bids" src="/resources/bid.svg" alt="bids">
+                </div>
+            </a>
             <div id="item-cart" class="header_bar-item hidden">
                 <label>Cart</label>
                 <img id="img-cart" src="/resources/cart.svg" alt="cart">
