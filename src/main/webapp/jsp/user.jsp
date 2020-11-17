@@ -42,15 +42,17 @@
                     }
                 %></span>
             </div>
-            <div id="info-avg_rate" class="secondary_info-item">
-                <span class="title">AVG rate:</span>
-                <span class="value">
-                    <div class="rate">
-                        <img src="/resources/star_light.svg" alt="rate">
-                        <span>4.2</span>
-                    </div>
-                </span>
-            </div>
+            <%
+                if (!jsonUser.get("role").toString().equals("2")) {
+                    out.println("<div id=\"info-avg_rate\" class=\"secondary_info-item\">");
+                    out.println("<span class=\"title\">AVG rate:</span>");
+                    out.println("<span class=\"value\">");
+                    out.println("<div class=\"rate\">");
+                    out.println("<img src=\"/resources/star_light.svg\" alt=\"rate\">");
+                    out.println("<span>4.2</span>");
+                    out.println("</div></span></div>");
+                }
+            %>
         </div>
         <button id="btn_auctions" class="btn">Look for auctions</button>
     </div>

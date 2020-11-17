@@ -88,9 +88,9 @@ public class Auction extends HttpServlet {
         ro.checkCookie(req.getCookies(), daoUser);
         ro.checkJson(req);
 
-        if (!ro.ok) {
-            resp.setStatus(ro.getStatus());
-            resp.getWriter().write(ro.getResp());
+        if (!ro.ok || ro.user.getUserRole() == 2) {
+            resp.setStatus(406);
+            resp.getWriter().write("permission denied");
             return;
         }
 
@@ -136,9 +136,9 @@ public class Auction extends HttpServlet {
         ro.checkCookie(req.getCookies(), daoUser);
         ro.checkJson(req);
 
-        if (!ro.ok) {
-            resp.setStatus(ro.getStatus());
-            resp.getWriter().write("validation fail");
+        if (!ro.ok || ro.user.getUserRole() == 2) {
+            resp.setStatus(406);
+            resp.getWriter().write("permission denied");
             return;
         }
 
@@ -177,7 +177,7 @@ public class Auction extends HttpServlet {
 
         ro.checkCookie(req.getCookies(), daoUser);
 
-        if (!ro.ok || lotId == -1) {
+        if (!ro.ok || ro.user.getUserRole() == 2 || lotId == -1) {
             resp.setStatus(406);
             resp.getWriter().write("validation fail");
             return;
