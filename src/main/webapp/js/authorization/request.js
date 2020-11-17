@@ -4,7 +4,7 @@ async function sign_up(login, password, role) {
         password: sha512(password),
         role: role
     };
-    let url = 'http://localhost:8080/user/sign_up';
+    let url = 'http://localhost:8080/api/user/sign_up';
 
     let response = await fetch( url, {
         method: 'POST',
@@ -15,12 +15,7 @@ async function sign_up(login, password, role) {
     });
     if (response.ok) {
         let user = await response.json();
-        localStorage.setItem("balance", user.balance);
-        localStorage.setItem("role", user.role);
-        localStorage.setItem("tokenTime", user.tokenTime);
-        localStorage.setItem("time", user.time);
-        localStorage.setItem("id", user.id);
-        localStorage.setItem('avatar', user.avatar);
+        setLocalStorage(user);
         return true;
     } else {
         console.log(await response.text());
@@ -33,7 +28,7 @@ async function sign_in(login, password) {
         login: login,
         password: sha512(password),
     };
-    let url = 'http://localhost:8080/user/sign_in';
+    let url = 'http://localhost:8080/api/user/sign_in';
 
     let response = await fetch( url, {
         method: 'POST',
@@ -45,15 +40,20 @@ async function sign_in(login, password) {
 
     if (response.ok) {
         let user = await response.json();
-        localStorage.setItem("balance", user.balance);
-        localStorage.setItem("role", user.role);
-        localStorage.setItem("tokenTime", user.tokenTime);
-        localStorage.setItem("time", user.time)
-        localStorage.setItem("id", user.id);
-        localStorage.setItem('avatar', user.avatar);
+        setLocalStorage(user);
         return true;
     } else {
         console.log(await response.text());
         return false;
     }
+}
+
+
+function setLocalStorage(user) {
+    localStorage.setItem("balance", user.balance);
+    localStorage.setItem("role", user.role);
+    localStorage.setItem("tokenTime", user.tokenTime);
+    localStorage.setItem("time", user.time)
+    localStorage.setItem("id", user.id);
+    localStorage.setItem('avatar', user.avatar);
 }

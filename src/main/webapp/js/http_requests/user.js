@@ -28,7 +28,9 @@ async function changeBalance(dollars) {
     })
     if (response.ok) {
         let cb = $('#counter-balance');
-        cb.text(+cb.text() + +dollars);
+        localStorage.setItem("balance", (+cb.text() + +dollars).toString());
+        let balance = Number(localStorage.getItem('balance')).toFixed(2);
+        cb.text(balance);
         localStorage.setItem('balance', cb.text());
     } else {
         console.log(await response.text());

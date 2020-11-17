@@ -28,7 +28,7 @@ public class Bid {
     private int bidderId;
 
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @Column(name = "statusOfBid")
     private int statusOfBid;
@@ -47,7 +47,51 @@ public class Bid {
         return bidderId;
     }
 
-//    public Lot getLot(){
+    public void setBidderId(int bidderId) {
+        this.bidderId = bidderId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLot(Lot lot) {
+        this.lot = lot;
+    }
+
+    public void setLotId(int lotId) {
+        this.lotid = lotId;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setStatusOfBid(int statusOfBid) {
+        this.statusOfBid = statusOfBid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getLotId() {
+        return lotid;
+    }
+
+    public int getStatusOfBid() {
+        return statusOfBid;
+    }
+
+    public Lot getLot() {
+        return lot;
+    }
+
+    //    public Lot getLot(){
 //        return lot;
 //    }
 

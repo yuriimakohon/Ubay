@@ -49,7 +49,7 @@ public class Users implements Serializable{
     private int userRole;
 
     @Column(name="balance")
-    private long balance;
+    private double balance;
 
     @Column(name="userphoto")
     private String userphoto;
@@ -94,7 +94,7 @@ public class Users implements Serializable{
         return ref_token;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
@@ -110,12 +110,11 @@ public class Users implements Serializable{
         this.userphoto = userPhoto;
     }
 
-    public long getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public String getusertname() {
-
+    public String getUserName() {
         return username;
     }
 

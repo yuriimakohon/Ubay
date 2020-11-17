@@ -6,5 +6,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (user != null) {
         $('#input-login')
                  .val(user.login);
+        localStorage.setItem('balance', user.balance);
     }
 });

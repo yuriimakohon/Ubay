@@ -80,7 +80,7 @@
                     <button class="btn btn-red" onclick="onCancelBid()">
                         cancel
                     </button>
-                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">
+                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">
                         place a bid
                     </button>
                 </div>

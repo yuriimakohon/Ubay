@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-@WebServlet("/user/sign_in")
+@WebServlet("/api/user/sign_in")
 public class Sign_in extends HttpServlet {
     private DAOusers DAOUser;
 

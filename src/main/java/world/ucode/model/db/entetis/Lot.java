@@ -46,7 +46,7 @@ public class Lot {
     private int status;
 
     @Column(name = "highestBid")
-    private int highestBid;
+    private double highestBid;
 
     @Column(name = "bidderid")
     private int bidderId;
@@ -87,7 +87,7 @@ public class Lot {
         return bidNumber;
     }
 
-    public int getHighestBid() {
+    public double getHighestBid() {
         return highestBid;
     }
 
@@ -171,6 +171,17 @@ public class Lot {
         return lotId;
     }
 
+    public void setHighestBid(double highestBid) {
+        this.highestBid = highestBid;
+    }
+
+    public void setLotId(int lotId) {
+        this.lotId = lotId;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public int getSellerId() {
         return sellerId;
