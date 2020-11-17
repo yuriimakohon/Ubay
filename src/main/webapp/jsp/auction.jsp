@@ -128,7 +128,11 @@
                 <div class="status-container">
                     <p class="status-title">Auction ends</p>
                     <div class="status_info-container">
-                        <p class="status_info-top">12.11.2020</p>
+                        <p class="status_info-top">
+                            <%
+                                out.println(jsonLot.get("duration").toString());
+                            %>
+                        </p>
                         <p class="status_info-bottom">00:00:00</p>
                     </div>
                 </div>
