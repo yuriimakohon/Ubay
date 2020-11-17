@@ -78,12 +78,12 @@ public class UserUtils {
         ro.checkCookie(req.getCookies(), daoUser);
 
         if (ro.ok) {
-            long balance;
+            double balance;
 
             try {
-                balance = Long.parseLong(ro.jo.get("balance").toString());
+                balance = Double.parseDouble(ro.jo.get("balance").toString());
             } catch (NumberFormatException e) {
-                resp.setStatus(409);
+                resp.setStatus(406);
                 resp.getWriter().write("validation fail");
                 return;
             }
