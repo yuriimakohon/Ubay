@@ -88,7 +88,6 @@
 
 .checkbox_input input {
     position: relative;
-    z-index: -1;
     width: 1.05em;
     height: 1.1em;
     display: inline-flex;
