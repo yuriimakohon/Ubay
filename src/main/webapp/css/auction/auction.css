@@ -92,7 +92,7 @@
     align-items: center;
 }
 
-#btn-bid {
+#btn-show_bid {
     font-size: 28px;
     height: 50px;
 }
@@ -211,6 +211,18 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+.btn_bids-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#your_bid {
+    font-weight: 500;
+    font-size: 21px;
+    color: #0087E9;
 }
 
 /*===============| Feedbacks |==============*/

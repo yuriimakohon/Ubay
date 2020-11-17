@@ -69,7 +69,21 @@
                 </div>
             </div>
             <div id="btn-bid-container">
-                <button id="btn-bid" class="btn">Bid</button>
+                <button id="btn-show_bid" class="btn" onclick="onShowBid()">Bid</button>
+            </div>
+            <div id="bid-container" class="hidden">
+                <label id="your_bid">
+                    Your bid:
+                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()) + 1);%>">
+                </label>
+                <div class="btn_bids-container">
+                    <button class="btn btn-red" onclick="onCancelBid()">
+                        cancel
+                    </button>
+                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">
+                        place a bid
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -180,6 +194,7 @@
 </div>
 
 <script src="/js/auction/switch_photo.js"></script>
+<script src="/js/auction/bid.js"></script>
 <script defer src="/js/auction/evaluation.js"></script>
 <script defer src="/js/auction/feedbacks.js"></script>
 <%@include file="parts/scripts.jsp"%>
