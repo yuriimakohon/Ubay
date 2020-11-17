@@ -11,7 +11,7 @@
             <button class="btn" id="btn-search">
                 Search
             </button>
-            <button class="btn" id="btn-advanced_search" onmouseover="showBtnAdvanceSearch()" onmouseout="hideBtnAdvanceSearch()">
+            <button class="btn" id="btn-advanced_search" onmouseover="showBtnAdvanceSearch()" onmouseout="hideBtnAdvanceSearch()" onclick="onAdvancedSearch()">
                 >
             </button>
         </div>
