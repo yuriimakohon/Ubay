@@ -9,11 +9,12 @@
     padding-bottom: 50px;
 }
 
-.text-search label {
+.text-search label,
+.prop-search h4 {
     display: block;
-    color: #0079D1;
-    font-size: 21px;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 18px;
+    color: #0087E9;
 }
 
 .text_input {
@@ -28,4 +29,45 @@
 #btn-description_search {
     margin-left: 50px;
     width: 70px;
+}
+
+.prop-search {
+    margin-top: 20px;
+}
+
+.prop-search-container {
+    display: flex;
+    flex-flow: column;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.number_input {
+    width: 100px;
+}
+
+#range-rate {
+    width: 200px;
+}
+
+#p-rate {
+    margin-left: 20px;
+    display: inline;
+    color: #0087E9;
+}
+
+#p-rate:after {
+    content: ' Star(s)';
+}
+
+.btn-container {
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#btn-adv_search {
+    font-size: 21px;
+    width: 250px;
+    height: 50px;
 }

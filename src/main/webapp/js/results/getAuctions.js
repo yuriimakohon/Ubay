@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
+document.addEventListener("DOMContentLoaded", async function loadAuctions() {
     await ref_token();
 
     let response = await fetch('http://localhost:8080/api/auction', {
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
     });
     if (response.ok) {
         let json = await response.json();
-        auctionsGen(json);
+        resultAuctionsGen(json);
     } else {
         console.log("what is wrong ?");
     }
