@@ -1,12 +1,16 @@
 package world.ucode.model.db.dao;
 
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
+import world.ucode.model.db.util.Querystring;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOlot implements DAO<Lot, Integer>{
@@ -77,22 +81,15 @@ public class DAOlot implements DAO<Lot, Integer>{
         return listOfLot;
     }
 
-    public List<Lot> getAllLotsbyCategoris() {
+    public List<Lot> getAllLotsbyCategoris(List<String> categories, String tittle, long startPrice, int rate, int status, String login, int userid) {
         Transaction transaction = null;
         List <Lot> listOfLot = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            String cate = "Sport";
 
-            String qua = "from Lot where ";
-            for (int i = 0; i < 1; i++) {
-                qua = qua + "category like :" + cate;
-            }
-
-
-            //String qua = "from Lot where category like :category1";
-            listOfLot = session.createQuery(qua, Lot.class).setParameter(cate, "%"+cate+"%").getResultList();
+            Query query = Querystring.stringmaker(categories, session, tittle, startPrice, rate, status, login, userid);
+            listOfLot = query.getResultList();
 
             transaction.commit();
         } catch (Exception e) {

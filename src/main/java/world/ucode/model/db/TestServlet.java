@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/db")
@@ -119,8 +120,18 @@ public class TestServlet extends HttpServlet {
 //        System.out.println("endess3***********************************************");
 //
 //        Users existingUser4 = user.getUserandLotbyToken("token2");
+        List<String> list = new ArrayList<>();
+        list.add("Sport");
+//        list.add("Techika");
+        String login = "first";
+        String tittle = "tittle1";
+        long price = 10;
+        int rate = 1;
+        int status = 3;
+        int userid = 123;
+
 //
-        List<Lot> mist4 = lots.getAllLotsbyCategoris();
+        List<Lot> mist4 = lots.getAllLotsbyCategoris(list, null, 0, 0, 2, null, userid);
         for(Lot element : mist4) {
             System.out.println(element.getSellerId());
         }
