@@ -96,6 +96,7 @@
     padding-bottom: 5px;
     font-size: 14px;
     font-weight: 500;
+    overflow-wrap: anywhere;
     color: #0087E9;
 }
 
