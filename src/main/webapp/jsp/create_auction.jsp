@@ -52,7 +52,7 @@
             <div id="duration-container" class="text_input-item">
                 <p>Duration</p>
                 <label>
-                    <input id="range-duration" class="range-input" type="range" min="1" max="10" value="2" onchange="onRangeDuration()">
+                    <input id="range-duration" class="range-input" type="range" min="1" max="10" value="2" onmousemove="onRangeDuration()">
                     <p id="p-duration"></p>
                 </label>
             </div>
