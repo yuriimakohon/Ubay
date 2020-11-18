@@ -1,9 +1,11 @@
 package world.ucode.API.feedback;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOfeedback;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Feedback;
+import world.ucode.utils.ParseJson;
 import world.ucode.utils.RequestObject;
 import world.ucode.utils.auction.ValidatorAuction;
 
@@ -49,6 +51,8 @@ public class ApiFeedback extends HttpServlet {
                 );
 
         daoFeedback.create(feedback);
+
+        resp.getWriter().write(ro.user.getLogin());
     }
 
 }
