@@ -42,6 +42,7 @@
                     %>
                 </div>
             </div>
+            <div id="info_text" class="hidden">Error</div>
             <div id="prices" style="text-align: right">
                 <div class="info">
                     <span class="info-title">Bids count:</span>
@@ -141,7 +142,6 @@
                 <%
                     out.println("<button class=\"btn\" onclick=\"onFeedbacks(" + jsonLot.get("lotId").toString() + ")\">Feedbacks</button>");
                 %>
-<%--                <button class="btn" onclick="onFeedbacks()">Feedbacks</button>--%>
             </div>
         </div>
     </div>
@@ -201,6 +201,7 @@
 <script src="/js/auction/bid.js"></script>
 <script defer src="/js/auction/evaluation.js"></script>
 <script defer src="/js/auction/feedbacks.js"></script>
+<script defer src="/js/auction/info_text.js"></script>
 <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

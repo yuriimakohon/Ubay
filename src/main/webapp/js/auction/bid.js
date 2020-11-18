@@ -5,6 +5,13 @@ let inputBid = $('#input-bid');
 
 $('#your_bid input').after(' $');
 
+
+function hideBidContainer() {
+    prices.removeClass('hidden');
+    btnShowBid.removeClass('hidden');
+    bidContainer.addClass('hidden');
+}
+
 function onShowBid() {
     prices.addClass('hidden');
     btnShowBid.addClass('hidden');
@@ -17,9 +24,10 @@ function onCancelBid() {
     bidContainer.addClass('hidden');
 }
 
+
 async function onPlaceBid(lotId, currentBid) {
     if (+inputBid.val() <= +currentBid) {
-        alert('Your bid can\'t be lower than current highest bid');
+        errLowBid();
     } else {
         let bid = {
           lotId: lotId,
@@ -39,9 +47,11 @@ async function onPlaceBid(lotId, currentBid) {
 
         if (response.ok) {
             if (response.status === 200) {
-                console.log('Your bid ' + inputBid.val() + '$ was successfully placed!');
+                hideBidContainer();
+                successBid();
             } else {
-                console.log('you win')
+                successWon();
+                hideBidContainer();
             }
 
             localStorage.setItem('balance', (+localStorage.getItem('balance') - +inputBid.val()).toString())
@@ -52,10 +62,7 @@ async function onPlaceBid(lotId, currentBid) {
             bids_count.text((+bids_count.text() + 1).toString());
             $('#info-title-current_price').text(inputBid.val() + " ");
         } else {
-            console.log(message)
+            errMsg(message);
         }
-        prices.removeClass('hidden');
-        btnShowBid.removeClass('hidden');
-        bidContainer.addClass('hidden');
     }
 }
