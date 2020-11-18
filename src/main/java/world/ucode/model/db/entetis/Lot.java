@@ -60,6 +60,8 @@ public class Lot {
     @Column(name="category")
     private String category;
 
+    @Column(name = "rate")
+    private int rate;
 //    public Lot() {}
 
 

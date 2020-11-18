@@ -20,5 +20,6 @@
         <mapping  class="world.ucode.model.db.entetis.Users"/>
         <mapping  class="world.ucode.model.db.entetis.Bid"/>
         <mapping  class="world.ucode.model.db.entetis.Lot"/>
+        <mapping  class="world.ucode.model.db.entetis.Feedback"/>
     </session-factory>
 </hibernate-configuration>
