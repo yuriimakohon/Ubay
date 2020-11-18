@@ -6,7 +6,8 @@ async function onCreateAuction() {
     let startPrice = $('#input-start_price').val();
     let maxPrice = $('#input-max_price').val();
     let startTime = $('#input-start_time').val();
-    let duration = $('#range-duration').val();
+    let duration = +$('#range-duration').val();
+    // let duration = addDays(datetimeToData(startTime), +$('#range-duration').val());  //TODO: manual user control ^^^^^
     let photos = document.getElementById('input-photos');
 
     if (!title || !desc || !startPrice || !maxPrice || !startTime || photos.files.length < 1) {
@@ -54,3 +55,5 @@ async function onCreateAuction() {
         }
     }
 }
+1605707565981
+1605707997981

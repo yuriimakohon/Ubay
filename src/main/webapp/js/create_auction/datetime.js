@@ -1,5 +1,4 @@
-function addDays(days) {
-    let date = new Date();
+function addDays(date, days) {
     date.setDate(date.getDate() + days);
     return date;
 }
@@ -29,7 +28,7 @@ function dateToStringTime(date) {
     return string;
 }
 
-let maxStartTime = dateToStringTime(addDays(7));
+let maxStartTime = dateToStringTime(addDays(new Date(), 7));
 
 $('#input-start_time').attr('max', maxStartTime);
 
