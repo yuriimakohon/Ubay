@@ -6,7 +6,6 @@
     <%@include file="parts/resources.jsp"%>
     <link rel="stylesheet" href="/css/results/results.css">
     <link rel="stylesheet" href="/css/parts/auction_list.css">
-    <script src="/js/parts/ref_token.js"></script>
 </head>
 <body>
 <%@include file="parts/header_bar.jsp"%>
