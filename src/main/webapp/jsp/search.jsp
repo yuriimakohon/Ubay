@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="btn-container">
-        <button id="btn-adv_search" class="btn">Search</button>
+        <button id="btn-adv_search" class="btn" onclick="search()">Search</button>
     </div>
 </div>
 
