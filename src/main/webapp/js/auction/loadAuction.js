@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    await ref_token();
+    if (await ref_token()) {
+        window.location.replace('/authorization');
+    }
     let lot = await get_auction();
     if (lot != null) {
         let rd = $('#range-duration');
