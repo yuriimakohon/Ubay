@@ -155,8 +155,7 @@
         <div class="feedbacks-container">
             <div class="user-feedback card">
                 <h3>Leave feedback</h3>
-                <textarea class="textarea" placeholder="Leave your opinion about the auction"
-                          maxlength="500"></textarea>
+                <textarea id="textarea_feedback" class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
                 <div class="user-feedback-control">
                     <div class="feedback-evaluation-container">
                         <img id="star-1" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
@@ -171,7 +170,7 @@
                              alt="star" onclick="onStar(5)">
                         <p id="user-evaluation" class="evaluation">5</p>
                     </div>
-                    <button class="btn">Send</button>
+                    <button class="btn" onclick="onSendFeedback()">Send</button>
                 </div>
             </div>
         </div>
@@ -183,6 +182,7 @@
 <script defer src="/js/auction/evaluation.js"></script>
 <script defer src="/js/auction/feedbacks.js"></script>
 <script defer src="/js/auction/info_text.js"></script>
+<script defer src="/js/auction/onSendFeedback.js"></script>
 
 <script defer src="/js/auction/setTimer.js"></script>
 
