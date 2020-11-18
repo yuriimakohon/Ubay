@@ -89,7 +89,7 @@ public class Auction extends HttpServlet {
         ro.checkJson(req);
 
         if (!ro.ok || ro.user.getUserRole() == 2) {
-            resp.setStatus(406);
+            resp.setStatus(403);
             resp.getWriter().write("permission denied");
             return;
         }
