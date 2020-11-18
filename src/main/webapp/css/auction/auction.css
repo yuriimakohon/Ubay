@@ -328,3 +328,10 @@
     border-top: 2px solid #0079D1;
     color: #2AA6FF;
 }
+
+/*=============| Info text |===========*/
+.error_text,
+.success_text {
+    padding: 5px 20px !important;
+    margin: 20px auto !important;
+}

@@ -52,16 +52,16 @@ public class Bids extends HttpServlet {
             Lot lot = daoLot.read(lotId);
             if (lot == null) {
                 resp.setStatus(406);
-                resp.getWriter().write("lot is not exists");
+                resp.getWriter().write("Lot is not exists");
             } else if (ro.user.getBalance() < bid) {
                 resp.setStatus(406);
-                resp.getWriter().write("not enough money");
+                resp.getWriter().write("Not enough money");
             } else if (lot.getHighestBid() >= bid || lot.getPrice() >= bid) {
                 resp.setStatus(406);
-                resp.getWriter().write("bid is too small");
+                resp.getWriter().write("Bid is too small");
             } else if (lot.getBidderId() == ro.user.getId()) {
                 resp.setStatus(406);
-                resp.getWriter().write("you already have bid here");
+                resp.getWriter().write("You already have bid here");
             } else  {
                 Users lastBidder = daoUser.read(lot.getBidderId());
                 if (lastBidder != null) {
