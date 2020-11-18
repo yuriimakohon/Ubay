@@ -6,6 +6,7 @@
     <%@include file="parts/resources.jsp"%>
     <link rel="stylesheet" href="css/search/search.css">
     <script defer src="/js/search/rate.js"></script>
+    <script src="js/parts/ref_token.js"></script>
 </head>
 <body>
 <%@include file="parts/header_bar.jsp"%>
@@ -78,7 +79,7 @@
             <h4>Start price</h4>
             <div class="prop-search-container">
                 <label>
-                    <input class="number_input" type="number" placeholder="0.00" min="0" step="1">
+                    <input class="number_input" id="start-price" type="number" placeholder="0.00" min="0" step="1">
                 </label>
             </div>
         </div>
@@ -86,7 +87,7 @@
             <h4>Min Rate</h4>
             <div class="prop-search-container">
                 <label>
-                    <input id="range-rate" class="range-input" type="range" min="1" max="5" value="3" onchange="onRangeRate()">
+                    <input id="range-rate" class="range-input" type="range" min="1" max="5" value="3" onmousemove="onRangeRate()">
                     <p id="p-rate"></p>
                 </label>
             </div>

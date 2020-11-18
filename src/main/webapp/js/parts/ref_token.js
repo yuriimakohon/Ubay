@@ -11,7 +11,8 @@ async function ref_token() {
     });
     if (response.ok) {
         localStorage.setItem('time', (+time * 100).toString());
+        return false;
     } else {
-        window.location.replace('/authorization');
+        return true;
     }
 }
