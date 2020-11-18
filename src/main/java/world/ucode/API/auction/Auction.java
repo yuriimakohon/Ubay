@@ -187,7 +187,7 @@ public class Auction extends HttpServlet {
                 resp.setStatus(404);
                 resp.getWriter().write("lot not found");
             } else {
-                if (lot.getBidderId() != ro.user.getId()) {
+                if (lot.getSellerId() != ro.user.getId()) {
                     resp.setStatus(403);
                     resp.getWriter().write("permission denied");
                 } else {
