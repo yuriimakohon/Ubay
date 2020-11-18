@@ -10,13 +10,6 @@ async function onSendFeedback() {
         lotId: lotId
     }
 
-    // TODO: delete this alert
-    alert(
-        'REQUEST: Send feedback:\nText: ' + text +
-        '\nEval: ' + evaluation +
-        '\nLotId: ' + lotId
-    );
-
     // post request
     let response = await fetch("http://localhost:8080/api/feedback", {
         method: 'POST',
@@ -27,6 +20,7 @@ async function onSendFeedback() {
     });
 
     if (response.ok) {
-        $('.user-feedback').after();
+        let login = await response.text();
+        $('.user-feedback').after(feedbackHtmlGen(login, text, evaluation, localStorage.getItem('avatar')));
     }
 }
