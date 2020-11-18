@@ -137,7 +137,7 @@ public class Auction extends HttpServlet {
         ro.checkJson(req);
 
         if (!ro.ok || ro.user.getUserRole() == 2) {
-            resp.setStatus(406);
+            resp.setStatus(403);
             resp.getWriter().write("permission denied");
             return;
         }
@@ -154,7 +154,7 @@ public class Auction extends HttpServlet {
         Lot lot = daoLot.read(lotId);
 
         if (ro.user.getId() != lot.getSellerId()) {
-            resp.setStatus(406);
+            resp.setStatus(403);
             resp.getWriter().write("permission denied");
             return;
         }
@@ -169,21 +169,33 @@ public class Auction extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         RequestObject ro = new RequestObject();
-        ValidatorAuction va = new ValidatorAuction();
 
         int lotId = Utils.getId(req);
 
         ro.checkCookie(req.getCookies(), daoUser);
+        System.out.println(ro.user.getId());
 
         if (!ro.ok || ro.user.getUserRole() == 2 || lotId == -1) {
-            resp.setStatus(406);
-            resp.getWriter().write("validation fail");
-            return;
+            resp.setStatus(403);
+            resp.getWriter().write("permission denied");
+        } else {
+            Lot lot = daoLot.read(lotId);
+
+            if (lot == null) {
+                resp.setStatus(404);
+                resp.getWriter().write("lot not found");
+            } else {
+                if (lot.getBidderId() != ro.user.getId()) {
+                    resp.setStatus(403);
+                    resp.getWriter().write("permission denied");
+                } else {
+                    daoLot.delete(lotId);
+                }
+            }
         }
 
-        daoLot.delete(lotId);
     }
 }
 
