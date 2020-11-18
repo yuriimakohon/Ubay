@@ -55,5 +55,3 @@ async function onCreateAuction() {
         }
     }
 }
-1605707565981
-1605707997981
