@@ -77,7 +77,8 @@ async function onSaveChanges() {
             startPrice: startPrice,
             maxPrice: maxPrice,
             startTime: st.getTime(),
-            duration: duration
+            duration: duration,
+            status: 1
         };
         // download files
         // auction["images"] = await loadFiles(photos);
@@ -87,7 +88,7 @@ async function onSaveChanges() {
             method: 'PUT',
             credentials: 'same-origin',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(auction)
         });
