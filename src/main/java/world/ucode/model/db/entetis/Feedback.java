@@ -29,4 +29,11 @@ public class Feedback {
 
     @Column(name="userid")
     private int userId;
+
+    public Feedback(String comment, int mark, int lotId, int userId) {
+        this.comment = comment;
+        this.mark = mark;
+        this.lotId = lotId;
+        this.userId = userId;
+    }
 }
