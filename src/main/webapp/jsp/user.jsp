@@ -45,7 +45,11 @@
                 </span>
             </div>
         </div>
-        <button id="btn_auctions" class="btn">Look for auctions</button>
+        <%
+            if (jsonUser.get("role").toString().equals("1")) {
+                out.println("<button id=\"btn_auctions\" class=\"btn\">Look for auctions</button>");
+            }
+        %>
     </div>
 </div>
 
