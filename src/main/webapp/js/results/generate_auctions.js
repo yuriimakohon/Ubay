@@ -10,14 +10,12 @@ function auctionHtmlGen(lotId, title, price, bidsCount, photo) {
 
 function resultAuctionsGen(json) {
     let container = $('#auctions-container');
-
-    json.lots.forEach(el => {
-        let parsed = JSON.parse(el);
-        let title = parsed['title'];
-        let price = parsed['price'];
-        let lotId = parsed['lotId'];
-        let photo = parsed['photo']
-        let bidsCount = 5;
+    json.forEach(el => {
+        let title = el['title'];
+        let price = el['price'];
+        let lotId = el['lotId'];
+        let photo = el['photo'];
+        let bidsCount = el['bidCount'];
         let auction = auctionHtmlGen(lotId, title, price, bidsCount, photo);
 
         container.append(auction);
