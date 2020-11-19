@@ -43,7 +43,7 @@ async function onCreateAuction() {
             desc: desc,
             startPrice: startPrice,
             maxPrice: maxPrice,
-            startTime: st.getTime(),
+            startTime: new Date().getTime() + 10_000,
             duration: duration,
             categories: categories
         };
