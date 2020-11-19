@@ -44,5 +44,15 @@ function errStartTime() {
     showInfoText();
 }
 
+function errTitleFormat() {
+    setErrorText('Title can contain only alpha-numeric symbols, \',\' and \'!\'');
+    showInfoText();
+}
+
+function errDescriptionFormat() {
+    setErrorText('Title can contain only alpha-numeric symbols, \',\' and \'!\'');
+    showInfoText();
+}
+
 //=============| Success Messages |================//
 

@@ -20,7 +20,8 @@
 #start_price-container,
 #start_time-container,
 #btn-create_auction,
-#photos-container {
+#photos-container,
+#categories-container {
     margin-top: 30px;
 }
 
@@ -56,6 +57,12 @@ p:hover .tooltip {
 
 #p-duration::after {
     content: ' Day(s)';
+}
+
+.checkbox-container {
+    display: flex;
+    flex-flow: column;
+    margin-left: 20px;
 }
 
 /*==============| Edit auction |=============*/

@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", async function () {
+    if (await ref_token())
+        window.location.replace('/authorization');
+});
+
 async function onCreateAuction() {
     if (await ref_token())
         window.location.replace('/authorization');
@@ -13,6 +18,10 @@ async function onCreateAuction() {
 
     if (!title || !desc || !startPrice || !maxPrice || !startTime || photos.files.length < 1) {
         errEmptyFields();
+    } else if (!REGEX_LOT_TEXT.test(title)) {
+        errTitleFormat();
+    } else if (!REGEX_LOT_TEXT.test(desc)) {
+        errDescriptionFormat();
     } else if (photos.files.length > 6) {
         errPhotoCount();
     } else if (+maxPrice <= +startPrice) {
