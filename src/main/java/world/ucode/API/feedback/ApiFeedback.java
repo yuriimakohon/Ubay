@@ -3,24 +3,21 @@ package world.ucode.API.feedback;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOfeedback;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Feedback;
-import world.ucode.model.db.entetis.Lot;
-import world.ucode.utils.ParseJson;
+import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
-import world.ucode.utils.auction.ValidatorAuction;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 @WebServlet("/api/feedback/*")
@@ -44,16 +41,24 @@ public class ApiFeedback extends HttpServlet {
             resp.getWriter().write("there is no feedbacks or lot");
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            JSONObject jo = new JSONObject();
+            JSONParser jp = new JSONParser();
+            JSONObject jo;
             JSONArray ja = new JSONArray();
 
-            for (Feedback feedback : listOfFeedbacks)
-                ja.add(mapper.writeValueAsString(feedback));
-
-            jo.put("feedbacks", ja);
+            for (Feedback feedback : listOfFeedbacks) {
+                Users user = daoUser.read(feedback.getUserId());;
+                try {
+                    jo = (JSONObject) jp.parse(mapper.writeValueAsString(feedback));
+                    jo.put("login", user.getLogin());
+                    jo.put("avatar", user.getUserphoto());
+                    ja.add(jo);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
             resp.setContentType("application/json;charset=utf-8");
             resp.setStatus(200);
-            resp.getWriter().write(jo.toJSONString());
+            resp.getWriter().write(ja.toJSONString());
         }
     }
 

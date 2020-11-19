@@ -36,4 +36,24 @@ public class Feedback {
         this.lotId = lotId;
         this.userId = userId;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public int getLotId() {
+        return lotId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
 }
