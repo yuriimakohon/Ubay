@@ -39,8 +39,6 @@ public class Auction extends HttpServlet {
                 try {
                     JSONParser jp = new JSONParser();
                     JSONObject jo = (JSONObject) jp.parse(gaa.json);
-                    jo = (JSONObject) jp.parse(jo.get("lot").toString());
-
                     req.setAttribute("lot", jo.toJSONString());
 
                     GetUserAPI gua = new GetUserAPI(Integer.parseInt(jo.get("sellerId").toString()));
@@ -51,25 +49,6 @@ public class Auction extends HttpServlet {
                         jo = (JSONObject) jp.parse(gua.json);
                         req.setAttribute("user", jo.toJSONString());
                     }
-                    // lot
-//                    req.setAttribute("lotId", jo.get("lotId"));
-//                    req.setAttribute("title", jo.get("title"));
-//                    req.setAttribute("price", jo.get("price"));
-//                    req.setAttribute("maxPrice", jo.get("maxPrice"));
-//                    req.setAttribute("photo", jo.get("photo"));
-//                    req.setAttribute("startTime", jo.get("startTime"));
-//                    req.setAttribute("duration", jo.get("duration"));
-//                    req.setAttribute("desc", jo.get("description"));
-//                    req.setAttribute("status", jo.get("status"));
-//                    req.setAttribute("bid", jo.get("highestBid"));
-//                    req.setAttribute("b_count", jo.get("bidNumber"));
-//                    req.setAttribute("p_count", jo.get("photoNumber"));
-//                    req.setAttribute("category", jo.get("category"));
-//                    req.setAttribute("sellerId", jo.get("sellerId"));
-
-                    // user
-//                    req.setAttribute("login", jo.get("login"));
-//                    req.setAttribute("avatar", jo.get("avatar"));
                 } catch (ParseException | NullPointerException | NumberFormatException e) {
                     resp.setStatus(404);
                     System.out.println("error: " + e.getMessage());

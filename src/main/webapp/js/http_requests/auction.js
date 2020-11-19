@@ -25,8 +25,7 @@ async function get_auction() {
         credentials: 'same-origin'
     });
     if (response.ok) {
-        let json = await response.json()
-        return JSON.parse(json.lot);
+        return await response.json();
     } else {
         return null;
     }
