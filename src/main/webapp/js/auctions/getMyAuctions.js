@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
-    await ref_token();
+    if (await ref_token()) {
+        window.location.replace('/authorization');
+    }
 
     let response = await fetch('http://localhost:8080/api/auction', {
         method: 'GET',

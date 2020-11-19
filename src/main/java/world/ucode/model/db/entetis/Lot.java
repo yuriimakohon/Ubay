@@ -25,10 +25,10 @@ public class Lot {
     private String title;
 
     @Column(name = "price")
-    private long price;
+    private double price;
 
     @Column(name = "maxPrice") // add to table
-    private long maxPrice;
+    private double maxPrice;
 
     @Column(name = "photo")
     private String photo;
@@ -97,11 +97,11 @@ public class Lot {
         return duration;
     }
 
-    public long getMaxPrice() {
+    public double getMaxPrice() {
         return maxPrice;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -137,12 +137,20 @@ public class Lot {
         this.sellerId = sellerId;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public int getRate() {
+        return rate;
     }
 
     public void setHighestBid(int highestBid) {
@@ -161,7 +169,7 @@ public class Lot {
         this.duration = duration;
     }
 
-    public void setMaxPrice(long maxPrice) {
+    public void setMaxPrice(double maxPrice) {
         this.maxPrice = maxPrice;
     }
 

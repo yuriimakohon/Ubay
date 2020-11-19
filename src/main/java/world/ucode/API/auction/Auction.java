@@ -1,13 +1,13 @@
 package world.ucode.API.auction.get;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
-import world.ucode.utils.ParseJson;
 import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
 import world.ucode.utils.auction.ValidatorAuction;
@@ -40,9 +40,9 @@ public class Auction extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int lotId = Utils.getId(req);
         resp.setContentType("application/json;charset=utf-8");
+        ObjectMapper mapper = new ObjectMapper();
 
         if (lotId == 0) {
-            ObjectMapper mapper = new ObjectMapper();
             JSONObject jo = new JSONObject();
             JSONArray ja = new JSONArray();
 
@@ -59,7 +59,17 @@ public class Auction extends HttpServlet {
             }
 
             for (Lot lot : listOfLot) {
-                ja.add(mapper.writeValueAsString(lot));
+                String json = mapper.writeValueAsString(lot);
+                JSONParser jp = new JSONParser();
+                JSONObject joInside = null;
+
+                try {
+                    joInside = (JSONObject) jp.parse(json);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                ja.add(joInside);
             }
 
             jo.put("lots", ja);
@@ -75,7 +85,7 @@ public class Auction extends HttpServlet {
                 resp.getWriter().write("lot not found");
             } else {
                 resp.setStatus(200);
-                resp.getWriter().write(ParseJson.lotToJson(lot));
+                resp.getWriter().write(mapper.writeValueAsString(lot));
             }
         }
 
@@ -89,7 +99,7 @@ public class Auction extends HttpServlet {
         ro.checkJson(req);
 
         if (!ro.ok || ro.user.getUserRole() == 2) {
-            resp.setStatus(406);
+            resp.setStatus(403);
             resp.getWriter().write("permission denied");
             return;
         }
@@ -187,7 +197,7 @@ public class Auction extends HttpServlet {
                 resp.setStatus(404);
                 resp.getWriter().write("lot not found");
             } else {
-                if (lot.getBidderId() != ro.user.getId()) {
+                if (lot.getSellerId() != ro.user.getId()) {
                     resp.setStatus(403);
                     resp.getWriter().write("permission denied");
                 } else {

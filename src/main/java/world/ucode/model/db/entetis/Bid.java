@@ -20,7 +20,6 @@ public class Bid {
     @Column(name = "id")
     private int id;
 
-
     @Column(name = "lotid", nullable = false)
     private int lotid;
 
@@ -41,6 +40,19 @@ public class Bid {
 //    @ManyToOne (optional=false, cascade=CascadeType.ALL)
 //    @JoinColumn (name="bidderId", insertable = false, updatable = false)
 //    private Users user;
+
+    public Bid(int lotId, int bidderId, double price, int status) {
+        this.bidderId = bidderId;
+        this.lotid = lotId;
+        this.price = price;
+        this.statusOfBid = status;
+    }
+
+    public Bid(int lotId, int bidderId, double price) {
+        this.bidderId = bidderId;
+        this.lotid = lotId;
+        this.price = price;
+    }
 
 
     public int getBidderId() {
@@ -90,12 +102,4 @@ public class Bid {
     public Lot getLot() {
         return lot;
     }
-
-    //    public Lot getLot(){
-//        return lot;
-//    }
-
-//    public Users getUser(){
-//        return user;
-//    }
 }

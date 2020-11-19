@@ -3,6 +3,7 @@ package world.ucode.API.bids;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
+import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.RequestObject;
@@ -47,16 +48,16 @@ public class Bids extends HttpServlet {
             }
 
             int lotId = Integer.parseInt(ro.jo.get("lotId").toString());
-            double bid = Double.parseDouble(ro.jo.get("bid").toString());
+            double bidPrice = Double.parseDouble(ro.jo.get("bid").toString());
 
             Lot lot = daoLot.read(lotId);
             if (lot == null) {
                 resp.setStatus(406);
                 resp.getWriter().write("Lot is not exists");
-            } else if (ro.user.getBalance() < bid) {
+            } else if (ro.user.getBalance() < bidPrice) {
                 resp.setStatus(406);
                 resp.getWriter().write("Not enough money");
-            } else if (lot.getHighestBid() >= bid || lot.getPrice() >= bid) {
+            } else if (lot.getHighestBid() >= bidPrice || lot.getPrice() >= bidPrice) {
                 resp.setStatus(406);
                 resp.getWriter().write("Bid is too small");
             } else if (lot.getBidderId() == ro.user.getId()) {
@@ -64,23 +65,30 @@ public class Bids extends HttpServlet {
                 resp.getWriter().write("You already have bid here");
             } else  {
                 Users lastBidder = daoUser.read(lot.getBidderId());
+                Users owner = daoUser.read(lot.getSellerId());
                 if (lastBidder != null) {
                     System.out.println("balance update");
                     lastBidder.setBalance(lot.getHighestBid() + lastBidder.getBalance());
                     daoUser.update(lastBidder);
                 }
+                Bid bid = new Bid(lot.getLotId(), lot.getBidderId(), bidPrice);
+//                Bid loseBid = daoBid.read();
 
-                if (bid >= lot.getMaxPrice()) {
+                if (bidPrice >= lot.getMaxPrice()) {
                     lot.setStatus(2);
+                    bid.setStatusOfBid(3);
                     resp.setStatus(201);
+                    owner.setBalance(owner.getBalance() + bidPrice);
+                    daoUser.update(owner);
                 } else {
+                    bid.setStatusOfBid(2);
                     lot.setStatus(1);
                     resp.setStatus(200);
                 }
                 lot.setBidNumber(lot.getBidNumber() + 1);
-                lot.setHighestBid(bid);
+                lot.setHighestBid(bidPrice);
                 lot.setBidderId(ro.user.getId());
-                ro.user.setBalance(ro.user.getBalance() - bid);
+                ro.user.setBalance(ro.user.getBalance() - bidPrice);
                 daoUser.update(ro.user);
                 daoLot.update(lot);
             }

@@ -104,7 +104,7 @@
             <div class="additional_info">
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auctioneer</p>
-                    <div id="auctioneer-container" onclick="onAuctioneerContainer(<%=jsonUser.get("id").toString()%>)">
+                    <div id="auctioneer-container" onclick="onUser(<%=jsonUser.get("id").toString()%>)">
                         <%
                             if (response.getStatus() < 400) {
                                 out.println("<img id=\"img-auctioneer\" src=\"" + jsonUser.get("avatar").toString() + "\" alt=\"auctioneer avatar\"");
@@ -121,7 +121,7 @@
                     <p class="additional_info-item-title">Auction rate</p>
                     <div class="rate-container">
                         <img src="/resources/star_light.svg" alt="rate">
-                        <span>4.2</span>
+                        <span> <%out.println(jsonLot.get("rate").toString());%></span>
                     </div>
                 </div>
             </div>
@@ -152,11 +152,10 @@
         <h2 id="title-create_auction" class="title_text">Feedbacks</h2>
         <div class="title_line"></div>
 
-        <div class="feedbacks-container">
+        <div class="all-feedbacks-container">
             <div class="user-feedback card">
                 <h3>Leave feedback</h3>
-                <textarea class="textarea" placeholder="Leave your opinion about the auction"
-                          maxlength="500"></textarea>
+                <textarea id="textarea_feedback" class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
                 <div class="user-feedback-control">
                     <div class="feedback-evaluation-container">
                         <img id="star-1" class="evaluation_start evaluation_start-active" src="/resources/start.svg"
@@ -171,30 +170,10 @@
                              alt="star" onclick="onStar(5)">
                         <p id="user-evaluation" class="evaluation">5</p>
                     </div>
-                    <button class="btn">Send</button>
+                    <button class="btn" onclick="onSendFeedback()">Send</button>
                 </div>
             </div>
-            <div class="feedback card">
-                <div class="feedback-info-container">
-                    <div class="feedback_author">
-                        <img src="/resources/test2.jpeg">
-                        <span>user_login</span>
-                    </div>
-                    <div class="feedback-evaluation-container">
-                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
-                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
-                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
-                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
-                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">
-                    </div>
-                </div>
-                <p class="feedback-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </div>
+            <div id="feedbacks-container"></div>
         </div>
     </div>
 </div>
@@ -204,6 +183,7 @@
 <script defer src="/js/auction/evaluation.js"></script>
 <script defer src="/js/auction/feedbacks.js"></script>
 <script defer src="/js/auction/info_text.js"></script>
+<script defer src="/js/auction/onSendFeedback.js"></script>
 
 <script defer src="/js/auction/setTimer.js"></script>
 

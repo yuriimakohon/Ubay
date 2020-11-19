@@ -39,7 +39,7 @@ public class refreshToken extends HttpServlet {
         Users user = daoUser.read(Integer.parseInt(idS));
 
         if (user == null || !user.getRef_token().equals(ref_token)) {
-            resp.setStatus(406);
+            resp.setStatus(403);
             return;
         }
         Token.createSetTokens(user, resp, daoUser);

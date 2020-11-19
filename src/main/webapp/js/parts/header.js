@@ -50,5 +50,5 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 function onAdvancedSearch() {
-    window.location.replace("http://localhost:8080/search");
+    window.location.replace('/search');
 }
