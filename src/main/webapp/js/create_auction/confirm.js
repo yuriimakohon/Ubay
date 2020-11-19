@@ -32,6 +32,11 @@ async function onCreateAuction() {
         //parse date
         let st = datetimeToData(startTime);
 
+        let categories = check_categories()
+        if (categories !== '') {
+            categories = categories.slice(1, categories.length);
+        }
+
         // create object for request
         let auction = {
             title: title,
@@ -39,7 +44,8 @@ async function onCreateAuction() {
             startPrice: startPrice,
             maxPrice: maxPrice,
             startTime: st.getTime(),
-            duration: duration
+            duration: duration,
+            categories: categories
         };
         // download files
         auction["images"] = await loadFiles(photos);
@@ -60,4 +66,23 @@ async function onCreateAuction() {
             showInfoText();
         }
     }
+}
+
+
+function check_categories() {
+    let collectibles = $('#checkbox-collectibles');
+    let technics = $('#checkbox-technics');
+    let furniture = $('#checkbox-furniture');
+    let clothing = $('#checkbox-clothing');
+    let household = $('#checkbox-household');
+    let jewellery = $('#checkbox-jewellery');
+    let categories = '';
+
+    categories += check_category(collectibles, 'collectibles');
+    categories += check_category(technics, 'technics');
+    categories += check_category(clothing, 'clothing');
+    categories += check_category(furniture, 'furniture');
+    categories += check_category(household, 'household');
+    categories += check_category(jewellery, 'jewellery');
+    return categories;
 }

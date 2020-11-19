@@ -17,13 +17,15 @@ public class ValidatorAuction {
         String durationS = jsonAuction.get("duration").toString();
         String startPriceS = jsonAuction.get("startPrice").toString();
         String maxPriceS = jsonAuction.get("maxPrice").toString();
+        String categories = jsonAuction.get("categories").toString();
 
         if (desc == null
                 || title == null
                 || startPriceS == null
                 || startTimeS == null
                 || durationS == null
-                || maxPriceS == null) {
+                || maxPriceS == null
+                || categories == null) {
             return false;
         }
 
@@ -54,6 +56,7 @@ public class ValidatorAuction {
         lot.setDuration(duration);
         lot.setPrice(startPrice);
         lot.setMaxPrice(maxPrice);
+        lot.setCategory(categories);
         lot.setRate(5);
         lot.setStatus(1);
         return true;

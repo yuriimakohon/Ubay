@@ -37,27 +37,27 @@
                 <p>Categories</p>
                 <div class="checkbox-container">
                     <label class="checkbox_input">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-collectibles">
                         Collectibles
                     </label>
                     <label class="checkbox_input">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-clothing">
                         Clothing
                     </label>
                     <label class="checkbox_input">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-technics">
                         Technics
                     </label>
                     <label class="checkbox_input">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-furniture">
                         Furniture
                     </label>
                     <label class="checkbox_input">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-household">
                         Household
                     </label>
                     <label class="checkbox_input">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-jewellery">
                         Jewellery
                     </label>
                 </div>
@@ -88,8 +88,6 @@
             <button id="btn-create_auction" class="btn" onclick="onCreateAuction()">Create auction</button>
         </div>
     </div>
-
-    <script src="/js/parts/validation.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
