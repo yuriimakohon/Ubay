@@ -55,7 +55,7 @@ public class Token {
     }
 
     public static long getTimeOfToken() {
-        return 1200;
+        return 1200000;
     }
 
     public static void createSetTokens(Users user, HttpServletResponse resp, DAOusers daoUser) throws JsonProcessingException {

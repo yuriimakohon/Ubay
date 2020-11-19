@@ -37,17 +37,6 @@ async function search() {
     window.location.replace('/results' + url);
 }
 
-function check_categories() {
-    let categories = '';
-    categories += check_category(collectibles, 'collectibles');
-    categories += check_category(technics, 'technics');
-    categories += check_category(clothing, 'clothing');
-    categories += check_category(furniture, 'furniture');
-    categories += check_category(household, 'household');
-    categories += check_category(jewellery, 'jewellery');
-    return categories;
-}
-
 function check_status() {
     let status = ''
     if (active.is(':checked')) {

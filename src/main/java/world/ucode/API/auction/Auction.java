@@ -1,15 +1,12 @@
 package world.ucode.API.auction.get;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
+import world.ucode.utils.auction.AuctionUtils;
 import world.ucode.utils.auction.ValidatorAuction;
 
 import javax.servlet.ServletConfig;
@@ -22,7 +19,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
 
 @WebServlet("/api/auction/*")
 public class Auction extends HttpServlet {
@@ -38,61 +34,23 @@ public class Auction extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int lotId = Utils.getId(req);
         resp.setContentType("application/json;charset=utf-8");
-        ObjectMapper mapper = new ObjectMapper();
+        int lotId = Utils.getId(req);
 
         if (lotId == 0) {
-            JSONObject jo = new JSONObject();
-            JSONArray ja = new JSONArray();
-
-            if (daoLot == null) {
-                System.out.println("daoLot null");
-            }
-
-            List<Lot> listOfLot = daoLot.getAllLots();
-
-            if (listOfLot == null) {
-                resp.setStatus(404);
-                resp.getWriter().write("lot not found");
-                return;
-            }
-
-            for (Lot lot : listOfLot) {
-                String json = mapper.writeValueAsString(lot);
-                JSONParser jp = new JSONParser();
-                JSONObject joInside = null;
-
-                try {
-                    joInside = (JSONObject) jp.parse(json);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                ja.add(joInside);
-            }
-
-            jo.put("lots", ja);
-            resp.setStatus(200);
-            resp.getWriter().write(jo.toJSONString());
+            AuctionUtils.sendLots(resp, daoLot);
         } else if (lotId == -1) {
             resp.setStatus(404);
             resp.getWriter().write("lot not found");
         } else {
-            Lot lot = daoLot.read(lotId);
-            if (lot == null) {
-                resp.setStatus(404);
-                resp.getWriter().write("lot not found");
-            } else {
-                resp.setStatus(200);
-                resp.getWriter().write(mapper.writeValueAsString(lot));
-            }
+            AuctionUtils.sendLot(resp, lotId, daoLot);
         }
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json;charset=utf-8");
         RequestObject ro = new RequestObject();
 
         ro.checkCookie(req.getCookies(), daoUser);
@@ -141,6 +99,7 @@ public class Auction extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json;charset=utf-8");
         RequestObject ro = new RequestObject();
 
         ro.checkCookie(req.getCookies(), daoUser);
@@ -175,35 +134,22 @@ public class Auction extends HttpServlet {
         lot.setMaxPrice(va.lot.getMaxPrice());
         lot.setStartTime(va.lot.getStartTime());
         lot.setDuration(va.lot.getDuration());
+        lot.setCategory(va.lot.getCategory());
         daoLot.update(lot);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json;charset=utf-8");
         RequestObject ro = new RequestObject();
+        ro.checkCookie(req.getCookies(), daoUser);
 
         int lotId = Utils.getId(req);
-
-        ro.checkCookie(req.getCookies(), daoUser);
-        System.out.println(ro.user.getId());
-
         if (!ro.ok || ro.user.getUserRole() == 2 || lotId == -1) {
             resp.setStatus(403);
             resp.getWriter().write("permission denied");
         } else {
-            Lot lot = daoLot.read(lotId);
-
-            if (lot == null) {
-                resp.setStatus(404);
-                resp.getWriter().write("lot not found");
-            } else {
-                if (lot.getSellerId() != ro.user.getId()) {
-                    resp.setStatus(403);
-                    resp.getWriter().write("permission denied");
-                } else {
-                    daoLot.delete(lotId);
-                }
-            }
+            AuctionUtils.deleteAuction(resp, lotId, daoLot, ro.user);
         }
 
     }

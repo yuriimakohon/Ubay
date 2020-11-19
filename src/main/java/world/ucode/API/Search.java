@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.entetis.Lot;
+import world.ucode.utils.Utils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -41,18 +42,19 @@ public class Search extends HttpServlet {
         String[] masStringPrice = mp.get("price");
         String[] masStringRate = mp.get("rate");
         String[] masStringStatus = mp.get("status");
+        String[] masStringId = mp.get("user_id");
         String title = null;
         String login = null;
-        String stringPrice = null;
-        String stringRate = null;
         String stringStatus = null;
 
-        int userId = 0;
         double price = 0;
         int rate = 0;
         int status = 0;
+        int userId = 0;
 
-
+        if (masStringId != null) {
+            userId = Integer.parseInt(masStringId[0]);
+        }
         if (masTitle != null) {
             title = masTitle[0];
         }
@@ -65,12 +67,10 @@ public class Search extends HttpServlet {
             login = masLogin[0];
         }
         if (masStringPrice != null) {
-            stringPrice = masStringPrice[0];
-            price  = Double.parseDouble(stringPrice);
+            price  = Double.parseDouble(masStringPrice[0]);
         }
         if (masStringRate != null) {
-            stringRate = masStringRate[0];
-            rate = Integer.parseInt(stringRate);
+            rate = Integer.parseInt(masStringRate[0]);
         }
         if (masStringStatus != null) {
             stringStatus = masStringStatus[0];
@@ -78,30 +78,9 @@ public class Search extends HttpServlet {
             status = Integer.parseInt(stats[1]);
         }
 
-        System.out.println("title: " + title);
-        System.out.println("price: " + price);
-        System.out.println("rate: " + rate);
-        System.out.println("status: " + status);
-        System.out.println("userId: " + userId);
+        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, login, userId);
 
-        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, login, 0);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String json = null;
-        JSONParser jp = new JSONParser();
-        JSONArray ja = new JSONArray();
-        JSONObject jo = null;
-
-        for (Lot lot : ll) {
-            json = mapper.writeValueAsString(lot);
-            try {
-                jo = (JSONObject) jp.parse(json);
-                ja.add(jo);
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
-            }
-        }
         resp.setStatus(200);
-        resp.getWriter().write(ja.toJSONString());
+        resp.getWriter().write(Utils.lotsToJsonArray(ll).toJSONString());
     }
 }

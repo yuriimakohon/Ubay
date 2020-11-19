@@ -38,27 +38,27 @@
             <p>Categories</p>
             <div class="checkbox-container">
                 <label class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox-collectibles">
                     Collectibles
                 </label>
                 <label class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox-clothing">
                     Clothing
                 </label>
                 <label class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox-technics">
                     Technics
                 </label>
                 <label class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox-furniture">
                     Furniture
                 </label>
                 <label class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox-household">
                     Household
                 </label>
                 <label class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox-jewellery">
                     Jewellery
                 </label>
             </div>
