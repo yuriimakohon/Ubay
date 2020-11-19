@@ -20,11 +20,11 @@
         <h3>By text</h3>
         <div class="text-search">
             <label for="input-title">Title</label>
-            <input id="input-title" class="text_input" type="text" placeholder="Search auction with title">
+            <input id="input-title" class="text_input text_input-search" type="text" placeholder="Search auction with title">
         </div>
         <div id="description" class="text-search">
             <label for="input-login">User login</label>
-            <input id="input-login" class="text_input" type="text" placeholder="Search auction by user login">
+            <input id="input-login" class="text_input text_input-search" type="text" placeholder="Search auction by user login">
         </div>
     </div>
 

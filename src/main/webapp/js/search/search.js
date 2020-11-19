@@ -23,7 +23,8 @@ async function search() {
         url = addParam(url, 'login', login.val());
     }
     if (categories !== '') {
-        url = addParam(url, 'categories', categories + '-');
+        categories = categories.slice(1, categories.length);
+        url = addParam(url, 'categories', categories);
     }
     if (status !== '') {
         url = addParam(url, 'status', status);
@@ -38,24 +39,12 @@ async function search() {
 
 function check_categories() {
     let categories = '';
-    if (collectibles.is(':checked')) {
-        categories += '-collectibles';
-    }
-    if (technics.is(':checked')) {
-        categories += '-technics';
-    }
-    if (clothing.is(':checked')) {
-        categories += '-clothing';
-    }
-    if (furniture.is(':checked')) {
-        categories += '-furniture';
-    }
-    if (household.is(':checked')) {
-        categories += '-household';
-    }
-    if (jewellery.is(':checked')) {
-        categories += '-jewellery';
-    }
+    categories += check_category(collectibles, 'collectibles');
+    categories += check_category(technics, 'technics');
+    categories += check_category(clothing, 'clothing');
+    categories += check_category(furniture, 'furniture');
+    categories += check_category(household, 'household');
+    categories += check_category(jewellery, 'jewellery');
     return categories;
 }
 

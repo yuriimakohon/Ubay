@@ -31,7 +31,7 @@
             </div>
             <a href="http://localhost:8080/account">
                 <div id="item-balance" class="header_bar-item hidden">
-                    <label id="counter-balance">19.23</label>
+                    <label id="counter-balance"></label>
                     <img id="img-balance" src="/resources/dollar.svg" alt="balance">
                 </div>
             </a>
