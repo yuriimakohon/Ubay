@@ -1,5 +1,6 @@
 async function onCreateAuction() {
-    await ref_token();
+    if (await ref_token())
+        window.location.replace('/authorization');
 
     let title = $('#input-title').val();
     let desc = $('#textarea-description').val();
