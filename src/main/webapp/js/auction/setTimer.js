@@ -1,24 +1,47 @@
-document.addEventListener("DOMContentLoaded", function setTimer() {
-    // let countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-    let countDownDate = document.getElementById("status_info-bottom").innerText;
+// document.addEventListener("DOMContentLoaded", function setTimer() {
+//     // let countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+//     let countDownDate = document.getElementById("status_info-bottom").innerText;
+//
+//     let x = setInterval(function () {
+//
+//         let now = new Date().getTime();
+//
+//         let distance = countDownDate - now;
+//
+//         let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//         let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//
+//         document.getElementById("status_info-bottom").innerHTML = days + "d " + hours + "h "
+//             + minutes + "m " + seconds + "s ";
+//
+//         if (distance < 0) {
+//             clearInterval(x);
+//             document.getElementById("status_info-bottom").innerHTML = "EXPIRED";
+//         }
+//     }, 100);
+// });
 
-    let x = setInterval(function () {
+// let countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+let countDownDate = document.getElementById("status_info-bottom").innerText;
 
-        let now = new Date().getTime();
+let x = setInterval(function () {
 
-        let distance = countDownDate - now;
+    let now = new Date().getTime();
 
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let distance = countDownDate - now;
 
-        document.getElementById("status_info-bottom").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("status_info-bottom").innerHTML = "EXPIRED";
-        }
-    }, 100);
-});
+    document.getElementById("status_info-bottom").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("status_info-bottom").innerHTML = "EXPIRED";
+    }
+}, 100);
