@@ -56,11 +56,7 @@ async function onCreateAuction() {
         if (response.ok) {
             window.location.replace("/auctions");
         } else {
-            if (response.status === 406) {
-                setErrorText('permission denied');
-            } else {
-                setErrorText('error');
-            }
+            setErrorText('permission denied');
             showInfoText();
         }
     }

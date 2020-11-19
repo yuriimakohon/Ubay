@@ -1,9 +1,12 @@
 package world.ucode.API;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
-import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
-import world.ucode.model.db.entetis.Users;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,13 +22,11 @@ import java.util.Map;
 
 @WebServlet("/api/search/*")
 public class Search extends HttpServlet {
-    private DAOusers daoUser;
     private DAOlot daoLot;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         daoLot = new DAOlot();
-        daoUser = new DAOusers();
         super.init(config);
     }
 
@@ -62,8 +63,6 @@ public class Search extends HttpServlet {
         }
         if (masLogin != null) {
             login = masLogin[0];
-            Users user = daoUser.readByLogin(login);
-            userId = user.getId();
         }
         if (masStringPrice != null) {
             stringPrice = masStringPrice[0];
@@ -76,9 +75,6 @@ public class Search extends HttpServlet {
         if (masStringStatus != null) {
             stringStatus = masStringStatus[0];
             String[] stats = stringStatus.split("-");
-//            for (String s  : stats) {
-//                System.out.println("status: " + s);
-//            }
             status = Integer.parseInt(stats[1]);
         }
 
@@ -88,10 +84,24 @@ public class Search extends HttpServlet {
         System.out.println("status: " + status);
         System.out.println("userId: " + userId);
 
-        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, null, userId);
+        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, login, 0);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = null;
+        JSONParser jp = new JSONParser();
+        JSONArray ja = new JSONArray();
+        JSONObject jo = null;
 
         for (Lot lot : ll) {
-            System.out.println(lot.getTitle());
+            json = mapper.writeValueAsString(lot);
+            try {
+                jo = (JSONObject) jp.parse(json);
+                ja.add(jo);
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
         }
+        resp.setStatus(200);
+        resp.getWriter().write(ja.toJSONString());
     }
 }
