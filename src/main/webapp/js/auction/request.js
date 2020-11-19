@@ -1,3 +1,3 @@
-async function onAuctioneerContainer(id) {
+async function onUser(id) {
     window.location.replace("/user/" + id);
 }
