@@ -13,8 +13,7 @@ function lotHtmlGen(lotId, title, price, photo) {
 function lotsGen(json) {
     let container = $('#auctions-container');
 
-    json.lots.forEach(el => {
-        // let parsed = JSON.parse(el);
+    json.forEach(el => {
         let title = el['title'];
         let price = el['price'];
         let lotId = el['lotId'];
