@@ -88,7 +88,7 @@
             <h4>Min Rate</h4>
             <div class="prop-search-container">
                 <label>
-                    <input id="range-rate" class="range-input" type="range" min="1" max="5" value="3" onmousemove="onRangeRate()">
+                    <input id="range-rate" class="range-input" type="range" min="1" max="5" value="1" onmousemove="onRangeRate()">
                     <p id="p-rate"></p>
                 </label>
             </div>
