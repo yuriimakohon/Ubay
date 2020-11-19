@@ -47,12 +47,6 @@ async function onFeedbacks(id) {
   } else {
     console.log("BAD FEEDBACK-REQ RESPONSE");
   }
-
-  //======================== DELETE
-  // $('.feedbacks-container').append(feedbackHtmlGen('user1', 'Bad', 1,'/resources/test.png'));
-  // $('.feedbacks-container').append(feedbackHtmlGen('user2', 'Cosi-cosi', 3, '/resources/test2.jpeg'));
-  // $('.feedbacks-container').append(feedbackHtmlGen('user3', 'АВТАР - ЛУЧШИЙ!!', 5, '/resources/test2.jpeg'));
-  //======================== DELETE
 }
 
 
