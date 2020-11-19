@@ -89,6 +89,7 @@
         </div>
     </div>
 
+    <script src="/js/parts/validation.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>
