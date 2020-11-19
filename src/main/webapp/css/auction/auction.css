@@ -234,7 +234,7 @@
     margin: 70px 0;
 }
 
-.feedbacks-container {
+.all-feedbacks-container {
     padding: 30px;
     display: flex;
     flex-flow: column;
