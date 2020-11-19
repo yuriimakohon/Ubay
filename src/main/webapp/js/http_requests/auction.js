@@ -69,6 +69,8 @@ async function onSaveChanges() {
         st.setHours(parseInt(startTime.split("T")[1].split(":")[0]));
         st.setMinutes(parseInt(startTime.split("T")[1].split(":")[1]));
 
+        let categories = check_categories();
+
         // create object for request
         let auction = {
             title: title,
@@ -77,7 +79,7 @@ async function onSaveChanges() {
             maxPrice: maxPrice,
             startTime: st.getTime(),
             duration: duration,
-            status: 1
+            categories: categories
         };
         // download files
         // auction["images"] = await loadFiles(photos);
