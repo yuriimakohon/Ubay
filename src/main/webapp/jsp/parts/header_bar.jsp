@@ -5,7 +5,7 @@
         </a>
         <div id="search-container">
             <input class="text_input" id="text_input-search" type="text" placeholder="Let's find">
-            <button class="btn" id="btn-search">
+            <button class="btn" id="btn-search" onclick="onSearch()">
                 Search
             </button>
             <button class="btn" id="btn-advanced_search" onmouseover="showBtnAdvanceSearch()" onmouseout="hideBtnAdvanceSearch()" onclick="onAdvancedSearch()">
