@@ -34,27 +34,27 @@
             <h4>Category</h4>
             <div class="prop-search-container">
                 <label id="category-collectibles" class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="input-collectibles">
                     Collectibles
                 </label>
                 <label id="category-clothing" class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="input-clothing">
                     Clothing
                 </label>
                 <label id="category-technics" class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="input-technics">
                     Technics
                 </label>
                 <label id="category-furniture" class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="input-furniture">
                     Furniture
                 </label>
                 <label id="category-household" class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="input-household">
                     Household
                 </label>
                 <label id="category-jewellery" class="checkbox_input">
-                    <input type="checkbox">
+                    <input type="checkbox" id="input-jewellery">
                     Jewellery
                 </label>
             </div>
