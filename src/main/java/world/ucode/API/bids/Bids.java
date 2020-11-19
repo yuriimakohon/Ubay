@@ -75,14 +75,14 @@ public class Bids extends HttpServlet {
 //                Bid loseBid = daoBid.read();
 
                 if (bidPrice >= lot.getMaxPrice()) {
-                    lot.setStatus(2);
+                    lot.setStatus(3);
                     bid.setStatusOfBid(3);
                     resp.setStatus(201);
                     owner.setBalance(owner.getBalance() + bidPrice);
                     daoUser.update(owner);
                 } else {
                     bid.setStatusOfBid(2);
-                    lot.setStatus(1);
+                    lot.setStatus(2);
                     resp.setStatus(200);
                 }
                 lot.setBidNumber(lot.getBidNumber() + 1);
