@@ -104,7 +104,7 @@
             <div class="additional_info">
                 <div class="additional_info-item">
                     <p class="additional_info-item-title">Auctioneer</p>
-                    <div id="auctioneer-container" onclick="onAuctioneerContainer(<%=jsonUser.get("id").toString()%>)">
+                    <div id="auctioneer-container" onclick="onUser(<%=jsonUser.get("id").toString()%>)">
                         <%
                             if (response.getStatus() < 400) {
                                 out.println("<img id=\"img-auctioneer\" src=\"" + jsonUser.get("avatar").toString() + "\" alt=\"auctioneer avatar\"");

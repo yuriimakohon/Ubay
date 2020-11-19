@@ -1,7 +1,7 @@
-function feedbackHtmlGen(login, text, mark, photo) {
+function feedbackHtmlGen(login, text, mark, userId, photo) {
   let html = ['            <div class="feedback card">\n' +
   '                <div class="feedback-info-container">\n' +
-  '                    <div class="feedback_author">\n' +
+  '                    <div class="feedback_author" onclick="onUser(' + userId + ')">\n' +
   '                        <img src="' + photo + '">\n' +
   '                        <span>' + login + '</span>\n' +
   '                    </div>\n' +
@@ -40,7 +40,7 @@ async function onFeedbacks(id) {
       let mark = parsed['mark'];
       let userId = parsed['userId'];
 
-      let feedback = feedbackHtmlGen("Test_User", comment, mark, "/resources/test.png");
+      let feedback = feedbackHtmlGen("Test_User", comment, mark, userId, "/resources/test.png");
 
       container.prepend(feedback);
     });
