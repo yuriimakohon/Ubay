@@ -12,7 +12,7 @@ let not_started = $('#state-not_started input');
 let price = $('#max-price');
 
 async function search() {
-    let url = 'http://localhost:8080/api/search?'
+    let url = '?'
     let categories = check_categories();
     let status = check_status();
 
@@ -33,15 +33,7 @@ async function search() {
     }
     url = addParam(url, 'rate', rangeRate.val());
 
-    let response = await fetch(url, {
-        method: 'GET',
-        credentials: 'same-origin'
-    });
-    if (response.ok) {
-        console.log('response ok')
-    } else {
-        console.log('response false')
-    }
+    window.location.replace('/results' + url);
 }
 
 function check_categories() {
