@@ -125,18 +125,47 @@
                     </div>
                 </div>
             </div>
-            <div class="status status-time">
-                <div class="status-container">
-                    <p class="status-title">Auction ends</p>
-                    <div class="status_info-container">
-                        <p class="status_info-top">
-                            In:
-                        </p>
-                        <p id="status_info-bottom" class="status_info-bottom">
-                            <%
-                                out.println(jsonLot.get("duration").toString());
-                            %>
-                        </p>
+            <%
+//                int status = Integer.parseInt(jsonLot.get("status").toString());
+                int status = 1;
+
+                // status color
+                if (status != 3) {
+                    out.println("<div class=\"status status-time\">");
+                } else {
+                    out.println("<div class=\"status status-winner\">");
+                }
+
+                // status title
+                out.println("<div class=\"status-container\"><p class=\"status-title\">");
+                if (status == 1)
+                    out.println("Auction starts");
+                else if (status == 2)
+                    out.println("Auction ends");
+                else
+                    out.println("Auction ended");
+                out.println("</p><div class=\"status_info-container\"><p class=\"status_info-top\">");
+
+                //  status info Top
+                if (status != 3)
+                    out.println("In:");
+                else
+                    out.println("winner_login");
+
+                // status info Bottom
+
+                out.println("</p><p id=\"status_info-bottom\" class=\"status_info-bottom\">");
+                if (status != 3) {
+                    if (status == 1)
+                        out.println(jsonLot.get("startTime").toString());
+                    else
+                        out.println(jsonLot.get("duration").toString());
+                    %><script src="/js/auction/setTimer.js"></script><%
+                } else {
+                    out.println(jsonLot.get("highestBid").toString() + " $");
+                }
+                out.println("</p>");
+            %>
                     </div>
                 </div>
             </div>
@@ -185,7 +214,6 @@
 <script defer src="/js/auction/info_text.js"></script>
 <script defer src="/js/auction/onSendFeedback.js"></script>
 
-<script defer src="/js/auction/setTimer.js"></script>
 <script defer src="/js/auction/onPageLoad.js"></script>
 
 <%@include file="parts/scripts.jsp"%>
