@@ -12,7 +12,7 @@
 <%@include file="parts/header_bar.jsp"%>
 
 <div class="main_container">
-    <h2 class="title_text">Advanced search</h2>
+    <h2 id="title-advanced_search" class="title_text">Advanced search</h2>
     <div class="title_line"></div>
 
     <div class="card search-card">
