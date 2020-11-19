@@ -8,7 +8,7 @@
             <select class="select">
                 <option selected="selected">Category</option>
             </select>
-            <button class="btn" id="btn-search">
+            <button class="btn" id="btn-search" onclick="onSearch()">
                 Search
             </button>
             <button class="btn" id="btn-advanced_search" onmouseover="showBtnAdvanceSearch()" onmouseout="hideBtnAdvanceSearch()" onclick="onAdvancedSearch()">
@@ -34,7 +34,7 @@
             </div>
             <a href="http://localhost:8080/account">
                 <div id="item-balance" class="header_bar-item hidden">
-                    <label id="counter-balance">19.23</label>
+                    <label id="counter-balance"></label>
                     <img id="img-balance" src="/resources/dollar.svg" alt="balance">
                 </div>
             </a>
