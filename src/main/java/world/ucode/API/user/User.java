@@ -3,6 +3,7 @@ package world.ucode.API.user;
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.Enums;
 import world.ucode.utils.UserUtils;
 import world.ucode.utils.Utils;
 
@@ -70,5 +71,10 @@ public class User extends HttpServlet {
             resp.setStatus(406);
             resp.getWriter().write("param not found");
         }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }

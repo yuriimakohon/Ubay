@@ -121,7 +121,7 @@
                     <p class="additional_info-item-title">Auction rate</p>
                     <div class="rate-container">
                         <img src="/resources/star_light.svg" alt="rate">
-                        <span>4.2</span>
+                        <span> <%out.println(jsonLot.get("rate").toString());%></span>
                     </div>
                 </div>
             </div>
