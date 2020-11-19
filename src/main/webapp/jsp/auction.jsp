@@ -186,6 +186,7 @@
 <script defer src="/js/auction/onSendFeedback.js"></script>
 
 <script defer src="/js/auction/setTimer.js"></script>
+<script defer src="/js/auction/onPageLoad.js"></script>
 
 <%@include file="parts/scripts.jsp"%>
 </body>
