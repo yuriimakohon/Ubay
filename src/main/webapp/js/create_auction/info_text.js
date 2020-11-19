@@ -45,12 +45,12 @@ function errStartTime() {
 }
 
 function errTitleFormat() {
-    setErrorText('Title can contain only alpha-numeric symbols, \',\' and \'!\'');
+    setErrorText('Title can contain only alpha-numeric symbols, \'!\', \'-\' and \',\'');
     showInfoText();
 }
 
 function errDescriptionFormat() {
-    setErrorText('Title can contain only alpha-numeric symbols, \',\' and \'!\'');
+    setErrorText('Description can contain only alpha-numeric symbols,  \'!\', \'-\' and \',\'');
     showInfoText();
 }
 

@@ -34,6 +34,35 @@
             <p>Start price</p>
             <input class="number_input" type="number" id="input-start_price" step="5" min="0" placeholder="0.00">
         </div>
+        <div id="categories-container" class="text_input-item">
+            <p>Categories</p>
+            <div class="checkbox-container">
+                <label class="checkbox_input">
+                    <input type="checkbox">
+                    Collectibles
+                </label>
+                <label class="checkbox_input">
+                    <input type="checkbox">
+                    Clothing
+                </label>
+                <label class="checkbox_input">
+                    <input type="checkbox">
+                    Technics
+                </label>
+                <label class="checkbox_input">
+                    <input type="checkbox">
+                    Furniture
+                </label>
+                <label class="checkbox_input">
+                    <input type="checkbox">
+                    Household
+                </label>
+                <label class="checkbox_input">
+                    <input type="checkbox">
+                    Jewellery
+                </label>
+            </div>
+        </div>
         <div id="max_price-container" class="text_input-item">
             <p>Max price
                 <span class="tooltip">Maximum bid that can be placed by bidders</span>

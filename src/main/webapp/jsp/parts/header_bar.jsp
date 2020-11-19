@@ -5,10 +5,7 @@
         </a>
         <div id="search-container">
             <input class="text_input" id="text_input-search" type="text" placeholder="Let's find">
-            <select class="select">
-                <option selected="selected">Category</option>
-            </select>
-            <button class="btn" id="btn-search" onclick="onSearch()">
+            <button class="btn" id="btn-search">
                 Search
             </button>
             <button class="btn" id="btn-advanced_search" onmouseover="showBtnAdvanceSearch()" onmouseout="hideBtnAdvanceSearch()" onclick="onAdvancedSearch()">

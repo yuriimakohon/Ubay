@@ -34,13 +34,14 @@ async function onFeedbacks(id) {
   if (response.ok) {
     let json = await response.json();
 
-    json.feedbacks.forEach(el => {
-      let parsed = JSON.parse(el);
-      let comment = parsed['comment'];
-      let mark = parsed['mark'];
-      let userId = parsed['userId'];
+    json.forEach(el => {
+      let comment = el['comment'];
+      let mark = el['mark'];
+      let userId = el['userId'];
+      let login = el['login'];
+      let avatar = el['avatar'];
 
-      let feedback = feedbackHtmlGen("Test_User", comment, mark, userId, "/resources/test.png");
+      let feedback = feedbackHtmlGen(login, comment, mark, userId, avatar);
 
       container.prepend(feedback);
     });
