@@ -1,6 +1,5 @@
 package world.ucode.API;
 
-
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
@@ -36,38 +35,63 @@ public class Search extends HttpServlet {
 
         List<String> listCategories = null;
         String[] categories = mp.get("categories");
-        String title = mp.get("title")[0];
-        String login = mp.get("login")[0];
-        String stringPrice = mp.get("price")[0];
-        String stringRate = mp.get("rate")[0];
-
+        String[] masTitle = mp.get("title");
+        String[] masLogin = mp.get("login");
+        String[] masStringPrice = mp.get("price");
+        String[] masStringRate = mp.get("rate");
+        String[] masStringStatus = mp.get("status");
+        String title = null;
+        String login = null;
+        String stringPrice = null;
+        String stringRate = null;
+        String stringStatus = null;
 
         int userId = 0;
         double price = 0;
+        int rate = 0;
+        int status = 0;
 
 
+        if (masTitle != null) {
+            title = masTitle[0];
+        }
         if (categories != null) {
             String[] values = categories[0].split("-");
             listCategories = new ArrayList<>();
             Collections.addAll(listCategories, values);
         }
-        if (login != null) {
+        if (masLogin != null) {
+            login = masLogin[0];
             Users user = daoUser.readByLogin(login);
             userId = user.getId();
         }
-        if (stringPrice != null) {
+        if (masStringPrice != null) {
+            stringPrice = masStringPrice[0];
             price  = Double.parseDouble(stringPrice);
         }
+        if (masStringRate != null) {
+            stringRate = masStringRate[0];
+            rate = Integer.parseInt(stringRate);
+        }
+        if (masStringStatus != null) {
+            stringStatus = masStringStatus[0];
+            String[] stats = stringStatus.split("-");
+//            for (String s  : stats) {
+//                System.out.println("status: " + s);
+//            }
+            status = Integer.parseInt(stats[1]);
+        }
 
-        List<Lot> ll = daoLot.getAllLotsbyCategoris(categories, title, price, rate, status, null, userId);
+        System.out.println("title: " + title);
+        System.out.println("price: " + price);
+        System.out.println("rate: " + rate);
+        System.out.println("status: " + status);
+        System.out.println("userId: " + userId);
 
+        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, null, userId);
 
-
-        for (Map.Entry<String, String[]> entry : mp.entrySet()) {
-            System.out.print("key: " + entry.getKey() + "\nvalues: ");
-            String[] values = entry.getValue()[0].split("-");
-            Collections.addAll(categories, values);
-            System.out.println();
+        for (Lot lot : ll) {
+            System.out.println(lot.getTitle());
         }
     }
 }
