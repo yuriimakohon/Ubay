@@ -6,6 +6,7 @@
     <%@include file="parts/resources.jsp"%>
     <link rel="stylesheet" href="css/search/search.css">
     <script defer src="/js/search/rate.js"></script>
+    <script defer src="/js/search/search.js"></script>
     <script src="js/parts/ref_token.js"></script>
 </head>
 <body>
@@ -76,10 +77,10 @@
             </div>
         </div>
         <div class="prop-search">
-            <h4>Start price</h4>
+            <h4>Max price</h4>
             <div class="prop-search-container">
                 <label>
-                    <input class="number_input" id="start-price" type="number" placeholder="0.00" min="0" step="1">
+                    <input class="number_input" id="max-price" type="number" placeholder="0.00" min="0" step="1">
                 </label>
             </div>
         </div>
@@ -94,7 +95,7 @@
         </div>
     </div>
     <div class="btn-container">
-        <button id="btn-adv_search" class="btn">Search</button>
+        <button id="btn-adv_search" class="btn" onclick="search()">Search</button>
     </div>
 </div>
 

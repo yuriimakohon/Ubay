@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         $('#input-start_price').val(lot.price);
         $('#input-max_price').val(lot.maxPrice);
         // $('#input-start_time').val(lot.startTime);
-        rd.val((+lot.duration - +lot.startTime) / 24 / 3600);
+        rd.val((+lot.duration - +lot.startTime) / 24 / 3600 / 1000);
         $('#p-duration').text(rd.val());
     }
 })

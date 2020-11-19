@@ -8,10 +8,7 @@ import world.ucode.model.db.entetis.Lot;
 import java.util.List;
 
 public class Querystring {
-
-
-
-    public static  Query stringmaker(List<String> categories, Session session, String tittle, long startPrice, int rate, int status, String login, int userid) {
+    public static  Query stringmaker(List<String> categories, Session session, String tittle, double startPrice, int rate, int status, String login, int userid) {
         Query query = null;
         StringBuilder qua = new StringBuilder("Select l from Lot l");
         Boolean categor = false;

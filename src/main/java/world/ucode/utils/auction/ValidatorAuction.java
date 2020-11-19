@@ -54,6 +54,8 @@ public class ValidatorAuction {
         lot.setDuration(duration);
         lot.setPrice(startPrice);
         lot.setMaxPrice(maxPrice);
+        lot.setRate(5);
+        lot.setStatus(1);
         return true;
     }
 }
