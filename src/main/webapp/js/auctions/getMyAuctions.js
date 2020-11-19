@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
         window.location.replace('/authorization');
     }
 
-    let response = await fetch('http://localhost:8080/api/auction', {
+    let response = await fetch('http://localhost:8080/api/search?user_id=' + localStorage.getItem('id'), {
         method: 'GET',
         credentials: "same-origin"
     });
