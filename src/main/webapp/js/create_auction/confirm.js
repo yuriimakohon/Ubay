@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", async function () {
+    if (await ref_token())
+        window.location.replace('/authorization');
+});
+
 async function onCreateAuction() {
     if (await ref_token())
         window.location.replace('/authorization');
