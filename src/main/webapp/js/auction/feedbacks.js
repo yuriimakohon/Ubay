@@ -1,4 +1,4 @@
-function feedbackHtmlGen(login, text, rate, photo) {
+function feedbackHtmlGen(login, text, mark, photo) {
   let html = ['            <div class="feedback card">\n' +
   '                <div class="feedback-info-container">\n' +
   '                    <div class="feedback_author">\n' +
@@ -7,10 +7,10 @@ function feedbackHtmlGen(login, text, rate, photo) {
   '                    </div>\n' +
   '                    <div class="feedback-evaluation-container">\n'];
 
-  for (let i = 0; i < rate; i++) {
+  for (let i = 0; i < mark; i++) {
     html += '                        <img class="evaluation_start evaluation_start-active" src="/resources/start.svg" alt="star">\n';
   }
-  for (; rate < 5; rate++) {
+  for (; mark < 5; mark++) {
     html += '                        <img class="evaluation_start" src="/resources/start.svg" alt="star">\n';
   }
 
@@ -24,12 +24,34 @@ function feedbackHtmlGen(login, text, rate, photo) {
 
 async function onFeedbacks(id) {
   $('.feedbacks').removeClass('hidden');
-  alert("REQUEST: Feedbacks for ID: " + id);
+  let container = $('#feedbacks-container');
+
+  let response = await fetch('http://localhost:8080/api/feedback/' + id, {
+    method: 'GET',
+    credentials: "same-origin"
+  });
+
+  if (response.ok) {
+    let json = await response.json();
+
+    json.feedbacks.forEach(el => {
+      let parsed = JSON.parse(el);
+      let comment = parsed['comment'];
+      let mark = parsed['mark'];
+      let userId = parsed['userId'];
+
+      let feedback = feedbackHtmlGen("Test_User", comment, mark, "/resources/test.png");
+
+      container.prepend(feedback);
+    });
+  } else {
+    console.log("BAD FEEDBACK-REQ RESPONSE");
+  }
 
   //======================== DELETE
-  $('.feedbacks-container').append(feedbackHtmlGen('user1', 'Bad', 1,'/resources/test.png'));
-  $('.feedbacks-container').append(feedbackHtmlGen('user2', 'Cosi-cosi', 3, '/resources/test2.jpeg'));
-  $('.feedbacks-container').append(feedbackHtmlGen('user3', 'АВТАР - ЛУЧШИЙ!!', 5, '/resources/test2.jpeg'));
+  // $('.feedbacks-container').append(feedbackHtmlGen('user1', 'Bad', 1,'/resources/test.png'));
+  // $('.feedbacks-container').append(feedbackHtmlGen('user2', 'Cosi-cosi', 3, '/resources/test2.jpeg'));
+  // $('.feedbacks-container').append(feedbackHtmlGen('user3', 'АВТАР - ЛУЧШИЙ!!', 5, '/resources/test2.jpeg'));
   //======================== DELETE
 }
 

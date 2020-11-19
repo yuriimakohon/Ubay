@@ -152,7 +152,7 @@
         <h2 id="title-create_auction" class="title_text">Feedbacks</h2>
         <div class="title_line"></div>
 
-        <div class="feedbacks-container">
+        <div class="all-feedbacks-container">
             <div class="user-feedback card">
                 <h3>Leave feedback</h3>
                 <textarea id="textarea_feedback" class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
@@ -173,6 +173,7 @@
                     <button class="btn" onclick="onSendFeedback()">Send</button>
                 </div>
             </div>
+            <div id="feedbacks-container"></div>
         </div>
     </div>
 </div>
