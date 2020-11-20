@@ -6,7 +6,7 @@
     <%@include file="parts/resources.jsp"%>
     <link rel="stylesheet" href="css/create_auction/create_auction.css">
 
-    <script src="js/auction/loadAuction.js"></script>
+    <script src="js/editAuction/loadAuction.js"></script>
 
     <script src="js/http_requests/auction.js"></script>
     <script defer src="js/create_auction/datetime.js"></script>
@@ -37,30 +37,7 @@
         <div id="categories-container" class="text_input-item">
             <p>Categories</p>
             <div class="checkbox-container">
-                <label class="checkbox_input">
-                    <input type="checkbox" id="checkbox-collectibles">
-                    Collectibles
-                </label>
-                <label class="checkbox_input">
-                    <input type="checkbox" id="checkbox-clothing">
-                    Clothing
-                </label>
-                <label class="checkbox_input">
-                    <input type="checkbox" id="checkbox-technics">
-                    Technics
-                </label>
-                <label class="checkbox_input">
-                    <input type="checkbox" id="checkbox-furniture">
-                    Furniture
-                </label>
-                <label class="checkbox_input">
-                    <input type="checkbox" id="checkbox-household">
-                    Household
-                </label>
-                <label class="checkbox_input">
-                    <input type="checkbox" id="checkbox-jewellery">
-                    Jewellery
-                </label>
+                <%@include file="parts/checkbox.jsp"%>
             </div>
         </div>
         <div id="max_price-container" class="text_input-item">
