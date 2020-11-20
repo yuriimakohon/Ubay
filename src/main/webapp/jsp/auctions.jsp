@@ -22,16 +22,20 @@
             </div>
         </a>
         <div class="toggle-container">
-            <label class="checkbox_input">
-                <input type="checkbox">
+            <label id="label-all" class="checkbox_input" onclick="onAuctionAll()">
+                <input type="checkbox" id="checkbox-all">
+                All
+            </label>
+            <label id="label-notActive" class="checkbox_input" onclick="onStatus()">
+                <input type="checkbox" id="checkbox-notActive">
                 Not active
             </label>
-            <label id="checkbox-active" class="checkbox_input">
-                <input type="checkbox">
+            <label id="label-active" class="checkbox_input" onclick="onStatus()">
+                <input type="checkbox" id="checkbox-active">
                 Active
             </label>
-            <label id="checkbox-finished" class="checkbox_input">
-                <input type="checkbox">
+            <label id="label-finished" class="checkbox_input" onclick="onStatus()">
+                <input type="checkbox" id="checkbox-finished">
                 Finished
             </label>
         </div>

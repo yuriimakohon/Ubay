@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function loadMyAuctions() {
         let json = await response.json();
         auctionsGen(json);
     } else {
-        console.log("what is wrong ?");
+        console.log(await response.json());
     }
 });
 

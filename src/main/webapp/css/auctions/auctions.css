@@ -32,7 +32,8 @@ a {
 }
 
 /*=============| Toggle |=============*/
-#checkbox-finished,
-#checkbox-active {
+#label-finished,
+#label-active,
+#label-notActive {
     margin-left: 50px;
 }
