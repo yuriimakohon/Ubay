@@ -30,11 +30,11 @@ public class TestServlet extends HttpServlet {
         System.out.println("init serv");
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
         System.out.println("action");
-
         try {
             switch (action) {
 //                case "/new":
@@ -117,22 +117,24 @@ public class TestServlet extends HttpServlet {
 //        System.out.println("endess3***********************************************");
 //
 //        Users existingUser4 = user.getUserandLotbyToken("token2");
-        List<String> list = new ArrayList<>();
-        list.add("Sport");
-//        list.add("Techika");
-        String login = "first";
-        String tittle = "tittle1";
-        long price = 10;
-        int rate = 1;
-        int status = 3;
-        int userid = 123;
-
+        Lot lot = lots.read(3);
+//        System.out.println(lot.getBid().getId());
+//        List<String> list = new ArrayList<>();
+//        list.add("Sport");
+////        list.add("Techika");
+//        String login = "first";
+//        String tittle = "tittle1";
+//        long price = 10;
+//        int rate = 1;
+//        int status = 3;
+//        int userid = 123;
 //
-
-        List<Lot> mist4 = lots.getAllLotsbyCategoris(list, null, 0, 0, 2, null, userid);
-        for(Lot element : mist4) {
-            System.out.println(element.getSellerId());
-        }
+////
+//
+//        List<Lot> mist4 = lots.getAllLotsbyCategoris(list, null, 0, 0, 2, null, userid);
+//        for(Lot element : mist4) {
+//            System.out.println(element.getSellerId());
+//        }
 
         System.out.println("endess4***********************************************");
 

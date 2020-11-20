@@ -60,6 +60,7 @@ public class Users implements Serializable{
     private List<Bid> userbids;
 
 
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="sellerId")
     @Fetch(FetchMode.SELECT)
