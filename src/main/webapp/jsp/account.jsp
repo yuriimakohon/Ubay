@@ -57,7 +57,6 @@
     <script src="js/account/display.js"></script>
     <script src="js/account/confirm.js"></script>
     <script src="js/account/info_text.js"></script>
-    <script src="js/parts/validation.js"></script>
     <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

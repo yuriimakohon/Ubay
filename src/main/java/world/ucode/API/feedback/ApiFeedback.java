@@ -26,7 +26,7 @@ public class ApiFeedback extends HttpServlet {
     private DAOfeedback daoFeedback;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         daoUser = new DAOusers();
         daoFeedback = new DAOfeedback();
     }
@@ -36,7 +36,7 @@ public class ApiFeedback extends HttpServlet {
         int lotId = Utils.getId(req);
         List<Feedback> listOfFeedbacks = daoFeedback.getAllFeedbackforlot(lotId);
 
-        if (listOfFeedbacks.isEmpty()) {
+        if (listOfFeedbacks == null || listOfFeedbacks.isEmpty()) {
             resp.setStatus(404);
             resp.getWriter().write("there is no feedbacks or lot");
         } else {
@@ -49,6 +49,7 @@ public class ApiFeedback extends HttpServlet {
                 Users user = daoUser.read(feedback.getUserId());;
                 try {
                     jo = (JSONObject) jp.parse(mapper.writeValueAsString(feedback));
+
                     jo.put("login", user.getLogin());
                     jo.put("avatar", user.getUserphoto());
                     ja.add(jo);
