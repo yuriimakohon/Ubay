@@ -90,15 +90,11 @@ public class Token {
         resp.addCookie(kId);
     }
 
-    public static boolean refreshToken(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException, ServletException {
+    public static boolean refreshToken(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException {
         HashMap<String, String> cm = ParseCookie.parseToMap(req.getCookies());
         String ref_token = cm.get("ref_token");
         String idS = cm.get("id");
         String token = cm.get("token");
-
-        if (token != null) {
-            return true;
-        }
 
         if (ref_token == null || idS == null) {
             resp.setStatus(403);
@@ -113,6 +109,11 @@ public class Token {
             resp.sendRedirect("/authorization");
             return false;
         }
+
+        if (token != null && token.equals(user.getToken())) {
+            return true;
+        }
+
         Token.createSetTokens(user, resp, daoUser);
         return true;
     }
