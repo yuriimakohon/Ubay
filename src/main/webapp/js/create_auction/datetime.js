@@ -16,15 +16,15 @@ function dateToStringTime(date) {
 
     if (date.getHours() <= 9)
         string += '0';
-    string += date.getUTCHours() + ':';
+    string += date.getHours() + ':';
 
     if (date.getMinutes() <= 9)
         string += '0';
-    string += date.getUTCMinutes() + ':';
+    string += date.getMinutes() + ':';
 
     if (date.getSeconds() <= 9)
         string += '0';
-    string += date.getUTCSeconds();
+    string += date.getSeconds();
     return string;
 }
 
