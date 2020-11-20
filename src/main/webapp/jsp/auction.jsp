@@ -64,7 +64,7 @@
                     <span class="info-title">Current price:</span>
                     <span id="info-title-current_price" class="info-value">
                         <%
-                            out.println(jsonLot.get("highestBid").toString());
+//                            out.println(jsonLot.get("highestBid").toString());
                         %>
                 </span>
                 </div>
@@ -75,13 +75,13 @@
             <div id="bid-container" class="hidden">
                 <label id="your_bid">
                     Your bid:
-                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()) + 1);%>">
+<%--                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()) + 1);%>">--%>
                 </label>
                 <div class="btn_bids-container">
                     <button class="btn btn-red" onclick="onCancelBid()">
                         cancel
                     </button>
-                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">
+<%--                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">--%>
                         place a bid
                     </button>
                 </div>
@@ -161,7 +161,7 @@
                         out.println(jsonLot.get("duration").toString());
                     %><script src="/js/auction/setTimer.js"></script><%
                 } else {
-                    out.println(jsonLot.get("highestBid").toString() + " $");
+//                    out.println(jsonLot.get("highestBid").toString() + " $");
                 }
                 out.println("</p>");
             %>

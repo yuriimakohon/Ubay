@@ -70,6 +70,8 @@ public class Auction extends HttpServlet {
         va.lot.setSellerId(ro.user.getId());
         daoLot.create(va.lot);
 
+        va.lot.setFeedbackNumber(0);
+
         String path = "src/main/webapp/resources/";
         File user_dir = new File(path + ro.user.getId());
         File lot_dir = new File(path + ro.user.getId() + "/" + va.lot.getLotId());
