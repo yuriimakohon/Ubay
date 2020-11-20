@@ -27,21 +27,23 @@ public class refreshToken extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HashMap<String, String> cm = ParseCookie.parseToMap(req.getCookies());
-        String ref_token = cm.get("ref_token");
-        String idS = cm.get("id");
-
-        if (ref_token == null || idS == null) {
-            resp.setStatus(406);
-            return;
-        }
-
-        Users user = daoUser.read(Integer.parseInt(idS));
-
-        if (user == null || !user.getRef_token().equals(ref_token)) {
-            resp.setStatus(403);
-            return;
-        }
-        Token.createSetTokens(user, resp, daoUser);
+//        HashMap<String, String> cm = ParseCookie.parseToMap(req.getCookies());
+//        String ref_token = cm.get("ref_token");
+//        String idS = cm.get("id");
+//
+//        if (ref_token == null || idS == null) {
+//            resp.setStatus(403);
+//            resp.getWriter().write("permission denied");
+//            return;
+//        }
+//
+//        Users user = daoUser.read(Integer.parseInt(idS));
+//
+//        if (user == null || !user.getRef_token().equals(ref_token)) {
+//            resp.setStatus(403);
+//            resp.getWriter().write("permission denied");
+//            return;
+//        }
+//        Token.createSetTokens(user, resp, daoUser);
     }
 }
