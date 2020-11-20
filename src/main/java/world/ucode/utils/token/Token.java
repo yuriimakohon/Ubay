@@ -5,11 +5,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.codec.digest.DigestUtils;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.ParseCookie;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Token {
     public Payload payload;
@@ -81,5 +88,32 @@ public class Token {
         Cookie kId = new Cookie("id", String.valueOf(user.getId()));
         kId.setPath("/");
         resp.addCookie(kId);
+    }
+
+    public static boolean refreshToken(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException, ServletException {
+        HashMap<String, String> cm = ParseCookie.parseToMap(req.getCookies());
+        String ref_token = cm.get("ref_token");
+        String idS = cm.get("id");
+        String token = cm.get("token");
+
+        if (token != null) {
+            return true;
+        }
+
+        if (ref_token == null || idS == null) {
+            resp.setStatus(403);
+            resp.sendRedirect("/authorization");
+            return false;
+        }
+
+        Users user = daoUser.read(Integer.parseInt(idS));
+
+        if (user == null || !user.getRef_token().equals(ref_token)) {
+            resp.setStatus(403);
+            resp.sendRedirect("/authorization");
+            return false;
+        }
+        Token.createSetTokens(user, resp, daoUser);
+        return true;
     }
 }

@@ -16,12 +16,10 @@ function bidsGen(json) {
     let container = $('#bids-container');
 
     // json.lots.forEach(el => {
-    //     let parsed = JSON.parse(el);
-    //     let title = parsed['title'];
-    //     let price = parsed['price'];
-    //     let lotId = parsed['lotId'];
-    //     let photo = parsed['photo']
-    //     let bidsCount = 5;
+    //     let title = el['title'];
+    //     let price = el['price'];
+    //     let lotId = el['lotId'];
+    //     let photo = el['photo']
         let auction = bidHtmlGen('Test lot blin', 25.54, 111, 888, "/resources/test.png");
         let auction2 = bidHtmlGen('Test lot blin 2', 1337, 222, 999, "/resources/test2.jpeg");
 
