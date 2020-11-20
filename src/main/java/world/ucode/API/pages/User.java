@@ -30,7 +30,7 @@ public class User extends HttpServlet {
                     System.out.println("error: get gua");
                 } else {
                     JSONParser jp = new JSONParser();
-                    JSONObject jo = null;
+                    JSONObject jo;
                     jo = (JSONObject) jp.parse(gua.json);
                     req.setAttribute("user", jo.toJSONString());
                 }
