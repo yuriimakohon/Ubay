@@ -63,7 +63,7 @@ public class Lot {
     private String category;
 
     @Column(name = "rate")
-    private int rate;
+    private float rate;
 
     @Column(name = "feedbacknumb")
     private int feedbackNumber;
@@ -163,11 +163,11 @@ public class Lot {
     }
 
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
