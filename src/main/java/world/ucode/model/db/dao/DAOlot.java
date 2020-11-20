@@ -4,10 +4,12 @@ package world.ucode.model.db.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import world.ucode.model.db.entetis.Lot;
+import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 import world.ucode.model.db.util.Querystring;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,4 +97,20 @@ public class DAOlot implements DAO<Lot, Integer>{
         }
         return listOfLot;
     }
+
+//    public Lot getLotAndHighestBid(Integer id) {
+//        Lot lot = null;
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            Query query = session.createQuery("FROM Lot l left join fetch l.bid where l.id = :id");
+//            query.setParameter("id", id);
+//            lot = (Lot) query.getSingleResult();
+//        }
+//        catch (NoResultException ignored) {
+//
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return lot;
+//    }
 }
