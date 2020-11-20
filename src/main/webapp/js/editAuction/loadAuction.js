@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // $('#input-photos').val(lot.photo);
         $('#input-start_price').val(lot.price);
         $('#input-max_price').val(lot.maxPrice);
-        // $('#input-start_time').val(lot.startTime);
+        $('#input-start_time').val(dateToStringTime(new Date(lot.startTime)));
         rd.val((+lot.duration - +lot.startTime) / 24 / 3600 / 1000);
         $('#p-duration').text(rd.val());
 
