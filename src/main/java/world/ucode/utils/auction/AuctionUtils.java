@@ -8,6 +8,7 @@ import world.ucode.utils.Utils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class AuctionUtils {
@@ -41,6 +42,9 @@ public class AuctionUtils {
             resp.getWriter().write("lot not found");
             return false;
         }
+
+        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0)
+            lot.setStatus(2);
 
         resp.setStatus(200);
         resp.getWriter().write(mapper.writeValueAsString(lot));
