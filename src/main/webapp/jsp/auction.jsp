@@ -161,7 +161,7 @@
                         out.println(jsonLot.get("duration").toString());
                     %><script src="/js/auction/setTimer.js"></script><%
                 } else {
-                    out.println(jsonLot.get("highestBid").toString() + " $");
+//                    out.println(jsonLot.get("highestBid").toString() + " $");
                 }
                 out.println("</p>");
             %>

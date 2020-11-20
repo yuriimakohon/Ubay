@@ -63,7 +63,12 @@ public class Lot {
     private String category;
 
     @Column(name = "rate")
-    private int rate;
+    private float rate;
+
+    @Column(name = "feedbacknumb")
+    private int feedbackNumber;
+
+
 //    public Lot() {}
 
 //    @Column(name = "bidid")
@@ -74,14 +79,13 @@ public class Lot {
 //    @JoinColumn(name="bidid", insertable = false, updatable = false)
 //    @Fetch(FetchMode.JOIN)
 //    private Bid bid;
-
 //    public Bid getBid() {
 //        return bid;
 //    }
+
     public void setPhotoNumber(int photoNumber) {
         this.photoNumber = photoNumber;
     }
-
     public int getPhotoNumber() {
         return photoNumber;
     }
@@ -90,10 +94,10 @@ public class Lot {
         this.bidNumber = bidNumber;
     }
 
+
 //    public int getBidderId() {
 //        return bidderId;
 //    }
-
     public int getStatus() {
         return status;
     }
@@ -102,10 +106,10 @@ public class Lot {
         return bidNumber;
     }
 
+
 //    public double getHighestBid() {
 //        return highestBid;
 //    }
-
     public long getDuration() {
         return duration;
     }
@@ -159,11 +163,11 @@ public class Lot {
     }
 
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
@@ -173,10 +177,10 @@ public class Lot {
         this.description = description;
     }
 
+
 //    public void setBidderId(int bidderId) {
 //        this.bidderId = bidderId;
 //    }
-
     public void setDuration(long duration) {
         this.duration = duration;
     }
@@ -193,9 +197,18 @@ public class Lot {
         return lotId;
     }
 
+
 //    public void setHighestBid(double highestBid) {
 //        this.highestBid = highestBid;
 //    }
+
+    public int getFeedbackNumber() {
+        return feedbackNumber;
+    }
+
+    public void setFeedbackNumber(int feedbackNumber) {
+        this.feedbackNumber = feedbackNumber;
+    }
 
     public void setLotId(int lotId) {
         this.lotId = lotId;

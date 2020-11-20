@@ -6,8 +6,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOfeedback;
+import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Feedback;
+import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
@@ -24,11 +26,13 @@ import java.util.List;
 public class ApiFeedback extends HttpServlet {
     private DAOusers daoUser;
     private DAOfeedback daoFeedback;
+    private DAOlot daoLot;
 
     @Override
     public void init() {
         daoUser = new DAOusers();
         daoFeedback = new DAOfeedback();
+        daoLot = new DAOlot();
     }
 
     @Override
@@ -82,8 +86,16 @@ public class ApiFeedback extends HttpServlet {
                 Integer.parseInt(ro.jo.get("lotId").toString()),
                 ro.user.getId()
                 );
-
         daoFeedback.create(feedback);
+
+        Lot lot = daoLot.read(feedback.getLotId());
+
+
+        int fNumbs = lot.getFeedbackNumber();
+        float rate = lot.getRate();
+
+        float avg = ((rate * fNumbs) + feedback.getMark()) / (fNumbs + 1);
+        System.out.println((avg));
 
         resp.getWriter().write(ro.user.getLogin());
     }
