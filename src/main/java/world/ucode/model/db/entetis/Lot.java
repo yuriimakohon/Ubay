@@ -1,6 +1,8 @@
 package world.ucode.model.db.entetis;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -45,11 +47,11 @@ public class Lot {
     @Column(name = "status")
     private int status;
 
-    @Column(name = "highestBid")
-    private double highestBid;
-
-    @Column(name = "bidderid")
-    private int bidderId;
+//    @Column(name = "highestBid")
+//    private double highestBid;
+//
+//    @Column(name = "bidderid")
+//    private int bidderId;
 
     @Column(name = "bidNumber")
     private int bidNumber;
@@ -64,7 +66,18 @@ public class Lot {
     private int rate;
 //    public Lot() {}
 
+//    @Column(name = "bidid")
+//    private int bidId;
 
+
+//    @OneToOne
+//    @JoinColumn(name="bidid", insertable = false, updatable = false)
+//    @Fetch(FetchMode.JOIN)
+//    private Bid bid;
+
+//    public Bid getBid() {
+//        return bid;
+//    }
     public void setPhotoNumber(int photoNumber) {
         this.photoNumber = photoNumber;
     }
@@ -77,9 +90,9 @@ public class Lot {
         this.bidNumber = bidNumber;
     }
 
-    public int getBidderId() {
-        return bidderId;
-    }
+//    public int getBidderId() {
+//        return bidderId;
+//    }
 
     public int getStatus() {
         return status;
@@ -89,9 +102,9 @@ public class Lot {
         return bidNumber;
     }
 
-    public double getHighestBid() {
-        return highestBid;
-    }
+//    public double getHighestBid() {
+//        return highestBid;
+//    }
 
     public long getDuration() {
         return duration;
@@ -145,6 +158,7 @@ public class Lot {
         this.photo = photo;
     }
 
+
     public void setRate(int rate) {
         this.rate = rate;
     }
@@ -153,17 +167,15 @@ public class Lot {
         return rate;
     }
 
-    public void setHighestBid(int highestBid) {
-        this.highestBid = highestBid;
-    }
+
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setBidderId(int bidderId) {
-        this.bidderId = bidderId;
-    }
+//    public void setBidderId(int bidderId) {
+//        this.bidderId = bidderId;
+//    }
 
     public void setDuration(long duration) {
         this.duration = duration;
@@ -181,9 +193,9 @@ public class Lot {
         return lotId;
     }
 
-    public void setHighestBid(double highestBid) {
-        this.highestBid = highestBid;
-    }
+//    public void setHighestBid(double highestBid) {
+//        this.highestBid = highestBid;
+//    }
 
     public void setLotId(int lotId) {
         this.lotId = lotId;

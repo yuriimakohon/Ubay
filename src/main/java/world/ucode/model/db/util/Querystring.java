@@ -43,9 +43,9 @@ public class Querystring {
          }
         if (tittle != null) {
             if (uid || log || categor)
-                qua.append(" and title=:tittle");
+                qua.append(" and title like :tittle");
             else
-                qua.append(" where title=:tittle");
+                qua.append(" where title like :tittle");
             tit = true;
         }
         if (startPrice > 0) {
