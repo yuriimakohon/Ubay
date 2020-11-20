@@ -21,6 +21,6 @@ async function onSendFeedback() {
 
     if (response.ok) {
         let login = await response.text();
-        $('.user-feedback').after(feedbackHtmlGen(login, text, evaluation, localStorage.getItem('avatar')));
+        $('#feedbacks-container').before(feedbackHtmlGen(login, text, evaluation, localStorage.getItem('id'), localStorage.getItem('avatar')));
     }
 }
