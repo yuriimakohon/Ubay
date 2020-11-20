@@ -3,9 +3,6 @@ DROP TABLE IF EXISTS bid;
 DROP TABLE IF EXISTS lot;
 DROP TABLE IF EXISTS users;
 
-
-
-
 CREATE TABLE IF NOT EXISTS users (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(255), login VARCHAR(255), password VARCHAR(255), token TEXT, ref_token TEXT, balance DOUBLE, userRole integer, userphoto TEXT, PRIMARY KEY (id));
 -- INSERT into users VALUES (123, "admin1", "first", "lol", "token1", "ref token1",0, 0, "userphoto");
 -- INSERT into users VALUES (1234, "admin2", "second", "lol", "token2", "ref token1", 0, 0, "userphoto");
@@ -44,10 +41,10 @@ CREATE TABLE if not exists feedback (id INTEGER primary key NOT NULL AUTO_INCREM
 
 
 
-INSERT into feedback VALUES (1, "lolita1", 5, 3, "admin2", 1234);
-INSERT into feedback VALUES (2, "lolita2", 5, 2, "admin2",1234);
-INSERT into feedback VALUES (3, "lolita3", 5, 1, "admin3", 12345);
-INSERT into feedback VALUES (4, "lolita4", 5, 4, "admin4", 123456);
+-- INSERT into feedback VALUES (1, "lolita1", 5, 3, "admin2", 1234);
+-- INSERT into feedback VALUES (2, "lolita2", 5, 2, "admin2",1234);
+-- INSERT into feedback VALUES (3, "lolita3", 5, 1, "admin3", 12345);
+-- INSERT into feedback VALUES (4, "lolita4", 5, 4, "admin4", 123456);
 
 
 -- SELECT * FROM users;

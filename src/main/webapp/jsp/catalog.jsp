@@ -18,27 +18,27 @@
             <div class="main_container">
                 <div id="categories-container">
                     <div class="categories-item">
-                        <img src="resources/category_collectibles.png" alt="category collectibles">
+                        <img src="resources/category_collectibles.png" alt="category collectibles" onclick="onCategory('collectibles')">
                         <p>Collectibles</p>
                     </div>
                     <div class="categories-item">
-                        <img src="resources/category_clothing.png" alt="category clothing">
+                        <img src="resources/category_clothing.png" alt="category clothing" onclick="onCategory('clothing')">
                         <p>Clothing</p>
                     </div>
                     <div class="categories-item">
-                        <img src="resources/category_technics.png" alt="category clothing">
+                        <img src="resources/category_technics.png" alt="category clothing" onclick="onCategory('technics')">
                         <p>Technics</p>
                     </div>
                     <div class="categories-item">
-                        <img src="resources/category_furniture.png" alt="category furniture">
+                        <img src="resources/category_furniture.png" alt="category furniture" onclick="onCategory('furniture')">
                         <p>Furniture</p>
                     </div>
                     <div class="categories-item">
-                        <img src="resources/category_household.png" alt="category household">
+                        <img src="resources/category_household.png" alt="category household" onclick="onCategory('household')">
                         <p>Household</p>
                     </div>
                     <div class="categories-item">
-                        <img src="resources/category_jewellery.png" alt="category jewellery">
+                        <img src="resources/category_jewellery.png" alt="category jewellery" onclick="onCategory('jewellery')">
                         <p>Jewellery</p>
                     </div>
                 </div>

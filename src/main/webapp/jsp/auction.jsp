@@ -63,9 +63,9 @@
                 <div class="info">
                     <span class="info-title">Current price:</span>
                     <span id="info-title-current_price" class="info-value">
-                        <%
-//                            out.println(jsonLot.get("highestBid").toString());
-                        %>
+<%--                        <%--%>
+<%--                            out.println(jsonLot.get("highestBid").toString());--%>
+<%--                        %>--%>
                 </span>
                 </div>
             </div>
@@ -82,8 +82,8 @@
                         cancel
                     </button>
 <%--                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">--%>
-                        place a bid
-                    </button>
+<%--                        place a bid--%>
+<%--                    </button>--%>
                 </div>
             </div>
         </div>

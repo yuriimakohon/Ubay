@@ -4,3 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         lotsGen(lots);
     }
 });
+
+function onCategory(category) {
+    window.location.replace('http://localhost:8080/results?categories=' + category);
+}

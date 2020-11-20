@@ -17,7 +17,7 @@ public class Auctions extends HttpServlet {
     DAOusers daoUser;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         daoUser = new DAOusers();
     }
 

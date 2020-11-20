@@ -8,6 +8,7 @@
     <title>Ubay - User</title>
 
     <%@include file="parts/resources.jsp"%>
+    <script src="/js/user/user.js"></script>
     <link rel="stylesheet" href="/css/user/user.css">
 </head>
 <body>
@@ -27,7 +28,7 @@
             <a id="avatar" href="<%=jsonUser.get("avatar").toString()%>" target="_blank">
                 <img src="<%=jsonUser.get("avatar").toString()%>" alt="user avatar">
             </a>
-            <span><%
+            <span id="user_login"><%
                 out.println(jsonUser.get("login").toString());
             %></span>
         </div>
@@ -45,7 +46,11 @@
                 </span>
             </div>
         </div>
-        <button id="btn_auctions" class="btn">Look for auctions</button>
+        <%
+            if (jsonUser.get("role").toString().equals("1")) {
+                out.println("<button id=\"btn_auctions\" class=\"btn\" onclick=\"onLookAuctions()\">Look for auctions</button>");
+            }
+        %>
     </div>
 </div>
 
