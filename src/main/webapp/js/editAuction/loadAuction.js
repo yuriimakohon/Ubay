@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                 $(this).prop('checked', true);
             }
         })
+
+        if (lot.status != 1) {
+            $('#btn-delete_auction').addClass('hidden');
+            $('#btn-save_changes').addClass('hidden');
+        }
     }
 })
 

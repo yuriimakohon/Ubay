@@ -45,7 +45,6 @@ public class Auction extends HttpServlet {
         } else {
             AuctionUtils.sendLot(resp, lotId, daoLot);
         }
-
     }
 
     @Override
