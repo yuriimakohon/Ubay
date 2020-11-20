@@ -43,8 +43,10 @@ public class AuctionUtils {
             return false;
         }
 
-        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0)
+        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
             lot.setStatus(2);
+            daoLot.update(lot);
+        }
 
         resp.setStatus(200);
         resp.getWriter().write(mapper.writeValueAsString(lot));
