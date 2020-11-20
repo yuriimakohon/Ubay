@@ -126,8 +126,7 @@
                 </div>
             </div>
             <%
-//                int status = Integer.parseInt(jsonLot.get("status").toString());
-                int status = 1;
+                int status = Integer.parseInt(jsonLot.get("status").toString());
 
                 // status color
                 if (status != 3) {
