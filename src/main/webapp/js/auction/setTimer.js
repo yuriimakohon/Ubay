@@ -42,6 +42,6 @@ let x = setInterval(function () {
 
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("status_info-bottom").innerHTML = "EXPIRED";
+        location.reload();
     }
 }, 100);
