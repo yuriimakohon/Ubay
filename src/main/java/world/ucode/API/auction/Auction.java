@@ -1,6 +1,5 @@
 package world.ucode.API.auction.get;
 
-import org.json.simple.JSONArray;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
@@ -9,6 +8,7 @@ import world.ucode.utils.Utils;
 import world.ucode.utils.auction.AuctionUtils;
 import world.ucode.utils.auction.ValidatorAuction;
 
+import org.json.simple.JSONArray;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

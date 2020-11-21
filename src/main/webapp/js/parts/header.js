@@ -5,9 +5,7 @@ let bid = $('#item-bids');
 
 
 document.addEventListener('DOMContentLoaded', async function () {
-
-
-    if (await ref_token()) {
+    if (!await ref_token()) {
         $('#img-account').attr('src', '/resources/user.svg');
         $('#item-sign_up').removeClass('hidden');
         account.removeClass('hidden');

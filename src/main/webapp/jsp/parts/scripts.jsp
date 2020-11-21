@@ -3,3 +3,4 @@
 <script defer src="/js/parts/queries.js"></script>
 <script defer src="/js/parts/ref_token.js"></script>
 <script defer src="/js/parts/validation.js"></script>
+<script defer src="/js/parts/parseCookie.js"></script>
