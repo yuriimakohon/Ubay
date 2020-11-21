@@ -1,6 +1,11 @@
 package world.ucode.utils.auction;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
@@ -12,6 +17,27 @@ import java.util.Date;
 import java.util.List;
 
 public class AuctionUtils {
+
+    public static JSONObject getJSONObject(int id) {
+        DAOlot daoLot = new DAOlot();
+        Lot lot = daoLot.read(id);
+
+        if (lot == null) {
+            return null;
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json;
+        JSONObject jo = null;
+        JSONParser jp = new JSONParser();
+
+        try {
+            json = mapper.writeValueAsString(lot);
+            jo = (JSONObject) jp.parse(json);
+        } catch(JsonProcessingException | ParseException ignored) {}
+
+        return jo;
+    }
 
     public static boolean deleteAuction(HttpServletResponse resp, int lotId, DAOlot daoLot, Users user) throws IOException {
         Lot lot = daoLot.read(lotId);

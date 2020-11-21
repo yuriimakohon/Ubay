@@ -1,12 +1,4 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    if (await ref_token())
-        window.location.replace('/authorization');
-});
-
 async function onCreateAuction() {
-    if (await ref_token())
-        window.location.replace('/authorization');
-
     let title = $('#input-title').val();
     let desc = $('#textarea-description').val();
     let startPrice = $('#input-start_price').val();

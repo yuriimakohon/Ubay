@@ -67,6 +67,37 @@ public class DAObid implements DAO<Bid, Integer>{
         }
     }
 
+    public List<Bid> get_all_by_user(int id) {
+        Transaction transaction;
+        List<Bid> listOfBid = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            listOfBid = session.createQuery("SELECT b from Bid b join Users u on b.bidderId = u.id where u.id = :id", Bid.class).setParameter("id", id).getResultList();
+            transaction.commit();
+        } catch (NoResultException ignored) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOfBid;
+    }
+
+    public List<Bid> get_all_by_lot(int id) {
+        Transaction transaction;
+        List<Bid> listOfBid = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+//            listOfBid = session.createQuery("SELECT b from Bid b join Lot l on b.lotid = l.id where l.id = :id", Bid.class).setParameter("id", id).getResultList();
+            listOfBid = session.createQuery("SELECT b FROM Bid b WHERE b.id IN (SELECT id FROM Bid WHERE lotid=:id)", Bid.class).setParameter("id", id).getResultList();
+            transaction.commit();
+        } catch (NoResultException ignored) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOfBid;
+    }
+
 //    SELECT b.id, b.lotid, b.price, b.statusofBid from bid b join users u on u.id = b.bidderID where u.token = 'token3';
     public List<Bid> readByToken(String token) {
         Transaction transaction = null;
@@ -75,12 +106,9 @@ public class DAObid implements DAO<Bid, Integer>{
             transaction = session.beginTransaction();
             listOfBid = session.createQuery("SELECT b from Bid b join Users u on u.id = b.bidderId where u.token = :token", Bid.class).setParameter("token", token).getResultList();
             transaction.commit();
-        }
-        catch (NoResultException ignored) {
+        } catch (NoResultException ignored) {
 
-
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return listOfBid;

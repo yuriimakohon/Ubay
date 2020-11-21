@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    if (await ref_token() || localStorage.getItem('role') === '1') {
-        $('#btn-show_bid').addClass('hidden');
+    let bid_container = $('#btn-bid-container');
+
+    if (bid_container.hasClass('end')) {
+
+        return;
+    }
+
+    if (!await ref_token() || localStorage.getItem('role') === '1') {
         $('.user-feedback').addClass('hidden');
+    } else {
+        bid_container.removeClass('hidden');
     }
 });

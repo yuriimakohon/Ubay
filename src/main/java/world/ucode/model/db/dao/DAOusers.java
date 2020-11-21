@@ -1,16 +1,10 @@
 package world.ucode.model.db.dao;
 
-
-import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-
 import org.hibernate.query.Query;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
-
 
 import javax.persistence.NoResultException;
 import java.util.List;

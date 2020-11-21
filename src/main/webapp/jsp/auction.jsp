@@ -1,6 +1,5 @@
 <%@ page import="org.json.simple.parser.JSONParser" %>
 <%@ page import="org.json.simple.JSONObject" %>
-<%@ page import="java.io.Reader" %>
 <%@ page import="org.json.simple.parser.ParseException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -19,11 +18,13 @@
      <%
          JSONObject jsonUser = null;
          JSONObject jsonLot = null;
+         JSONObject jsonBid = null;
          if (response.getStatus() < 400) {
             JSONParser jp = new JSONParser();
             try {
                 jsonLot = (JSONObject) jp.parse(request.getAttribute("lot").toString());
                 jsonUser = (JSONObject) jp.parse(request.getAttribute("user").toString());
+                jsonBid = (JSONObject) jp.parse(request.getAttribute("bid").toString());
             } catch (ParseException ignored) {}
          }
      %>
@@ -63,27 +64,31 @@
                 <div class="info">
                     <span class="info-title">Current price:</span>
                     <span id="info-title-current_price" class="info-value">
-<%--                        <%--%>
-<%--                            out.println(jsonLot.get("highestBid").toString());--%>
-<%--                        %>--%>
+                        <%
+                            out.println(jsonBid.get("price").toString());
+                        %>
                 </span>
                 </div>
             </div>
-            <div id="btn-bid-container">
+            <div id="btn-bid-container" class="hidden <%
+                    if (jsonLot.get("status").toString().equals("3")) {
+                        out.println("end");
+                    }
+                %>">
                 <button id="btn-show_bid" class="btn" onclick="onShowBid()">Bid</button>
             </div>
             <div id="bid-container" class="hidden">
                 <label id="your_bid">
                     Your bid:
-<%--                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonLot.get("highestBid").toString()) + 1);%>">--%>
+                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonBid.get("price").toString()) + 1);%>">
                 </label>
                 <div class="btn_bids-container">
                     <button class="btn btn-red" onclick="onCancelBid()">
                         cancel
                     </button>
-<%--                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonLot.get("highestBid").toString()));%>)">--%>
-<%--                        place a bid--%>
-<%--                    </button>--%>
+                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonBid.get("price").toString()));%>)">
+                        place a bid
+                    </button>
                 </div>
             </div>
         </div>

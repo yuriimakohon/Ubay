@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/auctions/auctions.css">
     <link rel="stylesheet" href="/css/parts/auction_list.css">
     <script src="/js/parts/ref_token.js"></script>
+    <script src="/js/parts/checkbox_select.js"></script>
 </head>
 <body>
 <%@include file="parts/header_bar.jsp"%>
