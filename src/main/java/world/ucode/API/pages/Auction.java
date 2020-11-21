@@ -1,12 +1,13 @@
 package world.ucode.API.pages;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import world.ucode.model.db.dao.DAObid;
+import world.ucode.model.db.dao.DAOlot;
+import world.ucode.model.db.dao.DAOusers;
+import world.ucode.utils.BidUtils;
+import world.ucode.utils.UserUtils;
 import world.ucode.utils.Utils;
-import org.apache.commons.io.IOUtils;
-import world.ucode.utils.auction.GetAuctionAPI;
-import world.ucode.utils.user.GetUserAPI;
+import world.ucode.utils.auction.AuctionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,14 +15,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 @WebServlet("/auction/*")
 public class Auction extends HttpServlet {
+    DAOusers daoUser;
+    DAOlot daoLot;
+    DAObid daoBid;
+
+    @Override
+    public void init() {
+        daoBid = new DAObid();
+        daoLot = new DAOlot();
+        daoUser = new DAOusers();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Utils.getId(req);
@@ -30,28 +37,37 @@ public class Auction extends HttpServlet {
             resp.setStatus(404);
             System.out.println("id == 0");
         } else {
-            GetAuctionAPI gaa = new GetAuctionAPI(req);
+            JSONObject lot = AuctionUtils.getJSONObject(id);
 
-            if (gaa.status >= 400) {
+            if (lot == null) {
                 resp.setStatus(404);
-                System.out.println("error: get gaa");
+                System.out.println("not found lot");
             } else {
-                try {
-                    JSONParser jp = new JSONParser();
-                    JSONObject jo = (JSONObject) jp.parse(gaa.json);
-                    req.setAttribute("lot", jo.toJSONString());
+                req.setAttribute("lot", lot.toJSONString());
 
-                    GetUserAPI gua = new GetUserAPI(Integer.parseInt(jo.get("sellerId").toString()));
-                    if (gua.status >= 400) {
-                        resp.setStatus(404);
-                        System.out.println("error: get gua");
-                    } else {
-                        jo = (JSONObject) jp.parse(gua.json);
-                        req.setAttribute("user", jo.toJSONString());
-                    }
-                } catch (ParseException | NullPointerException | NumberFormatException e) {
+                System.out.println(Integer.parseInt(lot.get("sellerId").toString()));
+                JSONObject user = UserUtils.getJSONObject(Integer.parseInt(lot.get("sellerId").toString()));
+
+                if (user == null) {
                     resp.setStatus(404);
-                    System.out.println("error: " + e.getMessage());
+                    System.out.println("seller not found");
+                } else {
+                    req.setAttribute("user", user.toJSONString());
+                }
+
+                JSONObject bid;
+                if (lot.get("bidId").toString().equals("0")) {
+                    bid = new JSONObject();
+                    bid.put("price", "0");
+                } else {
+                    bid = BidUtils.getJSONObject(Integer.parseInt(lot.get("bidId").toString()));
+                }
+
+                if (bid == null) {
+                    resp.setStatus(404);
+                    System.out.println("bid not found");
+                } else {
+                    req.setAttribute("bid", bid.toJSONString());
                 }
             }
         }

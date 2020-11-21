@@ -55,6 +55,7 @@ public class ValidatorAuction {
         lot.setPrice(startPrice);
         lot.setMaxPrice(maxPrice);
         lot.setCategory(categories.toString());
+        lot.setBidId(0);
         lot.setRate(5);
         lot.setStatus(1);
         return true;
