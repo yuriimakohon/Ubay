@@ -1,5 +1,5 @@
-function auctionHtmlGen(lotId, title, price, bidsCount, photo) {
-    return ['        <div class="auction-item card">\n' +
+function auctionHtmlGen(lotId, title, price, bidsCount, photo, status) {
+    return ['        <div class="auction-item card ' + status + '">\n' +
     '            <img src="' + photo + '0.jpg" alt="auction-' + lotId + '" onclick="onAuction(' + lotId + ')">\n' +
     '            <div class="info_block">\n' +
     '                <div class="title" onclick="onAuction(' + lotId + ')">' + title + '</div>\n' +
@@ -15,9 +15,12 @@ function resultAuctionsGen(json) {
         let price = el['price'];
         let lotId = el['lotId'];
         let photo = el['photo'];
+        let status = el['status'];
         let bidsCount = el['bidCount'];
-        let auction = auctionHtmlGen(lotId, title, price, bidsCount, photo);
+        let auction = auctionHtmlGen(lotId, title, price, bidsCount, photo, status);
 
         container.append(auction);
     });
+    $('#checkbox-all').prop('checked', true);
+    onAuctionAll();
 }

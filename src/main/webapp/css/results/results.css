@@ -19,3 +19,9 @@
     color: white;
     font-weight: 300;
 }
+
+#label-finished,
+#label-active,
+#label-notActive {
+    margin-left: 50px;
+}
