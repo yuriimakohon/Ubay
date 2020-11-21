@@ -32,6 +32,5 @@ public class GetUserAPI {
             this.status = 404;
             System.out.println("user return status >= 400");
         }
-
     }
 }

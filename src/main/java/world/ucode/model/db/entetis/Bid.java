@@ -2,10 +2,8 @@ package world.ucode.model.db.entetis;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @ToString
@@ -66,10 +64,6 @@ public class Bid {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setLot(Lot lot) {
-        this.lot = lot;
     }
 
     public void setLotId(int lotId) {
