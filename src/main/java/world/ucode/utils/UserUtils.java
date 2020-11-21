@@ -1,7 +1,11 @@
 package world.ucode.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
 
@@ -13,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.stream.StreamSupport;
 
 public class UserUtils {
     public static void badJson(HttpServletResponse resp) throws IOException {
@@ -165,5 +170,35 @@ public class UserUtils {
             ro.user.setUserPhoto("/resources/"+ro.user.getId()+"/0.png");
             daoUser.update(ro.user);
         }
+    }
+
+    public static JSONObject getJSONObject(int id) { ;
+        DAOusers daoUsers = new DAOusers();
+        Users user = daoUsers.read(id);
+
+        if (user == null) {
+            return null;
+        }
+
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json;
+//        JSONObject jo = null;
+//        JSONParser jp = new JSONParser();
+
+//        try {
+//            json = mapper.writeValueAsString(user);
+//            jo = (JSONObject) jp.parse(json);
+//        } catch(JsonProcessingException | ParseException e) {
+//            System.out.println("error: " + e.getMessage());
+//        }
+
+        JSONObject jo = new JSONObject();
+        jo.put("login", user.getLogin());
+        jo.put("role", user.getUserRole());
+        jo.put("avatar", user.getUserphoto());
+        jo.put("id", user.getId());
+        jo.put("balance", user.getBalance());
+
+        return jo;
     }
 }
