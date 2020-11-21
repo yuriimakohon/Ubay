@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
+import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,6 +65,25 @@ public class Utils {
                 jo = (JSONObject) jp.parse(json);
                 ja.add(jo);
             } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return ja;
+    }
+
+    public static <T> JSONArray toJsonArray(List<T> objs)  {
+        ObjectMapper mapper = new ObjectMapper();
+        JSONArray ja = new JSONArray();
+        JSONParser jp = new JSONParser();
+        JSONObject jo;
+        String json;
+
+        for (T obj : objs) {
+            try {
+                json = mapper.writeValueAsString(obj);
+                jo = (JSONObject) jp.parse(json);
+                ja.add(jo);
+            } catch (ParseException | JsonProcessingException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -8,6 +8,7 @@ import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.RequestObject;
+import world.ucode.utils.Utils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -33,20 +34,40 @@ public class Bids extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
+        resp.setContentType("application/json;charset=utf-8");
         RequestObject ro = new RequestObject();
+        int id = Utils.getId(req);
 
         ro.checkCookie(req.getCookies(), daoUser);
-        ro.checkJson(req);
-        if (!ro.ok) {
-            resp.setStatus(406);
-        } else if (ro.user.getUserRole() != 2) {
+
+        if (!ro.ok || ro.user.getUserRole() != 2) {
             resp.setStatus(403);
+            resp.getWriter().write("permission denied");
+            return;
         }
+
+        if (id == 0) {
+            List<Bid> bids = daoBid.get_all_by_user(ro.user.getId());
+
+            resp.setStatus(200);
+            resp.getWriter().write(Utils.toJsonArray(bids).toJSONString());
+        } else if (id == -1) {
+            resp.setStatus(404);
+            resp.getWriter().write("not found");
+        } else if (id > 0) {
+            Bid bid = daoBid.read(id);
+            ObjectMapper mapper = new ObjectMapper();
+
+            resp.setStatus(200);
+            resp.getWriter().write(mapper.writeValueAsString(bid));
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json;charset=utf-8");
         RequestObject ro = new RequestObject();
 
         ro.checkCookie(req.getCookies(), daoUser);
