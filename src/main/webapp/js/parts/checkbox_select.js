@@ -2,6 +2,11 @@ function onAuctionAll() {
     let allBox = $('.auction-item');
     let checkBoxAll = $('#checkbox-all');
 
+    allBox.each(function () {
+        $(this).removeClass('hidden');
+        $(this).addClass('hidden');
+    });
+
     if (checkBoxAll.is(':checked')) {
         $('#checkbox-notActive').prop('checked', false);
         $('#checkbox-active').prop('checked', false);
