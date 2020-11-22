@@ -3,27 +3,48 @@ package world.ucode.utils.auction;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
+import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.Interaces.RestUtils;
+import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-public class AuctionUtils {
+public class AuctionUtils implements RestUtils {
+    private final DAOlot daoLot;
+    private final DAOusers daoUser;
+    private final DAObid daoBid;
 
-    public static JSONObject getJSONObject(int id) {
-        DAOlot daoLot = new DAOlot();
+    public AuctionUtils() {
+        daoBid = new DAObid();
+        daoLot = new DAOlot();
+        daoUser = new DAOusers();
+    }
+
+    @Override
+    public JSONObject get(int id, HttpServletResponse resp) {
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject jo = new JSONObject();
+        JSONParser jp = new JSONParser();
+
         Lot lot = daoLot.read(id);
 
         if (lot == null) {
-            return null;
+            resp.setStatus(404);
+            jo.put("ok", false);
+            return jo;
         }
 
         if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
@@ -31,36 +52,56 @@ public class AuctionUtils {
             daoLot.update(lot);
         }
 
-        ObjectMapper mapper = new ObjectMapper();
-        String json;
-        JSONObject jo = null;
-        JSONParser jp = new JSONParser();
-
+        resp.setStatus(200);
         try {
-            json = mapper.writeValueAsString(lot);
-            jo = (JSONObject) jp.parse(json);
-        } catch(JsonProcessingException | ParseException ignored) {}
-
+            jo = (JSONObject) jp.parse(mapper.writeValueAsString(lot));
+            jo.put("ok", true);
+        } catch (IOException | ParseException e) {
+            jo.put("ok", false);
+        }
         return jo;
     }
 
-    public static boolean deleteAuction(HttpServletResponse resp, int lotId, DAOlot daoLot, Users user) throws IOException {
-        Lot lot = daoLot.read(lotId);
+    @Override
+    public JSONObject create(HttpServletRequest req, HttpServletResponse resp) {
+        return null;
+    }
+
+    @Override
+    public JSONObject put(HttpServletRequest req, HttpServletResponse resp) {
+        return null;
+    }
+
+    @Override
+    public JSONObject delete(int id, HttpServletResponse resp) {
+        JSONObject jo = new JSONObject();
+        Lot lot = daoLot.read(id);
 
         if (lot == null) {
             resp.setStatus(404);
-            resp.getWriter().write("lot not found");
-            return false;
+            jo.put("error", "lot not found");
+            jo.put("ok", false);
+            return jo;
         }
 
-        if (lot.getSellerId() != user.getId()) {
+        Users user = daoUser.read(lot.getSellerId());
+
+        if (user == null || lot.getSellerId() != user.getId() || lot.getStatus() != 1) {
             resp.setStatus(403);
-            resp.getWriter().write("permission denied");
-            return false;
+            jo.put("error", "permission denied");
+            jo.put("ok", false);
+            return jo;
         }
+        daoLot.delete(id);
+        jo.put("ok", true);
+        return jo;
+    }
 
-        daoLot.delete(lotId);
-        return true;
+    @Override
+    public JSONArray get_all() {
+        List<Lot> listOfLot = daoLot.getAllLots();
+
+        return Utils.toJsonArray(listOfLot);
     }
 
     public static boolean sendLot(HttpServletResponse resp, int lotId, DAOlot daoLot) throws IOException {
@@ -81,20 +122,6 @@ public class AuctionUtils {
 
         resp.setStatus(200);
         resp.getWriter().write(mapper.writeValueAsString(lot));
-        return true;
-    }
-
-    public static boolean sendLots(HttpServletResponse resp,  DAOlot daoLot) throws IOException {
-        List<Lot> listOfLot = daoLot.getAllLots();
-
-        if (listOfLot == null) {
-            resp.setStatus(404);
-            resp.getWriter().write("lots not found");
-            return false;
-        }
-
-        resp.setStatus(200);
-        resp.getWriter().write(Utils.lotsToJsonArray(listOfLot).toJSONString());
         return true;
     }
 }

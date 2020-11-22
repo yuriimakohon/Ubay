@@ -1,5 +1,6 @@
-package world.ucode.API.auction.get;
+package world.ucode.API.auction;
 
+import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
@@ -24,11 +25,13 @@ import java.util.Base64;
 public class Auction extends HttpServlet {
     DAOlot daoLot;
     DAOusers daoUser;
+    AuctionUtils utils;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         daoLot = new DAOlot();
         daoUser = new DAOusers();
+        utils = new AuctionUtils();
         super.init(config);
     }
 
@@ -36,15 +39,20 @@ public class Auction extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json;charset=utf-8");
         int lotId = Utils.getId(req);
+        JSONObject jo = new JSONObject();
 
         if (lotId == 0) {
-            AuctionUtils.sendLots(resp, daoLot);
+            JSONArray ja = utils.get_all();
+            resp.getWriter().write(ja.toJSONString());
+            return;
         } else if (lotId == -1) {
             resp.setStatus(404);
-            resp.getWriter().write("lot not found");
+            jo.put("ok", false);
+            jo.put("error", "lot not found");
         } else {
-            AuctionUtils.sendLot(resp, lotId, daoLot);
+            jo = utils.get(lotId, resp);
         }
+        resp.getWriter().write(jo.toJSONString());
     }
 
     @Override
@@ -69,8 +77,6 @@ public class Auction extends HttpServlet {
         }
         va.lot.setSellerId(ro.user.getId());
         daoLot.create(va.lot);
-
-        va.lot.setFeedbackNumber(0);
 
         String path = "src/main/webapp/resources/";
         File user_dir = new File(path + ro.user.getId());
@@ -150,9 +156,9 @@ public class Auction extends HttpServlet {
             resp.setStatus(403);
             resp.getWriter().write("permission denied");
         } else {
-            AuctionUtils.deleteAuction(resp, lotId, daoLot, ro.user);
+            JSONObject jo = utils.delete(lotId, resp);
+            resp.getWriter().write(jo.toJSONString());
         }
-
     }
 }
 

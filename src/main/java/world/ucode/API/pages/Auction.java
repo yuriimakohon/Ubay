@@ -1,11 +1,9 @@
 package world.ucode.API.pages;
 
 import org.json.simple.JSONObject;
-import world.ucode.model.db.dao.DAObid;
-import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
-import world.ucode.utils.BidUtils;
-import world.ucode.utils.UserUtils;
+import world.ucode.utils.Bid.BidUtils;
+import world.ucode.utils.user.UserUtils;
 import world.ucode.utils.Utils;
 import world.ucode.utils.auction.AuctionUtils;
 
@@ -19,14 +17,15 @@ import java.io.IOException;
 @WebServlet("/auction/*")
 public class Auction extends HttpServlet {
     DAOusers daoUser;
-    DAOlot daoLot;
-    DAObid daoBid;
+    BidUtils utils;
+    AuctionUtils auctionUtils;
+    UserUtils userUtils;
 
     @Override
     public void init() {
-        daoBid = new DAObid();
-        daoLot = new DAOlot();
-        daoUser = new DAOusers();
+        userUtils = new UserUtils();
+        utils = new BidUtils();
+        auctionUtils = new AuctionUtils();
     }
 
     @Override
@@ -37,37 +36,46 @@ public class Auction extends HttpServlet {
             resp.setStatus(404);
             System.out.println("id == 0");
         } else {
-            JSONObject lot = AuctionUtils.getJSONObject(id);
+//            JSONObject lot = AuctionUtils.getJSONObject(id);
+            JSONObject lot = auctionUtils.get(id, resp);
 
             if (lot == null) {
                 resp.setStatus(404);
                 System.out.println("not found lot");
             } else {
                 req.setAttribute("lot", lot.toJSONString());
+//                JSONObject user = UserUtils.getJSONObject(Integer.parseInt(lot.get("sellerId").toString()));
+                JSONObject userSeller = userUtils.get(Integer.parseInt(lot.get("sellerId").toString()), resp);
 
-                System.out.println(Integer.parseInt(lot.get("sellerId").toString()));
-                JSONObject user = UserUtils.getJSONObject(Integer.parseInt(lot.get("sellerId").toString()));
-
-                if (user == null) {
+                if (userSeller == null) {
                     resp.setStatus(404);
                     System.out.println("seller not found");
                 } else {
-                    req.setAttribute("user", user.toJSONString());
+                    req.setAttribute("user", userSeller.toJSONString());
                 }
 
                 JSONObject bid;
                 if (lot.get("bidId").toString().equals("0")) {
                     bid = new JSONObject();
                     bid.put("price", "0");
+                    bid.put("ok", false);
                 } else {
-                    bid = BidUtils.getJSONObject(Integer.parseInt(lot.get("bidId").toString()));
+                    bid = utils.get(Integer.parseInt(lot.get("bidId").toString()), resp);
                 }
 
-                if (bid == null) {
+                if (bid.get("ok").equals("false")) {
                     resp.setStatus(404);
-                    System.out.println("bid not found");
+                    resp.getWriter().write(bid.toJSONString());
                 } else {
                     req.setAttribute("bid", bid.toJSONString());
+
+                    if (bid.get("bidderId") != null) {
+                        int idBidder = Integer.parseInt(bid.get("bidderId").toString());
+                        if (idBidder != 0) {
+                            JSONObject userBidder = userUtils.get(Integer.parseInt(bid.get("bidderId").toString()), resp);
+                            req.setAttribute("userBidder", userBidder.toJSONString());
+                        }
+                    }
                 }
             }
         }
