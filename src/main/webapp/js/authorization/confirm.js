@@ -23,7 +23,7 @@ async function onCreateAccount() {
         if (!await sign_up(login, pass, role)) {
             errUserExist();
         } else {
-            window.location.replace("/catalog")
+            onForward("/catalog")
         }
     }
 }
@@ -40,7 +40,7 @@ async function onLogIn() {
         if (!await sign_in(login, pass)) {
             errInvalidAuth();
         } else {
-            window.location.replace("/catalog")
+            onForward("/catalog")
         }
     }
 }

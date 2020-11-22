@@ -126,7 +126,7 @@
                     <p class="additional_info-item-title">Auction rate</p>
                     <div class="rate-container">
                         <img src="/resources/star_light.svg" alt="rate">
-                        <span> <%out.println(jsonLot.get("rate").toString());%></span>
+                        <span> <%out.println(String.format("%.1f", Float.parseFloat(jsonLot.get("rate").toString())));%></span>
                     </div>
                 </div>
             </div>
@@ -153,20 +153,23 @@
                 //  status info Top
                 if (status != 3)
                     out.println("In:");
-                else
-                    out.println("winner_login");
+                else if (!jsonLot.get("bidNumber").toString().equals("0")) {
+                    out.println("Winner login");
+                } else {
+                    out.println("Without bids");
+                }
 
                 // status info Bottom
 
-                out.println("</p><p id=\"status_info-bottom\" class=\"status_info-bottom\">");
+                out.println("</p><p id=\"status_info-bottom\" class=\"status_info-bottom\"");
                 if (status != 3) {
                     if (status == 1)
-                        out.println(jsonLot.get("startTime").toString());
+                        out.println("data=\"" + jsonLot.get("startTime").toString() + "\">");
                     else
-                        out.println(jsonLot.get("duration").toString());
+                        out.println("data=\"" + jsonLot.get("duration").toString() + "\">");
                     %><script src="/js/auction/setTimer.js"></script><%
-                } else {
-//                    out.println(jsonLot.get("highestBid").toString() + " $");
+                } else if (!jsonLot.get("bidNumber").toString().equals("0")) {
+                    out.print("\">" + jsonBid.get("price").toString() + " $");
                 }
                 out.println("</p>");
             %>
@@ -186,7 +189,12 @@
         <div class="title_line"></div>
 
         <div class="all-feedbacks-container">
-            <div class="user-feedback card">
+            <%
+                if (request.getAttribute("canFeedback").toString().equals("true"))
+                    out.println("<div class=\"user-feedback card\">");
+                else
+                    out.println("<div class=\"user-feedback hidden card\">");
+            %>
                 <h3>Leave feedback</h3>
                 <textarea id="textarea_feedback" class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
                 <div class="user-feedback-control">

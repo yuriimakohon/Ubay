@@ -80,5 +80,6 @@
     <script src="js/authorization/confirm.js" type="text/javascript"></script>
     <script src="js/authorization/errors.js" type="text/javascript"></script>
     <script src="js/authorization/request.js" type="text/javascript"></script>
+    <%@include file="parts/scripts.jsp"%>
 </body>
 </html>

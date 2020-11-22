@@ -47,12 +47,14 @@ public class AuctionUtils implements RestUtils {
             return jo;
         }
 
-        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
+        if (lot.getStatus() == 1 && new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
             lot.setStatus(2);
+            daoLot.update(lot);
+        } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
+            lot.setStatus(3);
             daoLot.update(lot);
         }
 
-        resp.setStatus(200);
         try {
             jo = (JSONObject) jp.parse(mapper.writeValueAsString(lot));
             jo.put("ok", true);
@@ -115,8 +117,11 @@ public class AuctionUtils implements RestUtils {
             return false;
         }
 
-        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
+        if (lot.getStatus() == 1 && new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
             lot.setStatus(2);
+            daoLot.update(lot);
+        } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
+            lot.setStatus(3);
             daoLot.update(lot);
         }
 

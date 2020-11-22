@@ -24,6 +24,7 @@ function feedbackHtmlGen(login, text, mark, userId, photo) {
 
 async function onFeedbacks(id) {
   $('.feedbacks').removeClass('hidden');
+  $('#btn-feedbacks-container').addClass('hidden');
   let container = $('#feedbacks-container');
 
   let response = await fetch('http://localhost:8080/api/feedback/' + id, {

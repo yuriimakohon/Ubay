@@ -29,7 +29,7 @@ async function onSaveLogin() {
         if (await changeLogin(inputLogin.val())) {
             successNewLogin();
         } else {
-            loginExists();
+            errLoginExists();
         }
     }
 }
@@ -50,5 +50,5 @@ async function onSaveAvatar() {
 async function onLogOut() {
     await logout();
     localStorage.clear();
-    window.location.replace('/authorization');
+    onForward('/authorization');
 }

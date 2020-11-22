@@ -24,7 +24,7 @@
 // });
 
 // let countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-let countDownDate = document.getElementById("status_info-bottom").innerText;
+let countDownDate = document.getElementById("status_info-bottom").getAttribute("data");
 
 let x = setInterval(function () {
 

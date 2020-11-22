@@ -1,5 +1,5 @@
 
 
 function onLookAuctions() {
-    window.location.replace('/results?login=' + $('#user_login').text());
+    onForward('/results?login=' + $('#user_login').text());
 }

@@ -7,7 +7,7 @@ async function onDeleteAuction() {
     });
     // machining  response
     if (response.ok) {
-        window.location.replace('/auctions');
+        onForward('/auctions');
     } else {
         setErrorText('permission denied');
         showInfoText();
@@ -95,7 +95,7 @@ async function onSaveChanges() {
         });
         // machining  response
         if (response.ok) {
-            window.location.replace("/auctions");
+            onForward("/auctions");
         } else {
             setErrorText('permission denied');
             showInfoText();

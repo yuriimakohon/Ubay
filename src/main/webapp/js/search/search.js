@@ -34,7 +34,7 @@ async function search() {
     }
     url = addParam(url, 'rate', rangeRate.val());
 
-    window.location.replace('/results' + url);
+    onForward('/results' + url);
 }
 
 function check_status() {

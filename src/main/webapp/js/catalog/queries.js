@@ -6,5 +6,5 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 function onCategory(category) {
-    window.location.replace('http://localhost:8080/results?categories=' + category);
+    onForward('http://localhost:8080/results?categories=' + category);
 }
