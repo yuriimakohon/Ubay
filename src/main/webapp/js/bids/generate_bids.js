@@ -1,27 +1,26 @@
 function bidHtmlGen(title, bid, lotId, bidId, photo, status) {
-    let gen = ['<div class="bid-item card">\n' +
+    let gen = ['<div class="bid-item card '];
+
+    gen += ['<div class="bid-item card">\n' +
     '            <img src="' + photo + '0.jpg" alt="bid-" onclick="onAuction(' + lotId + ')">\n' +
     '            <div class="info_block">\n' +
     '                <div class="title" onclick="onAuction(' + lotId + ')">' + title + '</div>\n' +
-    '                <div class="price">' + bid + '</div>\n' +
-    '            </div>\n' +
-    '            <div class="control_block">\n'];
+    '                <div id="your_price" class="price ']
 
+    if (status === 2) {
+        gen += ['price-loses'];
+    } else if(status === 3) {
+        gen += ['price-won'];
+    }
+
+    gen += ['">' + bid + '</div>\n' +
+    '            </div>\n'];
     if (status === 2) {
         gen += ['<div class="control_block">\n' +
             '                <button class="btn" onclick="onRebid(' + lotId + ')">Rebid</button>\n' +
-            '                <button class="btn btn-red" onclick="onBidDelete(' + bidId + ')">Delete</button>\n' +
+            '                <button class="btn btn-red" onclick="onBidDelete(' + bidId +  ')">Delete</button>\n' +
             '            </div>\n'];
-    } else if (status === 1) {
-        gen += ['<div class="control_block">\n' +
-        '             WIN' +
-        '            </div>\n'];
-    } else {
-        gen += ['<div class="control_block">\n' +
-        '             LOSE' +
-        '            </div>\n'];
     }
-    gen += '        </div>';
     return gen;
 }
 
