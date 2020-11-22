@@ -26,6 +26,11 @@ public class AuctionUtils {
             return null;
         }
 
+        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
+            lot.setStatus(2);
+            daoLot.update(lot);
+        }
+
         ObjectMapper mapper = new ObjectMapper();
         String json;
         JSONObject jo = null;
