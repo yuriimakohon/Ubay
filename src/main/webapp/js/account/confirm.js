@@ -50,5 +50,5 @@ async function onSaveAvatar() {
 async function onLogOut() {
     await logout();
     localStorage.clear();
-    window.location.replace('/authorization');
+    onForward('/authorization');
 }

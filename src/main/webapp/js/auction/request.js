@@ -1,3 +1,3 @@
 async function onUser(id) {
-    window.location.replace("/user/" + id);
+    onForward("/user/" + id);
 }

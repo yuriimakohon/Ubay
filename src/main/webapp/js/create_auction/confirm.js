@@ -51,7 +51,7 @@ async function onCreateAuction() {
         });
         // machining  response
         if (response.ok) {
-            window.location.replace("/auctions");
+            onForward("/auctions");
         } else {
             setErrorText('permission denied');
             showInfoText();

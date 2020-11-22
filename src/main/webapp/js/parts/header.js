@@ -47,10 +47,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
-function onAdvancedSearch() {
-    window.location.replace('/search');
-}
-
 function onSearch() {
     let title = $('#text_input-search');
 
@@ -58,5 +54,5 @@ function onSearch() {
     if (title.val() !== '') {
         url += 'title=' + title.val();
     }
-    window.location.replace('/results' + url);
+    window.location.assign('/results' + url);
 }
