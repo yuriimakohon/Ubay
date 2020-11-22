@@ -81,7 +81,7 @@ public class Querystring {
         if (startpr)
             query.setParameter("price", startPrice);
         if (rat)
-            query.setParameter("rate", rate);
+            query.setParameter("rate", (float)rate);
         if (stat)
             query.setParameter("status", status);
         if (log)

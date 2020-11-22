@@ -1,12 +1,14 @@
 package world.ucode.API.bids;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.Bid.BidUtils;
 import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
 
@@ -24,12 +26,14 @@ public class Bids extends HttpServlet {
     DAOlot daoLot;
     DAObid daoBid;
     DAOusers daoUser;
+    BidUtils utils;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         daoLot = new DAOlot();
         daoBid = new DAObid();
         daoUser = new DAOusers();
+        utils = new BidUtils();
         super.init(config);
     }
 
@@ -48,25 +52,19 @@ public class Bids extends HttpServlet {
         }
 
         if (id == 0) {
-            List<Bid> bids = daoBid.get_all_by_user(ro.user.getId());
-
             resp.setStatus(200);
-            resp.getWriter().write(Utils.toJsonArray(bids).toJSONString());
+            resp.getWriter().write(utils.get_by_user(ro.user.getId()).toJSONString());
         } else if (id == -1) {
             resp.setStatus(404);
             resp.getWriter().write("not found");
         } else if (id > 0) {
-            Bid bid = daoBid.read(id);
-            ObjectMapper mapper = new ObjectMapper();
-
-            resp.setStatus(200);
-            resp.getWriter().write(mapper.writeValueAsString(bid));
+            resp.getWriter().write(utils.get(id, resp).toJSONString());
         }
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json;charset=utf-8");
         RequestObject ro = new RequestObject();
 
@@ -98,6 +96,7 @@ public class Bids extends HttpServlet {
             if (ro.user.getBalance() < bidPrice) {
                 resp.setStatus(406);
                 resp.getWriter().write("Not enough money");
+                return;
             }
             if ((lastBid != null && lastBid.getPrice() >= bidPrice) || lot.getPrice() >= bidPrice) {
                 resp.setStatus(406);
@@ -113,13 +112,13 @@ public class Bids extends HttpServlet {
                     resp.setStatus(201);
                     owner.setBalance(owner.getBalance() + bidPrice);
                     daoUser.update(owner);
+
                     List<Bid> bids = daoBid.get_all_by_lot(lot.getLotId());
                     ObjectMapper mapper = new ObjectMapper();
 
-                    System.out.println("here");
                     for (Bid b : bids) {
-                        System.out.println("yes");
                         System.out.println(mapper.writeValueAsString(b));
+                        daoBid.delete(b.getId());
                     }
                 } else {
                     if (lastBid != null) {
@@ -138,5 +137,22 @@ public class Bids extends HttpServlet {
                 daoLot.update(lot);
             }
         }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        RequestObject ro = new RequestObject();
+        int id = Utils.getId(req);
+
+        ro.checkCookie(req.getCookies(), daoUser);
+        if (!ro.ok || id <= 0) {
+            resp.setStatus(403);
+            resp.getWriter().write("permission denied");
+            return;
+        }
+
+        JSONObject jo = utils.delete(id, resp);
+
+        resp.getWriter().write(jo.toJSONString());
     }
 }

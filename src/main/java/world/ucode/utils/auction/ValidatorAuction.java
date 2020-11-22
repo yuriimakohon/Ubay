@@ -40,7 +40,7 @@ public class ValidatorAuction {
 
             if (startTime < date + 300
                     || duration < 1
-                    || startPrice <= 0
+                    || startPrice < 0
                     || startPrice >= maxPrice) {
                 return false;
             }
@@ -56,6 +56,7 @@ public class ValidatorAuction {
         lot.setPrice(startPrice);
         lot.setMaxPrice(maxPrice);
         lot.setCategory(categories.toString());
+        lot.setFeedbackNumber(0);
         lot.setBidId(0);
         lot.setRate(5);
         lot.setStatus(1);

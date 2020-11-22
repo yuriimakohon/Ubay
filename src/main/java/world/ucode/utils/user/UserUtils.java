@@ -1,13 +1,12 @@
-package world.ucode.utils;
+package world.ucode.utils.user;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.Interaces.RestUtils;
+import world.ucode.utils.ParseCookie;
+import world.ucode.utils.RequestObject;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,28 +16,103 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.stream.StreamSupport;
 
-public class UserUtils {
-    public static void badJson(HttpServletResponse resp) throws IOException {
-        resp.setStatus(406);
-        resp.getWriter().write("bad json");
+public class UserUtils implements RestUtils {
+    private final DAOusers daoUser;
+
+    public UserUtils() {
+        daoUser = new DAOusers();
     }
 
-    public static void changePass(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException {
+    @Override
+    public JSONObject get(int id , HttpServletResponse resp) {
+        JSONObject jo = new JSONObject();
+
+        Users user = daoUser.read(id);
+        if (user == null) {
+            jo.put("role", "0");
+            jo.put("ok", false);
+        } else {
+            jo.put("status", "200");
+            jo.put("login", user.getLogin());
+            jo.put("role", user.getUserRole());
+            jo.put("balance", user.getBalance());
+            jo.put("id", user.getId());
+            jo.put("avatar", user.getUserphoto());
+            jo.put("ok", true);
+        }
+        resp.setStatus(200);
+        return jo;
+    }
+
+    @Override
+    public JSONObject create(HttpServletRequest req, HttpServletResponse resp) {
+        // TO DO
+        return null;
+    }
+
+    @Override
+    public JSONObject put(HttpServletRequest req, HttpServletResponse resp) {
+        JSONObject jo = new JSONObject();
+
+        String param = req.getParameter("tab");
+
+        switch (param) {
+            case "change_balance":
+                this.changeBalance(req, resp);
+                break;
+            case "change_login":
+                this.changeLogin(req, resp);
+                break;
+            case "change_pass":
+                this.changePass(req, resp);
+                break;
+            case "log_out":
+                this.logOut(req, resp);
+                break;
+            case "change_photo":
+                this.changePhoto(req, resp);
+                String avatar = req.getAttribute("avatar").toString();
+                if (avatar != null) {
+                    jo.put("avatar", req.getAttribute("avatar"));
+                }
+                break;
+            default:
+                resp.setStatus(400);
+        }
+        if (resp.getStatus() >= 400) {
+            jo.put("ok", false);
+        } else {
+            jo.put("ok", true);
+        }
+        return jo;
+    }
+
+    @Override
+    public JSONObject delete(int id, HttpServletResponse resp) {
+        // TO DO
+        return null;
+    }
+
+    @Override
+    public JSONArray get_all() {
+        // TO DO
+        return null;
+    }
+
+    public void changePass(HttpServletRequest req, HttpServletResponse resp) {
         RequestObject ro = new RequestObject();
 
-        ro.checkJson(req);
         ro.checkCookie(req.getCookies(), daoUser);
+        ro.checkJson(req);
 
         if (!ro.ok) {
-            resp.setStatus(ro.getStatus());
-            resp.getWriter().write(ro.getResp());
+            resp.setStatus(409);
         } else {
             String pass = ro.jo.get("password").toString();
 
             if (pass == null) {
-                badJson(resp);
+                resp.setStatus(409);
             } else {
                 ro.user.setPassword(pass);
                 daoUser.update(ro.user);
@@ -47,26 +121,24 @@ public class UserUtils {
         }
     }
 
-    public static void changeLogin(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException {
+    public void changeLogin(HttpServletRequest req, HttpServletResponse resp) {
         RequestObject ro = new RequestObject();
 
-        ro.checkJson(req);
         ro.checkCookie(req.getCookies(), daoUser);
+        ro.checkJson(req);
 
         if (!ro.ok) {
-            resp.setStatus(ro.getStatus());
-            resp.getWriter().write(ro.getResp());
+            resp.setStatus(409);
         } else {
             String login = ro.jo.get("login").toString();
 
             if (login == null)  {
-                badJson(resp);
+                resp.setStatus(409);
             } else {
                 Users user = daoUser.readByLogin(login);
 
                 if (user != null) {
                     resp.setStatus(406);
-                    resp.getWriter().write("this login is booked");
                 } else {
                     ro.user.setLogin(ro.jo.get("login").toString());
                     daoUser.update(ro.user);
@@ -76,7 +148,7 @@ public class UserUtils {
         }
     }
 
-    public static void changeBalance(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException {
+    public void changeBalance(HttpServletRequest req, HttpServletResponse resp) {
         RequestObject ro = new RequestObject();
 
         ro.checkJson(req);
@@ -89,13 +161,11 @@ public class UserUtils {
                 balance = Double.parseDouble(ro.jo.get("balance").toString());
             } catch (NumberFormatException e) {
                 resp.setStatus(406);
-                resp.getWriter().write("validation fail");
                 return;
             }
 
             if (ro.user.getBalance() + balance < 0) {
                 resp.setStatus(409);
-                resp.getWriter().write("small many");
             } else {
                 ro.user.setBalance(ro.user.getBalance() + balance);
                 daoUser.update(ro.user);
@@ -103,11 +173,10 @@ public class UserUtils {
             }
         } else {
             resp.setStatus(409);
-            resp.getWriter().write("validation fail");
         }
     }
 
-    public static void logOut(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) {
+    public void logOut(HttpServletRequest req, HttpServletResponse resp) {
         Cookie[] cookies = req.getCookies();
 
         HashMap<String, String> cm = ParseCookie.parseToMap(cookies);
@@ -129,44 +198,48 @@ public class UserUtils {
         }
     }
 
-    public static void changePhoto(HttpServletRequest req, HttpServletResponse resp, DAOusers daoUser) throws IOException {
+    public void changePhoto(HttpServletRequest req, HttpServletResponse resp) {
         RequestObject ro = new RequestObject();
 
-        ro.checkJson(req);
         ro.checkCookie(req.getCookies(), daoUser);
+        ro.checkJson(req);
 
         if (!ro.ok) {
-            resp.setStatus(ro.getStatus());
-            resp.getWriter().write(ro.getResp());
+            resp.setStatus(409);
         } else {
             String path = "src/main/webapp/resources/";
             File user_dir = new File(path + ro.user.getId());
             File user_avatar = new File(path + ro.user.getId() + "/" + "0.png");
 
-            if (!user_dir.exists()) {
-                user_dir.mkdir();
-            }
-            if (user_avatar.exists()) {
-                user_avatar.delete();
-                user_avatar.createNewFile();
+            try {
+                if (!user_dir.exists()) {
+                    user_dir.mkdir();
+                }
+                if (user_avatar.exists()) {
+                    user_avatar.delete();
+                    user_avatar.createNewFile();
+                }
+            } catch (IOException e) {
+                resp.setStatus(409);
             }
 
             JSONArray ja = (JSONArray) ro.jo.get("photo");
             String photoString = ja.get(0).toString();
             if (photoString == null) {
                 resp.setStatus(406);
-                resp.getWriter().write("bad json");
                 return;
             }
 
             byte[] data = Base64.getDecoder().decode(photoString.split(",")[1]);
-            FileOutputStream fos = new FileOutputStream(user_avatar);
-            fos.write(data);
-
+            try {
+                FileOutputStream fos = new FileOutputStream(user_avatar);
+                fos.write(data);
+            } catch (IOException e) {
+                resp.setStatus(406);
+                return;
+            }
             resp.setStatus(200);
-            JSONObject respJSON = new JSONObject();
-            respJSON.put("avatar", "/resources/"+ro.user.getId()+"/0.png");
-            resp.getWriter().write(respJSON.toJSONString());
+            req.setAttribute("avatar", "/resources/"+ro.user.getId()+"/0.png");
             ro.user.setUserPhoto("/resources/"+ro.user.getId()+"/0.png");
             daoUser.update(ro.user);
         }
@@ -179,18 +252,6 @@ public class UserUtils {
         if (user == null) {
             return null;
         }
-
-//        ObjectMapper mapper = new ObjectMapper();
-//        String json;
-//        JSONObject jo = null;
-//        JSONParser jp = new JSONParser();
-
-//        try {
-//            json = mapper.writeValueAsString(user);
-//            jo = (JSONObject) jp.parse(json);
-//        } catch(JsonProcessingException | ParseException e) {
-//            System.out.println("error: " + e.getMessage());
-//        }
 
         JSONObject jo = new JSONObject();
         jo.put("login", user.getLogin());
