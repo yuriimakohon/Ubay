@@ -1,10 +1,5 @@
 package world.ucode.API;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.Utils;
@@ -81,6 +76,6 @@ public class Search extends HttpServlet {
         List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, login, userId);
 
         resp.setStatus(200);
-        resp.getWriter().write(Utils.lotsToJsonArray(ll).toJSONString());
+        resp.getWriter().write(Utils.toJsonArray(ll).toJSONString());
     }
 }

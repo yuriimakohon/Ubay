@@ -6,12 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import world.ucode.model.db.dao.DAOlot;
-import world.ucode.model.db.entetis.Bid;
-import world.ucode.model.db.entetis.Lot;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,25 +45,6 @@ public class Utils {
 
     public static boolean checkValidRole(String role) {
         return role == null || !RegExp.checkRegExp("^[0-9]{1,5}$", role);
-    }
-
-    public static JSONArray lotsToJsonArray(List<Lot> lots) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        JSONArray ja = new JSONArray();
-        JSONParser jp = new JSONParser();
-        JSONObject jo;
-        String json;
-
-        for (Lot lot : lots) {
-            json = mapper.writeValueAsString(lot);
-            try {
-                jo = (JSONObject) jp.parse(json);
-                ja.add(jo);
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return ja;
     }
 
     public static <T> JSONArray toJsonArray(List<T> objs)  {

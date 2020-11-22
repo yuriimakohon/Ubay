@@ -54,17 +54,15 @@ public class Users implements Serializable{
     @Column(name="userphoto")
     private String userphoto;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="bidderId")
-    @Fetch(FetchMode.SELECT)
-    private List<Bid> userbids;
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name="bidderId")
+//    @Fetch(FetchMode.SELECT)
+//    private List<Bid> userbids;
 
-
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="sellerId")
-    @Fetch(FetchMode.SELECT)
-    private List<Lot> userlots;
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name="sellerId")
+//    @Fetch(FetchMode.SELECT)
+//    private List<Lot> userlots;
 //
     public Users(String token, String login, String password, int role) {
         this.username = login;
@@ -127,17 +125,17 @@ public class Users implements Serializable{
         return password;
     }
 
-    public List<Lot> getUserlots() {
-        return userlots;
-    }
+//    public List<Lot> getUserlots() {
+//        return userlots;
+//    }
+//
+//    public List<Bid> getUserbids() {
+//        return userbids;
+//    }
 
-    public List<Bid> getUserbids() {
-        return userbids;
-    }
-
-    public List<Lot> getUserLots() {
-        return userlots;
-    }
+//    public List<Lot> getUserLots() {
+//        return userlots;
+//    }
 
     public void setLogin(String login) {
         this.login = login;
