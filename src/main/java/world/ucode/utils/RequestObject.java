@@ -19,11 +19,16 @@ public class RequestObject {
     private int status;
 
 
-    public void checkJson(HttpServletRequest req) throws IOException {
+    public void checkJson(HttpServletRequest req) {
         if (!ok) {
             return;
         }
-        jo = ParseJson.jsonToJsonObject(ReadRequestToString.ReadToString(req));
+        try {
+            jo = ParseJson.jsonToJsonObject(ReadRequestToString.ReadToString(req));
+        } catch (IOException e) {
+            status = 406;
+            ok = false;
+        }
 
         if (jo == null) {
             ok = false;
