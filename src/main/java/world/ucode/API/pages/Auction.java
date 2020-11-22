@@ -2,6 +2,7 @@ package world.ucode.API.pages;
 
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAObid;
+import world.ucode.model.db.dao.DAOfeedback;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
@@ -82,12 +83,13 @@ public class Auction extends HttpServlet {
             req.setAttribute("path", errorPath);
             req.getRequestDispatcher("/jsp/404.jsp").forward(req, resp);
         } else {
-            req.setAttribute("canFeedback", true);
-//            String idFeedback;
-//            if ((idFeedback = ParseCookie.parseToMap(req.getCookies()).get("id")) != null) {
-//
-//            }
-
+            String idCommentator;
+            if ((idCommentator = ParseCookie.parseToMap(req.getCookies()).get("id")) != null) {
+                if (new DAOfeedback().get_by_user_lot(Integer.parseInt(idCommentator), id) == null)
+                    req.setAttribute("canFeedback", true);
+                else
+                    req.setAttribute("canFeedback", false);
+            }
             req.getRequestDispatcher("/jsp/auction.jsp").forward(req, resp);
         }
     }
