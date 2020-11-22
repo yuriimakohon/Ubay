@@ -29,7 +29,7 @@ async function onSaveLogin() {
         if (await changeLogin(inputLogin.val())) {
             successNewLogin();
         } else {
-            loginExists();
+            errLoginExists();
         }
     }
 }
