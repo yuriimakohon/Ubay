@@ -158,12 +158,12 @@
 
                 // status info Bottom
 
-                out.println("</p><p id=\"status_info-bottom\" class=\"status_info-bottom\">");
+                out.println("</p><p id=\"status_info-bottom\" class=\"status_info-bottom\"");
                 if (status != 3) {
                     if (status == 1)
-                        out.println(jsonLot.get("startTime").toString());
+                        out.println("data=\"" + jsonLot.get("startTime").toString() + "\">");
                     else
-                        out.println(jsonLot.get("duration").toString());
+                        out.println("data=\"" + jsonLot.get("duration").toString() + "\">");
                     %><script src="/js/auction/setTimer.js"></script><%
                 } else {
 //                    out.println(jsonLot.get("highestBid").toString() + " $");
