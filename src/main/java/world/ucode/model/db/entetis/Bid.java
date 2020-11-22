@@ -13,14 +13,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "bid")
 public class Bid {
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "lotid", nullable = false)
-    private int lotid;
+    @Column(name = "lotId", nullable = false)
+    private int lotId;
 
     @Column(name = "bidderId")
     private int bidderId;
@@ -32,28 +31,31 @@ public class Bid {
     private int statusOfBid;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="lotid", insertable = false, updatable = false)
+    @JoinColumn(name="lotId", insertable=false, updatable=false)
     @Fetch(FetchMode.JOIN)
     private Lot lot;
 
-//    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-//    @JoinColumn (name="bidderId", insertable = false, updatable = false)
+//    @ManyToOne (cascade=CascadeType.ALL)
+//    @JoinColumn (name="bidderId", insertable=false, updatable=false)
+//    @Fetch(FetchMode.SELECT)
 //    private Users user;
 
     public Bid(int lotId, int bidderId, double price, int status) {
         this.bidderId = bidderId;
-        this.lotid = lotId;
+        this.lotId = lotId;
         this.price = price;
         this.statusOfBid = status;
     }
 
     public Bid(int lotId, int bidderId, double price) {
         this.bidderId = bidderId;
-        this.lotid = lotId;
+        this.lotId = lotId;
         this.price = price;
     }
 
-
+//    public Users getUser() {
+//        return user;
+//    }
     public int getBidderId() {
         return bidderId;
     }
@@ -67,7 +69,7 @@ public class Bid {
     }
 
     public void setLotId(int lotId) {
-        this.lotid = lotId;
+        this.lotId = lotId;
     }
 
     public void setPrice(double price) {
@@ -87,7 +89,7 @@ public class Bid {
     }
 
     public int getLotId() {
-        return lotid;
+        return lotId;
     }
 
     public int getStatusOfBid() {

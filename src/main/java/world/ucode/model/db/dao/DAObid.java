@@ -3,15 +3,12 @@ package world.ucode.model.db.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import world.ucode.model.db.entetis.Bid;
-import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 
 public class DAObid implements DAO<Bid, Integer>{
-
-
     @Override
     public void create(Bid bid) {
         Transaction transaction = null;
@@ -73,6 +70,22 @@ public class DAObid implements DAO<Bid, Integer>{
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             listOfBid = session.createQuery("SELECT b from Bid b join Users u on b.bidderId = u.id where u.id = :id", Bid.class).setParameter("id", id).getResultList();
+            transaction.commit();
+        } catch (NoResultException ignored) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOfBid;
+    }
+
+    public List<Bid> get_all() {
+        Transaction transaction;
+        List<Bid> listOfBid = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+//            listOfBid = session.createQuery("SELECT b from Bid b join Lot l on b.lotid = l.id where l.id = :id", Bid.class).setParameter("id", id).getResultList();
+            listOfBid = session.createQuery("SELECT b FROM Bid b", Bid.class).getResultList();
             transaction.commit();
         } catch (NoResultException ignored) {
 
