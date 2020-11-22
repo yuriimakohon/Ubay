@@ -20,7 +20,8 @@ async function onSendFeedback() {
     });
 
     if (response.ok) {
-        let login = await response.text();
-        $('#feedbacks-container').before(feedbackHtmlGen(login, text, evaluation, localStorage.getItem('id'), localStorage.getItem('avatar')));
+        let json = await response.json();
+        $('.rate-container span').text(json.rate.toPrecision(2));
+        $('#feedbacks-container').before(feedbackHtmlGen(json.login, text, evaluation, localStorage.getItem('id'), localStorage.getItem('avatar')));
     }
 }

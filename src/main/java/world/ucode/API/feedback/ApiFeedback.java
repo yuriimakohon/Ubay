@@ -88,18 +88,21 @@ public class ApiFeedback extends HttpServlet {
                 );
         daoFeedback.create(feedback);
 
-        updateRate(daoLot, feedback);
+        JSONObject joResp = new JSONObject();
+        joResp.put("login", ro.user.getLogin());
+        joResp.put("rate", updateRate(daoLot, feedback));
 
-        resp.getWriter().write(ro.user.getLogin());
+        resp.setContentType("application/json;charset=utf-8");
+        resp.getWriter().write(joResp.toJSONString());
     }
 
     /**
-     * Calculate new avg rate for auction by feedback evaluation:
+     * Calculate and return new avg rate for auction by feedback evaluation:
      * {@code (feedbacksNumber * currentRate + mark) / (feedbacksNumber + 1)}
      * @param daoLot lot to be updated
      * @param feedback feedback with rate
      */
-    private void updateRate(DAOlot daoLot, Feedback feedback) {
+    private float updateRate(DAOlot daoLot, Feedback feedback) {
         Lot lot = daoLot.read(feedback.getLotId());
         int fNumbs = lot.getFeedbackNumber();
         float rate = lot.getRate();
@@ -108,6 +111,7 @@ public class ApiFeedback extends HttpServlet {
         lot.setFeedbackNumber(fNumbs + 1);
         lot.setRate(avg);
         daoLot.update(lot);
+        return avg;
     }
 
 }
