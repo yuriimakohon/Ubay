@@ -44,7 +44,7 @@ function errAvatar() {
     showInfoText();
 }
 
-//=============| Error Messages |================//
+//=============| Success Messages |================//
 function successNewPass() {
     setSuccessText('Password was successfully changed');
     showInfoText();
@@ -60,7 +60,7 @@ function successNewAvatar() {
     showInfoText();
 }
 
-function loginExists() {
-    setSuccessText('such login is exists');
+function errLoginExists() {
+    setErrorText('such login is exists');
     showInfoText();
 }

@@ -21,6 +21,7 @@ async function onSendFeedback() {
 
     if (response.ok) {
         let json = await response.json();
+        $('.user-feedback').addClass('hidden');
         $('.rate-container span').text(json.rate.toPrecision(2));
         $('#feedbacks-container').before(feedbackHtmlGen(json.login, text, evaluation, localStorage.getItem('id'), localStorage.getItem('avatar')));
     }
