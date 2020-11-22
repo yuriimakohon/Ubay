@@ -5,7 +5,7 @@ import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOfeedback;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
-import world.ucode.model.db.entetis.Lot;
+import world.ucode.model.db.entetis.Feedback;
 import world.ucode.utils.BidUtils;
 import world.ucode.utils.ParseCookie;
 import world.ucode.utils.UserUtils;
@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 
 @WebServlet("/auction/*")
 public class Auction extends HttpServlet {
@@ -83,13 +82,11 @@ public class Auction extends HttpServlet {
             req.setAttribute("path", errorPath);
             req.getRequestDispatcher("/jsp/404.jsp").forward(req, resp);
         } else {
-            String idCommentator;
-            if ((idCommentator = ParseCookie.parseToMap(req.getCookies()).get("id")) != null) {
-                if (new DAOfeedback().get_by_user_lot(Integer.parseInt(idCommentator), id) == null)
-                    req.setAttribute("canFeedback", true);
-                else
-                    req.setAttribute("canFeedback", false);
-            }
+            String idVisitor = ParseCookie.parseToMap(req.getCookies()).get("id");
+            req.setAttribute("canFeedback", false);
+            Feedback fb = new DAOfeedback().get_by_user_lot(Integer.parseInt(idVisitor), id);
+            if (fb == null)
+                req.setAttribute("canFeedback", true);
             req.getRequestDispatcher("/jsp/auction.jsp").forward(req, resp);
         }
     }
