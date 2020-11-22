@@ -186,7 +186,12 @@
         <div class="title_line"></div>
 
         <div class="all-feedbacks-container">
-            <div class="user-feedback card">
+            <%
+                if (request.getAttribute("canFeedback").toString().equals("true"))
+                    out.println("<div class=\"user-feedback card\">");
+                else
+                    out.println("<div class=\"user-feedback hidden card\">");
+            %>
                 <h3>Leave feedback</h3>
                 <textarea id="textarea_feedback" class="textarea" placeholder="Leave your opinion about the auction" maxlength="500"></textarea>
                 <div class="user-feedback-control">

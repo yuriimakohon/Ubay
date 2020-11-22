@@ -4,7 +4,9 @@ import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
+import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.BidUtils;
+import world.ucode.utils.ParseCookie;
 import world.ucode.utils.UserUtils;
 import world.ucode.utils.Utils;
 import world.ucode.utils.auction.AuctionUtils;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 @WebServlet("/auction/*")
 public class Auction extends HttpServlet {
@@ -79,6 +82,12 @@ public class Auction extends HttpServlet {
             req.setAttribute("path", errorPath);
             req.getRequestDispatcher("/jsp/404.jsp").forward(req, resp);
         } else {
+            req.setAttribute("canFeedback", true);
+//            String idFeedback;
+//            if ((idFeedback = ParseCookie.parseToMap(req.getCookies()).get("id")) != null) {
+//
+//            }
+
             req.getRequestDispatcher("/jsp/auction.jsp").forward(req, resp);
         }
     }
