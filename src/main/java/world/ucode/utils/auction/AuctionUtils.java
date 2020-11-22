@@ -26,15 +26,19 @@ public class AuctionUtils {
             return null;
         }
 
-        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
-            lot.setStatus(2);
-            daoLot.update(lot);
-        }
-
         ObjectMapper mapper = new ObjectMapper();
         String json;
         JSONObject jo = null;
         JSONParser jp = new JSONParser();
+
+        if (lot.getStatus() == 1 && new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
+            lot.setStatus(2);
+            daoLot.update(lot);
+        } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
+            lot.setStatus(3);
+            daoLot.update(lot);
+        }
+
 
         try {
             json = mapper.writeValueAsString(lot);
@@ -74,8 +78,11 @@ public class AuctionUtils {
             return false;
         }
 
-        if (new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
+        if (lot.getStatus() == 1 && new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
             lot.setStatus(2);
+            daoLot.update(lot);
+        } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
+            lot.setStatus(3);
             daoLot.update(lot);
         }
 

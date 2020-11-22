@@ -153,8 +153,11 @@
                 //  status info Top
                 if (status != 3)
                     out.println("In:");
-                else
-                    out.println("winner_login");
+                else if (!jsonLot.get("bidNumber").toString().equals("0")) {
+                    out.println("Winner login");
+                } else {
+                    out.println("Without bids");
+                }
 
                 // status info Bottom
 
@@ -165,8 +168,8 @@
                     else
                         out.println("data=\"" + jsonLot.get("duration").toString() + "\">");
                     %><script src="/js/auction/setTimer.js"></script><%
-                } else {
-//                    out.println(jsonLot.get("highestBid").toString() + " $");
+                } else if (!jsonLot.get("bidNumber").toString().equals("0")) {
+                    out.print("\">" + jsonBid.get("price").toString() + " $");
                 }
                 out.println("</p>");
             %>
