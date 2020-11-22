@@ -34,7 +34,7 @@ async function onCreateAuction() {
             desc: desc,
             startPrice: startPrice,
             maxPrice: maxPrice,
-            startTime: new Date().getTime() + 10_000, //TODO: manual user control set startTime
+            startTime: new Date().getTime() + 5_000, //TODO: manual user control set startTime
             duration: duration,
             categories: categories
         };
