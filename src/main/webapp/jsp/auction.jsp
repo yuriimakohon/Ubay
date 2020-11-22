@@ -19,12 +19,17 @@
          JSONObject jsonUser = null;
          JSONObject jsonLot = null;
          JSONObject jsonBid = null;
+         JSONObject jsonBidder = null;
          if (response.getStatus() < 400) {
             JSONParser jp = new JSONParser();
             try {
                 jsonLot = (JSONObject) jp.parse(request.getAttribute("lot").toString());
-                jsonUser = (JSONObject) jp.parse(request.getAttribute("user").toString());
+                jsonUser = (JSONObject) jp.parse(request.getAttribute("userSeller").toString());
                 jsonBid = (JSONObject) jp.parse(request.getAttribute("bid").toString());
+                if (request.getAttribute("userBidder") != null) {
+
+                    jsonBidder = (JSONObject) jp.parse(request.getAttribute("userBidder").toString());
+                }
             } catch (ParseException ignored) {}
          }
      %>
@@ -65,7 +70,11 @@
                     <span class="info-title">Current price:</span>
                     <span id="info-title-current_price" class="info-value">
                         <%
-                            out.println(jsonBid.get("price").toString());
+                            if (jsonBid.get("ok").toString().equals("true")) {
+                                out.println(jsonBid.get("price").toString());
+                            } else {
+                                out.println("0.0");
+                            }
                         %>
                 </span>
                 </div>
@@ -80,13 +89,26 @@
             <div id="bid-container" class="hidden">
                 <label id="your_bid">
                     Your bid:
-                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%out.print(Float.parseFloat(jsonBid.get("price").toString()) + 1);%>">
+                    <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%
+                            if (jsonBid.get("ok").equals("true")) {
+                                out.print(Float.parseFloat(jsonBid.get("price").toString()) + 1);
+                            } else if (jsonBid.get("ok").equals("false")) {
+                                out.print(Float.parseFloat(jsonLot.get("price").toString()) + 1);
+                            } else {
+                                out.print(1);
+                            }%>">
                 </label>
                 <div class="btn_bids-container">
                     <button class="btn btn-red" onclick="onCancelBid()">
                         cancel
                     </button>
-                    <button class="btn" onclick="onPlaceBid(<%out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonBid.get("price").toString()));%>)">
+                    <button class="btn" onclick="onPlaceBid(<%
+                            if (jsonBid.get("ok").equals("true")) {
+                                out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonBid.get("price").toString()));
+                            } else if (jsonBid.get("ok").equals("false")) {
+                                out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", " +  Float.parseFloat(jsonLot.get("price").toString()));
+                            } else {
+                                out.print(Float.parseFloat(jsonLot.get("lotId").toString()) + ", 0");}%>)">
                         place a bid
                     </button>
                 </div>
@@ -154,7 +176,7 @@
                 if (status != 3)
                     out.println("In:");
                 else if (!jsonLot.get("bidNumber").toString().equals("0")) {
-                    out.println("Winner login");
+                    out.println(jsonBidder.get("login"));
                 } else {
                     out.println("Without bids");
                 }

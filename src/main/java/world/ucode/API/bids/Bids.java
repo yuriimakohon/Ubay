@@ -114,10 +114,11 @@ public class Bids extends HttpServlet {
                     daoUser.update(owner);
 
                     List<Bid> bids = daoBid.get_all_by_lot(lot.getLotId());
-                    ObjectMapper mapper = new ObjectMapper();
+//                    ObjectMapper mapper = new ObjectMapper();
 
                     for (Bid b : bids) {
-                        System.out.println(mapper.writeValueAsString(b));
+                        // TO DO
+//                        System.out.println(mapper.writeValueAsString(b));
                         daoBid.delete(b.getId());
                     }
                 } else {
