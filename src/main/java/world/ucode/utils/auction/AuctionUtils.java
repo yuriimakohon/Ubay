@@ -122,6 +122,9 @@ public class AuctionUtils implements RestUtils {
             daoLot.update(lot);
         } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
             lot.setStatus(3);
+
+            // TO DO DELETE ALL BIDS OF THIS LOT
+
             daoLot.update(lot);
         }
 

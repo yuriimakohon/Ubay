@@ -1,7 +1,6 @@
 package world.ucode.API.pages;
 
 import org.json.simple.JSONObject;
-import world.ucode.model.db.dao.DAOusers;
 import world.ucode.utils.Bid.BidUtils;
 import world.ucode.utils.user.UserUtils;
 import world.ucode.model.db.dao.DAOfeedback;
@@ -36,22 +35,20 @@ public class Auction extends HttpServlet {
 
         if (id == 0) {
             resp.setStatus(404);
-            System.out.println("id == 0");
         } else {
             JSONObject lot = auctionUtils.get(id, resp);
 
             if (lot == null) {
                 resp.setStatus(404);
-                System.out.println("not found lot");
             } else {
                 req.setAttribute("lot", lot.toJSONString());
                 JSONObject userSeller = userUtils.get(Integer.parseInt(lot.get("sellerId").toString()), resp);
 
+
                 if (userSeller == null) {
                     resp.setStatus(404);
-                    System.out.println("seller not found");
                 } else {
-                    req.setAttribute("user", userSeller.toJSONString());
+                    req.setAttribute("userSeller", userSeller.toJSONString());
                 }
 
                 JSONObject bid;
@@ -73,7 +70,9 @@ public class Auction extends HttpServlet {
                         int idBidder = Integer.parseInt(bid.get("bidderId").toString());
                         if (idBidder != 0) {
                             JSONObject userBidder = userUtils.get(Integer.parseInt(bid.get("bidderId").toString()), resp);
-                            req.setAttribute("userBidder", userBidder.toJSONString());
+                            if (userBidder != null) {
+                                req.setAttribute("userBidder", userBidder.toJSONString());
+                            }
                         }
                     }
                 }
