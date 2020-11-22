@@ -2,8 +2,8 @@ package world.ucode.model.db.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import world.ucode.model.db.entetis.Feedback;
-import world.ucode.model.db.entetis.Users;
 import world.ucode.model.db.util.HibernateUtil;
 
 import java.util.List;
@@ -23,6 +23,22 @@ public class DAOfeedback implements DAO<Feedback, Integer>{
         return listOfFeedback;
     }
 
+    public Feedback get_by_user_lot(int user_id, int lot_id) {
+        Transaction transaction;
+        Feedback feedback = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Query<Feedback> feedbackQuery = session.createQuery("from Feedback where lotId=:lot_id and userId=:user_id", Feedback.class);
+            feedbackQuery.setParameter("lot_id", lot_id);
+            feedbackQuery.setParameter("user_id", user_id);
+            feedback = feedbackQuery.getSingleResult();
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return feedback;
+    }
+
     @Override
     public void create(Feedback feedback) {
         Transaction transaction = null;
@@ -34,8 +50,6 @@ public class DAOfeedback implements DAO<Feedback, Integer>{
             System.out.println(e.getMessage());
         }
     }
-
-
 
     @Override
     public Feedback read(Integer key) {
