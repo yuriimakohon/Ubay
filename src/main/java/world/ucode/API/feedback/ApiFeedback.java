@@ -88,16 +88,26 @@ public class ApiFeedback extends HttpServlet {
                 );
         daoFeedback.create(feedback);
 
-        Lot lot = daoLot.read(feedback.getLotId());
-
-
-        int fNumbs = lot.getFeedbackNumber();
-        float rate = lot.getRate();
-
-        float avg = ((rate * fNumbs) + feedback.getMark()) / (fNumbs + 1);
-        System.out.println((avg));
+        updateRate(daoLot, feedback);
 
         resp.getWriter().write(ro.user.getLogin());
+    }
+
+    /**
+     * Calculate new avg rate for auction by feedback evaluation:
+     * {@code (feedbacksNumber * currentRate + mark) / (feedbacksNumber + 1)}
+     * @param daoLot lot to be updated
+     * @param feedback feedback with rate
+     */
+    private void updateRate(DAOlot daoLot, Feedback feedback) {
+        Lot lot = daoLot.read(feedback.getLotId());
+        int fNumbs = lot.getFeedbackNumber();
+        float rate = lot.getRate();
+        float avg = (fNumbs * rate + feedback.getMark()) / (fNumbs + 1);
+
+        lot.setFeedbackNumber(fNumbs + 1);
+        lot.setRate(avg);
+        daoLot.update(lot);
     }
 
 }
