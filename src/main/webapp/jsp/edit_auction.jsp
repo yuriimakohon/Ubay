@@ -30,15 +30,15 @@
             <p>Lot description</p>
             <textarea id="textarea-description" class="textarea" maxlength="500" content="description" placeholder="Describe in detail the item put up for auction"></textarea>
         </div>
-        <div id="start_price-container" class="text_input-item">
-            <p>Start price</p>
-            <input class="number_input" type="number" id="input-start_price" step="5" min="0" placeholder="0.00">
-        </div>
         <div id="categories-container" class="text_input-item">
             <p>Categories</p>
             <div class="checkbox-container">
                 <%@include file="parts/checkbox.jsp"%>
             </div>
+        </div>
+        <div id="start_price-container" class="text_input-item">
+            <p>Start price</p>
+            <input class="number_input" type="number" id="input-start_price" step="5" min="0" placeholder="0.00">
         </div>
         <div id="max_price-container" class="text_input-item">
             <p>Max price
