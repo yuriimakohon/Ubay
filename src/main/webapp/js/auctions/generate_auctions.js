@@ -35,6 +35,5 @@ function auctionsGen(json) {
         let auction = auctionHtmlGen(lotId, title, price, bidsCount, photo, status);
         container.append(auction);
     });
-    $('#checkbox-all').prop('checked', true);
-    onAuctionAll();
+    onStatus(0);
 }
