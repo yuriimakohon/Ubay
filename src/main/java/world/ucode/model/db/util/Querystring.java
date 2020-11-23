@@ -31,7 +31,7 @@ public class Querystring {
 
         if (status != null && status.size() > 0) {
             if (uid || log)
-                qua.append(" and status =  ");
+                qua.append(" and (status=");
             else
                 qua.append(" where (status=");
             for (int i = 0; i < status.size(); i++) {
