@@ -33,6 +33,15 @@ function errMaxPrice() {
     setErrorText('Max price can\'t be lower or equal to Start price');
     showInfoText();
 }
+function errNegativePrice() {
+    setErrorText('Price can\'t be negative');
+    showInfoText();
+}
+
+function errPriceTooBig() {
+    setErrorText('Price must be above 100 000 $');
+    showInfoText();
+}
 
 function errPhotoCount() {
     setErrorText('Too much photos uploaded: 6 is maximum');
