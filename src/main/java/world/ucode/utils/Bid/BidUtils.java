@@ -74,7 +74,6 @@ public class BidUtils implements RestUtils, GetByUser {
             resp.setStatus(200);
             jo.put("ok", true);
         }
-        System.out.println(jo.toJSONString());
         return jo;
     }
 
