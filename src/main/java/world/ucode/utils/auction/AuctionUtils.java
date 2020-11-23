@@ -1,6 +1,5 @@
 package world.ucode.utils.auction;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.simple.JSONArray;
@@ -13,7 +12,6 @@ import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.Interaces.RestUtils;
-import world.ucode.utils.RequestObject;
 import world.ucode.utils.Utils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -101,35 +99,9 @@ public class AuctionUtils implements RestUtils {
 
     @Override
     public JSONArray get_all() {
-        List<Lot> listOfLot = daoLot.getAllLots();
+        List<Lot> lots = daoLot.getAllLots();
 
-        return Utils.toJsonArray(listOfLot);
-    }
-
-    public static boolean sendLot(HttpServletResponse resp, int lotId, DAOlot daoLot) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-
-        Lot lot = daoLot.read(lotId);
-
-        if (lot == null) {
-            resp.setStatus(404);
-            resp.getWriter().write("lot not found");
-            return false;
-        }
-
-        if (lot.getStatus() == 1 && new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
-            lot.setStatus(2);
-            daoLot.update(lot);
-        } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
-            lot.setStatus(3);
-
-            // TO DO DELETE ALL BIDS OF THIS LOT
-
-            daoLot.update(lot);
-        }
-
-        resp.setStatus(200);
-        resp.getWriter().write(mapper.writeValueAsString(lot));
-        return true;
+        Utils.check_time_of_lot(lots, daoLot, daoBid);
+        return Utils.toJsonArray(lots);
     }
 }

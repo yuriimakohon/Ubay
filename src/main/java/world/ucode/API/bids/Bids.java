@@ -1,6 +1,5 @@
 package world.ucode.API.bids;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;

@@ -8,7 +8,7 @@ import world.ucode.model.db.entetis.Lot;
 import java.util.List;
 
 public class Querystring {
-    public static  Query stringmaker(List<String> categories, Session session, String tittle, double startPrice, int rate, int status, String login, int userid) {
+    public static  Query stringmaker(List<String> categories, Session session, String tittle, double startPrice, int rate, List<Integer> status, String login, int userid) {
         Query query = null;
         StringBuilder qua = new StringBuilder("Select l from Lot l");
         Boolean categor = false;
@@ -29,8 +29,22 @@ public class Querystring {
             uid = true;
         }
 
-         if (categories != null && categories.size() > 0) {
-             if (uid || log)
+        if (status != null && status.size() > 0) {
+            if (uid || log)
+                qua.append(" and status =  ");
+            else
+                qua.append(" where (status=");
+            for (int i = 0; i < status.size(); i++) {
+                qua.append(status.get(i));
+                if (i != status.size() - 1)
+                    qua.append(" or status=");
+            }
+            qua.append(")");
+            stat = true;
+        }
+
+        if (categories != null && categories.size() > 0) {
+             if (uid || log || stat)
                  qua.append(" and category like ");
              else
                  qua.append(" where category like ");
@@ -42,38 +56,32 @@ public class Querystring {
              categor = true;
          }
         if (tittle != null) {
-            if (uid || log || categor)
+            if (uid || log || categor || stat)
                 qua.append(" and title like :tittle");
             else
                 qua.append(" where title like :tittle");
             tit = true;
         }
         if (startPrice > 0) {
-            if (uid || log || categor || tit)
+            if (uid || log || categor || tit || stat)
                 qua.append(" and price<=:price");
             else
                 qua.append(" where price<=:price");
             startpr = true;
         }
         if (rate > 0) {
-            if (uid || log || categor || tit || startpr)
+            if (uid || log || categor || tit || startpr || stat)
                 qua.append(" and rate>=:rate");
             else
                 qua.append(" where rate>=:rate");
             rat = true;
         }
-        if (status > 0) {
-            if (uid || log || categor || tit || startpr || rat)
-                qua.append(" and status=:status");
-            else
-                qua.append(" where status=:status");
-            stat = true;
-        }
 
+//        System.out.println(qua);
         query = session.createQuery(qua.toString(), Lot.class);
         if (categor) {
-            for (int i = 0; i < categories.size(); i++) {
-                query.setParameter(categories.get(i), "%"+categories.get(i)+"%");
+            for (String category : categories) {
+                query.setParameter(category, "%" + category + "%");
             }
         }
         if (tit)
@@ -82,8 +90,6 @@ public class Querystring {
             query.setParameter("price", startPrice);
         if (rat)
             query.setParameter("rate", (float)rate);
-        if (stat)
-            query.setParameter("status", status);
         if (log)
             query.setParameter("login", login);
         if (uid)
