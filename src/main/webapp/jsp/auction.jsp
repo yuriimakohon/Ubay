@@ -84,15 +84,20 @@
                         out.println("end");
                     }
                 %>">
+                <%
+                    if (!jsonLot.get("status").toString().equals("1") && !jsonLot.get("status").toString().equals("3")) {
+                        out.println("<button id=\"btn-show_bid\" class=\"btn\" onclick=\"onShowBid()\">Bid</button>");
+                    }
+                %>
                 <button id="btn-show_bid" class="btn" onclick="onShowBid()">Bid</button>
             </div>
             <div id="bid-container" class="hidden">
                 <label id="your_bid">
                     Your bid:
                     <input id="input-bid" class="number_input" type="number" placeholder="0.00" step="1" min="<%
-                            if (jsonBid.get("ok").equals("true")) {
+                            if (jsonBid.get("ok").toString().equals("true")) {
                                 out.print(Float.parseFloat(jsonBid.get("price").toString()) + 1);
-                            } else if (jsonBid.get("ok").equals("false")) {
+                            } else if (jsonBid.get("ok").toString().equals("false")) {
                                 out.print(Float.parseFloat(jsonLot.get("price").toString()) + 1);
                             } else {
                                 out.print(1);
