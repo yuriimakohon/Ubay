@@ -69,4 +69,3 @@ function checkPrices(startPrice, maxPrice) {
     }
     return true;
 }
-
