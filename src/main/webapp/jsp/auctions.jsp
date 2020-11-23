@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/auctions/auctions.css">
     <link rel="stylesheet" href="/css/parts/auction_list.css">
     <script src="/js/parts/ref_token.js"></script>
-    <script src="/js/parts/checkbox_select.js"></script>
 </head>
 <body>
 <%@include file="parts/header_bar.jsp"%>
@@ -22,24 +21,7 @@
                 + Create new auction
             </div>
         </a>
-        <div class="toggle-container">
-            <label id="label-all" class="checkbox_input" onclick="onAuctionAll()">
-                <input type="checkbox" id="checkbox-all">
-                All
-            </label>
-            <label id="label-notActive" class="checkbox_input" onclick="onStatus()">
-                <input type="checkbox" id="checkbox-notActive">
-                Not active
-            </label>
-            <label id="label-active" class="checkbox_input" onclick="onStatus()">
-                <input type="checkbox" id="checkbox-active">
-                Active
-            </label>
-            <label id="label-finished" class="checkbox_input" onclick="onStatus()">
-                <input type="checkbox" id="checkbox-finished">
-                Finished
-            </label>
-        </div>
+        <%@include file="parts/checkbox_select.jsp"%>
     </div>
 </div>
 

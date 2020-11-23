@@ -21,6 +21,5 @@ function resultAuctionsGen(json) {
 
         container.append(auction);
     });
-    $('#checkbox-all').prop('checked', true);
-    onAuctionAll();
+    onStatus(0);
 }
