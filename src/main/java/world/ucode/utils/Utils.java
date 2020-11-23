@@ -114,6 +114,7 @@ public class Utils {
         Users user = daoUser.read(bid.getBidderId());
         if (user != null) {
             user.setBalance(user.getBalance() + bid.getPrice());
+            daoUser.update(user);
         }
         daoBid.delete(bid.getId());
     }
