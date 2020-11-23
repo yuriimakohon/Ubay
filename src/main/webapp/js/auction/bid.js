@@ -52,6 +52,7 @@ async function onPlaceBid(lotId, currentBid) {
             } else {
                 successWon();
                 hideBidContainer();
+                location.reload();
             }
 
             localStorage.setItem('balance', (+localStorage.getItem('balance') - +inputBid.val()).toString())
