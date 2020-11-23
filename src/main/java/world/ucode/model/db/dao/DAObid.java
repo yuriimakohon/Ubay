@@ -2,6 +2,7 @@ package world.ucode.model.db.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.util.HibernateUtil;
 
@@ -77,6 +78,22 @@ public class DAObid implements DAO<Bid, Integer>{
             e.printStackTrace();
         }
         return listOfBid;
+    }
+
+    public Bid get_by_user_lot(int user_id, int lot_id) {
+        Transaction transaction;
+        Bid bid = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Query<Bid> bidQuery = session.createQuery("from Bid where lotId=:lot_id and bidderId=:user_id", Bid.class);
+            bidQuery.setParameter("lot_id", lot_id);
+            bidQuery.setParameter("user_id", user_id);
+            bid = bidQuery.getSingleResult();
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return bid;
     }
 
     public List<Bid> get_all() {

@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/api/bid/*")
 public class Bids extends HttpServlet {
@@ -90,8 +89,13 @@ public class Bids extends HttpServlet {
                 return;
             }
 
+            if (lot.getStatus() == 1 || lot.getStatus() == 3) {
+                resp.setStatus(403);
+                resp.getWriter().write("Lot is not available");
+                return;
+            }
+
             Bid lastBid = daoBid.read(lot.getBidId());
-            Users owner = daoUser.read(lot.getSellerId());
             if (ro.user.getBalance() < bidPrice) {
                 resp.setStatus(406);
                 resp.getWriter().write("Not enough money");
@@ -105,14 +109,15 @@ public class Bids extends HttpServlet {
                 resp.getWriter().write("You already have bid here");
             } else {
                 Bid bid = new Bid(lot.getLotId(), ro.user.getId(), bidPrice);
-                if (bidPrice >= lot.getMaxPrice()) {
-                    lot.setStatus(3);
-                    bid.setStatusOfBid(3);
-                    resp.setStatus(201);
-                    owner.setBalance(owner.getBalance() + bidPrice);
-                    daoUser.update(owner);
+                daoBid.create(bid);
+                lot.setBidNumber(lot.getBidNumber() + 1);
+                lot.setBidId(bid.getId());
+                daoLot.update(lot);
 
-                    Utils.delete_bids_for_lot(lotId, daoBid);
+                if (bidPrice >= lot.getMaxPrice()) {
+                    BidUtils.bidWon(lot);
+                    lot.setStatus(3);
+                    resp.setStatus(201);
                 } else {
                     if (lastBid != null) {
                         lastBid.setStatusOfBid(2);
@@ -122,10 +127,6 @@ public class Bids extends HttpServlet {
                     lot.setStatus(2);
                     resp.setStatus(200);
                 }
-                daoBid.create(bid);
-                lot.setBidNumber(lot.getBidNumber() + 1);
-                lot.setBidId(bid.getId());
-                ro.user.setBalance(ro.user.getBalance() - bidPrice);
                 daoUser.update(ro.user);
                 daoLot.update(lot);
             }
