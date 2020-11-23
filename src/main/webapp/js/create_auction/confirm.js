@@ -29,9 +29,10 @@ async function onCreateAuction() {
         let auction = {
             title: title,
             desc: desc,
-            startPrice: startPrice,
-            maxPrice: maxPrice,
-            startTime: new Date().getTime() + 5_000, //TODO: manual user control set startTime
+            startPrice: Number(startPrice).toFixed(2),
+            maxPrice: Number(maxPrice).toFixed(2),
+            // startTime: new Date().getTime() + 5_000, //TODO: manual user control set startTime
+            startTime: st.getTime(),
             duration: duration,
             categories: categories
         };

@@ -75,8 +75,8 @@ async function onSaveChanges() {
         let auction = {
             title: title,
             desc: desc,
-            startPrice: startPrice,
-            maxPrice: maxPrice,
+            startPrice: Number(startPrice).toFixed(2),
+            maxPrice: Number(maxPrice).toFixed(2),
             startTime: st.getTime(),
             duration: duration,
             categories: categories

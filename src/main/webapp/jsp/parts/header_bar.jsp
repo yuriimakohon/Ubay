@@ -37,6 +37,7 @@
                 <img id="img-signup" src="/resources/user.svg" alt="signup">
             </div>
             <script src="/js/parts/header.js"></script>
+            <script src="/js/http_requests/user.js"></script>
         </div>
     </div>
 </header>
