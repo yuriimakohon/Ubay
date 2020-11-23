@@ -33,7 +33,6 @@ public class UserUtils implements RestUtils {
             jo.put("role", "0");
             jo.put("ok", false);
         } else {
-            jo.put("status", "200");
             jo.put("login", user.getLogin());
             jo.put("role", user.getUserRole());
             jo.put("balance", user.getBalance());

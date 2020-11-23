@@ -18,15 +18,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         auction.addClass('hidden')
         bid.addClass('hidden');
     } else {
-        let role = localStorage.getItem('role');
-        let balance = localStorage.getItem('balance');
-        let avatar = localStorage.getItem('avatar');
+        let user = await user_get();
 
-        if (balance == null) {
-            localStorage.setItem('balance', '0');
-        }
+        let role = user.role;
+        let balance = Number(user.balance).toFixed(2);
+        let avatar = user.avatar;
 
-        if (role == null) {
+        if (+role === 0) {
             $('#item-sign_up').removeClass('hidden');
         } else {
             if (avatar !== undefined) {
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
             $('#item-account').removeClass('hidden');
             $('#item-balance').removeClass('hidden');
-            let balance = Number(localStorage.getItem('balance')).toFixed(2);
             $('#counter-balance').text(balance);
             if (+role === 1) { // auctioneer
                 $('#item-auction').removeClass('hidden')

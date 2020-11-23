@@ -1,5 +1,5 @@
 let title = $('#input-title');
-let login = $('#input-login');
+let user_login = $('#input-login');
 let collectibles = $('#category-collectibles input');
 let clothing = $('#category-clothing input');
 let technics = $('#category-technics input');
@@ -19,8 +19,8 @@ async function search() {
     if (title.val() !== '') {
         url = addParam(url, 'title', title.val());
     }
-    if (login.val() !== '') {
-        url = addParam(url, 'login', login.val());
+    if (user_login.val() !== '') {
+        url = addParam(url, 'login', user_login.val());
     }
     if (categories !== '') {
         categories = categories.slice(1, categories.length);

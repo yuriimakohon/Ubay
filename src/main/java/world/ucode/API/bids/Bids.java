@@ -112,14 +112,7 @@ public class Bids extends HttpServlet {
                     owner.setBalance(owner.getBalance() + bidPrice);
                     daoUser.update(owner);
 
-                    List<Bid> bids = daoBid.get_all_by_lot(lot.getLotId());
-//                    ObjectMapper mapper = new ObjectMapper();
-
-                    for (Bid b : bids) {
-                        // TO DO
-//                        System.out.println(mapper.writeValueAsString(b));
-                        daoBid.delete(b.getId());
-                    }
+                    Utils.delete_bids_for_lot(lotId, daoBid);
                 } else {
                     if (lastBid != null) {
                         lastBid.setStatusOfBid(2);
