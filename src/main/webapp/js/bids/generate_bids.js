@@ -18,7 +18,7 @@ function bidHtmlGen(title, bid, lotId, bidId, photo, status) {
     if (status === 2) {
         gen += ['<div class="control_block">\n' +
             '                <button class="btn" onclick="onRebid(' + lotId + ')">Rebid</button>\n' +
-            '                <button class="btn btn-red" onclick="onBidDelete(' + bidId +  ')">Delete</button>\n' +
+            '                <button class="btn btn-red" onclick="onBidDelete(' + bidId + ',' +  bid + ')">Delete</button>\n' +
             '            </div>\n'];
     }
     return gen;

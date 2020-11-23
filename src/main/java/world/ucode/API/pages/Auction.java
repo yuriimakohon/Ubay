@@ -38,7 +38,7 @@ public class Auction extends HttpServlet {
         } else {
             JSONObject lot = auctionUtils.get(id, resp);
 
-            if (lot == null) {
+            if (lot == null || lot.get("ok").toString().equals("false")) {
                 resp.setStatus(404);
             } else {
                 req.setAttribute("lot", lot.toJSONString());

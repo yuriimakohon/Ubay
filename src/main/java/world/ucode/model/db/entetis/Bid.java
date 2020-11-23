@@ -30,7 +30,8 @@ public class Bid {
     @Column(name = "statusOfBid")
     private int statusOfBid;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name="lotId", insertable=false, updatable=false)
     @Fetch(FetchMode.JOIN)
     private Lot lot;

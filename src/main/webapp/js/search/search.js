@@ -27,6 +27,7 @@ async function search() {
         url = addParam(url, 'categories', categories);
     }
     if (status !== '') {
+        status = status.slice(1, status.length);
         url = addParam(url, 'status', status);
     }
     if (price.val() !== '') {

@@ -29,18 +29,19 @@ public class ValidatorAuction {
 
 
         long date = new Date().getTime();
-        long startTime, duration, startPrice, maxPrice;
+        long startTime, duration;
+        double startPrice, maxPrice;
 
         try  {
             startTime = Long.parseLong(startTimeS.toString());
-//            duration = startTime + (Integer.parseInt(durationS.toString())*60*60*24*1000);
-            duration = startTime + 10_000;      // TODO: change to ^^^^^^^^^^^^^^^^^^^^^
-            startPrice = Long.parseLong(startPriceS.toString());
-            maxPrice = Long.parseLong(maxPriceS.toString());
+            duration = startTime + (Integer.parseInt(durationS.toString())*60*60*24*1000);
+//            duration = startTime + 10_000;      // TODO: change to ^^^^^^^^^^^^^^^^^^^^^
+            startPrice = Double.parseDouble(startPriceS.toString());
+            maxPrice = Double.parseDouble(maxPriceS.toString());
 
             if (startTime < date + 300
                     || duration < 1
-                    || startPrice < 0
+                    || startPrice <= 0
                     || startPrice >= maxPrice) {
                 return false;
             }

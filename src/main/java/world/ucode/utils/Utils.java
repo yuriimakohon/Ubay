@@ -6,7 +6,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import world.ucode.model.db.dao.DAObid;
+import world.ucode.model.db.dao.DAOlot;
+import world.ucode.model.db.dao.DAOusers;
+import world.ucode.model.db.entetis.Bid;
+import world.ucode.model.db.entetis.Lot;
+import world.ucode.model.db.entetis.Users;
+
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,15 +62,59 @@ public class Utils {
         JSONObject jo;
         String json;
 
-        for (T obj : objs) {
-            try {
-                json = mapper.writeValueAsString(obj);
-                jo = (JSONObject) jp.parse(json);
-                ja.add(jo);
-            } catch (ParseException | JsonProcessingException e) {
-                System.out.println(e.getMessage());
+        if (objs != null) {
+            for (T obj : objs) {
+                try {
+                    json = mapper.writeValueAsString(obj);
+                    jo = (JSONObject) jp.parse(json);
+                    ja.add(jo);
+                } catch (ParseException | JsonProcessingException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
         return ja;
+    }
+
+    public static void check_time_of_lot(List<Lot> lots, DAOlot daoLot, DAObid daoBid) {
+        if (lots != null) {
+            for (Lot lot : lots) {
+                if (lot.getStatus() == 1 && new Date(lot.getStartTime()).compareTo(new Date()) < 0) {
+                    lot.setStatus(2);
+                    daoLot.update(lot);
+                } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
+                    lot.setStatus(3);
+                    daoLot.update(lot);
+                    if (lot.getBidNumber() > 0) {
+                        Bid bid = daoBid.read(lot.getBidId());
+                        if (bid != null) {
+                            bid.setStatusOfBid(3);
+                            daoBid.update(bid);
+                        }
+                        delete_bids_for_lot(lot.getLotId(), daoBid);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void delete_bids_for_lot(int lot_id, DAObid daoBid) {
+        List<Bid> bids = daoBid.get_all_by_lot(lot_id);
+
+        for (Bid bid : bids) {
+            if (bid.getStatusOfBid() != 3) {
+                delete_bid(bid, daoBid);
+            }
+        }
+    }
+
+    public static void delete_bid(Bid bid, DAObid daoBid) {
+        DAOusers daoUser = new DAOusers();
+
+        Users user = daoUser.read(bid.getBidderId());
+        if (user != null) {
+            user.setBalance(user.getBalance() + bid.getPrice());
+        }
+        daoBid.delete(bid.getId());
     }
 }
