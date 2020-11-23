@@ -31,8 +31,8 @@ async function onCreateAuction() {
             desc: desc,
             startPrice: Number(startPrice).toFixed(2),
             maxPrice: Number(maxPrice).toFixed(2),
-            // startTime: new Date().getTime() + 5_000, //TODO: manual user control set startTime
             startTime: st.getTime(),
+            // startTime: new Date().getTime() + 5_000, //TODO: manual user control set startTime ^^^^^
             duration: duration,
             categories: categories
         };
@@ -55,18 +55,4 @@ async function onCreateAuction() {
             showInfoText();
         }
     }
-}
-
-function checkPrices(startPrice, maxPrice) {
-    if (+startPrice >= +maxPrice) {
-        errMaxPrice();
-        return false;
-    } else if (+startPrice < 0 || +maxPrice < 0) {
-        errNegativePrice()
-        return false;
-    } else if (+startPrice > 100_000 || +maxPrice > 100_000) {
-        errPriceTooBig();
-        return false;
-    }
-    return true;
 }
