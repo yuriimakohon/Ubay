@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/api/bid/*")
 public class Bids extends HttpServlet {
@@ -87,6 +86,12 @@ public class Bids extends HttpServlet {
             if (lot == null) {
                 resp.setStatus(406);
                 resp.getWriter().write("Lot is not exists");
+                return;
+            }
+
+            if (lot.getStatus() == 1 || lot.getStatus() == 3) {
+                resp.setStatus(403);
+                resp.getWriter().write("Lot is not available");
                 return;
             }
 
