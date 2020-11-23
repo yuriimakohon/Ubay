@@ -11,8 +11,6 @@ async function onCreateAuction() {
         errEmptyFields();
     } else if (!REGEX_LOT_TEXT.test(title)) {
         errTitleFormat();
-    } else if (!REGEX_LOT_TEXT.test(desc)) {
-        errDescriptionFormat();
     } else if (photos.files.length > 6) {
         errPhotoCount();
     } else if (+maxPrice <= +startPrice) {
