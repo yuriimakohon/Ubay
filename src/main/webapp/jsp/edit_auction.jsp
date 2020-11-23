@@ -46,12 +46,12 @@
             </p>
             <input class="number_input" type="number" id="input-max_price" step="5" min="5" placeholder="0.00">
         </div>
-        <div id="start_time-container" class="text_input-item">
-            <p>Start time
-                <span class="tooltip">If the time is in the past - the lot is activated immediately</span>
-            </p>
-            <input id="input-start_time" class="datetime-local-input" type="datetime-local">
-        </div>
+<%--        <div id="start_time-container" class="text_input-item">--%>
+<%--            <p>Start time--%>
+<%--                <span class="tooltip">If the time is in the past - the lot is activated immediately</span>--%>
+<%--            </p>--%>
+<%--            <input id="input-start_time" class="datetime-local-input" type="datetime-local">--%>
+<%--        </div>--%>
         <div id="duration-container" class="text_input-item">
             <p>Duration</p>
             <label>
