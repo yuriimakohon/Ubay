@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
+import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.Interaces.RestUtils;
@@ -51,6 +52,14 @@ public class AuctionUtils implements RestUtils {
         } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
             lot.setStatus(3);
             daoLot.update(lot);
+            if (lot.getBidNumber() > 0) {
+                Bid bid = daoBid.read(lot.getBidId());
+                if (bid != null) {
+                    bid.setStatusOfBid(3);
+                    daoBid.update(bid);
+                }
+                Utils.delete_bids_for_lot(lot.getLotId(), daoBid);
+            }
         }
 
         try {
