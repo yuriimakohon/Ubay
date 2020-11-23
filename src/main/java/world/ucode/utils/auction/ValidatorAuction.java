@@ -34,7 +34,7 @@ public class ValidatorAuction {
         try  {
             startTime = Long.parseLong(startTimeS.toString());
 //            duration = startTime + (Integer.parseInt(durationS.toString())*60*60*24*1000);
-            duration = startTime + 120_000;      // TODO: change to ^^^^^^^^^^^^^^^^^^^^^
+            duration = startTime + 10_000;      // TODO: change to ^^^^^^^^^^^^^^^^^^^^^
             startPrice = Long.parseLong(startPriceS.toString());
             maxPrice = Long.parseLong(maxPriceS.toString());
 
