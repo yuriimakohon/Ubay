@@ -1,5 +1,6 @@
 package world.ucode.API;
 
+import world.ucode.model.db.dao.DAObid;
 import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.utils.Utils;
@@ -31,6 +32,7 @@ public class Search extends HttpServlet {
         Map<String, String[]> mp = req.getParameterMap();
 
         List<String> listCategories = null;
+        List<Integer> listStats = null;
         String[] categories = mp.get("categories");
         String[] masTitle = mp.get("title");
         String[] masLogin = mp.get("login");
@@ -40,11 +42,9 @@ public class Search extends HttpServlet {
         String[] masStringId = mp.get("user_id");
         String title = null;
         String login = null;
-        String stringStatus = null;
 
         double price = 0;
         int rate = 0;
-        int status = 0;
         int userId = 0;
 
         if (masStringId != null) {
@@ -68,14 +68,17 @@ public class Search extends HttpServlet {
             rate = Integer.parseInt(masStringRate[0]);
         }
         if (masStringStatus != null) {
-            stringStatus = masStringStatus[0];
-            String[] stats = stringStatus.split("-");
-            status = Integer.parseInt(stats[1]);
+            String[] stats = masStringStatus[0].split("-");
+            listStats = new ArrayList<>();
+            for (String s : stats) {
+                listStats.add(Integer.parseInt(s));
+            }
         }
 
-        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, status, login, userId);
+        List<Lot> ll = daoLot.getAllLotsbyCategoris(listCategories, title, price, rate, listStats, login, userId);
 
         resp.setStatus(200);
+        Utils.check_time_of_lot(ll, daoLot, new DAObid());
         resp.getWriter().write(Utils.toJsonArray(ll).toJSONString());
     }
 }
