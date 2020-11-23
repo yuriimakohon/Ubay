@@ -4,8 +4,7 @@ let btnChangePass = $('#btn-change_pass');
 let avatarItem = $('#avatar-item');
 let btnLogout = $('#btn-logout');
 
-$('#input-dollar').before('Add '); // TODO: delete
-$('#input-dollar').after(' $'); // TODO: delete
+$('#input-dollar').before('Add ').after(' $'); // TODO: add credit-card
 
 function onChangePassword() {
     btnLogout.addClass('hidden');
