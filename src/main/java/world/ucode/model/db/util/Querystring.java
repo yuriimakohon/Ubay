@@ -85,7 +85,7 @@ public class Querystring {
             }
         }
         if (tit)
-            query.setParameter("tittle", tittle);
+            query.setParameter("tittle",  tittle + "%");
         if (startpr)
             query.setParameter("price", startPrice);
         if (rat)
