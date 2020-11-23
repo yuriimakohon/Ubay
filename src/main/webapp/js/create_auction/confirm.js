@@ -13,8 +13,7 @@ async function onCreateAuction() {
         errTitleFormat();
     } else if (photos.files.length > 6) {
         errPhotoCount();
-    } else if (+maxPrice <= +startPrice) {
-        errMaxPrice();
+    } else if (!checkPrices(startPrice, maxPrice)) {
     } else if (!checkMinTime(startTime)) {
         errStartTime();
     } else {
@@ -55,5 +54,19 @@ async function onCreateAuction() {
             showInfoText();
         }
     }
+}
+
+function checkPrices(startPrice, maxPrice) {
+    if (+startPrice >= +maxPrice) {
+        errMaxPrice();
+        return false;
+    } else if (+startPrice < 0 || +maxPrice < 0) {
+        errNegativePrice()
+        return false;
+    } else if (+startPrice > 100_000 || +maxPrice > 100_000) {
+        errPriceTooBig();
+        return false;
+    }
+    return true;
 }
 
