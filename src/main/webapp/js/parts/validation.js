@@ -11,3 +11,17 @@ function check_categories() {
 
     return categories;
 }
+
+function checkPrices(startPrice, maxPrice) {
+    if (+startPrice >= +maxPrice) {
+        errMaxPrice();
+        return false;
+    } else if (+startPrice < 0 || +maxPrice < 0) {
+        errNegativePrice()
+        return false;
+    } else if (+startPrice > 100_000 || +maxPrice > 100_000) {
+        errPriceTooBig();
+        return false;
+    }
+    return true;
+}
