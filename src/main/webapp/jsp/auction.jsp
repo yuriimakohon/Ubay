@@ -89,7 +89,6 @@
                         out.println("<button id=\"btn-show_bid\" class=\"btn\" onclick=\"onShowBid()\">Bid</button>");
                     }
                 %>
-                <button id="btn-show_bid" class="btn" onclick="onShowBid()">Bid</button>
             </div>
             <div id="bid-container" class="hidden">
                 <label id="your_bid">

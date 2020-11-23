@@ -12,6 +12,7 @@ import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Bid;
 import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
+import world.ucode.utils.Bid.BidUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -83,16 +84,9 @@ public class Utils {
                     lot.setStatus(2);
                     daoLot.update(lot);
                 } else if (new Date(lot.getDuration()).compareTo(new Date()) < 0) {
+                    BidUtils.bidWon(lot);
                     lot.setStatus(3);
                     daoLot.update(lot);
-                    if (lot.getBidNumber() > 0) {
-                        Bid bid = daoBid.read(lot.getBidId());
-                        if (bid != null) {
-                            bid.setStatusOfBid(3);
-                            daoBid.update(bid);
-                        }
-                        delete_bids_for_lot(lot.getLotId(), daoBid);
-                    }
                 }
             }
         }

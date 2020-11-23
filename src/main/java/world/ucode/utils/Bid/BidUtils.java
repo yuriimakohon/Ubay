@@ -8,8 +8,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import world.ucode.model.db.dao.DAObid;
+import world.ucode.model.db.dao.DAOlot;
 import world.ucode.model.db.dao.DAOusers;
 import world.ucode.model.db.entetis.Bid;
+import world.ucode.model.db.entetis.Lot;
 import world.ucode.model.db.entetis.Users;
 import world.ucode.utils.Interaces.GetByUser;
 import world.ucode.utils.Interaces.RestUtils;
@@ -91,5 +93,25 @@ public class BidUtils implements RestUtils, GetByUser {
     @Override
     public JSONArray get_by_user(int id) {
         return Utils.toJsonArray(daoBid.get_all_by_user(id));
+    }
+
+    public static void bidWon(Lot lot) {
+        if (lot.getBidNumber() > 0 && lot.getStatus() == 2) {
+            DAObid dao = new DAObid();
+
+            Bid bid = dao.read(lot.getBidId());
+            if (bid != null) {
+                DAOusers daoUser = new DAOusers();
+                bid.setStatusOfBid(3);
+                dao.update(bid);
+
+                Users owner = daoUser.read(lot.getSellerId());
+                if (owner != null) {
+                    owner.setBalance(owner.getBalance() + bid.getPrice());
+                    daoUser.update(owner);
+                }
+            }
+            Utils.delete_bids_for_lot(lot.getLotId(), dao);
+        }
     }
 }
