@@ -48,28 +48,22 @@ async function onSaveChanges() {
     let desc = $('#textarea-description').val();
     let startPrice = $('#input-start_price').val();
     let maxPrice = $('#input-max_price').val();
-    let startTime = $('#input-start_time').val();
-    let duration = $('#range-duration').val();
-    // let photos = document.getElementById('input-photos');
+    // let startTime = new Date($('#input-start_time').val()).getTime();
+    let duration = +$('#range-duration').val();
 
-    if (!title || !desc || !startPrice || !maxPrice || !startTime
-        // || photos.files.length < 1
-    ) {
+    if (!title || !desc || !startPrice || !maxPrice) {
         errEmptyFields();
-        // } else if (photos.files.length > 6) {
-        //     errPhotoCount();
-    } else if (+maxPrice <= +startPrice) {
-        errMaxPrice();
+    } else if (!REGEX_LOT_TEXT.test(title)) {
+        errTitleFormat();
+    } else if (!checkPrices(startPrice, maxPrice)) {
     } else {
         //parse date
-        let st = new Date();
-        st.setFullYear(parseInt(startTime.split("T")[0].split("-")[0]))
-        st.setMonth(parseInt(startTime.split("T")[0].split("-")[1]) - 1);
-        st.setDate(parseInt(startTime.split("T")[0].split("-")[2]));
-        st.setHours(parseInt(startTime.split("T")[1].split(":")[0]));
-        st.setMinutes(parseInt(startTime.split("T")[1].split(":")[1]));
+        let st = datetimeToData(startTime);
 
-        let categories = check_categories();
+        let categories = check_categories()
+        if (categories !== '') {
+            categories = categories.slice(1, categories.length);
+        }
 
         // create object for request
         let auction = {
@@ -81,8 +75,6 @@ async function onSaveChanges() {
             duration: duration,
             categories: categories
         };
-        // download files
-        // auction["images"] = await loadFiles(photos);
 
         // post request
         let response = await fetch('http://localhost:8080/api/auction/' + localStorage.getItem('lotId'), {
