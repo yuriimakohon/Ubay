@@ -49,10 +49,5 @@ function errTitleFormat() {
     showInfoText();
 }
 
-function errDescriptionFormat() {
-    setErrorText('Description can contain only alpha-numeric symbols,  \'!\', \'-\' and \',\'');
-    showInfoText();
-}
-
 //=============| Success Messages |================//
 
