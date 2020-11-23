@@ -41,6 +41,7 @@ REST:
 * **Client-side**:
     * js
     * jQuery
+    * JWT
     * jsp
     * css
 * **Build**: Maven wrapper
